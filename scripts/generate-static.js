@@ -277,6 +277,7 @@ for (const catId of catIds) {
   }
 
   body += `<p><strong>${catToolCount} free tools</strong> in this category. No signup required, all processing client-side.</p>\n`;
+  body += `<div style="max-width:900px;margin:24px auto;text-align:center"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6044600625597443" data-ad-slot="auto" data-ad-format="horizontal" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>\n`;
   body += `</div>`;
 
   let faqData = null;
