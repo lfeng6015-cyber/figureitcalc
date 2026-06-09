@@ -16,13 +16,13 @@ lines = ['<?xml version="1.0" encoding="UTF-8"?>',
 lines.append(f'  <url><loc>{base}/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>')
 
 for cat in cats:
-    lines.append(f'  <url><loc>{base}/#/category/{cat}</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>')
+    lines.append(f'  <url><loc>{base}/category/{cat}.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>')
 
 for page in static:
-    lines.append(f'  <url><loc>{base}/#/{page}</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>')
+    lines.append(f'  <url><loc>{base}/{page}.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>')
 
 for tool in tools:
-    lines.append(f'  <url><loc>{base}/#/tools/{tool}</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>')
+    lines.append(f'  <url><loc>{base}/tools/{tool}.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>')
 
 lines.append('</urlset>')
 
