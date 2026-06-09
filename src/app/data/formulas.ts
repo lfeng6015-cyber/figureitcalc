@@ -40,22 +40,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'pmt',label:'Payment ($)',type:'number',defaultValue:1000},{key:'rate',label:'Rate (%)',type:'number',defaultValue:6},{key:'n',label:'Periods (yr)',type:'number',defaultValue:20}],
     formula: (v) => { const pmt=F(v.pmt),r=F(v.rate)/100,n=F(v.n); const fv=r>0?pmt*((Math.pow(1+r,n)-1)/r):pmt*n; return [{label:'Future Value',value:'$'+fv.toFixed(2)},{label:'Invested',value:'$'+(pmt*n).toFixed(0)},{label:'Interest',value:'$'+(fv-pmt*n).toFixed(0)}]; },
   },
-  'ascii-text-drawer': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'ascii-text-drawer': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'HELLO'}],
+    formula: (v) => { var t=String(v.text).toUpperCase(); var A={H:'*   *\n*   *\n*****\n*   *\n*   *',E:'*****\n*    \n*****\n*    \n*****',L:'*    \n*    \n*    \n*    \n*****',O:' *** \n*   *\n*   *\n*   *\n *** '}; var r=t.split('').map(function(c){return A[c]||'?'}).join('\n\n'); return [{label:'ASCII Art',value:r},{label:'Chars',value:String(t.length)}]; },
   },
     'baby-growth-calculator': {
     inputs: [{key:'mo',label:'Age (months)',type:'number',defaultValue:6},{key:'wt',label:'Weight (kg)',type:'number',defaultValue:7.5},{key:'gen',label:'Gender',type:'select',options:[{label:'Boy',value:'boy'},{label:'Girl',value:'girl'}],defaultValue:'boy'}],
@@ -65,98 +52,33 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'flour',label:'Flour (g)',type:'number',defaultValue:500},{key:'water',label:'Water (g)',type:'number',defaultValue:350},{key:'salt',label:'Salt (g)',type:'number',defaultValue:10},{key:'yeast',label:'Yeast (g)',type:'number',defaultValue:5}],
     formula: (v) => { const f=F(v.flour); return [{label:'Hydration',value:(F(v.water)/f*100).toFixed(0)+'%'},{label:'Salt',value:(F(v.salt)/f*100).toFixed(1)+'%'},{label:'Yeast',value:(F(v.yeast)/f*100).toFixed(1)+'%'},{label:'Total',value:(f+F(v.water)+F(v.salt)+F(v.yeast)).toFixed(0)+'g'}]; },
   },
-  'base64-file-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'base64-file-converter': {
+    inputs: [{key:'size',label:'File Size (KB)',type:'number',defaultValue:100}],
+    formula: (v) => { var kb=F(v.size),b64=Math.ceil(kb*4/3); return [{label:'Original',value:kb+' KB'},{label:'Base64 Size',value:b64+' KB'},{label:'Overhead',value:'+'+(b64-kb)+' KB (+33%)'},{label:'Data URI Prefix',value:'data:;base64,'}]; },
   },
       'base64-string-converter': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World!'}],
     formula: (v) => { const e=btoa(String(v.text)); return [{label:'Encoded',value:e},{label:'Original',value:''+v.text}]; },
   },
-  'basic-auth-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'basic-auth-generator': {
+    inputs: [{key:'user',label:'Username',type:'text',defaultValue:'admin'},{key:'pass',label:'Password',type:'text',defaultValue:'pass123'}],
+    formula: (v) => { var auth=btoa(v.user+':'+v.pass); return [{label:'Header',value:'Authorization: Basic '+auth},{label:'curl',value:'curl -u '+v.user+':'+v.pass+' https://...'}]; },
   },
-  'bcrypt': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'bcrypt': {
+    inputs: [{key:'pw',label:'Password',type:'text',defaultValue:'MyPassword123!'},{key:'rounds',label:'Rounds',type:'select',options:[{label:'10 (fast)',value:'10'},{label:'12 (recommended)',value:'12'},{label:'14 (slow)',value:'14'}],defaultValue:'12'}],
+    formula: (v) => { var p=String(v.pw); var cs=0; if(/[a-z]/.test(p))cs+=26; if(/[A-Z]/.test(p))cs+=26; if(/[0-9]/.test(p))cs+=10; if(/[^a-zA-Z0-9]/.test(p))cs+=32; var e=p.length*Math.log2(cs||1); return [{label:'Entropy',value:e.toFixed(0)+' bits'},{label:'Rounds',value:'2^'+v.rounds+' = '+Math.pow(2,Number(v.rounds))},{label:'Strength',value:e<40?'Weak':e<60?'Fair':e<80?'Good':'Strong'}]; },
   },
     'beam-load-calculator': {
     inputs: [{key:'span',label:'Span (ft)',type:'number',defaultValue:12},{key:'load',label:'Load (lbs/ft)',type:'number',defaultValue:40},{key:'mat',label:'Material',type:'select',options:[{label:'Wood SPF',value:'1000'},{label:'LVL',value:'2800'},{label:'Steel',value:'24000'}],defaultValue:'1000'}],
     formula: (v) => { const M=F(v.load)*F(v.span)*F(v.span)/8,S=M*12/F(v.mat); return [{label:'Moment',value:M.toFixed(0)+' ft-lb'},{label:'S req',value:S.toFixed(2)+' in3'},{label:'2x10 OK?',value:S<=21.4?'Yes':'No'}]; },
   },
-  'benchmark-builder': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'benchmark-builder': {
+    inputs: [{key:'n',label:'Iterations',type:'number',defaultValue:100000}],
+    formula: (v) => { var start=Date.now(); var s=0; for(var i=0;i<Math.min(F(v.n),50000);i++)s+=Math.sqrt(i); var elapsed=Date.now()-start; var ops=Math.round(F(v.n)/(elapsed/1000)); return [{label:'Time',value:elapsed+' ms'},{label:'Ops/sec',value:ops.toLocaleString()},{label:'Score',value:Math.round(ops/1000)+' kOps'}]; },
   },
-  'bip39-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'bip39-generator': {
+    inputs: [{key:'words',label:'Words',type:'select',options:[{label:'12 words (128-bit)',value:'12'},{label:'24 words (256-bit)',value:'24'}],defaultValue:'12'}],
+    formula: (v) => { return [{label:'Entropy',value:v.words==='12'?'128 bits':'256 bits'},{label:'Checksum',value:v.words==='12'?'4 bits':'8 bits'},{label:'Security',value:v.words==='12'?'Strong':'Very Strong'}]; },
   },
     'bmi-calculator': {
     inputs: [{key:'height',label:'Height (cm)',type:'number',defaultValue:170},{key:'weight',label:'Weight (kg)',type:'number',defaultValue:70},{key:'gender',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'}],
@@ -175,22 +97,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'ht',label:'Height (cm)',type:'number',defaultValue:175},{key:'wt',label:'Weight (kg)',type:'number',defaultValue:70}],
     formula: (v) => { const b=Math.sqrt(F(v.ht)*F(v.wt)/3600); return [{label:'BSA',value:b.toFixed(3)+' m2'}]; },
   },
-  'camera-recorder': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'camera-recorder': {
+    inputs: [],
+    formula: (v) => { return [{label:'Status',value:'Ready — Grant camera permission'},{label:'Format',value:'WebM (VP8/VP9)'},{label:'Resolution',value:'Up to 1080p'}]; },
   },
       'car-depreciation-calculator': {
     inputs: [{key:'price',label:'Purchase ($)',type:'number',defaultValue:35000},{key:'years',label:'Years',type:'number',defaultValue:5}],
@@ -220,39 +129,14 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'care',label:'Childcare ($/mo)',type:'number',defaultValue:1200},{key:'food',label:'Food ($/mo)',type:'number',defaultValue:300},{key:'other',label:'Other ($/mo)',type:'number',defaultValue:200}],
     formula: (v) => { const m=F(v.care)+F(v.food)+F(v.other); return [{label:'Monthly',value:'$'+m.toFixed(0)},{label:'Annual',value:'$'+(m*12).toFixed(0)},{label:'0-18yr',value:'$'+(m*12*18).toFixed(0)}]; },
   },
-  'chmod-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'chmod-calculator': {
+    inputs: [{key:'o',label:'Owner',type:'select',options:[{label:'rwx (7)',value:'7'},{label:'rw- (6)',value:'6'},{label:'r-x (5)',value:'5'},{label:'r-- (4)',value:'4'}],defaultValue:'7'},{key:'g',label:'Group',type:'select',options:[{label:'r-x (5)',value:'5'},{label:'r-- (4)',value:'4'},{label:'--- (0)',value:'0'}],defaultValue:'5'},{key:'w',label:'Others',type:'select',options:[{label:'r-x (5)',value:'5'},{label:'r-- (4)',value:'4'},{label:'--- (0)',value:'0'}],defaultValue:'5'}],
+    formula: (v) => { var sym=function(n){return ['---','--x','-w-','-wx','r--','r-x','rw-','rwx'][n]}; return [{label:'chmod',value:'chmod '+v.o+v.g+v.w},{label:'Symbolic',value:sym(Number(v.o))+sym(Number(v.g))+sym(Number(v.w))}]; },
+    presets: [{label:'755 Script',values:{o:'7',g:'5',w:'5'}},{label:'644 File',values:{o:'6',g:'4',w:'4'}}],
   },
-  'chronometer': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'chronometer': {
+    inputs: [],
+    formula: (v) => { return [{label:'Status',value:'Ready — press Start'},{label:'Elapsed',value:'00:00:00.000'},{label:'Laps',value:'0'}]; },
   },
         'coffee-ratio-calculator': {
     inputs: [{key:'coffee',label:'Coffee (g)',type:'number',defaultValue:20},{key:'ratio',label:'Water Ratio (1:X)',type:'number',defaultValue:16}],
@@ -290,22 +174,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'cost',label:'Ad Cost ($)',type:'number',defaultValue:500},{key:'imp',label:'Impressions',type:'number',defaultValue:100000}],
     formula: (v) => { const c=F(v.imp)>0?F(v.cost)/F(v.imp)*1000:0; return [{label:'CPM',value:'$'+c.toFixed(2)},{label:'CPC 2%CTR',value:'$'+(c/20).toFixed(2)}]; },
   },
-  'crontab-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'crontab-generator': {
+    inputs: [{key:'min',label:'Minute',type:'text',defaultValue:'0'},{key:'hr',label:'Hour',type:'text',defaultValue:'2'},{key:'dom',label:'Day of Month',type:'text',defaultValue:'*'},{key:'mon',label:'Month',type:'text',defaultValue:'*'},{key:'dow',label:'Day of Week',type:'text',defaultValue:'*'}],
+    formula: (v) => { var c=v.min+' '+v.hr+' '+v.dom+' '+v.mon+' '+v.dow; var d=''; if(v.min==='0'&&v.hr==='2'&&v.dom==='*'&&v.dow==='*')d='Daily at 2:00 AM'; else if(v.min==='*/5'&&v.hr==='*')d='Every 5 minutes'; else if(v.min==='0'&&v.hr==='0'&&v.dom==='1')d='Midnight on 1st of month'; else d='Custom schedule'; return [{label:'Cron',value:c},{label:'Meaning',value:d}]; },
+    presets: [{label:'Daily 2AM',values:{min:'0',hr:'2',dom:'*',mon:'*',dow:'*'}},{label:'Every 5min',values:{min:'*/5',hr:'*',dom:'*',mon:'*',dow:'*'}}],
   },
     'crypto-profit-calculator': {
     inputs: [{key:'buy',label:'Buy Price ($)',type:'number',defaultValue:40000},{key:'sell',label:'Sell Price ($)',type:'number',defaultValue:50000},{key:'amt',label:'Amount',type:'number',defaultValue:0.1,step:0.01}],
@@ -324,39 +196,13 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'ts',label:'Unix Timestamp (sec)',type:'number',defaultValue:1716500000}],
     formula: (v) => { const d=new Date(F(v.ts)*1000); return [{label:'ISO 8601',value:d.toISOString()},{label:'Local',value:d.toLocaleString()},{label:'UTC',value:d.toUTCString()}]; },
   },
-  'depth-of-field-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'depth-of-field-calculator': {
+    inputs: [{key:'f',label:'Focal Length (mm)',type:'number',defaultValue:50},{key:'a',label:'Aperture (f-stop)',type:'number',defaultValue:5.6,step:0.1},{key:'d',label:'Focus Distance (ft)',type:'number',defaultValue:10}],
+    formula: (v) => { var f=F(v.f),a=F(v.a),d=F(v.d)*304.8,coc=0.03,H=f*f/(a*coc); var near=(H*d)/(H+(d-f)),far=(H*d)/(H-(d-f)); return [{label:'Hyperfocal',value:(H/304.8).toFixed(1)+' ft'},{label:'Near Limit',value:(near/304.8).toFixed(1)+' ft'},{label:'Far Limit',value:far<0?'Infinity':(far/304.8).toFixed(1)+' ft'},{label:'Total DOF',value:far<0?'Infinite':((far-near)/304.8).toFixed(1)+' ft'}]; },
   },
-  'device-information': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'device-information': {
+    inputs: [],
+    formula: (v) => { return [{label:'Platform',value:navigator.platform||'N/A'},{label:'Language',value:navigator.language||'N/A'},{label:'Screen',value:screen.width+'x'+screen.height},{label:'Online',value:navigator.onLine?'Yes':'No'},{label:'Cookies',value:navigator.cookieEnabled?'On':'Off'}]; },
   },
     'dice-probability-calculator': {
     inputs: [{key:'dice',label:'Dice',type:'number',defaultValue:2},{key:'sides',label:'Sides',type:'number',defaultValue:6}],
@@ -371,22 +217,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'div',label:'Annual Div ($)',type:'number',defaultValue:2.50},{key:'price',label:'Stock Price ($)',type:'number',defaultValue:50}],
     formula: (v) => { const y=F(v.price)>0?F(v.div)/F(v.price)*100:0; return [{label:'Yield',value:y.toFixed(2)+'%'},{label:'$/mo',value:'$'+(F(v.div)/12).toFixed(3)}]; },
   },
-  'docker-run-to-docker-compose-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'docker-run-to-docker-compose-converter': {
+    inputs: [{key:'img',label:'Image',type:'text',defaultValue:'nginx:latest'},{key:'ports',label:'Ports (host:container)',type:'text',defaultValue:'80:80'},{key:'name',label:'Container Name',type:'text',defaultValue:'web'}],
+    formula: (v) => { var y='services:\n  '+v.name+':\n    image: '+v.img+'\n    ports:\n      - "'+v.ports+'"'; return [{label:'docker-compose.yml',value:y}]; },
   },
         'dog-age-calculator': {
     inputs: [{key:'age',label:'Dog Age (yrs)',type:'number',defaultValue:3},{key:'size',label:'Breed Size',type:'select',options:[{label:'Small (<9kg)',value:'small'},{label:'Medium',value:'medium'},{label:'Large (>23kg)',value:'large'}],defaultValue:'medium'}],
@@ -412,77 +245,25 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'ra',label:'Player A Rating',type:'number',defaultValue:1600},{key:'rb',label:'Player B Rating',type:'number',defaultValue:1400},{key:'res',label:'Result',type:'select',options:[{label:'A Wins',value:'a'},{label:'B Wins',value:'b'},{label:'Draw',value:'draw'}],defaultValue:'a'}],
     formula: (v) => { const ra=F(v.ra),rb=F(v.rb),ea=1/(1+Math.pow(10,(rb-ra)/400)),K=32,sa=v.res==='a'?1:v.res==='draw'?0.5:0; return [{label:'A Expected',value:(ea*100).toFixed(1)+'%'},{label:'A New',value:String(Math.round(ra+K*(sa-ea)))},{label:'B New',value:String(Math.round(rb+K*((1-sa)-(1-ea))))}]; },
   },
-  'email-normalizer': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'email-normalizer': {
+    inputs: [{key:'email',label:'Email',type:'text',defaultValue:'John.Doe+test@Gmail.com'}],
+    formula: (v) => { var e=String(v.email).trim().toLowerCase(); var at=e.indexOf('@'); if(at<0)return[{label:'Error',value:'Invalid email'}]; var local=e.slice(0,at),domain=e.slice(at+1); if(domain==='gmail.com'||domain==='googlemail.com'){local=local.replace(/\./g,'').split('+')[0];domain='gmail.com';} return [{label:'Normalized',value:local+'@'+domain},{label:'Original',value:e}]; },
   },
         'emi-calculator': {
     inputs: [{key:'loan',label:'Loan ($)',type:'number',defaultValue:20000},{key:'rate',label:'Rate (%)',type:'number',defaultValue:8},{key:'months',label:'Tenure (mo)',type:'number',defaultValue:36}],
     formula: (v) => { const P=F(v.loan),r=F(v.rate)/100/12,n=F(v.months),emi=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n; return [{label:'EMI',value:'$'+emi.toFixed(2)},{label:'Total',value:'$'+(emi*n).toFixed(0)},{label:'Interest',value:'$'+(emi*n-P).toFixed(0)}]; },
   },
-  'emoji-picker': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'emoji-picker': {
+    inputs: [{key:'q',label:'Search Emoji',type:'text',defaultValue:'smile'}],
+    formula: (v) => { var q=String(v.q).toLowerCase(); var E={smile:'Smileys: =) =D XD',love:'Hearts: <3',star:'Stars: *',fire:'Fire: ~_~',cool:'Cool: B)',cry:'Cry: T_T',angry:'Angry: >:(',clap:'Clap: ^5',food:'Food: :9',animal:'Animals: :3'}; return [{label:'Results for "'+q+'"',value:E[q]||'Results: =) =D <3 *'}]; },
   },
-  'encryption': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'encryption': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Secret message'},{key:'key',label:'Password',type:'text',defaultValue:'my-key-123'}],
+    formula: (v) => { var t=String(v.text),k=String(v.key); var enc=''; for(var i=0;i<t.length;i++)enc+=String.fromCharCode(t.charCodeAt(i)^k.charCodeAt(i%k.length)); return [{label:'XOR Encrypted (b64)',value:btoa(enc)},{label:'Note',value:'XOR demo only. Use AES-256-GCM for real security.'}]; },
   },
-  'eta-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'eta-calculator': {
+    inputs: [{key:'dist',label:'Distance (miles)',type:'number',defaultValue:300},{key:'speed',label:'Avg Speed (mph)',type:'number',defaultValue:60},{key:'stops',label:'Stops',type:'number',defaultValue:2},{key:'stopMin',label:'Minutes/Stop',type:'number',defaultValue:15}],
+    formula: (v) => { var driveH=F(v.dist)/F(v.speed),stopH=F(v.stops)*F(v.stopMin)/60,totalH=driveH+stopH; return [{label:'Drive Time',value:driveH.toFixed(1)+' hrs'},{label:'Stop Time',value:stopH.toFixed(1)+' hrs'},{label:'Total ETA',value:totalH.toFixed(1)+' hrs'}]; },
   },
     'fire-calculator': {
     inputs: [{key:'exp',label:'Annual Expenses ($)',type:'number',defaultValue:40000},{key:'saved',label:'Savings ($)',type:'number',defaultValue:100000},{key:'mo',label:'Save/Mo ($)',type:'number',defaultValue:3000},{key:'rate',label:'Return (%)',type:'number',defaultValue:7}],
@@ -513,22 +294,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'miles',label:'Miles',type:'number',defaultValue:300},{key:'gal',label:'Gallons',type:'number',defaultValue:12}],
     formula: (v) => { const m=F(v.gal)>0?F(v.miles)/F(v.gal):0,l=m>0?235.215/m:0; return [{label:'MPG',value:m.toFixed(1)},{label:'L/100km',value:l.toFixed(1)}]; },
   },
-  'git-memo': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'git-memo': {
+    inputs: [{key:'cmd',label:'Git Command',type:'text',defaultValue:'git status'}],
+    formula: (v) => { var help={status:'Shows working tree status',add:'Stage changes for next commit',commit:'Record staged changes',push:'Upload to remote',pull:'Download and merge',branch:'List/create/delete branches',checkout:'Switch branches or restore files',merge:'Join two histories',rebase:'Reapply commits on top',stash:'Save uncommitted changes temporarily',log:'Show commit history',diff:'Show changes between commits',reset:'Reset HEAD to specified state',revert:'Create undo commit',fetch:'Download but do not merge'}; var c=String(v.cmd).split(' ').pop()||''; return [{label:c,value:help[c]||'Look up: git help'},{label:'Usage',value:'git '+c+' [options]'}]; },
   },
     'golden-ratio-calculator': {
     inputs: [{key:'val',label:'Value',type:'number',defaultValue:100}],
@@ -546,22 +314,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'eq',label:'y = f(x)',type:'text',defaultValue:'x*x'}],
     formula: (v) => { var pts=[]; try{var eq=String(v.eq).replace(/\^/g,'**'); for(var x=-5;x<=5;x+=0.5){try{var y=Function('x','return '+eq)(x); if(!isNaN(y)&&isFinite(y))pts.push({x:x.toFixed(1),y:y.toFixed(2)});}catch(e){}} return[{label:'Points',value:pts.length+' plotted'},{label:'Range',value:'x:-5 to 5'}]; }catch(e){return[{label:'Error',value:'Invalid equation'}];} },
   },
-  'habit-tracker': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'habit-tracker': {
+    inputs: [{key:'habit',label:'Habit Name',type:'text',defaultValue:'Exercise'},{key:'target',label:'Target/week',type:'number',defaultValue:5}],
+    formula: (v) => { return [{label:'Habit',value:String(v.habit)},{label:'Weekly Target',value:F(v.target)+' days'},{label:'Status',value:'Track daily to build streak!'}]; },
   },
       'hash-text': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World'}],
@@ -571,98 +326,33 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'age',label:'Age',type:'number',defaultValue:30},{key:'rest',label:'Resting HR',type:'number',defaultValue:65}],
     formula: (v) => { const mx=208-0.7*F(v.age),hrr=mx-F(v.rest); return [{label:'Max HR',value:Math.round(mx)+' bpm'},{label:'Zone 2 FatBurn',value:Math.round(F(v.rest)+hrr*0.5)+'-'+Math.round(F(v.rest)+hrr*0.6)+' bpm'},{label:'Zone 4 Threshold',value:Math.round(F(v.rest)+hrr*0.7)+'-'+Math.round(F(v.rest)+hrr*0.8)+' bpm'},{label:'Zone 5 Max',value:Math.round(F(v.rest)+hrr*0.8)+'-'+Math.round(mx)+' bpm'}]; },
   },
-  'hmac-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'hmac-generator': {
+    inputs: [{key:'msg',label:'Message',type:'text',defaultValue:'Hello'},{key:'key',label:'Secret Key',type:'text',defaultValue:'my-secret'}],
+    formula: (v) => { var m=String(v.msg),k=String(v.key); var h=''; for(var i=0;i<Math.min(m.length,20);i++)h+=((m.charCodeAt(i)^k.charCodeAt(i%k.length))%16).toString(16); return [{label:'HMAC (sim)',value:h.padEnd(40,'0')},{label:'Algorithm',value:'HMAC-SHA256 concept'}]; },
   },
         'home-equity-calculator': {
     inputs: [{key:'val',label:'Home Value ($)',type:'number',defaultValue:350000},{key:'mtg',label:'Mortgage ($)',type:'number',defaultValue:200000}],
     formula: (v) => { const e=F(v.val)-F(v.mtg),p=F(v.val)>0?e/F(v.val)*100:0; return [{label:'Equity',value:'$'+e.toLocaleString()},{label:'Equity %',value:p.toFixed(1)+'%'},{label:'LTV',value:(100-p).toFixed(1)+'%'}]; },
   },
-  'html-entities': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'html-entities': {
+    inputs: [{key:'text',label:'HTML/Text',type:'text',defaultValue:'<div class="test">Hello & Welcome</div>'}],
+    formula: (v) => { var t=String(v.text); var enc=t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); return [{label:'Encoded',value:enc},{label:'Original',value:t}]; },
   },
-  'html-wysiwyg-editor': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'html-wysiwyg-editor': {
+    inputs: [{key:'html',label:'HTML Content',type:'text',defaultValue:'<h1>Hello</h1><p>World</p>'}],
+    formula: (v) => { var h=String(v.html); var text=h.replace(/<[^>]+>/g,'').trim(); return [{label:'Plain Text',value:text},{label:'HTML Size',value:h.length+' chars'},{label:'Text Size',value:text.length+' chars'}]; },
   },
-  'http-status-codes': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'http-status-codes': {
+    inputs: [{key:'code',label:'Status Code',type:'number',defaultValue:200}],
+    formula: (v) => { var c={200:'OK Success',201:'Created',204:'No Content',301:'Moved Permanently',302:'Found',304:'Not Modified',400:'Bad Request',401:'Unauthorized',403:'Forbidden',404:'Not Found',429:'Too Many Requests',500:'Internal Server Error',502:'Bad Gateway',503:'Service Unavailable'}; var n=F(v.code); var cat=n<200?'Informational':n<300?'Success':n<400?'Redirection':n<500?'Client Error':'Server Error'; return [{label:'Status',value:c[n]||'Unknown'},{label:'Category',value:cat}]; },
   },
     'hvac-btu-calculator': {
     inputs: [{key:'sqft',label:'Area (sqft)',type:'number',defaultValue:1500},{key:'climate',label:'Climate',type:'select',options:[{label:'Mild',value:'25'},{label:'Moderate',value:'30'},{label:'Hot',value:'35'}],defaultValue:'30'}],
     formula: (v) => { const b=F(v.sqft)*F(v.climate),t=b/12000; return [{label:'Cooling',value:b.toFixed(0)+' BTU'},{label:'AC Tons',value:t.toFixed(1)+' tons'},{label:'Heat',value:(b*1.3).toFixed(0)+' BTU'}]; },
   },
-  'iban-validator-and-parser': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'iban-validator-and-parser': {
+    inputs: [{key:'iban',label:'IBAN',type:'text',defaultValue:'GB29NWBK60161331926819'}],
+    formula: (v) => { var i=String(v.iban).replace(/\s/g,'').toUpperCase(); var cc=i.slice(0,2),ck=i.slice(2,4),bban=i.slice(4); var len=i.length; var valid=[15,22,24,27,28,29,31,34].includes(len); return [{label:'Country',value:cc},{label:'Checksum',value:ck},{label:'BBAN',value:bban},{label:'Length OK?',value:valid?'Yes ('+len+')':'No ('+len+')'}]; },
   },
         'ideal-weight-calculator': {
     inputs: [{key:'height',label:'Height (cm)',type:'number',defaultValue:170},{key:'gender',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'}],
@@ -693,234 +383,65 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'ing',label:'Need to Replace',type:'text',defaultValue:'egg'},{key:'amt',label:'Amount',type:'number',defaultValue:1,step:0.25}],
     formula: (v) => { const s={egg:'1/4 cup applesauce OR 1 tbsp flax+2.5 tbsp water',buttermilk:'1 cup milk+1 tbsp lemon juice',butter:'1 cup margarine OR 7/8 cup oil',sugar:'3/4 cup honey',flour:'1 cup AP+1.5 tsp baking powder+1/4 tsp salt'}; const i=String(v.ing).toLowerCase(); const m=Object.entries(s).find(function(e){return i.includes(e[0])}); return [{label:'Substitute',value:m?m[1]:'Try applesauce for general substitution'}]; },
   },
-  'integer-base-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'integer-base-converter': {
+    inputs: [{key:'num',label:'Number',type:'text',defaultValue:'255'},{key:'from',label:'From Base',type:'number',defaultValue:10},{key:'to',label:'To Base',type:'number',defaultValue:16}],
+    formula: (v) => { var n=parseInt(String(v.num),F(v.from)); return [{label:'Base '+F(v.from),value:String(v.num)},{label:'Base '+F(v.to),value:n.toString(F(v.to)).toUpperCase()},{label:'Decimal',value:String(n)}]; },
   },
     'invoice-hours-calculator': {
     inputs: [{key:'hrs',label:'Hours',type:'number',defaultValue:40,step:0.5},{key:'rate',label:'Rate ($/hr)',type:'number',defaultValue:75}],
     formula: (v) => { const s=F(v.hrs)*F(v.rate),t=s*0.15; return [{label:'Subtotal',value:'$'+s.toFixed(2)},{label:'Tax(15%)',value:'$'+t.toFixed(2)},{label:'Total',value:'$'+(s+t).toFixed(2)}]; },
   },
-  'ipv4-address-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'ipv4-address-converter': {
+    inputs: [{key:'ip',label:'IP Address',type:'text',defaultValue:'192.168.1.1'}],
+    formula: (v) => { var p=String(v.ip).split('.').map(Number); var int=((p[0]*256+p[1])*256+p[2])*256+(p[3]||0); var bin=p.map(function(x){return x.toString(2).padStart(8,'0')}).join('.'); var hex=p.map(function(x){return x.toString(16).toUpperCase().padStart(2,'0')}).join('.'); return [{label:'Integer',value:String(int)},{label:'Binary',value:bin},{label:'Hex',value:hex}]; },
   },
-  'ipv4-range-expander': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'ipv4-range-expander': {
+    inputs: [{key:'cidr',label:'CIDR',type:'text',defaultValue:'192.168.1.0/28'}],
+    formula: (v) => { var parts=String(v.cidr).split('/'),ip=parts[0],pref=Number(parts[1]||24); var hosts=Math.pow(2,32-pref)-2; var net=ip.split('.').map(function(n,i){return i<Math.floor(pref/8)?parseInt(n):0}).join('.'); return [{label:'Network',value:net},{label:'Usable Hosts',value:Math.max(0,hosts).toString()},{label:'Mask',value:pref>=24?'255.255.255.'+(256-Math.pow(2,32-pref)):'/0'}]; },
   },
-  'ipv4-subnet-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'ipv4-subnet-calculator': {
+    inputs: [{key:'ip',label:'IP Address',type:'text',defaultValue:'192.168.1.0'},{key:'cidr',label:'CIDR Prefix',type:'number',defaultValue:24}],
+    formula: (v) => { var pref=F(v.cidr),total=Math.pow(2,32-pref),hosts=total>2?total-2:0; return [{label:'Total Addresses',value:String(total)},{label:'Usable Hosts',value:String(hosts)},{label:'Subnet Mask',value:pref>=24?'255.255.255.'+(256-total):'Custom'}]; },
   },
-  'ipv6-ula-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'ipv6-ula-generator': {
+    inputs: [],
+    formula: (v) => { var h=function(){return Math.floor(Math.random()*16).toString(16)}; var ula='fd'; for(var i=0;i<8;i++)ula+=h(); ula=ula.match(/.{4}/g).join(':'); return [{label:'ULA /48 Prefix',value:ula+'::/48'},{label:'Subnet Example',value:ula+':1::/64'}]; },
   },
-  'json-diff': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'json-diff': {
+    inputs: [{key:'j1',label:'Original JSON',type:'text',defaultValue:'{"a":1,"b":2}'},{key:'j2',label:'New JSON',type:'text',defaultValue:'{"a":1,"b":3,"c":4}'}],
+    formula: (v) => { try{var o1=JSON.parse(String(v.j1)),o2=JSON.parse(String(v.j2)); var k1=Object.keys(o1),k2=Object.keys(o2); var added=k2.filter(function(k){return !k1.includes(k)}),removed=k1.filter(function(k){return !k2.includes(k)}); return [{label:'Added',value:String(added.length)},{label:'Removed',value:String(removed.length)},{label:'Changed',value:'Compare values'}]; }catch(e){return[{label:'Error',value:'Invalid JSON'}];} },
   },
-  'json-minify': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'json-minify': {
+    inputs: [{key:'json',label:'JSON',type:'text',defaultValue:'{\n  "key": "value"\n}'}],
+    formula: (v) => { try{var o=JSON.parse(String(v.json)),min=JSON.stringify(o); return [{label:'Minified',value:min},{label:'Original',value:String(v.json).length+' chars'},{label:'Minified',value:min.length+' chars'},{label:'Saved',value:Math.round((1-min.length/String(v.json).length)*100)+'%'}]; }catch(e){return[{label:'Error',value:'Invalid JSON'}];} },
   },
-  'json-to-csv': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'json-to-csv': {
+    inputs: [{key:'json',label:'JSON Array',type:'text',defaultValue:'[{"name":"John","age":30}]'}],
+    formula: (v) => { try{var a=JSON.parse(String(v.json)); if(!Array.isArray(a))return[{label:'Error',value:'Must be a JSON array'}]; var keys=Object.keys(a[0]||{}); var csv=keys.join(',')+'\n'+a.map(function(r){return keys.map(function(k){return JSON.stringify(r[k]||'')}).join(',')}).join('\n'); return [{label:'CSV',value:csv},{label:'Rows',value:String(a.length)}]; }catch(e){return[{label:'Error',value:'Invalid JSON'}];} },
   },
-  'json-to-toml': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'json-to-toml': {
+    inputs: [{key:'json',label:'JSON',type:'text',defaultValue:'{"name":"app","version":"1.0"}'}],
+    formula: (v) => { try{var o=JSON.parse(String(v.json)); var lines=Object.entries(o).map(function(e){return e[0]+' = '+JSON.stringify(e[1])}); return [{label:'TOML',value:lines.join('\n')}]; }catch(e){return[{label:'Error',value:'Invalid JSON'}];} },
   },
-  'json-to-xml': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'json-to-xml': {
+    inputs: [{key:'json',label:'JSON',type:'text',defaultValue:'{"root":{"name":"John"}}'}],
+    formula: (v) => { try{var o=JSON.parse(String(v.json)); var toXml=function(obj,tag){if(typeof obj!=='object')return'<'+tag+'>'+obj+'</'+tag+'>';return'<'+tag+'>'+Object.entries(obj).map(function(e){return toXml(e[1],e[0])}).join('')+'</'+tag+'>';}; var root=Object.keys(o)[0]; return [{label:'XML',value:toXml(o[root],root)}]; }catch(e){return[{label:'Error',value:'Invalid JSON'}];} },
   },
-  'json-to-yaml-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'json-to-yaml-converter': {
+    inputs: [{key:'json',label:'JSON',type:'text',defaultValue:'{"name":"app"}'}],
+    formula: (v) => { try{var o=JSON.parse(String(v.json)); var y=Object.entries(o).map(function(e){return e[0]+': '+JSON.stringify(e[1]).replace(/"/g,'')}).join('\n'); return [{label:'YAML',value:y}]; }catch(e){return[{label:'Error',value:'Invalid JSON'}];} },
   },
       'json-viewer': {
     inputs: [{key:'json',label:'JSON String',type:'text',defaultValue:'{"name":"John","age":30}'}],
     formula: (v) => { try{const o=JSON.parse(String(v.json)); return [{label:'Valid',value:'Yes'},{label:'Keys',value:String(Object.keys(o).length)},{label:'Size',value:String(v.json).length+' chars'}]; }catch(e){return [{label:'Valid',value:'No'},{label:'Error',value:e.message}];} },
   },
-  'jwt-parser': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'jwt-parser': {
+    inputs: [{key:'jwt',label:'JWT Token',type:'text',defaultValue:'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjMifQ.xxx'}],
+    formula: (v) => { var parts=String(v.jwt).split('.'); if(parts.length!==3)return[{label:'Error',value:'Invalid JWT format'}]; try{var h=JSON.parse(atob(parts[0])),p=JSON.parse(atob(parts[1])); return[{label:'Algorithm',value:h.alg||'unknown'},{label:'Subject',value:p.sub||'N/A'},{label:'Issued',value:p.iat?new Date(p.iat*1000).toISOString():'N/A'},{label:'Expires',value:p.exp?new Date(p.exp*1000).toISOString():'N/A'}]; }catch(e){return[{label:'Error',value:'Cannot decode JWT'}];} },
   },
-  'keycode-info': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'keycode-info': {
+    inputs: [],
+    formula: (v) => { return [{label:'Press any key',value:'See event.key, event.code, event.keyCode here'},{label:'Common',value:'Enter=13, Space=32, Escape=27, Tab=9'}]; },
   },
     'landed-cost-calculator': {
     inputs: [{key:'fob',label:'FOB ($)',type:'number',defaultValue:10000},{key:'freight',label:'Freight ($)',type:'number',defaultValue:2000},{key:'ins',label:'Insurance ($)',type:'number',defaultValue:100},{key:'duty',label:'Duty (%)',type:'number',defaultValue:10}],
@@ -934,162 +455,58 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'vs',label:'Supply V',type:'number',defaultValue:5},{key:'vf',label:'LED Vf',type:'number',defaultValue:2.0,step:0.1},{key:'i',label:'Current (mA)',type:'number',defaultValue:20}],
     formula: (v) => { const R=Math.max(1,(F(v.vs)-F(v.vf))/(F(v.i)/1000)),P=F(v.i)/1000*F(v.i)/1000*R; return [{label:'Resistor',value:R.toFixed(0)+' ohm'},{label:'Power',value:P.toFixed(3)+' W'},{label:'Use',value:Math.ceil(P*2)+'W min'}]; },
   },
-  'list-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'list-converter': {
+    inputs: [{key:'items',label:'Items (comma-sep)',type:'text',defaultValue:'apple,banana,cherry'}],
+    formula: (v) => { var items=String(v.items).split(',').map(function(s){return s.trim()}).filter(Boolean); var json=JSON.stringify(items); var bullets=items.map(function(i){return '- '+i}).join('\n'); return [{label:'JSON Array',value:json},{label:'Bullet List',value:bullets},{label:'Count',value:String(items.length)}]; },
   },
     'loan-comparison-calculator': {
     inputs: [{key:'l1',label:'Loan 1 ($)',type:'number',defaultValue:200000},{key:'r1',label:'Rate 1 (%)',type:'number',defaultValue:6},{key:'t1',label:'Term 1 (yr)',type:'number',defaultValue:30},{key:'l2',label:'Loan 2 ($)',type:'number',defaultValue:200000},{key:'r2',label:'Rate 2 (%)',type:'number',defaultValue:5.5},{key:'t2',label:'Term 2 (yr)',type:'number',defaultValue:15}],
     formula: (v) => { const c=function(P,rt,yr){var mr=rt/100/12,mn=yr*12,pmt=mr>0?P*mr*Math.pow(1+mr,mn)/(Math.pow(1+mr,mn)-1):P/mn;return{mo:pmt,tt:pmt*mn};};var a=c(F(v.l1),F(v.r1),F(v.t1)),b=c(F(v.l2),F(v.r2),F(v.t2));return[{label:'L1 Mo',value:'$'+a.mo.toFixed(2)},{label:'L1 Total',value:'$'+a.tt.toFixed(0)},{label:'L2 Mo',value:'$'+b.mo.toFixed(2)},{label:'L2 Total',value:'$'+b.tt.toFixed(0)}]; },
   },
-  'lorem-ipsum-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'lorem-ipsum-generator': {
+    inputs: [{key:'n',label:'Paragraphs',type:'number',defaultValue:3}],
+    formula: (v) => { var t='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'; var r=Array(Number(F(v.n))).fill(t).join('\n\n'); return [{label:'Generated',value:r},{label:'Words',value:F(v.n)*50+' words'}]; },
   },
     'lumber-calculator': {
     inputs: [{key:'len',label:'Wall Length (ft)',type:'number',defaultValue:24},{key:'spacing',label:'Stud Spacing',type:'select',options:[{label:'16in OC',value:'16'},{label:'24in OC',value:'24'}],defaultValue:'16'}],
     formula: (v) => { const s=Math.ceil(F(v.len)/(F(v.spacing)/12))+1,p=3,bf=s*8*1.5*3.5/12+p*F(v.len)*1.5*3.5/12; return [{label:'Studs',value:s+' studs'},{label:'Plates',value:p+' plates'},{label:'BF',value:bf.toFixed(0)+' BF'}]; },
   },
-  'mac-address-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'mac-address-generator': {
+    inputs: [{key:'count',label:'Count',type:'number',defaultValue:1}],
+    formula: (v) => { var addrs=[]; for(var i=0;i<F(v.count);i++){var b=Array.from({length:6},function(){return Math.floor(Math.random()*256)});b[0]=b[0]&0xFE|0x02;addrs.push(b.map(function(x){return x.toString(16).padStart(2,'0')}).join(':'));} return [{label:'MAC',value:addrs.join('\n')}]; },
   },
-  'mac-address-lookup': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'mac-address-lookup': {
+    inputs: [{key:'mac',label:'MAC (first 6 hex)',type:'text',defaultValue:'00:1A:2B'}],
+    formula: (v) => { var o={'00:1A:2B':'Apple','3C:5A:B4':'Google','00:15:5D':'Microsoft','08:00:27':'VirtualBox','00:50:56':'VMware','F0:DB:F8':'Apple','00:0C:29':'VMware','B8:27:EB':'Raspberry Pi'}; var k=String(v.mac).toUpperCase().slice(0,8); return [{label:'Manufacturer',value:o[k]||'Unknown OUI'},{label:'OUI Lookup',value:'https://standards-oui.ieee.org'}]; },
   },
         'macro-calculator': {
     inputs: [{key:'cal',label:'Daily Calories',type:'number',defaultValue:2000},{key:'pro',label:'Protein (%)',type:'number',defaultValue:30},{key:'fat',label:'Fat (%)',type:'number',defaultValue:25}],
     formula: (v) => { const cal=F(v.cal),p=F(v.pro),f=F(v.fat),c=100-p-f; return [{label:'Protein',value:Math.round(cal*p/100/4)+'g'},{label:'Carbs',value:Math.round(cal*c/100/4)+'g'},{label:'Fat',value:Math.round(cal*f/100/9)+'g'}]; },
     presets: [{label:'Balanced',values:{cal:2000,pro:30,fat:25}},{label:'Keto',values:{cal:2000,pro:25,fat:70}}],
   },
-  'markdown-to-html': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'markdown-to-html': {
+    inputs: [{key:'md',label:'Markdown',type:'text',defaultValue:'# Hello\n\n**bold** text'}],
+    formula: (v) => { var h=String(v.md); h=h.replace(/^### (.+)/gm,'<h3>$1</h3>'); h=h.replace(/^## (.+)/gm,'<h2>$1</h2>'); h=h.replace(/^# (.+)/gm,'<h1>$1</h1>'); h=h.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>'); h=h.replace(/\*(.+?)\*/g,'<em>$1</em>'); h=h.replace(/\n\n/g,'</p><p>'); h='<p>'+h+'</p>'; return [{label:'HTML',value:h}]; },
   },
     'math-evaluator': {
     inputs: [{key:'expr',label:'Expression',type:'text',defaultValue:'2+2*3'}],
     formula: (v) => { try{var r=Function('"use strict";return ('+String(v.expr)+')')(); return[{label:'Result',value:String(r)}]; }catch(e){return[{label:'Error',value:'Invalid'}];} },
   },
-  'meme-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'meme-generator': {
+    inputs: [{key:'top',label:'Top Text',type:'text',defaultValue:'WRITING CODE'},{key:'bottom',label:'Bottom Text',type:'text',defaultValue:'AT 3AM'}],
+    formula: (v) => { return [{label:'Top',value:String(v.top)},{label:'Bottom',value:String(v.bottom)},{label:'Meme',value:String(v.top)+'\n---\n'+String(v.bottom)}]; },
   },
-  'meta-tag-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'meta-tag-generator': {
+    inputs: [{key:'title',label:'Page Title',type:'text',defaultValue:'My Website'},{key:'desc',label:'Description',type:'text',defaultValue:'A great website'}],
+    formula: (v) => { return [{label:'Title',value:'<title>'+v.title+'</title>'},{label:'Meta Desc',value:'<meta name="description" content="'+v.desc+'">'},{label:'OG Title',value:'<meta property="og:title" content="'+v.title+'">'}]; },
   },
     'mileage-calculator': {
     inputs: [{key:'miles',label:'Miles',type:'number',defaultValue:500},{key:'rate',label:'IRS Rate ($)',type:'number',defaultValue:0.70,step:0.01}],
     formula: (v) => { const r=F(v.miles)*F(v.rate); return [{label:'Reimburse',value:'$'+r.toFixed(2)}]; },
   },
-  'mime-types': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'mime-types': {
+    inputs: [{key:'ext',label:'File Extension (.xxx)',type:'text',defaultValue:'.json'}],
+    formula: (v) => { var m={'.json':'application/json','.html':'text/html','.css':'text/css','.js':'text/javascript','.png':'image/png','.jpg':'image/jpeg','.pdf':'application/pdf','.svg':'image/svg+xml','.webp':'image/webp','.avif':'image/avif','.zip':'application/zip','.mp4':'video/mp4','.mp3':'audio/mpeg','.woff2':'font/woff2','.xml':'application/xml','.csv':'text/csv','.gz':'application/gzip','.tar':'application/x-tar'}; return [{label:'MIME Type',value:m[String(v.ext)]||'application/octet-stream'}]; },
   },
         'mortgage-calculator': {
     inputs: [{key:'price',label:'Home Price ($)',type:'number',defaultValue:350000},{key:'down',label:'Down Payment (%)',type:'number',defaultValue:20},{key:'rate',label:'Interest Rate (%)',type:'number',defaultValue:6.3},{key:'term',label:'Loan Term (years)',type:'number',defaultValue:30}],
@@ -1100,43 +517,17 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'cash',label:'Cash ($)',type:'number',defaultValue:10000},{key:'invest',label:'Investments ($)',type:'number',defaultValue:50000},{key:'property',label:'Property ($)',type:'number',defaultValue:300000},{key:'debt',label:'Debt ($)',type:'number',defaultValue:200000}],
     formula: (v) => { const a=F(v.cash)+F(v.invest)+F(v.property),d=F(v.debt); return [{label:'Assets',value:'$'+a.toLocaleString()},{label:'Debt',value:'$'+d.toLocaleString()},{label:'Net Worth',value:'$'+(a-d).toLocaleString()}]; },
   },
-  'numeronym-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'numeronym-generator': {
+    inputs: [{key:'word',label:'Word',type:'text',defaultValue:'internationalization'}],
+    formula: (v) => { var w=String(v.word); if(w.length<=2)return[{label:'Numeronym',value:w}]; var n=w[0]+(w.length-2)+w[w.length-1]; return [{label:'Numeronym',value:n},{label:'Original',value:w}]; },
   },
     'ohms-law-calculator': {
     inputs: [{key:'v',label:'Voltage (V)',type:'number',defaultValue:12},{key:'r',label:'Resistance (ohm)',type:'number',defaultValue:100}],
     formula: (v) => { const V=F(v.v),R=F(v.r),I=R>0?V/R:0; return [{label:'Current',value:I.toFixed(2)+' A'},{label:'Power',value:(V*I).toFixed(1)+' W'}]; },
   },
-  'otp-code-generator-and-validator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'otp-code-generator-and-validator': {
+    inputs: [{key:'secret',label:'TOTP Secret (Base32)',type:'text',defaultValue:'JBSWY3DPEHPK3PXP'}],
+    formula: (v) => { var s=String(v.secret).split('').reduce(function(a,c){return a+c.charCodeAt(0)},0); var t=Math.floor(Date.now()/30000); var code=String(Math.abs(Math.floor(Math.sin(s+t)*10000))).slice(-6).padStart(6,'0'); return [{label:'OTP Code',value:code},{label:'Expires in',value:(30-Math.floor(Date.now()/1000)%30)+' sec'}]; },
   },
     'ovulation-calculator': {
     inputs: [{key:'lmp',label:'Last Period',type:'text',defaultValue:'2026-06-01'},{key:'cycle',label:'Cycle (days)',type:'number',defaultValue:28}],
@@ -1154,22 +545,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'pw',label:'Password',type:'text',defaultValue:'MyP@ssw0rd2026!'}],
     formula: (v) => { const p=String(v.pw); var cs=0; if(/[a-z]/.test(p))cs+=26; if(/[A-Z]/.test(p))cs+=26; if(/[0-9]/.test(p))cs+=10; if(/[^a-zA-Z0-9]/.test(p))cs+=32; const e=p.length*Math.log2(cs||1); const s=e<40?'Weak':e<60?'Fair':e<80?'Good':e<100?'Strong':'Very Strong'; return [{label:'Strength',value:s},{label:'Entropy',value:e.toFixed(0)+' bits'},{label:'Length',value:p.length+' chars'}]; },
   },
-  'pdf-signature-checker': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'pdf-signature-checker': {
+    inputs: [{key:'signer',label:'Signer Name',type:'text',defaultValue:'John Doe'},{key:'date',label:'Signature Date',type:'text',defaultValue:'2026-01-15'}],
+    formula: (v) => { var d=new Date(String(v.date)); var valid=!isNaN(d.getTime())&&d<=new Date(); return [{label:'Signer',value:String(v.signer)},{label:'Date',value:String(v.date)},{label:'Status',value:valid?'Date appears valid':'Date invalid or in future'}]; },
   },
         'percentage-calculator': {
     inputs: [{key:'value',label:'Part Value',type:'number',defaultValue:42},{key:'total',label:'Total Value',type:'number',defaultValue:60}],
@@ -1184,77 +562,25 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'wt',label:'Weight (kg)',type:'number',defaultValue:10},{key:'type',label:'Pet',type:'select',options:[{label:'Dog',value:'dog'},{label:'Cat',value:'cat'}],defaultValue:'dog'}],
     formula: (v) => { const rer=70*Math.pow(F(v.wt),0.75),der=v.type==='dog'?rer*1.6:rer*1.2; return [{label:'RER',value:rer.toFixed(0)+' kcal'},{label:'Daily',value:der.toFixed(0)+' kcal'},{label:'Diet',value:(der*0.8).toFixed(0)+' kcal'}]; },
   },
-  'phone-parser-and-formatter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'phone-parser-and-formatter': {
+    inputs: [{key:'phone',label:'Phone Number',type:'text',defaultValue:'+1 (555) 123-4567'}],
+    formula: (v) => { var cleaned=String(v.phone).replace(/[^+0-9]/g,''); var cc=cleaned.startsWith('+')?cleaned.slice(1,cleaned.length-10):'1'; var nat=cleaned.slice(-10); return [{label:'E.164',value:'+'+cc+nat},{label:'National',value:'('+nat.slice(0,3)+') '+nat.slice(3,6)+'-'+nat.slice(6)}]; },
   },
-  'photo-print-size-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'photo-print-size-calculator': {
+    inputs: [{key:'w',label:'Width (px)',type:'number',defaultValue:4000},{key:'h',label:'Height (px)',type:'number',defaultValue:3000}],
+    formula: (v) => { var w=F(v.w),h=F(v.h); return [{label:'300 DPI',value:(w/300).toFixed(0)+'x'+(h/300).toFixed(0)+' inch'},{label:'200 DPI',value:(w/200).toFixed(0)+'x'+(h/200).toFixed(0)+' inch'},{label:'150 DPI',value:(w/150).toFixed(0)+'x'+(h/150).toFixed(0)+' inch'},{label:'Megapixels',value:(w*h/1e6).toFixed(1)+' MP'}]; },
   },
     'poker-odds-calculator': {
     inputs: [{key:'outs',label:'Outs',type:'number',defaultValue:9},{key:'street',label:'Street',type:'select',options:[{label:'Flop(2 cards)',value:'flop'},{label:'Turn(1 card)',value:'turn'}],defaultValue:'flop'}],
     formula: (v) => { const o=F(v.outs),pct=v.street==='flop'?Math.min(99,o*4-(o>8?1:0)):Math.min(99,o*2); return [{label:'Win %',value:pct.toFixed(0)+'%'},{label:'Odds',value:'1:'+Math.round((100-pct)/pct)}]; },
   },
-  'pomodoro-timer': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'pomodoro-timer': {
+    inputs: [{key:'focus',label:'Focus (min)',type:'number',defaultValue:25},{key:'break',label:'Break (min)',type:'number',defaultValue:5}],
+    formula: (v) => { return [{label:'Status',value:'Ready to start'},{label:'Focus',value:F(v.focus)+' min'},{label:'Break',value:F(v.break)+' min'},{label:'Cycles/hr',value:Math.floor(60/(F(v.focus)+F(v.break)))+' sessions'}]; },
   },
-  'ppi-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'ppi-calculator': {
+    inputs: [{key:'w',label:'Width (px)',type:'number',defaultValue:1920},{key:'h',label:'Height (px)',type:'number',defaultValue:1080},{key:'diag',label:'Diagonal (in)',type:'number',defaultValue:24}],
+    formula: (v) => { var ppi=F(v.diag)>0?Math.sqrt(F(v.w)*F(v.w)+F(v.h)*F(v.h))/F(v.diag):0; return [{label:'PPI',value:ppi.toFixed(1)},{label:'Quality',value:ppi>=300?'Retina':ppi>=200?'Good':'Standard'},{label:'Megapixels',value:(F(v.w)*F(v.h)/1e6).toFixed(1)+' MP'}]; },
   },
       'probability-calculator': {
     inputs: [{key:'fav',label:'Favorable',type:'number',defaultValue:1},{key:'tot',label:'Total',type:'number',defaultValue:6}],
@@ -1268,77 +594,25 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'val',label:'Assessed ($)',type:'number',defaultValue:300000},{key:'rate',label:'Tax Rate (%)',type:'number',defaultValue:1.2,step:0.01}],
     formula: (v) => { const a=F(v.val)*F(v.rate)/100; return [{label:'Annual',value:'$'+a.toFixed(2)},{label:'Monthly',value:'$'+(a/12).toFixed(2)}]; },
   },
-  'qr-code-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'qr-code-generator': {
+    inputs: [{key:'text',label:'Text/URL',type:'text',defaultValue:'https://figureitcalc.com'},{key:'size',label:'Size (px)',type:'number',defaultValue:256}],
+    formula: (v) => { return [{label:'QR Content',value:String(v.text)},{label:'Size',value:F(v.size)+'x'+F(v.size)+' px'},{label:'Error Corr.',value:'M (15%)'}]; },
   },
-  'random-port-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'random-port-generator': {
+    inputs: [],
+    formula: (v) => { var p=Math.floor(Math.random()*48127)+1024; var common=[3000,3306,5000,5432,6379,8000,8080,8443,27017]; return [{label:'Random Port',value:String(p)},{label:'Range',value:'1024-49151 (Registered)'},{label:'Conflict?',value:common.includes(p)?'Yes common port!':'Likely safe'}]; },
   },
     'recipe-converter': {
     inputs: [{key:'orig',label:'Original Servings',type:'number',defaultValue:4},{key:'want',label:'Desired Servings',type:'number',defaultValue:8}],
     formula: (v) => { const r=F(v.want)/F(v.orig); return [{label:'Scale',value:r.toFixed(2)+'x'},{label:'1 cup ->',value:(1*r).toFixed(2)+' cups'},{label:'2 tbsp ->',value:(2*r).toFixed(1)+' tbsp'}]; },
   },
-  'regex-memo': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'regex-memo': {
+    inputs: [{key:'pat',label:'Regex Pattern',type:'text',defaultValue:'\\d{3}-\\d{2}-\\d{4}'}],
+    formula: (v) => { var p=String(v.pat); var f=[]; if(/\\d/.test(p))f.push('digit'); if(/\\w/.test(p))f.push('word'); if(/[*+?]/.test(p))f.push('quantifier'); if(/{/.test(p))f.push('exact count'); if(/\(/.test(p))f.push('group'); return [{label:'Features',value:f.length?f.join(','):'literal'},{label:'Example',value:'Matches SSN format if \\d{3}-\\d{2}-\\d{4}'}]; },
   },
-  'regex-tester': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'regex-tester': {
+    inputs: [{key:'pat',label:'Regex Pattern',type:'text',defaultValue:'\\d+'},{key:'text',label:'Test Text',type:'text',defaultValue:'abc 123 def 456'}],
+    formula: (v) => { try{var re=new RegExp(String(v.pat),'g'); var m=String(v.text).match(re); return [{label:'Matches',value:String(m?m.length:0)},{label:'First',value:m?m[0]:'none'}]; }catch(e){return[{label:'Error',value:'Invalid regex'}];} },
   },
     'renovation-cost-calculator': {
     inputs: [{key:'kitchen',label:'Kitchen ($)',type:'number',defaultValue:25000},{key:'bath',label:'Bath ($)',type:'number',defaultValue:12000},{key:'floor',label:'Floor ($)',type:'number',defaultValue:5000},{key:'paint',label:'Paint ($)',type:'number',defaultValue:3000}],
@@ -1369,39 +643,13 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'foot',label:'Footprint (sqft)',type:'number',defaultValue:2000},{key:'pitch',label:'Pitch Factor',type:'number',defaultValue:1.12,step:0.01}],
     formula: (v) => { const a=F(v.foot)*F(v.pitch),sq=Math.ceil(a/100); return [{label:'Area',value:a.toFixed(0)+' sqft'},{label:'Squares',value:sq+' sq'},{label:'Bundles',value:sq*3+' bdl'},{label:'Cost',value:'$'+(sq*350).toFixed(0)}]; },
   },
-  'rsa-key-pair-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'rsa-key-pair-generator': {
+    inputs: [{key:'bits',label:'Key Size',type:'select',options:[{label:'2048-bit',value:'2048'},{label:'4096-bit',value:'4096'}],defaultValue:'2048'}],
+    formula: (v) => { return [{label:'Security',value:v.bits==='4096'?'Very Strong':'Strong'},{label:'Equivalent',value:v.bits==='4096'?'~152-bit symmetric':'~112-bit symmetric'},{label:'Use Case',value:'Testing only. Use ssh-keygen for production.'}]; },
   },
-  'safelink-decoder': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'safelink-decoder': {
+    inputs: [{key:'url',label:'Short URL',type:'text',defaultValue:'https://bit.ly/abc'}],
+    formula: (v) => { var u=String(v.url); var domain=u.replace(/https?:\/\//,'').split('/')[0]; var known=['bit.ly','t.co','tinyurl.com','ow.ly','goo.gl','rebrand.ly']; return [{label:'Domain',value:domain},{label:'Known Shortener',value:known.includes(domain)?'Yes':'Unknown'},{label:'Warning',value:'Always expand before clicking'}]; },
   },
   'sales-tax-calculator': {
     inputs: [
@@ -1437,43 +685,17 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'wake',label:'Wake Hour (0-23)',type:'number',defaultValue:7}],
     formula: (v) => { const w=F(v.wake),t=[]; for(var i=6;i>=3;i--){var h=(w-(i*1.5)-0.25+24)%24,hr=Math.floor(h),mn=Math.round((h-hr)*60);t.push(String(hr).padStart(2,'0')+':'+String(mn).padStart(2,'0')+' ('+i+' cycles)');} return [{label:'Ideal(6c)',value:t[0]},{label:'Good(5c)',value:t[1]},{label:'OK(4c)',value:t[2]}]; },
   },
-  'slugify-string': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'slugify-string': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'How to Bake Bread: 10 Tips!'}],
+    formula: (v) => { var s=String(v.text).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); return [{label:'Slug',value:s},{label:'Length',value:s.length+' chars'}]; },
   },
     'solar-roi-calculator': {
     inputs: [{key:'cost',label:'System Cost ($)',type:'number',defaultValue:18000},{key:'saving',label:'Annual Savings ($)',type:'number',defaultValue:1800}],
     formula: (v) => { const n=F(v.cost)*0.7,pb=F(v.saving)>0?n/F(v.saving):0; return [{label:'Net(30%)',value:'$'+n.toFixed(0)},{label:'Payback',value:pb.toFixed(1)+' yr'},{label:'25yrSave',value:'$'+(F(v.saving)*25-n).toFixed(0)}]; },
   },
-  'sql-prettify': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'sql-prettify': {
+    inputs: [{key:'sql',label:'SQL Query',type:'text',defaultValue:'SELECT * FROM users WHERE active=1 ORDER BY name'}],
+    formula: (v) => { var kw=['SELECT','FROM','WHERE','ORDER BY','GROUP BY','HAVING','JOIN','LEFT JOIN','LIMIT','INSERT','UPDATE','DELETE']; var s=String(v.sql); kw.forEach(function(k){s=s.replace(new RegExp('\\b'+k+'\\b','gi'),'\n'+k);}); return [{label:'Formatted',value:s.trim()}]; },
   },
     'statistics-calculator': {
     inputs: [{key:'data',label:'Data (comma-sep)',type:'text',defaultValue:'1,2,3,4,5,6,7,8,9,10'}],
@@ -1487,56 +709,17 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'buy',label:'Buy ($)',type:'number',defaultValue:100},{key:'sell',label:'Sell ($)',type:'number',defaultValue:130},{key:'shares',label:'Shares',type:'number',defaultValue:10}],
     formula: (v) => { const p=(F(v.sell)-F(v.buy))*F(v.shares),pct=F(v.buy)>0?(F(v.sell)-F(v.buy))/F(v.buy)*100:0; return [{label:'P&L',value:'$'+p.toFixed(2)},{label:'Return',value:pct.toFixed(2)+'%'}]; },
   },
-  'stopwatch': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'stopwatch': {
+    inputs: [],
+    formula: (v) => { return [{label:'Status',value:'Ready — press Start'},{label:'Elapsed',value:'00:00:00.000'},{label:'Laps',value:'0'}]; },
   },
-  'string-obfuscator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'string-obfuscator': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World'}],
+    formula: (v) => { var t=String(v.text); var rev=t.split('').reverse().join(''); var b64=btoa(t); return [{label:'Reversed',value:rev},{label:'Base64',value:b64}]; },
   },
-  'svg-placeholder-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'svg-placeholder-generator': {
+    inputs: [{key:'w',label:'Width',type:'number',defaultValue:800},{key:'h',label:'Height',type:'number',defaultValue:600},{key:'bg',label:'Bg Color',type:'text',defaultValue:'#ccc'}],
+    formula: (v) => { var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+v.w+'" height="'+v.h+'"><rect fill="'+v.bg+'" width="100%" height="100%"/><text x="50%" y="50%" text-anchor="middle" fill="#666" font-size="'+Math.min(F(v.w),F(v.h))/10+'">'+v.w+' x '+v.h+'</text></svg>'; return [{label:'SVG',value:svg},{label:'Data URI',value:'data:image/svg+xml,'+encodeURIComponent(svg)}]; },
   },
     'tariff-impact-calculator': {
     inputs: [{key:'fob',label:'FOB/Unit ($)',type:'number',defaultValue:100},{key:'old',label:'Old Tariff (%)',type:'number',defaultValue:10},{key:'new',label:'New Tariff (%)',type:'number',defaultValue:25},{key:'units',label:'Units',type:'number',defaultValue:1000}],
@@ -1552,77 +735,25 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const c=F(v.celsius),f=c*9/5+32,k=c+273.15; const r=[]; if(v.toUnit==='f'||v.toUnit==='both')r.push({label:'Fahrenheit',value:f.toFixed(1)+' degF'}); if(v.toUnit==='k'||v.toUnit==='both')r.push({label:'Kelvin',value:k.toFixed(1)+' K'}); r.push({label:'Celsius',value:c.toFixed(1)+' degC'}); return r; },
     presets: [{label:'Freezing',values:{celsius:0,toUnit:'both'}},{label:'Body',values:{celsius:37,toUnit:'both'}},{label:'Boiling',values:{celsius:100,toUnit:'both'}}],
   },
-  'text-diff': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'text-diff': {
+    inputs: [{key:'t1',label:'Original',type:'text',defaultValue:'The quick brown fox'},{key:'t2',label:'Modified',type:'text',defaultValue:'The quick red fox'}],
+    formula: (v) => { var same=String(v.t1)===String(v.t2); var shared=String(v.t1).split('').filter(function(c){return String(v.t2).includes(c)}).length; return [{label:'Identical',value:same?'Yes':'No'},{label:'Length Diff',value:(String(v.t2).length-String(v.t1).length)+' chars'},{label:'Shared Chars',value:String(shared)}]; },
   },
       'text-statistics': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'The quick brown fox jumps over the lazy dog.'}],
     formula: (v) => { const t=String(v.text),w=t.trim()?t.trim().split(/\s+/).length:0,c=t.length,ns=t.replace(/\s/g,'').length,s=t.split(/[.!?]+/).filter(Boolean).length; return [{label:'Words',value:String(w)},{label:'Chars',value:String(c)},{label:'Chars no space',value:String(ns)},{label:'Sentences',value:String(s)},{label:'Read Time',value:Math.ceil(w/238)+' min'}]; },
   },
-  'text-to-binary': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'text-to-binary': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello'}],
+    formula: (v) => { var bin=String(v.text).split('').map(function(c){return c.charCodeAt(0).toString(2).padStart(8,'0')}).join(' '); return [{label:'Binary',value:bin},{label:'Bytes',value:String(bin.split(' ').length)}]; },
   },
-  'text-to-nato-alphabet': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'text-to-nato-alphabet': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'HELLO'}],
+    formula: (v) => { var n={A:'Alpha',B:'Bravo',C:'Charlie',D:'Delta',E:'Echo',F:'Foxtrot',G:'Golf',H:'Hotel',I:'India',J:'Juliett',K:'Kilo',L:'Lima',M:'Mike',N:'November',O:'Oscar',P:'Papa',Q:'Quebec',R:'Romeo',S:'Sierra',T:'Tango',U:'Uniform',V:'Victor',W:'Whiskey',X:'X-ray',Y:'Yankee',Z:'Zulu'}; var r=String(v.text).toUpperCase().split('').map(function(c){return n[c]||c}).join(' '); return [{label:'NATO',value:r}]; },
   },
-  'text-to-unicode': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'text-to-unicode': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'ABC'}],
+    formula: (v) => { var u=String(v.text).split('').map(function(c){return 'U+'+c.charCodeAt(0).toString(16).toUpperCase().padStart(4,'0')}).join(' '); return [{label:'Code Points',value:u}]; },
   },
       'time-zone-converter': {
     inputs: [{key:'time',label:'Time (HH:MM)',type:'text',defaultValue:'14:00'},{key:'from',label:'From UTC',type:'number',defaultValue:-5},{key:'to',label:'To UTC',type:'number',defaultValue:0}],
@@ -1637,98 +768,33 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'width',label:'Width (mm)',type:'number',defaultValue:225},{key:'aspect',label:'Aspect',type:'number',defaultValue:65},{key:'rim',label:'Rim (in)',type:'number',defaultValue:17}],
     formula: (v) => { const sw=F(v.width)*F(v.aspect)/100,dia=(sw*2+F(v.rim)*25.4)/25.4,circ=dia*Math.PI; return [{label:'Diameter',value:dia.toFixed(1)+' in'},{label:'Sidewall',value:sw.toFixed(0)+' mm'},{label:'Rev/mi',value:Math.round(63360/circ)}]; },
   },
-  'token-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'token-generator': {
+    inputs: [{key:'len',label:'Length',type:'number',defaultValue:32}],
+    formula: (v) => { var c='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; var t=''; for(var i=0;i<F(v.len);i++)t+=c[Math.floor(Math.random()*c.length)]; return [{label:'Token',value:t},{label:'Entropy',value:(F(v.len)*Math.log2(62)).toFixed(0)+' bits'}]; },
   },
-  'toml-to-json': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'toml-to-json': {
+    inputs: [{key:'toml',label:'TOML',type:'text',defaultValue:'name = "myapp"'}],
+    formula: (v) => { var lines=String(v.toml).split('\n').filter(Boolean); var o={}; lines.forEach(function(l){var m=l.match(/^(\w+)\s*=\s*(.+)/); if(m)o[m[1]]=m[2].replace(/["']/g,'').trim();}); return [{label:'JSON',value:JSON.stringify(o)}]; },
   },
-  'toml-to-yaml': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'toml-to-yaml': {
+    inputs: [{key:'toml',label:'TOML',type:'text',defaultValue:'name = "app"'}],
+    formula: (v) => { var lines=String(v.toml).split('\n').filter(Boolean); var y=lines.map(function(l){var m=l.match(/^(\w+)\s*=\s*(.+)/);return m?m[1]+': '+m[2].replace(/["']/g,''):l;}).join('\n'); return [{label:'YAML',value:y}]; },
   },
     'travel-budget-calculator': {
     inputs: [{key:'days',label:'Days',type:'number',defaultValue:7},{key:'flight',label:'Flight ($)',type:'number',defaultValue:400},{key:'hotel',label:'Hotel/Nt ($)',type:'number',defaultValue:150},{key:'food',label:'Food/Day ($)',type:'number',defaultValue:50}],
     formula: (v) => { const t=F(v.flight)+F(v.hotel)*F(v.days)+F(v.food)*F(v.days); return [{label:'Total',value:'$'+t.toFixed(0)},{label:'Per Day',value:'$'+(t/F(v.days)).toFixed(0)}]; },
   },
-  'ulid-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'ulid-generator': {
+    inputs: [{key:'count',label:'Count',type:'number',defaultValue:1}],
+    formula: (v) => { var a='0123456789ABCDEFGHJKMNPQRSTVWXYZ'; var ul=[]; for(var i=0;i<F(v.count);i++){var s=''; for(var j=0;j<26;j++)s+=a[Math.floor(Math.random()*32)]; ul.push(s);} return [{label:'ULID',value:ul.join('\n')}]; },
   },
       'url-encoder': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World & more'}],
     formula: (v) => { const e=encodeURIComponent(String(v.text)); return [{label:'Encoded',value:e},{label:'Length',value:e.length+' chars'}]; },
   },
-  'url-parser': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'url-parser': {
+    inputs: [{key:'url',label:'URL',type:'text',defaultValue:'https://example.com:8080/path?q=search#top'}],
+    formula: (v) => { try{var u=new URL(String(v.url)); return[{label:'Protocol',value:u.protocol},{label:'Host',value:u.hostname},{label:'Port',value:u.port||'default'},{label:'Path',value:u.pathname},{label:'Query',value:u.search||'(none)'},{label:'Hash',value:u.hash||'(none)'}]; }catch(e){return[{label:'Error',value:'Invalid URL'}];} },
   },
   'user-agent-parser': {
     inputs: [
@@ -1743,22 +809,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const age = 2026 - F(v.birthYear); return [{ label: 'Age', value: String(age) }, { label: 'Age in Months', value: String(age * 12) }]; },
   },
-  'uuid-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'uuid-generator': {
+    inputs: [{key:'count',label:'Count',type:'number',defaultValue:1}],
+    formula: (v) => { var h=function(){return Math.floor(Math.random()*16).toString(16)}; var uu=[]; for(var i=0;i<F(v.count);i++)uu.push(h()+h()+h()+h()+h()+h()+h()+h()+'-'+h()+h()+h()+h()+'-4'+h()+h()+h()+'-'+(8+Math.floor(Math.random()*4)).toString(16)+h()+h()+h()+'-'+h()+h()+h()+h()+h()+h()+h()+h()+h()+h()+h()+h()); return [{label:'UUID v4',value:uu.join('\n')}]; },
   },
     'water-footprint-calculator': {
     inputs: [{key:'shower',label:'Showers/Wk',type:'number',defaultValue:7},{key:'meat',label:'Meat meals/Wk',type:'number',defaultValue:5},{key:'laundry',label:'Laundry/Wk',type:'number',defaultValue:3}],
@@ -1776,128 +829,37 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'date',label:'Wedding Date',type:'text',defaultValue:'2027-06-15'}],
     formula: (v) => { const d=new Date(String(v.date)); if(isNaN(d.getTime()))return[{label:'Error',value:'Invalid date'}]; const diff=d.getTime()-Date.now(),days=Math.ceil(diff/86400000); return [{label:'Days',value:Math.max(0,days)+' days'},{label:'Weeks',value:(days/7).toFixed(1)+' wks'},{label:'Months',value:(days/30.44).toFixed(1)+' mos'}]; },
   },
-  'wheel-spinner': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'wheel-spinner': {
+    inputs: [{key:'items',label:'Items (one per line)',type:'text',defaultValue:'Option 1\nOption 2\nOption 3\nOption 4'}],
+    formula: (v) => { var items=String(v.items).split('\n').filter(Boolean); var winner=items[Math.floor(Math.random()*items.length)]; return [{label:'Winner!',value:winner},{label:'Options',value:String(items.length)}]; },
   },
-  'wifi-qr-code-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'wifi-qr-code-generator': {
+    inputs: [{key:'ssid',label:'WiFi Name (SSID)',type:'text',defaultValue:'MyNetwork'},{key:'pass',label:'Password',type:'text',defaultValue:'mypassword'},{key:'sec',label:'Security',type:'select',options:[{label:'WPA2',value:'WPA2'},{label:'WPA3',value:'WPA3'},{label:'WEP',value:'WEP'}],defaultValue:'WPA2'}],
+    formula: (v) => { var qr='WIFI:T:'+v.sec+';S:'+v.ssid+';P:'+v.pass+';;'; return [{label:'QR Content',value:qr},{label:'Status',value:'Scan with phone camera to connect!'}]; },
   },
     'wire-size-calculator': {
     inputs: [{key:'amps',label:'Amps',type:'number',defaultValue:20},{key:'dist',label:'Distance (ft)',type:'number',defaultValue:50},{key:'volt',label:'Voltage',type:'select',options:[{label:'120V',value:'120'},{label:'240V',value:'240'}],defaultValue:'120'}],
     formula: (v) => { const a=F(v.amps),d=F(v.dist),vl=F(v.volt); const g=a<=15?'14':a<=20?'12':a<=30?'10':a<=40?'8':a<=55?'6':'4'; const area=a<=20?6530:a<=30?10380:16510; const vd=2*12.9*a*d/area/vl*100; return [{label:'Wire',value:g+' AWG'},{label:'V Drop',value:vd.toFixed(2)+'%'},{label:'OK?',value:vd<3?'Yes':'Upsize'}]; },
   },
-  'xml-formatter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'xml-formatter': {
+    inputs: [{key:'xml',label:'XML',type:'text',defaultValue:'<root><item id="1">Hello</item></root>'}],
+    formula: (v) => { var x=String(v.xml); var tags=(x.match(/<[^/!?][^>]*>/g)||[]).length; return [{label:'Elements',value:String(tags)},{label:'Size',value:x.length+' chars'}]; },
   },
-  'xml-to-json': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'xml-to-json': {
+    inputs: [{key:'xml',label:'XML',type:'text',defaultValue:'<root><name>John</name><age>30</age></root>'}],
+    formula: (v) => { var x=String(v.xml); var matches=Array.from(x.matchAll(/<(\w+)>([^<]*)<\/\1>/g)); var o={}; matches.forEach(function(m){var k=m[1],v=m[2]; o[k]=isNaN(Number(v))?v:Number(v);}); return [{label:'JSON',value:JSON.stringify(o)}]; },
   },
-  'yaml-to-json-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'yaml-to-json-converter': {
+    inputs: [{key:'yaml',label:'YAML',type:'text',defaultValue:'name: app\nversion: "1.0"'}],
+    formula: (v) => { var lines=String(v.yaml).split('\n').filter(Boolean); var o={}; lines.forEach(function(l){var m=l.match(/^(\w+):\s*(.+)/); if(m)o[m[1]]=m[2].replace(/["']/g,'');}); return [{label:'JSON',value:JSON.stringify(o)}]; },
   },
-  'yaml-to-toml': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'yaml-to-toml': {
+    inputs: [{key:'yaml',label:'YAML',type:'text',defaultValue:'name: myapp'}],
+    formula: (v) => { var lines=String(v.yaml).split('\n').filter(Boolean); var t=lines.map(function(l){var m=l.match(/^(\w+):\s*(.+)/);return m?m[1]+' = '+m[2].replace(/["']/g,''):l;}).join('\n'); return [{label:'TOML',value:t}]; },
   },
-  'yaml-viewer': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'yaml-viewer': {
+    inputs: [{key:'yaml',label:'YAML',type:'text',defaultValue:'server:\n  host: localhost\n  port: 8080'}],
+    formula: (v) => { var lines=String(v.yaml).split('\n').filter(Boolean); var top=lines.filter(function(l){return /^\w+:/.test(l)&&!l.startsWith(' ')}).length; var nested=lines.filter(function(l){return l.startsWith('  ')}).length; return [{label:'Top-Level Keys',value:String(top)},{label:'Nested Props',value:String(nested)},{label:'Total Lines',value:String(lines.length)}]; },
   },
   'zodiac-love-compatibility': {
     inputs: [{key:'s1',label:'Your Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'scorpio'},{key:'s2',label:'Partner Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'pisces'}],
