@@ -1911,90 +1911,25 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'bday',label:'Birth Date',type:'text',defaultValue:'1990-05-15'}],
     formula: (v) => { const rd=function(n){while(n>9&&n!==11&&n!==22&&n!==33)n=String(n).split('').reduce(function(a,b){return a+Number(b)},0);return n;}; const s=String(v.bday).replace(/-/g,''); if(s.length<8)return[{label:'LP',value:'Enter date'}]; const lp=rd(s.split('').reduce(function(a,b){return a+Number(b)},0)); const nm={1:'Leader',2:'Diplomat',3:'Creator',4:'Builder',5:'Adventurer',6:'Nurturer',7:'Thinker',8:'Achiever',9:'Humanitarian',11:'Master Intuitive',22:'Master Builder',33:'Master Teacher'}; return [{label:'Life Path',value:String(lp)+(lp>9?' (Master!)':'')},{label:'Archetype',value:nm[lp]||'Unknown'}]; },
   },
-  'ba-zi-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'ba-zi-calculator': {
+    inputs: [{key:'year',label:'Birth Year',type:'number',defaultValue:1990},{key:'month',label:'Birth Month',type:'number',defaultValue:5},{key:'day',label:'Birth Day',type:'number',defaultValue:15},{key:'hour',label:'Birth Hour (0-23)',type:'number',defaultValue:12}],
+    formula: (v) => { var s=['Jia Yang Wood','Yi Yin Wood','Bing Yang Fire','Ding Yin Fire','Wu Yang Earth','Ji Yin Earth','Geng Yang Metal','Xin Yin Metal','Ren Yang Water','Gui Yin Water']; var b=['Zi Rat','Chou Ox','Yin Tiger','Mao Rabbit','Chen Dragon','Si Snake','Wu Horse','Wei Goat','Shen Monkey','You Rooster','Xu Dog','Hai Pig']; var y=F(v.year),m=F(v.month),d=F(v.day),h=F(v.hour); var ys=(y-4)%10,yb=(y-4)%12; var ms=(y*12+m+13)%10,mb=(m+1)%12; var ds=(y+m+d+9)%10,db=(y+m+d+5)%12; var hi=Math.floor((h+1)/2)%12; var hs=(((y-4)%10)*2+hi)%10; var el=['Wood','Wood','Fire','Fire','Earth','Earth','Metal','Metal','Water','Water']; var dayEl=el[ds]; var tr={Wood:'Growth-oriented, flexible, idealistic',Fire:'Passionate, dynamic, charismatic',Earth:'Stable, nurturing, practical',Metal:'Disciplined, principled, determined',Water:'Intuitive, wise, adaptable'}; return [{label:'Year Pillar',value:s[ys]+' / '+b[yb]},{label:'Month Pillar',value:s[ms]+' / '+b[mb]},{label:'Day Pillar (You)',value:s[ds]+' / '+b[db]},{label:'Hour Pillar',value:s[hs]+' / '+b[hi]},{label:'Day Master',value:dayEl},{label:'Personality',value:tr[dayEl]||'Balanced'}]; },
   },
-  'i-ching-divination': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'i-ching-divination': {
+    inputs: [{key:'q',label:'Your Question',type:'text',defaultValue:''}],
+    formula: (v) => { var n={1:'Qian The Creative',2:'Kun The Receptive',3:'Zhun Difficulty',4:'Meng Youthful Folly',5:'Xu Waiting',6:'Song Conflict',11:'Tai Peace',12:'Pi Standstill',15:'Qian Modesty',24:'Fu Return',31:'Xian Influence',32:'Heng Duration',42:'Yi Increase',63:'Ji Ji After Completion',64:'Wei Ji Before Completion'}; var g={1:'Take bold action',2:'Be receptive',11:'Harmony prevails',12:'Wait for timing',24:'New cycle begins',31:'Gentle influence wins',32:'Stay the course',42:'Abundance flows',63:'Near completion,watch details',64:'Goal in sight,navigate carefully'}; var q=String(v.q||''); var seed=0; for(var i=0;i<q.length;i++)seed+=q.charCodeAt(i); var h=((seed*7919+Date.now()%86400000)%64)+1; return [{label:'Hexagram #'+h,value:n[h]||'Hexagram '+h},{label:'Wisdom',value:g[h]||'Reflect with an open mind'}]; },
   },
-  'tarot-reading': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'tarot-reading': {
+    inputs: [{key:'spread',label:'Spread',type:'select',options:[{label:'3-Card Past/Present/Future',value:'3'},{label:'Single Card',value:'1'}],defaultValue:'3'},{key:'focus',label:'Focus',type:'select',options:[{label:'Love',value:'love'},{label:'Career',value:'career'},{label:'Growth',value:'growth'}],defaultValue:'love'}],
+    formula: (v) => { var M=['The Fool New beginnings','The Magician Skill,manifestation','The High Priestess Intuition,wisdom','The Empress Abundance,nurturing','The Emperor Authority,structure','The Lovers Love,harmony','The Chariot Willpower,victory','Strength Courage,power','The Hermit Soul-searching','Wheel of Fortune Destiny,turning point','Justice Fairness,truth','The Hanged Man Surrender,perspective','Death Transformation,rebirth','Temperance Balance,harmony','The Star Hope,renewal','The Moon Subconscious,illusion','The Sun Joy,success','The World Completion,wholeness']; var m={love:['Ace of Cups New love awakens','Two of Cups Deep connection','Ten of Cups Lasting fulfillment','Knight of Cups Romance','Queen of Cups Emotional wisdom'],career:['Ace of Pentacles Opportunity','Three of Pentacles Teamwork','Eight of Pentacles Mastery','Ten of Pentacles Security','King of Pentacles Leadership'],growth:['Four of Swords Rest,recovery','Seven of Cups Possibilities','The Star Spiritual guidance','Nine of Pentacles Self-sufficiency','Judgment Higher calling']}; var p=function(a){return a[Math.floor(Math.random()*a.length)]}; var c1=Math.random()>0.4?p(M):p(m[v.focus]||m.love); var c2=Math.random()>0.4?p(M):p(m[v.focus]||m.love); var c3=Math.random()>0.4?p(M):p(m[v.focus]||m.love); if(v.spread==='1')return[{label:'Your Card',value:c1}]; return [{label:'Past',value:c1},{label:'Present',value:c2},{label:'Future',value:c3}]; },
   },
-  'past-life-finder': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'past-life-finder': {
+    inputs: [{key:'bday',label:'Your Birth Date',type:'text',defaultValue:'1990-05-15'}],
+    formula: (v) => { var s=String(v.bday).replace(/-/g,'').split('').reduce(function(a,b){return a+Number(b)},0); var E=['Ancient Egypt','Viking Age','Medieval Europe','Renaissance Italy','Edo Japan','Victorian England','Roaring Twenties','Ancient Rome','Ming Dynasty','Mughal India']; var J=['Philosopher Teacher','Warrior Strategist','Artist Dreamer','Merchant Explorer','Healer Herbalist','Priest Mystic','Musician Poet','Builder Architect','Royal Advisor','Navigator']; var L=['in the Himalayas','near the Nile','in a port city','under Northern Lights','in a monastery','on an island','in a desert city','in a palace']; var K=['Love without attachment','Speak your truth','Trust your intuition','Find balance','Forgive yourself','Embrace change','Cultivate patience','Lead with compassion','Seek wisdom','Protect the vulnerable']; var T=['Adventurous Curious','Intuitive Mysterious','Creative Expressive','Practical Grounded','Charismatic Bold','Analytical Precise','Empathetic Nurturing','Ambitious Determined']; return [{label:'Past Era',value:E[s%E.length]},{label:'You Were',value:J[Math.floor(s*1.7)%J.length]},{label:'You Lived',value:L[Math.floor(s*2.3)%L.length]},{label:'Karmic Lesson',value:K[Math.floor(s*3.1)%K.length]},{label:'Soul Trait',value:T[Math.floor(s*5.7)%T.length]}]; },
   },
-  'name-compatibility': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'name-compatibility': {
+    inputs: [{key:'n1',label:'Your Name',type:'text',defaultValue:'Alice Chen'},{key:'n2',label:'Partner Name',type:'text',defaultValue:'Bob Wang'}],
+    formula: (v) => { var H=function(s){return s.toLowerCase().replace(/[^a-z]/g,'').split('').reduce(function(a,c){return a+c.charCodeAt(0)},0)}; var n1=String(v.n1),n2=String(v.n2); var s1=H(n1),s2=H(n2); var sc=((s1*s2*7919+104729)%89)+11; var FL=['Friends','Lovers','Affection','Marriage','Enemies','Soulmates']; var f=FL[(s1+s2)%6]; var v1=(n1.match(/[aeiou]/gi)||[]).length,v2=(n2.match(/[aeiou]/gi)||[]).length; var vS=Math.abs(v1-v2)<=1?85:Math.abs(v1-v2)<=2?65:45; var p1=n1.split('').reduce(function(a,c){var v=(c.charCodeAt(0)-96)%9||9;return a+v},0),p2=n2.split('').reduce(function(a,c){var v=(c.charCodeAt(0)-96)%9||9;return a+v},0); var nS=Math.abs(p1-p2)<=2?88:Math.abs(p1-p2)<=5?70:50; var comp=Math.round(vS*0.3+nS*0.3+sc*0.4); return [{label:'Compatibility',value:comp+'%'},{label:'FLAMES',value:f},{label:'Vowel Harmony',value:vS+'%'},{label:'Numerology',value:nS+'%'}]; },
   },
   'love-calculator': {
     inputs: [{key:'name1',label:'Your Name',type:'text',defaultValue:'Romeo'},{key:'name2',label:'Crush Name',type:'text',defaultValue:'Juliet'}],
@@ -2004,40 +1939,14 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'b1',label:'Your Bday',type:'text',defaultValue:'1990-05-15'},{key:'b2',label:'Partner Bday',type:'text',defaultValue:'1992-08-22'}],
     formula: (v) => { const rd=function(n){while(n>9&&n!==11&&n!==22&&n!==33)n=String(n).split('').reduce(function(a,b){return a+Number(b)},0);return n;}; const d1=String(v.b1).replace(/-/g,''),d2=String(v.b2).replace(/-/g,''); if(d1.length<8||d2.length<8)return[{label:'Score',value:'Enter dates'}]; const lp1=rd(d1.split('').reduce(function(a,b){return a+Number(b)},0)),lp2=rd(d2.split('').reduce(function(a,b){return a+Number(b)},0)); const grps=[[1,5,7],[2,4,8],[3,6,9]]; const sg=grps.some(function(g){return g.includes(lp1)&&g.includes(lp2)}); const lps=lp1===lp2?95:sg?82:50; const m1=Number(d1.slice(4,6)),m2=Number(d2.slice(4,6)),sd=Math.abs(m1-m2),ss=sd<=1?90:sd<=2?78:45; const f=Math.min(99,Math.round(lps*0.5+ss*0.5)); return [{label:'Soulmate',value:f+'%'},{label:'Type',value:f>=90?'TwinFlames':f>=75?'DeepBond':f>=55?'Karmic':f>=35?'Growth':'Passing'},{label:'Your LP',value:String(lp1)},{label:'Partner LP',value:String(lp2)}]; },
   },
-  'daily-fortune': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'daily-fortune': {
+    inputs: [{key:'sign',label:'Your Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'leo'}],
+    formula: (v) => { var t=new Date(); var seed=t.getFullYear()*10000+(t.getMonth()+1)*100+t.getDate()+String(v.sign).length; var F=['Unexpected joy is heading your way. Stay open to new possibilities.','Your creative energy peaks today. Share your ideas boldly.','Financial luck favors you. Consider that calculated risk.','A meaningful conversation awaits. Speak from the heart.','Trust your intuition on a decision you have been weighing.','Your hard work is about to pay off. Keep pushing forward.','Someone from your past brings valuable insight today.','Love and warmth surround you. Nurture your closest bonds.','A new opportunity appears. Say yes before overthinking.','Self-care day. Rest and recharge your spirit.','Your leadership shines. Others look to you for guidance.','Learning opens unexpected doors today.']; var C=['Royal Blue','Emerald Green','Crimson Red','Golden Yellow','Deep Purple','Ocean Teal','Rose Pink','Warm Amber','Silver Grey','Pearl White','Sage Green','Midnight Black']; var nums=[((seed*7+13)%49)+1,((seed*11+7)%49)+1,((seed*17+3)%49)+1,((seed*23+11)%49)+1,((seed*29+5)%49)+1,((seed*31+17)%49)+1]; return [{label:'Fortune',value:F[seed%F.length]},{label:'Color',value:C[seed%C.length]},{label:'Numbers',value:nums.join(', ')}]; },
   },
-  'lucky-number-generator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
-  }
+    'lucky-number-generator': {
+    inputs: [{key:'bday',label:'Birth Date',type:'text',defaultValue:'1990-05-15'},{key:'count',label:'Count',type:'number',defaultValue:6},{key:'max',label:'Max',type:'number',defaultValue:49}],
+    formula: (v) => { var rd=function(n){while(n>9&&n!==11&&n!==22&&n!==33)n=String(n).split('').reduce(function(a,b){return a+Number(b)},0);return n;}; var s=String(v.bday).replace(/-/g,''); var lp=rd(s.split('').reduce(function(a,b){return a+Number(b)},0)); var t=new Date(); var seed=lp*100+t.getDate()+t.getMonth(); var nums=[],used={}; for(var i=0;i<F(v.count);i++){var n=((seed*(i*7+3)+lp*(i*13+5)+t.getFullYear()*(i+1))%F(v.max))+1; var tries=0; while(used[n]&&tries<100){n=((n*17+13)%F(v.max))+1;tries++;} used[n]=true; nums.push(n);} nums.sort(function(a,b){return a-b}); return [{label:'Life Path',value:String(lp)},{label:'Lucky Numbers',value:nums.join(', ')}]; },
+  },
 };
 
 export function getFormula(id: string): FormulaConfig | undefined {
