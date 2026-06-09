@@ -1,38 +1,224 @@
 /**
- * Static HTML Generator for figureitcalc
- * After Vite build, pre-renders all pages as static HTML for SEO.
- * Reads tools.ts, content.ts, categoryContent.ts and generates standalone HTML pages.
+ * Static HTML Generator with SEO Body Content
+ * Embeds What Is, How It Works, Use Cases, Tips, FAQ directly into each tool page.
+ * Category pages get concepts, tutorial, tips, FAQ.
+ * Homepage and info pages get descriptive content.
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 
-// Read the built index.html as template
 const distDir = 'dist';
 const template = readFileSync(join(distDir, 'index.html'), 'utf-8');
-
-// Parse tools data from the built JS — since we can't import TS directly,
-// extract tool IDs and metadata by reading the tools.js bundle
-// Simpler approach: read the raw data files with regex
-
 const toolsTs = readFileSync('src/app/data/tools.ts', 'utf-8');
 const contentTs = readFileSync('src/app/data/content.ts', 'utf-8');
 const catContentTs = readFileSync('src/app/data/categoryContent.ts', 'utf-8');
+const formulasTs = readFileSync('src/app/data/formulas.ts', 'utf-8');
 
-// Extract all tool entries
-const toolPattern = /"id":\s*"([^"]+)"[^}]*"name":\s*"([^"]+)"[^}]*"description":\s*"([^"]+)"[^}]*"category":\s*"([^"]+)"[^}]*"seo":\s*\{[^}]*"title":\s*"([^"]+)"[^}]*"description":\s*"([^"]+)"[^}]*"keywords":\s*"([^"]+)"[^}]*"h1":\s*"([^"]+)"[^}]*"intro":\s*"([^"]+)"[^}]*"howTo":\s*\[([^\]]*)\]/gs;
+// Helpers
+function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function escAttr(s) { return String(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 
-// Simpler: extract just id, name, category, seo title, seo desc, seo keywords, seo h1
-const toolIds = [];
+// Extract all tool IDs
 const idRegex = /"id":\s*"([a-z0-9-]+)"/g;
+const toolIds = new Set();
 let m;
-while ((m = idRegex.exec(toolsTs)) !== null) {
-  toolIds.push(m[1]);
-}
-// Deduplicate
-const uniqueIds = [...new Set(toolIds)];
-console.log(`Found ${uniqueIds.length} unique tool IDs`);
+while ((m = idRegex.exec(toolsTs)) !== null) toolIds.add(m[1]);
+const uniqueIds = [...toolIds];
+console.log(`Found ${uniqueIds.length} tools`);
 
-// Extract categories
+// Extract regex helpers
+function getToolMeta(toolId) {
+  const idIdx = toolsTs.indexOf(`"id": "${toolId}"`);
+  if (idIdx < 0) return null;
+  const chunk = toolsTs.slice(idIdx, idIdx + 2000);
+  const name = (chunk.match(/"name":\s*"([^"]+)"/)||[])[1]||toolId;
+  const cat = (chunk.match(/"category":\s*"([^"]+)"/)||[])[1]||'other';
+  const seoTitle = (chunk.match(/"seo":\s*\{[^}]*?"title":\s*"([^"]+)"/)||[])[1]||name;
+  const seoDesc = (chunk.match(/"seo":\s*\{[^}]*?"description":\s*"([^"]+)"/)||[])[1]||'';
+  const seoKw = (chunk.match(/"seo":\s*\{[^}]*?"keywords":\s*"([^"]+)"/)||[])[1]||'';
+  const h1 = (chunk.match(/"seo":\s*\{[^}]*?"h1":\s*"([^"]+)"/)||[])[1]||name;
+  const intro = (chunk.match(/"seo":\s*\{[^}]*?"intro":\s*"([^"]+)"/)||[])[1]||'';
+  const howTo = [];
+  const howToStr = (chunk.match(/"howTo":\s*\[([^\]]*)\]/)||[])[1];
+  if (howToStr) {
+    const stepMatches = howToStr.matchAll(/"([^"]+)"/g);
+    for (const sm of stepMatches) howTo.push(sm[1]);
+  }
+  return { name, cat, seoTitle, seoDesc, seoKw, h1, intro, howTo };
+}
+
+function getToolContent(toolId) {
+  const keyIdx = contentTs.indexOf(`'${toolId}':`);
+  if (keyIdx < 0) return null;
+  const chunk = contentTs.slice(keyIdx, keyIdx + 5000);
+  const whatIs = (chunk.match(/whatIs:\s*"([^"]+)"/)||[])[1]||'';
+  const howItWorks = (chunk.match(/howItWorks:\s*"([^"]+)"/)||[])[1]||'';
+  const formula = (chunk.match(/formula:\s*"([^"]+)"/)||[])[1]||'';
+  const useCases = [];
+  const ucStr = (chunk.match(/useCases:\s*\[([^\]]*)\]/)||[])[1];
+  if (ucStr) {
+    const ucMatches = ucStr.matchAll(/"([^"]+)"/g);
+    for (const um of ucMatches) useCases.push(um[1]);
+  }
+  const tips = [];
+  const tipStr = (chunk.match(/tips:\s*\[([^\]]*)\]/)||[])[1];
+  if (tipStr) {
+    const tipMatches = tipStr.matchAll(/"([^"]+)"/g);
+    for (const tm of tipMatches) tips.push(tm[1]);
+  }
+  const faq = [];
+  const faqStr = (chunk.match(/faq:\s*\[([^\]]*(?:\{[^}]*\}[^\]]*)*)\]/)||[])[1];
+  if (faqStr) {
+    const qaMatches = faqStr.matchAll(/\{\s*q:\s*"([^"]+)"\s*,\s*a:\s*"([^"]+)"\s*\}/g);
+    for (const qam of qaMatches) faq.push({ q: qam[1], a: qam[2] });
+  }
+  return { whatIs, howItWorks, formula, useCases, tips, faq };
+}
+
+function getFormulaPreview(toolId) {
+  const keyIdx = formulasTs.indexOf(`'${toolId}':`);
+  if (keyIdx < 0) return '';
+  const chunk = formulasTs.slice(keyIdx, keyIdx + 2000);
+  const fb = (chunk.match(/formula:\s*\(v\)\s*=>\s*\{([^}]*(?:\{[^}]*\}[^}]*)*)\}/)||[])[1];
+  if (!fb) return '';
+  // Extract formula string if present
+  const f = (chunk.match(/formula.*?return\s*\[([^\]]*)\]/)||[])[1];
+  if (!f) return '';
+  const labels = f.match(/label:\s*'([^']+)'/g)||[];
+  const values = f.match(/value:\s*([^,}]+)/g)||[];
+  return { raw: fb.slice(0,200), labels: labels.map(l=>l.slice(8,-1)), values: values.map(v=>v.slice(7)) };
+}
+
+function getCategoryContent(catId) {
+  const keyIdx = catContentTs.indexOf(`'${catId}':`);
+  if (keyIdx < 0) return null;
+  const chunk = catContentTs.slice(keyIdx, keyIdx + 8000);
+  const title = (chunk.match(/title:\s*"([^"]+)"/)||[])[1]||'';
+  const intro = (chunk.match(/intro:\s*"([^"]+)"/)||[])[1]||'';
+  const concepts = [];
+  const conceptsStart = chunk.indexOf('concepts:');
+  if (conceptsStart > 0) {
+    const cChunk = chunk.slice(conceptsStart);
+    const cMatches = cChunk.matchAll(/\{\s*emoji:\s*"([^"]+)"\s*,\s*title:\s*"([^"]+)"\s*,\s*desc:\s*"([^"]+)"\s*\}/g);
+    for (const cm of cMatches) {
+      concepts.push({ emoji: cm[1], title: cm[2], desc: cm[3] });
+      if (concepts.length >= 8) break;
+    }
+  }
+  const tutorial = [];
+  const tutStart = chunk.indexOf('tutorial:');
+  if (tutStart > 0) {
+    const tChunk = chunk.slice(tutStart);
+    const tMatches = tChunk.matchAll(/\{\s*title:\s*"([^"]+)"\s*,\s*desc:\s*"([^"]+)"\s*\}/g);
+    for (const tm of tMatches) {
+      tutorial.push({ title: tm[1], desc: tm[2] });
+      if (tutorial.length >= 6) break;
+    }
+  }
+  const tips = [];
+  const tipsStart = chunk.indexOf('tips:');
+  if (tipsStart > 0) {
+    const tpChunk = chunk.slice(tipsStart);
+    const tipMatches = tpChunk.matchAll(/"([^"]{10,200})"/g);
+    for (const tm of tipMatches) {
+      tips.push(tm[1]);
+      if (tips.length >= 6) break;
+    }
+  }
+  const faq = [];
+  const faqStart = chunk.indexOf('faq:');
+  if (faqStart > 0) {
+    const fChunk = chunk.slice(faqStart);
+    const qaMatches = fChunk.matchAll(/\{\s*q:\s*"([^"]+)"\s*,\s*a:\s*"([^"]+)"\s*\}/g);
+    for (const qam of qaMatches) {
+      faq.push({ q: qam[1], a: qam[2] });
+      if (faq.length >= 6) break;
+    }
+  }
+  return { title, intro, concepts, tutorial, tips, faq };
+}
+
+// Build page
+function buildPage(metaTitle, metaDesc, metaKeywords, canonicalPath, bodyContent, faqData) {
+  let html = template;
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(metaTitle)}</title>`);
+  html = html.replace(/<meta name="description"[^>]*>/,
+    `<meta name="description" content="${escAttr(metaDesc).substring(0,300)}">`);
+  html = html.replace(/<meta property="og:title"[^>]*>/,
+    `<meta property="og:title" content="${escAttr(metaTitle)}">`);
+  html = html.replace(/<meta property="og:description"[^>]*>/,
+    `<meta property="og:description" content="${escAttr(metaDesc).substring(0,200)}">`);
+  html = html.replace(/<link rel="canonical"[^>]*>/,
+    `<link rel="canonical" href="https://figureitcalc.com${canonicalPath}">`);
+  if (!html.includes('name="keywords"')) {
+    html = html.replace('</head>', `<meta name="keywords" content="${escAttr(metaKeywords)}">\n</head>`);
+  } else {
+    html = html.replace(/<meta name="keywords"[^>]*>/,
+      `<meta name="keywords" content="${escAttr(metaKeywords)}">`);
+  }
+
+  // Add JSON-LD FAQ schema if present
+  if (faqData && faqData.length > 0) {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqData.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a }
+      }))
+    };
+    html = html.replace('</head>',
+      `<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>\n</head>`);
+  }
+
+  // Inject body content before the React root
+  html = html.replace('<div id="root"></div>',
+    `<div id="root"></div>\n${bodyContent}`);
+
+  // Output
+  const filePath = canonicalPath === '/' ? 'index.html' : canonicalPath.slice(1) + '.html';
+  const outDir = join(distDir, dirname(filePath));
+  if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
+  writeFileSync(join(distDir, filePath), html);
+}
+
+// ====== HOMEPAGE ======
+buildPage(
+  'Free Online Tools — 206+ Calculators, Converters & Generators | figureitcalc',
+  '206+ free online tools: BMI calculator, mortgage calculator, JSON formatter, Base64 encoder, zodiac compatibility, numerology, QR code generator, compound interest calculator, and more. No signup, all client-side processing.',
+  'free online tools, online calculator, BMI, mortgage, JSON, Base64, QR code, zodiac, numerology, converters, generators',
+  '/',
+  `<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">
+    <h1>Free Online Tools — 206+ Calculators & Converters</h1>
+    <p>figureitcalc offers 206+ free online tools across 21 categories: Finance, Health & Fitness, Developer Tools, Cooking, Travel, Real Estate, Construction, Fortune & Love, and more. All tools run 100% client-side — your data never leaves your browser. No signup required. Free forever.</p>
+    <h2>Popular Tools</h2>
+    <ul>
+      <li><a href="/tools/bmi-calculator.html">BMI Calculator</a> — Check your body mass index with WHO categories</li>
+      <li><a href="/tools/mortgage-calculator.html">Mortgage Calculator</a> — Estimate monthly payments with taxes and PMI</li>
+      <li><a href="/tools/compound-interest-calculator.html">Compound Interest Calculator</a> — Project your investments with monthly contributions</li>
+      <li><a href="/tools/tip-calculator.html">Tip Calculator</a> — Split restaurant bills among friends</li>
+      <li><a href="/tools/zodiac-love-compatibility.html">Zodiac Love Compatibility</a> — Find your astrological match</li>
+      <li><a href="/tools/love-calculator.html">Love Calculator</a> — Classic name love percentage</li>
+      <li><a href="/tools/qr-code-generator.html">QR Code Generator</a> — Create scannable QR codes</li>
+      <li><a href="/tools/json-formatter.html">JSON Formatter</a> — Beautify and validate JSON</li>
+    </ul>
+    <h2>Categories</h2>
+    <ul>
+      <li>Finance — Loan, mortgage, retirement, investment calculators</li>
+      <li>Health & Fitness — BMI, TDEE, body fat, heart rate zone calculators</li>
+      <li>Developer Tools — JSON, Base64, UUID, regex, hash, encoding tools</li>
+      <li>Fortune & Love — Zodiac, numerology, I Ching, tarot, love compatibility</li>
+      <li>Cooking — Recipe converter, baker's percentage, coffee ratio</li>
+      <li>Travel — Fuel cost, mileage, time zone converter</li>
+      <li>Construction — Concrete, paint, flooring, roofing calculators</li>
+      <li>And 14 more categories...</li>
+    </ul>
+  </div>`,
+  null
+);
+
+// ====== CATEGORY PAGES ======
 const catIds = ['developer','finance','trade','health','education','cooking','travel',
   'real-estate','construction','pets','automotive','business','productivity',
   'photography','environment','electrical','pregnancy','gaming','wedding','fortune'];
@@ -45,120 +231,172 @@ const catLabels = {
   pregnancy:'Pregnancy', gaming:'Gaming', wedding:'Wedding', fortune:'Fortune & Love'
 };
 
-// Generate static HTML pages
-function generatePage(filename, metaTitle, metaDesc, metaKeywords, h1, bodyContent) {
-  let html = template;
+for (const catId of catIds) {
+  const catContent = getCategoryContent(catId);
+  const label = catLabels[catId] || catId;
+  const catToolCount = (toolsTs.match(new RegExp(`"category":\\s*"${catId}"`, 'g'))||[]).length;
+  const title = catContent?.title || `${label} — Free Online Tools | figureitcalc`;
+  const intro = catContent?.intro || `${label} — ${catToolCount}+ free online tools. No signup, all client-side.`;
 
-  // Update title
-  html = html.replace(/<title>[^<]*<\/title>/, `<title>${metaTitle}</title>`);
+  let body = `<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">\n<h1>${esc(title)}</h1>\n<p>${esc(intro)}</p>\n`;
 
-  // Update meta description
-  html = html.replace(/<meta name="description"[^>]*>/,
-    `<meta name="description" content="${metaDesc.replace(/"/g, '&quot;')}" />`);
-
-  // Add keywords if not present
-  if (metaKeywords && !html.includes('name="keywords"')) {
-    html = html.replace('</head>',
-      `<meta name="keywords" content="${metaKeywords.replace(/"/g, '&quot;')}" />\n</head>`);
-  } else if (metaKeywords) {
-    html = html.replace(/<meta name="keywords"[^>]*>/,
-      `<meta name="keywords" content="${metaKeywords.replace(/"/g, '&quot;')}" />`);
+  if (catContent?.concepts?.length) {
+    body += `<h2>Key Concepts</h2>\n<ul>\n`;
+    for (const c of catContent.concepts) body += `<li><strong>${esc(c.emoji)} ${esc(c.title)}</strong>: ${esc(c.desc)}</li>\n`;
+    body += `</ul>\n`;
   }
 
-  // Update OG title
-  html = html.replace(/<meta property="og:title"[^>]*>/,
-    `<meta property="og:title" content="${metaTitle.replace(/"/g, '&quot;')}" />`);
+  if (catContent?.tutorial?.length) {
+    body += `<h2>Step-by-Step Guide</h2>\n<ol>\n`;
+    for (const t of catContent.tutorial) body += `<li><strong>${esc(t.title)}</strong> — ${esc(t.desc)}</li>\n`;
+    body += `</ol>\n`;
+  }
 
-  // Update OG description
-  html = html.replace(/<meta property="og:description"[^>]*>/,
-    `<meta property="og:description" content="${metaDesc.replace(/"/g, '&quot;').substring(0, 200)}" />`);
+  if (catContent?.tips?.length) {
+    body += `<h2>Expert Tips</h2>\n<ul>\n`;
+    for (const t of catContent.tips) body += `<li>${esc(t)}</li>\n`;
+    body += `</ul>\n`;
+  }
 
-  // Add canonical URL
-  const canonicalUrl = `https://figureitcalc.com/${filename === 'index' ? '' : filename}`;
-  html = html.replace(/<link rel="canonical"[^>]*>/,
-    `<link rel="canonical" href="${canonicalUrl}" />`);
+  if (catContent?.faq?.length) {
+    body += `<h2>Frequently Asked Questions</h2>\n`;
+    for (const f of catContent.faq) body += `<h3>${esc(f.q)}</h3>\n<p>${esc(f.a)}</p>\n`;
+  }
 
-  // Write file
-  const outDir = filename === 'index' ? distDir : join(distDir, dirname(filename));
-  if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
+  body += `<p><strong>${catToolCount} free tools</strong> in this category. No signup required, all processing client-side.</p>\n`;
+  body += `</div>`;
 
-  writeFileSync(join(distDir, filename === 'index' ? 'index.html' : filename + '.html'), html);
+  let faqData = null;
+  if (catContent?.faq?.length) faqData = catContent.faq;
+
+  buildPage(
+    title,
+    intro.substring(0, 300),
+    `${catId}, free ${catId} tools, online ${catId} calculator, ${catId} converter`,
+    `/category/${catId}`,
+    body,
+    faqData
+  );
 }
 
-// Generate homepage
-generatePage('index',
-  'Free Online Tools — 206+ Calculators, Converters & Generators | figureitcalc',
-  '206+ free calculators and tools: BMI, mortgage, compound interest, JSON formatter, zodiac compatibility, numerology, QR code generator, and more. No signup, all client-side.',
-  'free online tools, calculator, converter, generator, BMI, mortgage, JSON, Base64, QR code, zodiac, numerology'
-);
+// ====== TOOL PAGES ======
+let toolCount = 0;
+for (const toolId of uniqueIds) {
+  const meta = getToolMeta(toolId);
+  if (!meta) continue;
+  const content = getToolContent(toolId);
 
-// Generate category pages
-for (const catId of catIds) {
-  const label = catLabels[catId] || catId;
+  let body = `<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">\n`;
+  body += `<h1>${esc(meta.h1 || meta.name)}</h1>\n`;
+  body += `<p><strong>${esc(meta.intro)}</strong></p>\n`;
 
-  // Get category content intro
-  const catIntroMatch = new RegExp(`'${catId}':\\s*\\{[^}]*?intro:\\s*"([^"]+)"`, 's').exec(catContentTs);
-  const catTitleMatch = new RegExp(`'${catId}':\\s*\\{[^}]*?title:\\s*"([^"]+)"`, 's').exec(catContentTs);
-  const intro = catIntroMatch ? catIntroMatch[1] : `${label} — Free online tools, calculators, and utilities. No signup required.`;
+  // How to Use
+  if (meta.howTo?.length) {
+    body += `<h2>How to Use the ${esc(meta.name)}</h2>\n<ol>\n`;
+    for (const step of meta.howTo) body += `<li>${esc(step)}</li>\n`;
+    body += `</ol>\n`;
+  }
 
-  // Count tools in this category
-  const catToolCount = (toolsTs.match(new RegExp(`"category":\\s*"${catId}"`, 'g')) || []).length;
+  // What Is
+  if (content?.whatIs) {
+    body += `<h2>What is a ${esc(meta.name)}?</h2>\n<p>${esc(content.whatIs)}</p>\n`;
+  }
 
-  generatePage(`category/${catId}`,
-    catTitleMatch ? catTitleMatch[1] : `${label} — Free Online Tools | figureitcalc`,
-    `${label} — ${catToolCount}+ free online tools and calculators. ${intro.substring(0, 120)}...`,
-    `${catId}, free ${catId} tools, online ${catId} calculator, ${catId} converter, free online ${catId}`,
-    label,
-    intro
+  // How It Works
+  if (content?.howItWorks) {
+    body += `<h2>How Does It Work?</h2>\n<p>${esc(content.howItWorks)}</p>\n`;
+  }
+
+  // Formula
+  if (content?.formula) {
+    body += `<h2>Formula</h2>\n<pre>${esc(content.formula)}</pre>\n`;
+  }
+
+  // Use Cases
+  if (content?.useCases?.length) {
+    body += `<h2>Who Uses This Tool?</h2>\n<ul>\n`;
+    for (const uc of content.useCases) body += `<li>${esc(uc)}</li>\n`;
+    body += `</ul>\n`;
+  }
+
+  // Pro Tips
+  if (content?.tips?.length) {
+    body += `<h2>Pro Tips</h2>\n<ul>\n`;
+    for (const tip of content.tips) body += `<li>${esc(tip)}</li>\n`;
+    body += `</ul>\n`;
+  }
+
+  // FAQ
+  if (content?.faq?.length) {
+    body += `<h2>Frequently Asked Questions about ${esc(meta.name)}</h2>\n`;
+    for (const f of content.faq) body += `<h3>${esc(f.q)}</h3>\n<p>${esc(f.a)}</p>\n`;
+  }
+
+  body += `<p><em>Free online ${esc(meta.name)} — no signup, 100% client-side processing. All data stays in your browser.</em></p>\n`;
+  body += `</div>`;
+
+  buildPage(
+    meta.seoTitle,
+    meta.seoDesc.substring(0, 300),
+    meta.seoKw,
+    `/tools/${toolId}`,
+    body,
+    content?.faq?.length ? content.faq : null
   );
 
-  if (Number.isInteger(Number(catId.charAt(0)))) {
-    // Log every 5 categories
-  }
+  toolCount++;
+  if (toolCount % 50 === 0) console.log(`  ...${toolCount}/${uniqueIds.length} tools`);
 }
 
-// Generate ALL 206 tool pages
-for (const toolId of uniqueIds) {
-  // Get tool name from tools.ts
-  const nameMatch = new RegExp(`"id":\\s*"${toolId}"[^}]*?"name":\\s*"([^"]+)"`, 's').exec(toolsTs);
-  const seoTitleMatch = new RegExp(`"id":\\s*"${toolId}"[^}]*?"seo":\\s*\{[^}]*?"title":\\s*"([^"]+)"`, 's').exec(toolsTs);
-  const seoDescMatch = new RegExp(`"id":\\s*"${toolId}"[^}]*?"seo":\\s*\{[^}]*?"description":\\s*"([^"]+)"`, 's').exec(toolsTs);
-  const seoKwMatch = new RegExp(`"id":\\s*"${toolId}"[^}]*?"seo":\\s*\{[^}]*?"keywords":\\s*"([^"]+)"`, 's').exec(toolsTs);
-
-  if (nameMatch) {
-    const name = nameMatch[1];
-    const title = seoTitleMatch ? seoTitleMatch[1] : `${name} — Free Online Tool | figureitcalc`;
-    const desc = seoDescMatch ? seoDescMatch[1] : `${name} — free online tool. No signup, client-side processing.`;
-    const kw = seoKwMatch ? seoKwMatch[1] : name.toLowerCase();
-
-    generatePage(`tools/${toolId}`,
-      title,
-      desc.substring(0, 160),
-      kw,
-      name,
-      desc
-    );
-  }
-}
-
-// Generate static info pages
-generatePage('about',
+// ====== INFO PAGES ======
+buildPage(
   'About figureitcalc — Free Online Tools Platform',
   'figureitcalc offers 206+ free online calculators, converters, and tools. All client-side, no signup. Learn about our mission, technology, and how we sustain free tools.',
-  'about, free tools, online calculators, figureitcalc'
+  'about figureitcalc, free tools, online calculators',
+  '/about',
+  `<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">
+    <h1>About figureitcalc</h1>
+    <p>figureitcalc is a free online tools platform offering <strong>206+ calculators, converters, generators, and utilities</strong> — all running entirely in your browser. No signup, no downloads, no server uploads. Just open the page and use the tool.</p>
+    <h2>Why figureitcalc?</h2>
+    <p>We believe useful tools should be free, fast, and private. Every tool processes data <strong>100% client-side</strong> — your information never leaves your device.</p>
+    <h2>Our Tools</h2>
+    <p>21 categories: Finance, Health & Fitness, Developer Utilities, Cooking, Travel, Real Estate, Construction, Fortune & Love, and more. Each tool includes detailed explanations, formulas, use cases, pro tips, and FAQs.</p>
+    <h2>How We Sustain</h2>
+    <p>figureitcalc is free thanks to display advertising. We never sell your data, require accounts, or lock features behind paywalls.</p>
+  </div>`,
+  null
 );
 
-generatePage('privacy',
-  'Privacy Policy — figureitcalc Free Online Tools',
+buildPage(
+  'Privacy Policy — figureitcalc',
   'Our privacy policy: all tools are client-side, your data never leaves your device. No account creation required. Learn about our data handling practices.',
-  'privacy, data protection, client-side, no tracking'
+  'privacy policy, data protection, client-side processing, no tracking',
+  '/privacy',
+  `<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">
+    <h1>Privacy Policy</h1>
+    <p>figureitcalc is designed with privacy as a core principle. The vast majority of our tools process data <strong>entirely in your browser</strong> using client-side JavaScript.</p>
+    <h2>What We Don't Do</h2>
+    <ul><li>We don't collect, store, or access any data you enter into our tools</li><li>We don't require account creation</li><li>We don't track individual users</li></ul>
+    <h2>Third-Party Services</h2>
+    <p>We use Google AdSense for advertisements and Google Analytics for anonymous usage statistics. These services may set cookies governed by their respective privacy policies.</p>
+  </div>`,
+  null
 );
 
-generatePage('contact',
-  'Contact Us — figureitcalc Free Online Tools',
+buildPage(
+  'Contact Us — figureitcalc',
   'Contact figureitcalc for bug reports, tool suggestions, advertising inquiries, or security concerns. We respond within 24-48 hours.',
-  'contact, support, bug report, advertising, figureitcalc'
+  'contact, support, bug report, advertising, figureitcalc',
+  '/contact',
+  `<div style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap">
+    <h1>Contact Us</h1>
+    <p>Email: <strong>hello@figureitcalc.com</strong></p>
+    <p>We typically respond within 24-48 hours on business days.</p>
+    <h2>Common Topics</h2>
+    <ul><li>Bug Report — Tell us which tool, what happened, and what you expected</li><li>Tool Suggestion — We're always adding new tools</li><li>Advertising / Partnership — Beyond AdSense</li><li>Security Concern — Please email us directly</li></ul>
+  </div>`,
+  null
 );
 
-console.log(`Generated static HTML: homepage + ${catIds.length} categories + ${uniqueIds.length} tools + 3 info pages`);
-console.log(`Total: ${1 + catIds.length + uniqueIds.length + 3} static pages`);
+console.log(`Generated: 1 homepage + ${catIds.length} categories + ${toolCount} tools + 3 info pages`);
+console.log(`Total: ${1 + catIds.length + toolCount + 3} static pages with embedded content`);
