@@ -37,21 +37,8 @@ export interface FormulaConfig {
 
 export const formulaRegistry: Record<string, FormulaConfig> = {
   'annuity-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'payment',label:'Periodic Payment ($)',type:'number',defaultValue:1000},{key:'rate',label:'Annual Interest (%)',type:'number',defaultValue:6},{key:'periods',label:'Number of Years',type:'number',defaultValue:20}],
+    formula: (v) => { const pmt=F(v.payment),r=F(v.rate)/100,n=F(v.periods); const fv=r>0?pmt*((Math.pow(1+r,n)-1)/r):pmt*n; return [{label:'Future Value',value:'$'+fv.toFixed(2)},{label:'Total Invested',value:'$'+(pmt*n).toFixed(0)},{label:'Interest Earned',value:'$'+(fv-pmt*n).toFixed(0)}]; },
   },
   'ascii-text-drawer': {
     inputs: [
@@ -259,21 +246,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'break-even-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'fixedCosts',label:'Fixed Costs ($)',type:'number',defaultValue:10000},{key:'price',label:'Price per Unit ($)',type:'number',defaultValue:50},{key:'variableCost',label:'Variable Cost/Unit ($)',type:'number',defaultValue:30}],
+    formula: (v) => { const fc=F(v.fixedCosts),p=F(v.price),vc=F(v.variableCost),cm=p-vc,be=cm>0?Math.ceil(fc/cm):0; return [{label:'Break-Even Units',value:String(be)},{label:'Revenue at BE',value:'$'+(be*p).toFixed(0)},{label:'Margin/Unit',value:'$'+cm.toFixed(2)}]; },
   },
   'bsa-calculator': {
     inputs: [
@@ -625,21 +599,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'cpm-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'cost',label:'Ad Cost ($)',type:'number',defaultValue:500},{key:'impressions',label:'Impressions',type:'number',defaultValue:100000}],
+    formula: (v) => { const cpm=F(v.impressions)>0?F(v.cost)/F(v.impressions)*1000:0; return [{label:'CPM',value:'$'+cpm.toFixed(2)},{label:'CPC (2% CTR)',value:'$'+(cpm/20).toFixed(2)}]; },
   },
   'crontab-generator': {
     inputs: [
@@ -798,21 +759,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const d = F(v.price) * F(v.percent) / 100; return [{ label: 'You Save', value: '$' + d.toFixed(2) }, { label: 'Final Price', value: '$' + (F(v.price) - d).toFixed(2) }]; },
   },
   'dividend-yield-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'div',label:'Annual Dividend ($)',type:'number',defaultValue:2.50},{key:'price',label:'Stock Price ($)',type:'number',defaultValue:50}],
+    formula: (v) => { const y=F(v.price)>0?F(v.div)/F(v.price)*100:0; return [{label:'Dividend Yield',value:y.toFixed(2)+'%'},{label:'Monthly/Share',value:'$'+(F(v.div)/12).toFixed(3)}]; },
   },
   'docker-run-to-docker-compose-converter': {
     inputs: [
@@ -947,21 +895,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'emi-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'loan',label:'Loan Amount ($)',type:'number',defaultValue:20000},{key:'rate',label:'Annual Rate (%)',type:'number',defaultValue:8},{key:'months',label:'Tenure (months)',type:'number',defaultValue:36}],
+    formula: (v) => { const P=F(v.loan),r=F(v.rate)/100/12,n=F(v.months),emi=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n; return [{label:'Monthly EMI',value:'$'+emi.toFixed(2)},{label:'Total Payment',value:'$'+(emi*n).toFixed(0)},{label:'Total Interest',value:'$'+(emi*n-P).toFixed(0)}]; },
   },
   'emoji-picker': {
     inputs: [
@@ -1352,21 +1287,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'home-equity-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'value',label:'Home Value ($)',type:'number',defaultValue:350000},{key:'mortgage',label:'Mortgage Balance ($)',type:'number',defaultValue:200000}],
+    formula: (v) => { const eq=F(v.value)-F(v.mortgage),pct=F(v.value)>0?eq/F(v.value)*100:0; return [{label:'Home Equity',value:'$'+eq.toLocaleString()},{label:'Equity %',value:pct.toFixed(1)+'%'},{label:'LTV',value:(100-pct).toFixed(1)+'%'}]; },
   },
   'html-entities': {
     inputs: [
@@ -1501,21 +1423,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'inflation-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'amount',label:'Amount ($)',type:'number',defaultValue:10000},{key:'rate',label:'Inflation Rate (%)',type:'number',defaultValue:3},{key:'years',label:'Years',type:'number',defaultValue:10}],
+    formula: (v) => { const f=F(v.amount)*Math.pow(1+F(v.rate)/100,F(v.years)),t=F(v.amount)/Math.pow(1+F(v.rate)/100,F(v.years)); return [{label:'Future Value',value:'$'+f.toFixed(2)},{label:'Today\'s Worth',value:'$'+t.toFixed(2)}]; },
   },
   'ingredient-substitution-calculator': {
     inputs: [
@@ -1552,21 +1461,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'invoice-hours-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'hours',label:'Hours Worked',type:'number',defaultValue:40,step:0.5},{key:'rate',label:'Hourly Rate ($)',type:'number',defaultValue:75}],
+    formula: (v) => { const s=F(v.hours)*F(v.rate); return [{label:'Subtotal',value:'$'+s.toFixed(2)},{label:'Tax (15%)',value:'$'+(s*0.15).toFixed(2)},{label:'Total',value:'$'+(s*1.15).toFixed(2)}]; },
   },
   'ipv4-address-converter': {
     inputs: [
@@ -2150,21 +2046,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const P = F(v.price) * (1 - F(v.down)/100); const r = F(v.rate)/100/12; const n = F(v.years)*12; const M = r > 0 ? P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1) : P/n; return [{ label: 'Monthly', value: '$' + Math.round(M).toLocaleString() }, { label: 'Total Interest', value: '$' + Math.round(M*n - P).toLocaleString() }]; },
   },
   'net-worth-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'cash',label:'Cash & Bank ($)',type:'number',defaultValue:10000},{key:'investments',label:'Investments ($)',type:'number',defaultValue:50000},{key:'property',label:'Property ($)',type:'number',defaultValue:300000},{key:'debt',label:'Total Debt ($)',type:'number',defaultValue:200000}],
+    formula: (v) => { const a=F(v.cash)+F(v.investments)+F(v.property),d=F(v.debt); return [{label:'Total Assets',value:'$'+a.toLocaleString()},{label:'Total Liabilities',value:'$'+d.toLocaleString()},{label:'Net Worth',value:'$'+(a-d).toLocaleString()}]; },
   },
   'numeronym-generator': {
     inputs: [
@@ -2696,21 +2579,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const yrs=F(v.retireAge)-F(v.currentAge); const r=F(v.rate)/100/12; const n=yrs*12; const fv=r>0?F(v.savings)*Math.pow(1+r,n)+F(v.monthly)*((Math.pow(1+r,n)-1)/r):F(v.savings)+F(v.monthly)*n; return [{ label: 'At Retirement', value: '$'+Math.round(fv).toLocaleString() }]; },
   },
   'roi-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'invested',label:'Invested ($)',type:'number',defaultValue:10000},{key:'returned',label:'Returned ($)',type:'number',defaultValue:12000}],
+    formula: (v) => { const roi=F(v.invested)>0?(F(v.returned)-F(v.invested))/F(v.invested)*100:0; return [{label:'ROI',value:roi.toFixed(2)+'%'},{label:'Gain/Loss',value:'$'+(F(v.returned)-F(v.invested)).toFixed(2)}]; },
   },
   'roman-numeral-converter': {
     inputs: [
@@ -2799,21 +2669,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const tax = F(v.amount) * F(v.rate) / 100; return [{ label: 'Tax', value: '$' + tax.toFixed(2) }, { label: 'Total with Tax', value: '$' + (F(v.amount) + tax).toFixed(2) }]; },
   },
   'savings-goal-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'goal',label:'Goal ($)',type:'number',defaultValue:100000},{key:'saved',label:'Current Savings ($)',type:'number',defaultValue:10000},{key:'monthly',label:'Monthly ($)',type:'number',defaultValue:500},{key:'rate',label:'Return (%)',type:'number',defaultValue:5}],
+    formula: (v) => { const r=F(v.rate)/100/12; let b=F(v.saved),mo=0; while(b<F(v.goal)&&mo<1200){b=b*(1+r)+F(v.monthly);mo++;} return [{label:'Months to Goal',value:String(mo)},{label:'Years',value:(mo/12).toFixed(1)}]; },
   },
   'scientific-calculator': {
     inputs: [
@@ -2952,21 +2809,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'stock-return-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'buy',label:'Buy Price ($)',type:'number',defaultValue:100},{key:'sell',label:'Sell Price ($)',type:'number',defaultValue:130},{key:'shares',label:'Shares',type:'number',defaultValue:10}],
+    formula: (v) => { const p=(F(v.sell)-F(v.buy))*F(v.shares),pct=F(v.buy)>0?(F(v.sell)-F(v.buy))/F(v.buy)*100:0; return [{label:'Profit/Loss',value:'$'+p.toFixed(2)},{label:'Return %',value:pct.toFixed(2)+'%'}]; },
   },
   'stopwatch': {
     inputs: [
@@ -3598,38 +3442,12 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'zodiac-love-compatibility': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'s1',label:'Your Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'scorpio'},{key:'s2',label:'Partner Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'pisces'}],
+    formula: (v) => { const el:Record<string,string>={aries:'Fire',leo:'Fire',sagittarius:'Fire',taurus:'Earth',virgo:'Earth',capricorn:'Earth',gemini:'Air',libra:'Air',aquarius:'Air',cancer:'Water',scorpio:'Water',pisces:'Water'}; const e1=el[String(v.s1)],e2=el[String(v.s2)]; let sc=50; if(e1===e2)sc+=25; else if((e1==='Fire'&&e2==='Air')||(e1==='Air'&&e2==='Fire')||(e1==='Earth'&&e2==='Water')||(e1==='Water'&&e2==='Earth'))sc+=15; else if((e1==='Fire'&&e2==='Water')||(e1==='Water'&&e2==='Fire')||(e1==='Air'&&e2==='Earth')||(e1==='Earth'&&e2==='Air'))sc-=10; const vd=sc>=90?'Soulmates!':sc>=75?'Great Match':sc>=60?'Good':sc>=40?'Challenging':'Difficult'; return [{label:'Compatibility',value:sc+'%'},{label:'Verdict',value:vd},{label:'Elements',value:e1+' + '+e2}]; },
   },
   'sheng-xiao-compatibility': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'z1',label:'Your Sign',type:'select',options:[{label:'Rat',value:'rat'},{label:'Ox',value:'ox'},{label:'Tiger',value:'tiger'},{label:'Rabbit',value:'rabbit'},{label:'Dragon',value:'dragon'},{label:'Snake',value:'snake'},{label:'Horse',value:'horse'},{label:'Goat',value:'goat'},{label:'Monkey',value:'monkey'},{label:'Rooster',value:'rooster'},{label:'Dog',value:'dog'},{label:'Pig',value:'pig'}],defaultValue:'dragon'},{key:'z2',label:'Partner',type:'select',options:[{label:'Rat',value:'rat'},{label:'Ox',value:'ox'},{label:'Tiger',value:'tiger'},{label:'Rabbit',value:'rabbit'},{label:'Dragon',value:'dragon'},{label:'Snake',value:'snake'},{label:'Horse',value:'horse'},{label:'Goat',value:'goat'},{label:'Monkey',value:'monkey'},{label:'Rooster',value:'rooster'},{label:'Dog',value:'dog'},{label:'Pig',value:'pig'}],defaultValue:'monkey'}],
+    formula: (v) => { const h:Record<string,string[]>={rat:['dragon','monkey'],ox:['snake','rooster'],tiger:['horse','dog'],rabbit:['goat','pig'],dragon:['rat','monkey'],snake:['ox','rooster'],horse:['tiger','dog'],goat:['rabbit','pig'],monkey:['rat','dragon'],rooster:['ox','snake'],dog:['tiger','horse'],pig:['rabbit','goat']}; const c:Record<string,string>={rat:'horse',ox:'goat',tiger:'monkey',rabbit:'rooster',dragon:'dog',snake:'pig',horse:'rat',goat:'ox',monkey:'tiger',rooster:'rabbit',dog:'dragon',pig:'snake'}; let s=50; if(h[String(v.z1)]?.includes(String(v.z2)))s+=35; if(c[String(v.z1)]===String(v.z2))s-=30; if(v.z1===v.z2)s+=15; return [{label:'Match',value:s+'%'},{label:'Rating',value:s>=90?'Heaven-Matched':s>=70?'Great':s>=50?'Compatible':s>=30?'Challenging':'Clash'}]; },
   },
   'numerology-calculator': {
     inputs: [
@@ -3734,38 +3552,12 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
   'love-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'name1',label:'Your Name',type:'text',defaultValue:'Romeo'},{key:'name2',label:'Crush Name',type:'text',defaultValue:'Juliet'}],
+    formula: (v) => { const h=(s:string)=>s.toLowerCase().replace(/[^a-z]/g,'').split('').reduce((a,c)=>a+c.charCodeAt(0),0); const seed=h(String(v.name1))*h(String(v.name2)); const score=((seed*7919+104729)%89)+11; return [{label:'Love',value:score+'%'},{label:'Verdict',value:score>=80?'Epic!':score>=60?'Sweet':score>=40?'Cute':'Hmm...'}]; },
   },
   'soulmate-finder': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    inputs: [{key:'b1',label:'Your Birthday',type:'text',defaultValue:'1990-05-15'},{key:'b2',label:'Partner Birthday',type:'text',defaultValue:'1992-08-22'}],
+    formula: (v) => { const rd=(n:number):number=>n<10||n===11||n===22||n===33?n:rd(String(n).split('').reduce((a,b)=>a+Number(b),0)); const d1=String(v.b1).replace(/-/g,''),d2=String(v.b2).replace(/-/g,''); if(d1.length<8||d2.length<8)return[{label:'Score',value:'Enter dates'}]; const lp1=rd(d1.split('').reduce((a,b)=>a+Number(b),0)),lp2=rd(d2.split('').reduce((a,b)=>a+Number(b),0)); const grps=[[1,5,7],[2,4,8],[3,6,9]]; const sg=grps.some(g=>g.includes(lp1)&&g.includes(lp2)); const lps=lp1===lp2?95:sg?82:50; const m1=Number(d1.slice(4,6)),m2=Number(d2.slice(4,6)),sd=Math.abs(m1-m2),ss=sd<=1?90:sd<=2?78:sd<=3?62:45; const f=Math.min(99,Math.round(lps*0.5+ss*0.5)); return [{label:'Soulmate Score',value:f+'%'},{label:'Type',value:f>=90?'Twin Flames':f>=75?'Deep Bond':f>=55?'Karmic':f>=35?'Growth':'Passing'},{label:'Your LP',value:String(lp1)},{label:'Partner LP',value:String(lp2)}]; },
   },
   'daily-fortune': {
     inputs: [
