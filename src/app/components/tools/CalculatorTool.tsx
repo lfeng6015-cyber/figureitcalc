@@ -123,7 +123,7 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
                     <span className="text-xs text-muted-foreground mb-1">{r.label}</span>
                     {String(r.value).startsWith('<svg') || String(r.value).startsWith('data:image/svg') ? (
                       <div className="flex justify-center p-2 bg-white rounded" dangerouslySetInnerHTML={{__html: String(r.value).startsWith('data:') ? `<img src="${r.value}" alt="${r.label}" style="max-width:100%;height:auto" />` : String(r.value)}} />
-                    ) : String(r.value).startsWith('data:image/png') || String(r.value).startsWith('data:image/jpeg') ? (
+                    ) : String(r.value).startsWith('data:image/') ? (
                       <img src={String(r.value)} alt={String(r.label)} style={{maxWidth:'100%',height:'auto'}} className="rounded" />
                     ) : (
                       <span className={`font-mono ${r.emphasis ? "text-xl font-bold text-foreground" : "text-lg font-semibold text-foreground"}`}>
