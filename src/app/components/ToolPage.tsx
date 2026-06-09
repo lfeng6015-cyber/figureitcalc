@@ -1,6 +1,6 @@
-import { ReactNode, useState, useEffect, useCallback } from "react";
+import { ReactNode, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import { ArrowLeft, Star, Share2, Check, LucideIcon, ExternalLink } from "lucide-react";
+import { ArrowLeft, Bookmark, Share2, LucideIcon, ExternalLink } from "lucide-react";
 
 interface RelatedTool {
   id: string | number;
@@ -35,46 +35,30 @@ interface ToolPageProps {
   onNavigate?: (id: string | number) => void;
 }
 
-const FAVORITES_KEY = "figureitcalc_favorites";
-
-function getFavorites(): string[] {
-  try { return JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]"); } catch { return []; }
-}
-function saveFavorites(ids: string[]) {
-  localStorage.setItem(FAVORITES_KEY, JSON.stringify(ids));
-}
-
 export function ToolPage({
   icon: Icon, name, description, tag, tagColor, toolId,
   seo, children, richContent, related = [], onBack, onNavigate,
 }: ToolPageProps) {
-  const [saved, setSaved] = useState(false);
-  const [shared, setShared] = useState(false);
+  const [showShare, setShowShare] = useState(false);
 
-  useEffect(() => {
-    if (toolId) setSaved(getFavorites().includes(toolId));
-  }, [toolId]);
-
-  const handleSave = useCallback(() => {
-    if (!toolId) return;
-    const favs = getFavorites();
-    const idx = favs.indexOf(toolId);
-    if (idx >= 0) { favs.splice(idx, 1); setSaved(false); }
-    else { favs.push(toolId); setSaved(true); }
-    saveFavorites(favs);
-  }, [toolId]);
-
-  const handleShare = useCallback(async () => {
-    const url = window.location.href;
-    const title = `${name} — Free Online Tool | figureitcalc`;
-    if (navigator.share) {
-      try { await navigator.share({ title, url }); } catch {}
+  const handleBookmark = () => {
+    if (window.navigator.userAgent.includes('Mac')) {
+      alert('Press ⌘+D to bookmark this page');
     } else {
-      await navigator.clipboard.writeText(url);
-      setShared(true);
-      setTimeout(() => setShared(false), 2000);
+      alert('Press Ctrl+D to bookmark this page');
     }
-  }, [name]);
+  };
+
+  const shareUrl = encodeURIComponent(window.location.href);
+  const shareTitle = encodeURIComponent(`${name} — Free Online Tool | figureitcalc`);
+  const shareLinks = {
+    facebook: `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`,
+    twitter: `https://twitter.com/intent/tweet?url=${shareUrl}&text=${shareTitle}`,
+    reddit: `https://www.reddit.com/submit?url=${shareUrl}&title=${shareTitle}`,
+    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`,
+    whatsapp: `https://wa.me/?text=${shareTitle}%20${shareUrl}`,
+    email: `mailto:?subject=${shareTitle}&body=${shareUrl}`,
+  };
   return (
     <div className="min-h-full bg-background">
       {/* Dynamic SEO Meta */}
@@ -134,19 +118,44 @@ export function ToolPage({
                     <p className="text-muted-foreground text-sm">{seo?.intro || description}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 flex-shrink-0">
+                <div className="flex items-center gap-2 flex-shrink-0 relative">
                   <button
-                    onClick={handleSave}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-sm border rounded-lg transition-all ${saved ? "border-yellow-400 bg-yellow-50 text-yellow-700" : "border-border text-muted-foreground hover:text-foreground hover:border-primary/40"}`}
+                    onClick={handleBookmark}
+                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all"
+                    title="Bookmark this page (Ctrl+D)"
                   >
-                    <Star className={`w-3.5 h-3.5 ${saved ? "fill-yellow-500 text-yellow-500" : ""}`} /> {saved ? "Saved" : "Save"}
+                    <Bookmark className="w-3.5 h-3.5" /> Bookmark
                   </button>
-                  <button
-                    onClick={handleShare}
-                    className={`flex items-center gap-1.5 px-3 py-1.5 text-sm border rounded-lg transition-all ${shared ? "border-green-400 bg-green-50 text-green-700" : "border-border text-muted-foreground hover:text-foreground hover:border-primary/40"}`}
-                  >
-                    {shared ? <><Check className="w-3.5 h-3.5" /> Copied</> : <><Share2 className="w-3.5 h-3.5" /> Share</>}
-                  </button>
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowShare(!showShare)}
+                      className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all"
+                    >
+                      <Share2 className="w-3.5 h-3.5" /> Share
+                    </button>
+                    {showShare && (
+                      <div className="absolute right-0 top-full mt-1 bg-card border border-border rounded-lg shadow-lg p-2 z-50 w-48">
+                        <a href={shareLinks.facebook} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded transition-colors" onClick={() => setShowShare(false)}>
+                          📘 Facebook
+                        </a>
+                        <a href={shareLinks.twitter} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded transition-colors" onClick={() => setShowShare(false)}>
+                          🐦 X / Twitter
+                        </a>
+                        <a href={shareLinks.reddit} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded transition-colors" onClick={() => setShowShare(false)}>
+                          👽 Reddit
+                        </a>
+                        <a href={shareLinks.linkedin} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded transition-colors" onClick={() => setShowShare(false)}>
+                          💼 LinkedIn
+                        </a>
+                        <a href={shareLinks.whatsapp} target="_blank" rel="noopener" className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded transition-colors" onClick={() => setShowShare(false)}>
+                          📱 WhatsApp
+                        </a>
+                        <a href={shareLinks.email} className="flex items-center gap-2 px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-accent rounded transition-colors" onClick={() => setShowShare(false)}>
+                          ✉️ Email
+                        </a>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </header>
