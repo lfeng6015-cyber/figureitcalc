@@ -26,7 +26,6 @@ import { getContent } from "./data/content";
 import { CategoryHero } from "./components/CategoryHero";
 import { getCategoryContent } from "./data/categoryContent";
 import { StaticPage } from "./components/StaticPage";
-import { AdBanner } from "./components/AdBanner";
 
 // Lazy-load tool components
 const toolComponentMap: Record<string, React.ComponentType> = {
@@ -207,7 +206,7 @@ export default function App() {
           </div>
 
           <nav className="hidden md:flex items-center gap-1 text-sm text-muted-foreground">
-            <a href="/" className="px-3 py-1.5 rounded hover:text-foreground hover:bg-accent transition-colors">Home</a>
+            <button onClick={() => { setStaticPage(null); setActiveToolId(null); setActiveCategory("all"); }} className="px-3 py-1.5 rounded hover:text-foreground hover:bg-accent transition-colors">Home</button>
             <button onClick={() => { setStaticPage("about"); setActiveToolId(null); }} className="px-3 py-1.5 rounded hover:text-foreground hover:bg-accent transition-colors">About</button>
             <button onClick={() => { setStaticPage("privacy"); setActiveToolId(null); }} className="px-3 py-1.5 rounded hover:text-foreground hover:bg-accent transition-colors">Privacy</button>
           </nav>
