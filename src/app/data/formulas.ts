@@ -488,35 +488,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'compound-interest-calculator': {
-    inputs: [
-      {
-            "key": "principal",
-            "label": "Principal ($)",
-            "type": "number",
-            "defaultValue": 10000
-      },
-      {
-            "key": "rate",
-            "label": "Annual Rate (%)",
-            "type": "number",
-            "defaultValue": 7,
-            "step": 0.1
-      },
-      {
-            "key": "years",
-            "label": "Years",
-            "type": "number",
-            "defaultValue": 10
-      },
-      {
-            "key": "monthly",
-            "label": "Monthly Addition ($)",
-            "type": "number",
-            "defaultValue": 100
-      }
-],
-    formula: (v) => { const P=F(v.principal); const r=F(v.rate)/100/12; const n=F(v.years)*12; const M=F(v.monthly); const fv=r>0 ? P*Math.pow(1+r,n)+M*((Math.pow(1+r,n)-1)/r) : P+M*n; return [{ label: 'Future Value', value: '$'+Math.round(fv).toLocaleString() }]; },
+    'compound-interest-calculator': {
+    inputs: [{key:'principal',label:'Initial Invest ($)',type:'number',defaultValue:10000},{key:'monthly',label:'Monthly Add ($)',type:'number',defaultValue:200},{key:'rate',label:'Return (%)',type:'number',defaultValue:7},{key:'years',label:'Years',type:'number',defaultValue:20}],
+    formula: (v) => { const P=F(v.principal),pmt=F(v.monthly),r=F(v.rate)/100/12,n=F(v.years)*12; const fv=P*Math.pow(1+r,n)+(r>0?pmt*(Math.pow(1+r,n)-1)/r:pmt*n); const inv=P+pmt*n; return [{label:'Future Value',value:'$'+fv.toFixed(2)},{label:'Total Invested',value:'$'+inv.toFixed(0)},{label:'Interest',value:'$'+(fv-inv).toFixed(0)}]; },
+    presets: [{label:'30yr Retire',values:{principal:50000,monthly:500,rate:7,years:30}}],
   },
   'concrete-block-calculator': {
     inputs: [
@@ -624,23 +599,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const p = F(v.revenue) - F(v.cost); const m = F(v.revenue) > 0 ? p / F(v.revenue) * 100 : 0; return [{ label: 'Profit', value: '$' + p.toFixed(2) }, { label: 'Margin', value: m.toFixed(1) + '%' }]; },
   },
-  'currency-converter': {
-    inputs: [
-      {
-            "key": "amount",
-            "label": "Amount",
-            "type": "number",
-            "defaultValue": 100
-      },
-      {
-            "key": "rate",
-            "label": "Exchange Rate",
-            "type": "number",
-            "defaultValue": 0.92,
-            "step": 0.01
-      }
-],
-    formula: (v) => { return [{ label: 'Converted', value: (F(v.amount) * F(v.rate)).toFixed(2) }]; },
+    'currency-converter': {
+    inputs: [{key:'amount',label:'Amount',type:'number',defaultValue:100},{key:'rate',label:'Exchange Rate',type:'number',defaultValue:0.92,step:0.01}],
+    formula: (v) => { const r=F(v.amount)*F(v.rate); return [{label:'Converted',value:r.toFixed(2)},{label:'Inverse',value:(1/F(v.rate)).toFixed(4)}]; },
+    presets: [{label:'USD-EUR',values:{amount:100,rate:0.92}},{label:'USD-GBP',values:{amount:100,rate:0.79}}],
   },
   'currency-hedge-calculator': {
     inputs: [
@@ -728,23 +690,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'discount-calculator': {
-    inputs: [
-      {
-            "key": "price",
-            "label": "Original Price ($)",
-            "type": "number",
-            "defaultValue": 100
-      },
-      {
-            "key": "percent",
-            "label": "Discount (%)",
-            "type": "number",
-            "defaultValue": 20
-      }
-],
-    presets: [{ label: "10% off", values: { percent: 10 } }, { label: "25% off", values: { percent: 25 } }, { label: "50% off", values: { percent: 50 } }],
-    formula: (v) => { const d = F(v.price) * F(v.percent) / 100; return [{ label: 'You Save', value: '$' + d.toFixed(2) }, { label: 'Final Price', value: '$' + (F(v.price) - d).toFixed(2) }]; },
+    'discount-calculator': {
+    inputs: [{key:'price',label:'Original Price ($)',type:'number',defaultValue:100},{key:'discount',label:'Discount (%)',type:'number',defaultValue:20}],
+    formula: (v) => { const s=F(v.price)*F(v.discount)/100; return [{label:'You Save',value:'$'+s.toFixed(2)},{label:'Final Price',value:'$'+(F(v.price)-s).toFixed(2)}]; },
+    presets: [{label:'20pct off',values:{price:100,discount:20}},{label:'50pct off',values:{price:80,discount:50}}],
   },
   'dividend-yield-calculator': {
     inputs: [{key:'div',label:'Annual Dividend ($)',type:'number',defaultValue:2.50},{key:'price',label:'Stock Price ($)',type:'number',defaultValue:50}],
@@ -1073,29 +1022,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'fuel-cost-calculator': {
-    inputs: [
-      {
-            "key": "distance",
-            "label": "Distance (miles)",
-            "type": "number",
-            "defaultValue": 300
-      },
-      {
-            "key": "mpg",
-            "label": "Fuel Economy (MPG)",
-            "type": "number",
-            "defaultValue": 25
-      },
-      {
-            "key": "price",
-            "label": "Price per Gallon ($)",
-            "type": "number",
-            "defaultValue": 3.5,
-            "step": 0.01
-      }
-],
-    formula: (v) => { const gal=F(v.distance)/(F(v.mpg)||1); return [{ label: 'Fuel Needed', value: gal.toFixed(1)+' gal' }, { label: 'Total Cost', value: '$'+(gal*F(v.price)).toFixed(2) }]; },
+    'fuel-cost-calculator': {
+    inputs: [{key:'distance',label:'Distance (miles)',type:'number',defaultValue:300},{key:'mpg',label:'Fuel Econ (MPG)',type:'number',defaultValue:25},{key:'fuelPrice',label:'Fuel Price ($/gal)',type:'number',defaultValue:3.50}],
+    formula: (v) => { const gal=F(v.distance)/F(v.mpg),cost=gal*F(v.fuelPrice); return [{label:'Fuel Needed',value:gal.toFixed(1)+' gal'},{label:'Trip Cost',value:'$'+cost.toFixed(2)},{label:'$/Mile',value:'$'+(F(v.fuelPrice)/F(v.mpg)).toFixed(3)}]; },
+    presets: [{label:'300mi Trip',values:{distance:300,mpg:25,fuelPrice:3.50}}],
   },
   'fuel-economy-calculator': {
     inputs: [
@@ -2002,36 +1932,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'mortgage-calculator': {
-    inputs: [
-      {
-            "key": "price",
-            "label": "Home Price ($)",
-            "type": "number",
-            "defaultValue": 300000
-      },
-      {
-            "key": "down",
-            "label": "Down Payment (%)",
-            "type": "number",
-            "defaultValue": 20
-      },
-      {
-            "key": "rate",
-            "label": "Interest Rate (%)",
-            "type": "number",
-            "defaultValue": 6.5,
-            "step": 0.1
-      },
-      {
-            "key": "years",
-            "label": "Loan Term (years)",
-            "type": "number",
-            "defaultValue": 30
-      }
-],
-    presets: [{ label: "15-year", values: { years: 15 } }, { label: "30-year", values: { years: 30 } }],
-    formula: (v) => { const P = F(v.price) * (1 - F(v.down)/100); const r = F(v.rate)/100/12; const n = F(v.years)*12; const M = r > 0 ? P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1) : P/n; return [{ label: 'Monthly', value: '$' + Math.round(M).toLocaleString() }, { label: 'Total Interest', value: '$' + Math.round(M*n - P).toLocaleString() }]; },
+    'mortgage-calculator': {
+    inputs: [{key:'price',label:'Home Price ($)',type:'number',defaultValue:350000},{key:'down',label:'Down Payment (%)',type:'number',defaultValue:20},{key:'rate',label:'Interest Rate (%)',type:'number',defaultValue:6.3},{key:'term',label:'Loan Term (years)',type:'number',defaultValue:30}],
+    formula: (v) => { const P=F(v.price)*(1-F(v.down)/100),r=F(v.rate)/100/12,n=F(v.term)*12; const M=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n; return [{label:'P&I Payment',value:'$'+M.toFixed(2)},{label:'Total Cost',value:'$'+(M*n).toFixed(0)},{label:'Total Interest',value:'$'+(M*n-P).toFixed(0)},{label:'Down Payment',value:'$'+(F(v.price)*F(v.down)/100).toFixed(0)}]; },
+    presets: [{label:'20%Down 30yr',values:{price:350000,down:20,rate:6.3,term:30}},{label:'FHA 3.5%',values:{price:300000,down:3.5,rate:6.5,term:30}}],
   },
   'net-worth-calculator': {
     inputs: [{key:'cash',label:'Cash & Bank ($)',type:'number',defaultValue:10000},{key:'investments',label:'Investments ($)',type:'number',defaultValue:50000},{key:'property',label:'Property ($)',type:'number',defaultValue:300000},{key:'debt',label:'Total Debt ($)',type:'number',defaultValue:200000}],
@@ -2173,23 +2077,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'percentage-calculator': {
-    inputs: [
-      {
-            "key": "value",
-            "label": "Value",
-            "type": "number",
-            "defaultValue": 50
-      },
-      {
-            "key": "total",
-            "label": "Total",
-            "type": "number",
-            "defaultValue": 200
-      }
-],
-    presets: [{ label: "Score 42/60", values: { value: 42, total: 60 } }],
-    formula: (v) => { const pct = F(v.total) > 0 ? F(v.value) / F(v.total) * 100 : 0; return [{ label: 'Percentage', value: pct.toFixed(2) + '%' }, { label: 'Remaining', value: (100-pct).toFixed(2) + '%' }]; },
+    'percentage-calculator': {
+    inputs: [{key:'value',label:'Part Value',type:'number',defaultValue:42},{key:'total',label:'Total Value',type:'number',defaultValue:60}],
+    formula: (v) => { const p=F(v.total)>0?F(v.value)/F(v.total)*100:0; return [{label:'Percentage',value:p.toFixed(2)+'%'},{label:'Remaining',value:(100-p).toFixed(2)+'%'}]; },
+    presets: [{label:'42/60',values:{value:42,total:60}},{label:'85/100',values:{value:85,total:100}}],
   },
   'pet-breed-mix-calculator': {
     inputs: [
@@ -2528,43 +2419,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'retirement-calculator': {
-    inputs: [
-      {
-            "key": "currentAge",
-            "label": "Current Age",
-            "type": "number",
-            "defaultValue": 30,
-            "min": 18
-      },
-      {
-            "key": "retireAge",
-            "label": "Retirement Age",
-            "type": "number",
-            "defaultValue": 65,
-            "min": 40
-      },
-      {
-            "key": "savings",
-            "label": "Current Savings ($)",
-            "type": "number",
-            "defaultValue": 50000
-      },
-      {
-            "key": "monthly",
-            "label": "Monthly Contribution ($)",
-            "type": "number",
-            "defaultValue": 500
-      },
-      {
-            "key": "rate",
-            "label": "Expected Return (%)",
-            "type": "number",
-            "defaultValue": 7,
-            "step": 0.1
-      }
-],
-    formula: (v) => { const yrs=F(v.retireAge)-F(v.currentAge); const r=F(v.rate)/100/12; const n=yrs*12; const fv=r>0?F(v.savings)*Math.pow(1+r,n)+F(v.monthly)*((Math.pow(1+r,n)-1)/r):F(v.savings)+F(v.monthly)*n; return [{ label: 'At Retirement', value: '$'+Math.round(fv).toLocaleString() }]; },
+    'retirement-calculator': {
+    inputs: [{key:'age',label:'Current Age',type:'number',defaultValue:30},{key:'retireAge',label:'Retire Age',type:'number',defaultValue:65},{key:'savings',label:'Savings ($)',type:'number',defaultValue:50000},{key:'monthly',label:'Monthly ($)',type:'number',defaultValue:500},{key:'rate',label:'Return (%)',type:'number',defaultValue:7}],
+    formula: (v) => { const P=F(v.savings),pmt=F(v.monthly),r=F(v.rate)/100/12,n=(F(v.retireAge)-F(v.age))*12; const fv=P*Math.pow(1+r,n)+(r>0?pmt*(Math.pow(1+r,n)-1)/r:pmt*n); return [{label:'Retirement Nest Egg',value:'$'+fv.toFixed(0)},{label:'Monthly (4%)',value:'$'+(fv*0.04/12).toFixed(0)},{label:'Contributed',value:'$'+(P+pmt*n).toFixed(0)}]; },
+    presets: [{label:'Start at 25',values:{age:25,retireAge:65,savings:10000,monthly:500,rate:7}}],
   },
   'roi-calculator': {
     inputs: [{key:'invested',label:'Invested ($)',type:'number',defaultValue:10000},{key:'returned',label:'Returned ($)',type:'number',defaultValue:12000}],
@@ -2915,22 +2773,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const bmr = 10*F(v.weight) + 6.25*F(v.height) - 5*F(v.age) + 5; return [{ label: 'BMR', value: Math.round(bmr) + ' kcal' }, { label: 'TDEE', value: Math.round(bmr * F(v.activity)) + ' kcal' }]; },
   },
-  'temperature-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'temperature-converter': {
+    inputs: [{key:'celsius',label:'Celsius',type:'number',defaultValue:20},{key:'toUnit',label:'Convert To',type:'select',options:[{label:'Fahrenheit',value:'f'},{label:'Kelvin',value:'k'},{label:'Both',value:'both'}],defaultValue:'both'}],
+    formula: (v) => { const c=F(v.celsius),f=c*9/5+32,k=c+273.15; const r=[]; if(v.toUnit==='f'||v.toUnit==='both')r.push({label:'Fahrenheit',value:f.toFixed(1)+' degF'}); if(v.toUnit==='k'||v.toUnit==='both')r.push({label:'Kelvin',value:k.toFixed(1)+' K'}); r.push({label:'Celsius',value:c.toFixed(1)+' degC'}); return r; },
+    presets: [{label:'Freezing',values:{celsius:0,toUnit:'both'}},{label:'Body',values:{celsius:37,toUnit:'both'}},{label:'Boiling',values:{celsius:100,toUnit:'both'}}],
   },
   'text-diff': {
     inputs: [
@@ -3034,30 +2880,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'tip-calculator': {
-    inputs: [
-      {
-            "key": "amount",
-            "label": "Bill Amount ($)",
-            "type": "number",
-            "defaultValue": 50
-      },
-      {
-            "key": "percent",
-            "label": "Tip (%)",
-            "type": "number",
-            "defaultValue": 18
-      },
-      {
-            "key": "people",
-            "label": "Split Among",
-            "type": "number",
-            "defaultValue": 2,
-            "min": 1
-      }
-],
-    presets: [{ label: "15%", values: { percent: 15 } }, { label: "18%", values: { percent: 18 } }, { label: "20%", values: { percent: 20 } }],
-    formula: (v) => { const tip = F(v.amount) * F(v.percent) / 100; const total = F(v.amount) + tip; const pp = total / (F(v.people) || 1); return [{ label: 'Tip', value: '$' + tip.toFixed(2) }, { label: 'Total', value: '$' + total.toFixed(2) }, { label: 'Per Person', value: '$' + pp.toFixed(2) }]; },
+    'tip-calculator': {
+    inputs: [{key:'bill',label:'Bill Amount ($)',type:'number',defaultValue:80},{key:'tipPct',label:'Tip (%)',type:'number',defaultValue:18},{key:'people',label:'Split Among',type:'number',defaultValue:3}],
+    formula: (v) => { const tip=F(v.bill)*F(v.tipPct)/100,total=F(v.bill)+tip,pp=F(v.people)>0?total/F(v.people):total; return [{label:'Tip',value:'$'+tip.toFixed(2)},{label:'Total',value:'$'+total.toFixed(2)},{label:'Per Person',value:'$'+pp.toFixed(2)}]; },
+    presets: [{label:'15pct',values:{bill:50,tipPct:15,people:2}},{label:'20pct',values:{bill:80,tipPct:20,people:3}}],
   },
   'tire-size-calculator': {
     inputs: [
