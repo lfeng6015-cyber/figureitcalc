@@ -260,6 +260,7 @@ export default function App() {
 
           {/* Tool page with SEO */}
           <ToolPage
+            toolId={currentTool.id}
             icon={getIcon(currentTool.icon)}
             name={currentTool.name}
             description={currentTool.seo.intro}
@@ -363,11 +364,6 @@ export default function App() {
               {activeCategory !== "all" && !searchQuery && (
                 <>
                   <CategoryHero categoryId={activeCategory} toolCount={filteredTools.length} />
-                  <div className="flex justify-center py-2">
-                    <div className="bg-muted/30 border border-dashed border-border rounded-lg w-full max-w-2xl h-[90px] flex items-center justify-center text-xs text-muted-foreground select-none">
-                      Advertisement · 广告位
-                    </div>
-                  </div>
                 </>
               )}
 

@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ReactNode, useState, useEffect, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
-import { ArrowLeft, Star, Share2, LucideIcon, ExternalLink } from "lucide-react";
+import { ArrowLeft, Star, Share2, Check, LucideIcon, ExternalLink } from "lucide-react";
 
 interface RelatedTool {
   id: string | number;
@@ -26,6 +26,7 @@ interface ToolPageProps {
   description: string;
   tag: string;
   tagColor: string;
+  toolId?: string;
   seo?: SeoData;
   children: ReactNode;
   richContent?: ReactNode;
@@ -34,10 +35,46 @@ interface ToolPageProps {
   onNavigate?: (id: string | number) => void;
 }
 
+const FAVORITES_KEY = "figureitcalc_favorites";
+
+function getFavorites(): string[] {
+  try { return JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]"); } catch { return []; }
+}
+function saveFavorites(ids: string[]) {
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(ids));
+}
+
 export function ToolPage({
-  icon: Icon, name, description, tag, tagColor,
+  icon: Icon, name, description, tag, tagColor, toolId,
   seo, children, richContent, related = [], onBack, onNavigate,
 }: ToolPageProps) {
+  const [saved, setSaved] = useState(false);
+  const [shared, setShared] = useState(false);
+
+  useEffect(() => {
+    if (toolId) setSaved(getFavorites().includes(toolId));
+  }, [toolId]);
+
+  const handleSave = useCallback(() => {
+    if (!toolId) return;
+    const favs = getFavorites();
+    const idx = favs.indexOf(toolId);
+    if (idx >= 0) { favs.splice(idx, 1); setSaved(false); }
+    else { favs.push(toolId); setSaved(true); }
+    saveFavorites(favs);
+  }, [toolId]);
+
+  const handleShare = useCallback(async () => {
+    const url = window.location.href;
+    const title = `${name} — Free Online Tool | figureitcalc`;
+    if (navigator.share) {
+      try { await navigator.share({ title, url }); } catch {}
+    } else {
+      await navigator.clipboard.writeText(url);
+      setShared(true);
+      setTimeout(() => setShared(false), 2000);
+    }
+  }, [name]);
   return (
     <div className="min-h-full bg-background">
       {/* Dynamic SEO Meta */}
@@ -98,16 +135,17 @@ export function ToolPage({
                   </div>
                 </div>
                 <div className="flex items-center gap-2 flex-shrink-0">
-                  <button className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all">
-                    <Star className="w-3.5 h-3.5" /> Save
+                  <button
+                    onClick={handleSave}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-sm border rounded-lg transition-all ${saved ? "border-yellow-400 bg-yellow-50 text-yellow-700" : "border-border text-muted-foreground hover:text-foreground hover:border-primary/40"}`}
+                  >
+                    <Star className={`w-3.5 h-3.5 ${saved ? "fill-yellow-500 text-yellow-500" : ""}`} /> {saved ? "Saved" : "Save"}
                   </button>
                   <button
-                    onClick={() => {
-                      navigator.clipboard.writeText(window.location.href);
-                    }}
-                    className="flex items-center gap-1.5 px-3 py-1.5 text-sm border border-border rounded-lg text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all"
+                    onClick={handleShare}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 text-sm border rounded-lg transition-all ${shared ? "border-green-400 bg-green-50 text-green-700" : "border-border text-muted-foreground hover:text-foreground hover:border-primary/40"}`}
                   >
-                    <Share2 className="w-3.5 h-3.5" /> Share
+                    {shared ? <><Check className="w-3.5 h-3.5" /> Copied</> : <><Share2 className="w-3.5 h-3.5" /> Share</>}
                   </button>
                 </div>
               </div>
@@ -116,13 +154,6 @@ export function ToolPage({
             {/* Tool Interactive Area */}
             <section className="bg-card rounded-xl border border-border p-5" aria-label="Tool interface">
               {children}
-            </section>
-
-            {/* Ad Banner */}
-            <section className="flex justify-center py-1">
-              <div className="bg-muted/30 border border-dashed border-border rounded-lg w-full max-w-2xl h-[90px] flex items-center justify-center text-xs text-muted-foreground select-none">
-                Advertisement · 广告位
-              </div>
             </section>
 
             {/* Rich Educational Content */}
