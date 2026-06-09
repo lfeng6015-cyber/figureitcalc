@@ -173,15 +173,12 @@ function buildPage(metaTitle, metaDesc, metaKeywords, canonicalPath, bodyContent
       `<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>\n</head>`);
   }
 
-  // Inject visible SEO content after the React root, in a <noscript>-friendly way
-  // The content is wrapped in a section that's visible to crawlers
+  // Inject visible SEO content directly on the page — fully crawlable
   html = html.replace('<div id="root"></div>',
-    `<div id="root"></div>
-<noscript>
-  <section style="max-width:900px;margin:20px auto;padding:16px;font-family:sans-serif;line-height:1.7;color:#333">
-    ${bodyContent}
-  </section>
-</noscript>`);
+    `<div id="root">
+<section class="seo-content" style="max-width:900px;margin:40px auto;padding:20px 16px;font-family:system-ui,sans-serif;line-height:1.8;color:#333;background:#fff;border-top:1px solid #eee">
+  ${bodyContent}
+</section>`);
 
   // Output
   const filePath = canonicalPath === '/' ? 'index.html' : canonicalPath.slice(1) + '.html';
@@ -196,7 +193,7 @@ buildPage(
   '206+ free online tools: BMI calculator, mortgage calculator, JSON formatter, Base64 encoder, zodiac compatibility, numerology, QR code generator, compound interest calculator, and more. No signup, all client-side processing.',
   'free online tools, online calculator, BMI, mortgage, JSON, Base64, QR code, zodiac, numerology, converters, generators',
   '/',
-  `<div style="display:none">
+  `
     <h1>Free Online Tools — 206+ Calculators & Converters</h1>
     <p>figureitcalc offers 206+ free online tools across 21 categories: Finance, Health & Fitness, Developer Tools, Cooking, Travel, Real Estate, Construction, Fortune & Love, and more. All tools run 100% client-side — your data never leaves your browser. No signup required. Free forever.</p>
     <h2>Popular Tools</h2>
@@ -245,7 +242,7 @@ for (const catId of catIds) {
   const title = catContent?.title || `${label} — Free Online Tools | figureitcalc`;
   const intro = catContent?.intro || `${label} — ${catToolCount}+ free online tools. No signup, all client-side.`;
 
-  let body = `<div style="display:none">\n<h1>${esc(title)}</h1>\n<p>${esc(intro)}</p>\n`;
+  let body = `\n<h1>${esc(title)}</h1>\n<p>${esc(intro)}</p>\n`;
 
   if (catContent?.concepts?.length) {
     body += `<h2>Key Concepts</h2>\n<ul>\n`;
@@ -293,7 +290,7 @@ for (const toolId of uniqueIds) {
   if (!meta) continue;
   const content = getToolContent(toolId);
 
-  let body = `<div style="display:none">\n`;
+  let body = `\n`;
   body += `<h1>${esc(meta.h1 || meta.name)}</h1>\n`;
   body += `<p><strong>${esc(meta.intro)}</strong></p>\n`;
 
@@ -361,7 +358,7 @@ buildPage(
   'figureitcalc offers 206+ free online calculators, converters, and tools. All client-side, no signup. Learn about our mission, technology, and how we sustain free tools.',
   'about figureitcalc, free tools, online calculators',
   '/about',
-  `<div style="display:none">
+  `
     <h1>About figureitcalc</h1>
     <p>figureitcalc is a free online tools platform offering <strong>206+ calculators, converters, generators, and utilities</strong> — all running entirely in your browser. No signup, no downloads, no server uploads. Just open the page and use the tool.</p>
     <h2>Why figureitcalc?</h2>
@@ -379,7 +376,7 @@ buildPage(
   'Our privacy policy: all tools are client-side, your data never leaves your device. No account creation required. Learn about our data handling practices.',
   'privacy policy, data protection, client-side processing, no tracking',
   '/privacy',
-  `<div style="display:none">
+  `
     <h1>Privacy Policy</h1>
     <p>figureitcalc is designed with privacy as a core principle. The vast majority of our tools process data <strong>entirely in your browser</strong> using client-side JavaScript.</p>
     <h2>What We Don't Do</h2>
@@ -395,7 +392,7 @@ buildPage(
   'Contact figureitcalc for bug reports, tool suggestions, advertising inquiries, or security concerns. We respond within 24-48 hours.',
   'contact, support, bug report, advertising, figureitcalc',
   '/contact',
-  `<div style="display:none">
+  `
     <h1>Contact Us</h1>
     <p>Email: <strong>hello@figureitcalc.com</strong></p>
     <p>We typically respond within 24-48 hours on business days.</p>

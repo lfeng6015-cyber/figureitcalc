@@ -2536,6 +2536,9 @@ export const contentRegistry: Record<string, ToolRichContent> = {
       { q: "Why are my numbers different today than yesterday?", a: "The generator incorporates the current date into its algorithm, so your lucky numbers refresh daily. This gives you fresh numbers each day while maintaining the deterministic property (you'll always get the same numbers on the same day)." },
     ],
   },
+
+  // ===== AUTO-GENERATED SEO CONTENT =====
+
 };
 
 export function getContent(toolId: string): ToolRichContent | null {
