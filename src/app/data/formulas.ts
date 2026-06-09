@@ -76,7 +76,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'n',label:'Iterations',type:'number',defaultValue:100000}],
     formula: (v) => { var start=Date.now(); var s=0; for(var i=0;i<Math.min(F(v.n),50000);i++)s+=Math.sqrt(i); var elapsed=Date.now()-start; var ops=Math.round(F(v.n)/(elapsed/1000)); return [{label:'Time',value:elapsed+' ms'},{label:'Ops/sec',value:ops.toLocaleString()},{label:'Score',value:Math.round(ops/1000)+' kOps'}]; },
   },
-      'bip39-generator': {
+          'bip39-generator': {
     inputs: [{key:'words',label:'Words',type:'select',options:[{label:'12 words',value:'12'},{label:'24 words',value:'24'}],defaultValue:'12'}],
     formula: (v) => { var wl=['abandon','ability','able','about','above','absent','absorb','abstract','absurd','abuse','access','accident','account','accuse','achieve','acid','acoustic','acquire','across','act','action','actor','actress','actual','adapt','add','addict','address','adjust','admit','adult','advance','advice','aerobic','affair','afford','afraid','africa','after','again','age','agent','agree','ahead','aim','air','airport','aisle','alarm','album','alcohol','alert','alien','all','alley','allow','almost','alone','alpha','already','also','alter','always','amateur','amazing','among','amount','amused','analyst','anchor','ancient','anger','angle','angry','animal','ankle','announce','annual','another','answer','antenna','antique','anxiety','any','apart','apology','appear','apple','approve','april','arch','arctic','area','arena','argue','arm','armed','armor','army','around','arrange','arrest','arrive','arrow','art','artefact','artist','artwork','ask','aspect','assault','asset','assist','assume','asthma','athlete','atom','attack','attend','attitude','attract','auction','audit','august','aunt','author','auto','autumn','average','avocado','avoid','awake','aware','away','awesome','awful','awkward','axis']; var c=F(v.words),r=[]; for(var i=0;i<c;i++)r.push(wl[Math.floor(Math.random()*wl.length)]); return [{label:'Mnemonic',value:r.join(' ')},{label:'Words',value:String(c)},{label:'Entropy',value:(c*32/3).toFixed(0)+' bits'}]; },
   },
@@ -97,7 +97,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'ht',label:'Height (cm)',type:'number',defaultValue:175},{key:'wt',label:'Weight (kg)',type:'number',defaultValue:70}],
     formula: (v) => { const b=Math.sqrt(F(v.ht)*F(v.wt)/3600); return [{label:'BSA',value:b.toFixed(3)+' m2'}]; },
   },
-      'camera-recorder': {
+        'camera-recorder': {
     inputs: [],
     formula: (v) => { var has=navigator&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia; return [{label:'Camera Support',value:has?'Yes - Available':'No - Need HTTPS'},{label:'Browser',value:navigator.userAgent.split(' ').slice(-1)[0]||'Unknown'},{label:'Resolution',value:screen.width+'x'+screen.height},{label:'Platform',value:navigator.platform||'Unknown'}]; },
   },
@@ -134,7 +134,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { var sym=function(n){return ['---','--x','-w-','-wx','r--','r-x','rw-','rwx'][n]}; return [{label:'chmod',value:'chmod '+v.o+v.g+v.w},{label:'Symbolic',value:sym(Number(v.o))+sym(Number(v.g))+sym(Number(v.w))}]; },
     presets: [{label:'755 Script',values:{o:'7',g:'5',w:'5'}},{label:'644 File',values:{o:'6',g:'4',w:'4'}}],
   },
-      'chronometer': {
+        'chronometer': {
     inputs: [{key:'label',label:'Task Name',type:'text',defaultValue:'Work Session'}],
     formula: (v) => { var now=new Date(); return [{label:'Current Time',value:now.toLocaleTimeString()},{label:'Date',value:now.toLocaleDateString()},{label:'Task',value:String(v.label)},{label:'Tip',value:'Use system clock for precise time tracking'}]; },
   },
@@ -200,7 +200,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'f',label:'Focal Length (mm)',type:'number',defaultValue:50},{key:'a',label:'Aperture (f-stop)',type:'number',defaultValue:5.6,step:0.1},{key:'d',label:'Focus Distance (ft)',type:'number',defaultValue:10}],
     formula: (v) => { var f=F(v.f),a=F(v.a),d=F(v.d)*304.8,coc=0.03,H=f*f/(a*coc); var near=(H*d)/(H+(d-f)),far=(H*d)/(H-(d-f)); return [{label:'Hyperfocal',value:(H/304.8).toFixed(1)+' ft'},{label:'Near Limit',value:(near/304.8).toFixed(1)+' ft'},{label:'Far Limit',value:far<0?'Infinity':(far/304.8).toFixed(1)+' ft'},{label:'Total DOF',value:far<0?'Infinite':((far-near)/304.8).toFixed(1)+' ft'}]; },
   },
-      'device-information': {
+        'device-information': {
     inputs: [],
     formula: (v) => { return [{label:'Platform',value:navigator.platform||'N/A'},{label:'Language',value:navigator.language||'N/A'},{label:'Screen',value:screen.width+'x'+screen.height},{label:'Pixel Ratio',value:window.devicePixelRatio+'x'},{label:'Online',value:navigator.onLine?'Yes':'No'},{label:'Cookies',value:navigator.cookieEnabled?'On':'Off'},{label:'CPU Cores',value:navigator.hardwareConcurrency||'Unknown'}]; },
   },
@@ -253,7 +253,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'loan',label:'Loan ($)',type:'number',defaultValue:20000},{key:'rate',label:'Rate (%)',type:'number',defaultValue:8},{key:'months',label:'Tenure (mo)',type:'number',defaultValue:36}],
     formula: (v) => { const P=F(v.loan),r=F(v.rate)/100/12,n=F(v.months),emi=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n; return [{label:'EMI',value:'$'+emi.toFixed(2)},{label:'Total',value:'$'+(emi*n).toFixed(0)},{label:'Interest',value:'$'+(emi*n-P).toFixed(0)}]; },
   },
-      'emoji-picker': {
+        'emoji-picker': {
     inputs: [{key:'q',label:'Search Emoji',type:'text',defaultValue:'smile'}],
     formula: (v) => { var q=String(v.q).toLowerCase(); var E={smile:'Result: Smileys and people',love:'Result: Hearts and love',star:'Result: Stars and sparkles',fire:'Result: Fire and hot',cool:'Result: Cool and chill',cry:'Result: Sad and tears',angry:'Result: Angry and mad',clap:'Result: Hands and gestures',food:'Result: Food and drink',animal:'Result: Animals and nature',sun:'Result: Weather and sky',car:'Result: Travel and places',music:'Result: Music and sound',sport:'Result: Sports and activities',tech:'Result: Technology and tools'}; var match=Object.entries(E).find(function(e){return q.includes(e[0])}); return [{label:'Emoji Category',value:match?match[1]:'Search: '+q},{label:'Copy',value:match?'Click to browse emojis':'Try: smile, love, star, food, animal'}]; },
   },
@@ -314,7 +314,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'eq',label:'y = f(x)',type:'text',defaultValue:'x*x'}],
     formula: (v) => { var pts=[]; try{var eq=String(v.eq).replace(/\^/g,'**'); for(var x=-5;x<=5;x+=0.5){try{var y=Function('x','return '+eq)(x); if(!isNaN(y)&&isFinite(y))pts.push({x:x.toFixed(1),y:y.toFixed(2)});}catch(e){}} return[{label:'Points',value:pts.length+' plotted'},{label:'Range',value:'x:-5 to 5'}]; }catch(e){return[{label:'Error',value:'Invalid equation'}];} },
   },
-      'habit-tracker': {
+        'habit-tracker': {
     inputs: [{key:'habit',label:'Habit Name',type:'text',defaultValue:'Exercise'},{key:'target',label:'Target (days/week)',type:'number',defaultValue:5},{key:'done',label:'Done This Week',type:'number',defaultValue:3}],
     formula: (v) => { var t=F(v.target),d=F(v.done),pct=Math.round(d/t*100); return [{label:'Progress',value:d+'/'+t+' days ('+pct+'%)'},{label:'Status',value:pct>=100?'Goal met!':pct>=80?'Almost there':pct>=50?'Halfway':'Keep going!'},{label:'Streak',value:d+' day streak'},{label:'To Go',value:Math.max(0,t-d)+' days'}]; },
   },
@@ -439,7 +439,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'jwt',label:'JWT Token',type:'text',defaultValue:'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjMifQ.xxx'}],
     formula: (v) => { var parts=String(v.jwt).split('.'); if(parts.length!==3)return[{label:'Error',value:'Invalid JWT format'}]; try{var h=JSON.parse(atob(parts[0])),p=JSON.parse(atob(parts[1])); return[{label:'Algorithm',value:h.alg||'unknown'},{label:'Subject',value:p.sub||'N/A'},{label:'Issued',value:p.iat?new Date(p.iat*1000).toISOString():'N/A'},{label:'Expires',value:p.exp?new Date(p.exp*1000).toISOString():'N/A'}]; }catch(e){return[{label:'Error',value:'Cannot decode JWT'}];} },
   },
-      'keycode-info': {
+        'keycode-info': {
     inputs: [{key:'code',label:'Key Code (number)',type:'number',defaultValue:13}],
     formula: (v) => { var k=F(v.code); var map={8:'Backspace',9:'Tab',13:'Enter',16:'Shift',17:'Ctrl',18:'Alt',27:'Escape',32:'Space',37:'Left Arrow',38:'Up Arrow',39:'Right Arrow',40:'Down Arrow',46:'Delete',48:'0',65:'A',90:'Z',112:'F1',123:'F12'}; return [{label:'Key Name',value:map[k]||'Code '+k},{label:'Char',value:k>=32&&k<=126?String.fromCharCode(k):'(non-printable)'},{label:'Hex',value:'0x'+k.toString(16).toUpperCase()}]; },
   },
@@ -492,9 +492,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'expr',label:'Expression',type:'text',defaultValue:'2+2*3'}],
     formula: (v) => { try{var r=Function('"use strict";return ('+String(v.expr)+')')(); return[{label:'Result',value:String(r)}]; }catch(e){return[{label:'Error',value:'Invalid'}];} },
   },
-      'meme-generator': {
-    inputs: [{key:'top',label:'Top Text',type:'text',defaultValue:'WRITING CODE'},{key:'bottom',label:'Bottom Text',type:'text',defaultValue:'AT 3AM'},{key:'w',label:'Width (px)',type:'number',defaultValue:500}],
-    formula: (v) => { var top=String(v.top).toUpperCase(),bot=String(v.bottom).toUpperCase(),w=F(v.w),h=Math.round(w*0.7); var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'"><rect width="'+w+'" height="'+h+'" fill="#000"/><text x="'+w/2+'" y="'+h*0.15+'" text-anchor="middle" fill="#fff" font-family="Impact" font-size="'+w/10+'" font-weight="bold">'+top+'</text><text x="'+w/2+'" y="'+h*0.9+'" text-anchor="middle" fill="#fff" font-family="Impact" font-size="'+w/10+'" font-weight="bold">'+bot+'</text></svg>'; return [{label:'Meme SVG',value:svg},{label:'Data URI',value:'data:image/svg+xml,'+encodeURIComponent(svg)}]; },
+          'meme-generator': {
+    inputs: [{key:'img',label:'Upload Image',type:'file',defaultValue:''},{key:'top',label:'Top Text',type:'text',defaultValue:'WRITING CODE'},{key:'bottom',label:'Bottom Text',type:'text',defaultValue:'AT 3AM'},{key:'w',label:'Width (px)',type:'number',defaultValue:500}],
+    formula: (v) => { var top=String(v.top||'').toUpperCase(),bot=String(v.bottom||'').toUpperCase(),w=F(v.w),h=Math.round(w*0.75); var img=v.img||''; var hasImg=img&&String(img).startsWith('data:image'); var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'"><rect width="'+w+'" height="'+h+'" fill="#000"/>'; if(hasImg){svg+='<image href="'+img+'" x="0" y="'+h*0.1+'" width="'+w+'" height="'+h*0.7+'" preserveAspectRatio="xMidYMid slice"/>';} else{svg+='<rect x="'+w*0.1+'" y="'+h*0.1+'" width="'+w*0.8+'" height="'+h*0.7+'" fill="#333" stroke="#555"/>';} svg+='<text x="'+w/2+'" y="'+h*0.08+'" text-anchor="middle" fill="#fff" font-family="Impact" font-size="'+Math.min(w/10,h/8)+'" font-weight="bold">'+top+'</text><text x="'+w/2+'" y="'+h*0.95+'" text-anchor="middle" fill="#fff" font-family="Impact" font-size="'+Math.min(w/10,h/8)+'" font-weight="bold">'+bot+'</text></svg>'; return [{label:'Meme SVG',value:svg},{label:'Data URI',value:'data:image/svg+xml,'+encodeURIComponent(svg)}]; },
   },
     'meta-tag-generator': {
     inputs: [{key:'title',label:'Page Title',type:'text',defaultValue:'My Website'},{key:'desc',label:'Description',type:'text',defaultValue:'A great website'}],
@@ -545,7 +545,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'pw',label:'Password',type:'text',defaultValue:'MyP@ssw0rd2026!'}],
     formula: (v) => { const p=String(v.pw); var cs=0; if(/[a-z]/.test(p))cs+=26; if(/[A-Z]/.test(p))cs+=26; if(/[0-9]/.test(p))cs+=10; if(/[^a-zA-Z0-9]/.test(p))cs+=32; const e=p.length*Math.log2(cs||1); const s=e<40?'Weak':e<60?'Fair':e<80?'Good':e<100?'Strong':'Very Strong'; return [{label:'Strength',value:s},{label:'Entropy',value:e.toFixed(0)+' bits'},{label:'Length',value:p.length+' chars'}]; },
   },
-      'pdf-signature-checker': {
+        'pdf-signature-checker': {
     inputs: [{key:'signer',label:'Signer Name',type:'text',defaultValue:'John Doe'},{key:'date',label:'Signature Date',type:'text',defaultValue:'2026-01-15'},{key:'hash',label:'Document Hash (optional)',type:'text',defaultValue:''}],
     formula: (v) => { var d=new Date(String(v.date)); var valid=!isNaN(d.getTime())&&d<=new Date(); var h=String(v.hash||''); var integrity=h?'Hash present: '+h.slice(0,16)+'...':'No hash provided'; return [{label:'Signer',value:String(v.signer)},{label:'Date Valid',value:valid?'Yes':'No - future or invalid'},{label:'Integrity',value:integrity},{label:'Status',value:valid?'Signature date OK':'Cannot verify'}]; },
   },
@@ -574,7 +574,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'outs',label:'Outs',type:'number',defaultValue:9},{key:'street',label:'Street',type:'select',options:[{label:'Flop(2 cards)',value:'flop'},{label:'Turn(1 card)',value:'turn'}],defaultValue:'flop'}],
     formula: (v) => { const o=F(v.outs),pct=v.street==='flop'?Math.min(99,o*4-(o>8?1:0)):Math.min(99,o*2); return [{label:'Win %',value:pct.toFixed(0)+'%'},{label:'Odds',value:'1:'+Math.round((100-pct)/pct)}]; },
   },
-      'pomodoro-timer': {
+        'pomodoro-timer': {
     inputs: [{key:'focus',label:'Focus (min)',type:'number',defaultValue:25},{key:'break',label:'Break (min)',type:'number',defaultValue:5},{key:'cycles',label:'Cycles',type:'number',defaultValue:4}],
     formula: (v) => { var f=F(v.focus),b=F(v.break),c=F(v.cycles); var total=f*c+b*(c-1)+15; return [{label:'Total Time',value:total+' min ('+(total/60).toFixed(1)+' hrs)'},{label:'Focus Time',value:f*c+' min'},{label:'Break Time',value:b*(c-1)+' min'},{label:'Long Break',value:'15 min after '+c+' cycles'}]; },
   },
@@ -594,7 +594,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'val',label:'Assessed ($)',type:'number',defaultValue:300000},{key:'rate',label:'Tax Rate (%)',type:'number',defaultValue:1.2,step:0.01}],
     formula: (v) => { const a=F(v.val)*F(v.rate)/100; return [{label:'Annual',value:'$'+a.toFixed(2)},{label:'Monthly',value:'$'+(a/12).toFixed(2)}]; },
   },
-      'qr-code-generator': {
+          'qr-code-generator': {
     inputs: [{key:'text',label:'Text/URL',type:'text',defaultValue:'https://figureitcalc.com'},{key:'size',label:'Size (px)',type:'number',defaultValue:200}],
     formula: (v) => { var t=String(v.text); var s=Math.min(Math.max(F(v.size),100),500); var qr=[]; for(var i=0;i<21;i++){qr[i]=[]; for(var j=0;j<21;j++)qr[i][j]=0;} var seed=0; for(var i=0;i<t.length;i++)seed=((seed<<5)-seed)+t.charCodeAt(i); seed=Math.abs(seed); for(var r=0;r<21;r++){for(var c=0;c<21;c++){if((r===0||r===20||c===0||c===20)&&((r+c)%3!==0))qr[r][c]=1; if(r>=2&&r<=18&&c>=2&&c<=18){var val=((seed*(r*31+c*17+1))>>(c%8))&1; if(val)qr[r][c]=1;}}} var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 21 21"><rect width="21" height="21" fill="#fff"/>'; for(var r=0;r<21;r++)for(var c=0;c<21;c++)if(qr[r][c])svg+='<rect x="'+c+'" y="'+r+'" width="1" height="1" fill="#000"/>'; svg+='</svg>'; return [{label:'QR SVG',value:svg},{label:'Data URI',value:'data:image/svg+xml,'+encodeURIComponent(svg)},{label:'Content',value:t}]; },
   },
@@ -709,7 +709,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'buy',label:'Buy ($)',type:'number',defaultValue:100},{key:'sell',label:'Sell ($)',type:'number',defaultValue:130},{key:'shares',label:'Shares',type:'number',defaultValue:10}],
     formula: (v) => { const p=(F(v.sell)-F(v.buy))*F(v.shares),pct=F(v.buy)>0?(F(v.sell)-F(v.buy))/F(v.buy)*100:0; return [{label:'P&L',value:'$'+p.toFixed(2)},{label:'Return',value:pct.toFixed(2)+'%'}]; },
   },
-      'stopwatch': {
+        'stopwatch': {
     inputs: [],
     formula: (v) => { var now=new Date(); return [{label:'Current Time',value:now.toLocaleTimeString()},{label:'Timestamp (ms)',value:String(now.getTime())},{label:'Date',value:now.toLocaleDateString()}]; },
   },
@@ -833,7 +833,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'items',label:'Items (one per line)',type:'text',defaultValue:'Option 1\nOption 2\nOption 3\nOption 4'}],
     formula: (v) => { var items=String(v.items).split('\n').filter(Boolean); var winner=items[Math.floor(Math.random()*items.length)]; return [{label:'Winner!',value:winner},{label:'Options',value:String(items.length)}]; },
   },
-      'wifi-qr-code-generator': {
+          'wifi-qr-code-generator': {
     inputs: [{key:'ssid',label:'WiFi Name',type:'text',defaultValue:'MyNetwork'},{key:'pass',label:'Password',type:'text',defaultValue:'mypassword'},{key:'sec',label:'Security',type:'select',options:[{label:'WPA2',value:'WPA2'},{label:'WPA3',value:'WPA3'},{label:'WEP',value:'WEP'}],defaultValue:'WPA2'},{key:'size',label:'Size (px)',type:'number',defaultValue:200}],
     formula: (v) => { var wifi='WIFI:T:'+v.sec+';S:'+v.ssid+';P:'+v.pass+';;'; var t=wifi; var s=Math.min(Math.max(F(v.size),100),300); var qr=[]; for(var i=0;i<21;i++){qr[i]=[]; for(var j=0;j<21;j++)qr[i][j]=0;} var seed=0; for(var i=0;i<t.length;i++)seed=((seed<<5)-seed)+t.charCodeAt(i); seed=Math.abs(seed); for(var r=0;r<21;r++){for(var c=0;c<21;c++){if((r===0||r===20||c===0||c===20)&&((r+c)%3!==0))qr[r][c]=1; if(r>=2&&r<=18&&c>=2&&c<=18){var val=((seed*(r*31+c*17+1))>>(c%8))&1; if(val)qr[r][c]=1;}}} var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 21 21"><rect width="21" height="21" fill="#fff"/>'; for(var r=0;r<21;r++)for(var c=0;c<21;c++)if(qr[r][c])svg+='<rect x="'+c+'" y="'+r+'" width="1" height="1" fill="#000"/>'; svg+='</svg>'; return [{label:'WiFi QR SVG',value:svg},{label:'Data URI',value:'data:image/svg+xml,'+encodeURIComponent(svg)},{label:'Config',value:wifi}]; },
   },

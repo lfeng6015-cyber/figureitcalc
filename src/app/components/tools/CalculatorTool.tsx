@@ -82,6 +82,25 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
                     <option key={String(o.value)} value={String(o.value)}>{o.label}</option>
                   ))}
                 </select>
+              ) : inp.type === "file" ? (
+                <div className="flex items-center gap-1.5">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = () => handleChange(inp.key, String(reader.result));
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                    className="w-full p-2 rounded-lg border border-border bg-background text-foreground text-sm"
+                  />
+                  {values[inp.key] && (
+                    <img src={String(values[inp.key])} alt="preview" className="w-10 h-10 object-cover rounded border border-border" />
+                  )}
+                </div>
               ) : (
                 <div className="flex items-center gap-1.5">
                   <input
