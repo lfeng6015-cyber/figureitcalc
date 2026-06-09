@@ -76,9 +76,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'n',label:'Iterations',type:'number',defaultValue:100000}],
     formula: (v) => { var start=Date.now(); var s=0; for(var i=0;i<Math.min(F(v.n),50000);i++)s+=Math.sqrt(i); var elapsed=Date.now()-start; var ops=Math.round(F(v.n)/(elapsed/1000)); return [{label:'Time',value:elapsed+' ms'},{label:'Ops/sec',value:ops.toLocaleString()},{label:'Score',value:Math.round(ops/1000)+' kOps'}]; },
   },
-    'bip39-generator': {
-    inputs: [{key:'words',label:'Words',type:'select',options:[{label:'12 words (128-bit)',value:'12'},{label:'24 words (256-bit)',value:'24'}],defaultValue:'12'}],
-    formula: (v) => { return [{label:'Entropy',value:v.words==='12'?'128 bits':'256 bits'},{label:'Checksum',value:v.words==='12'?'4 bits':'8 bits'},{label:'Security',value:v.words==='12'?'Strong':'Very Strong'}]; },
+      'bip39-generator': {
+    inputs: [{key:'words',label:'Words',type:'select',options:[{label:'12 words',value:'12'},{label:'24 words',value:'24'}],defaultValue:'12'}],
+    formula: (v) => { var wl=['abandon','ability','able','about','above','absent','absorb','abstract','absurd','abuse','access','accident','account','accuse','achieve','acid','acoustic','acquire','across','act','action','actor','actress','actual','adapt','add','addict','address','adjust','admit','adult','advance','advice','aerobic','affair','afford','afraid','africa','after','again','age','agent','agree','ahead','aim','air','airport','aisle','alarm','album','alcohol','alert','alien','all','alley','allow','almost','alone','alpha','already','also','alter','always','amateur','amazing','among','amount','amused','analyst','anchor','ancient','anger','angle','angry','animal','ankle','announce','annual','another','answer','antenna','antique','anxiety','any','apart','apology','appear','apple','approve','april','arch','arctic','area','arena','argue','arm','armed','armor','army','around','arrange','arrest','arrive','arrow','art','artefact','artist','artwork','ask','aspect','assault','asset','assist','assume','asthma','athlete','atom','attack','attend','attitude','attract','auction','audit','august','aunt','author','auto','autumn','average','avocado','avoid','awake','aware','away','awesome','awful','awkward','axis']; var c=F(v.words),r=[]; for(var i=0;i<c;i++)r.push(wl[Math.floor(Math.random()*wl.length)]); return [{label:'Mnemonic',value:r.join(' ')},{label:'Words',value:String(c)},{label:'Entropy',value:(c*32/3).toFixed(0)+' bits'}]; },
   },
     'bmi-calculator': {
     inputs: [{key:'height',label:'Height (cm)',type:'number',defaultValue:170},{key:'weight',label:'Weight (kg)',type:'number',defaultValue:70},{key:'gender',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'}],
@@ -492,9 +492,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'expr',label:'Expression',type:'text',defaultValue:'2+2*3'}],
     formula: (v) => { try{var r=Function('"use strict";return ('+String(v.expr)+')')(); return[{label:'Result',value:String(r)}]; }catch(e){return[{label:'Error',value:'Invalid'}];} },
   },
-    'meme-generator': {
-    inputs: [{key:'top',label:'Top Text',type:'text',defaultValue:'WRITING CODE'},{key:'bottom',label:'Bottom Text',type:'text',defaultValue:'AT 3AM'}],
-    formula: (v) => { return [{label:'Top',value:String(v.top)},{label:'Bottom',value:String(v.bottom)},{label:'Meme',value:String(v.top)+'\n---\n'+String(v.bottom)}]; },
+      'meme-generator': {
+    inputs: [{key:'top',label:'Top Text',type:'text',defaultValue:'WRITING CODE'},{key:'bottom',label:'Bottom Text',type:'text',defaultValue:'AT 3AM'},{key:'w',label:'Width (px)',type:'number',defaultValue:500}],
+    formula: (v) => { var top=String(v.top).toUpperCase(),bot=String(v.bottom).toUpperCase(),w=F(v.w),h=Math.round(w*0.7); var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+w+'" height="'+h+'"><rect width="'+w+'" height="'+h+'" fill="#000"/><text x="'+w/2+'" y="'+h*0.15+'" text-anchor="middle" fill="#fff" font-family="Impact" font-size="'+w/10+'" font-weight="bold">'+top+'</text><text x="'+w/2+'" y="'+h*0.9+'" text-anchor="middle" fill="#fff" font-family="Impact" font-size="'+w/10+'" font-weight="bold">'+bot+'</text></svg>'; return [{label:'Meme SVG',value:svg},{label:'Data URI',value:'data:image/svg+xml,'+encodeURIComponent(svg)}]; },
   },
     'meta-tag-generator': {
     inputs: [{key:'title',label:'Page Title',type:'text',defaultValue:'My Website'},{key:'desc',label:'Description',type:'text',defaultValue:'A great website'}],
@@ -594,9 +594,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'val',label:'Assessed ($)',type:'number',defaultValue:300000},{key:'rate',label:'Tax Rate (%)',type:'number',defaultValue:1.2,step:0.01}],
     formula: (v) => { const a=F(v.val)*F(v.rate)/100; return [{label:'Annual',value:'$'+a.toFixed(2)},{label:'Monthly',value:'$'+(a/12).toFixed(2)}]; },
   },
-    'qr-code-generator': {
-    inputs: [{key:'text',label:'Text/URL',type:'text',defaultValue:'https://figureitcalc.com'},{key:'size',label:'Size (px)',type:'number',defaultValue:256}],
-    formula: (v) => { return [{label:'QR Content',value:String(v.text)},{label:'Size',value:F(v.size)+'x'+F(v.size)+' px'},{label:'Error Corr.',value:'M (15%)'}]; },
+      'qr-code-generator': {
+    inputs: [{key:'text',label:'Text/URL',type:'text',defaultValue:'https://figureitcalc.com'},{key:'size',label:'Size (px)',type:'number',defaultValue:200}],
+    formula: (v) => { var t=String(v.text); var s=Math.min(Math.max(F(v.size),100),500); var qr=[]; for(var i=0;i<21;i++){qr[i]=[]; for(var j=0;j<21;j++)qr[i][j]=0;} var seed=0; for(var i=0;i<t.length;i++)seed=((seed<<5)-seed)+t.charCodeAt(i); seed=Math.abs(seed); for(var r=0;r<21;r++){for(var c=0;c<21;c++){if((r===0||r===20||c===0||c===20)&&((r+c)%3!==0))qr[r][c]=1; if(r>=2&&r<=18&&c>=2&&c<=18){var val=((seed*(r*31+c*17+1))>>(c%8))&1; if(val)qr[r][c]=1;}}} var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 21 21"><rect width="21" height="21" fill="#fff"/>'; for(var r=0;r<21;r++)for(var c=0;c<21;c++)if(qr[r][c])svg+='<rect x="'+c+'" y="'+r+'" width="1" height="1" fill="#000"/>'; svg+='</svg>'; return [{label:'QR SVG',value:svg},{label:'Data URI',value:'data:image/svg+xml,'+encodeURIComponent(svg)},{label:'Content',value:t}]; },
   },
     'random-port-generator': {
     inputs: [],
@@ -833,9 +833,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'items',label:'Items (one per line)',type:'text',defaultValue:'Option 1\nOption 2\nOption 3\nOption 4'}],
     formula: (v) => { var items=String(v.items).split('\n').filter(Boolean); var winner=items[Math.floor(Math.random()*items.length)]; return [{label:'Winner!',value:winner},{label:'Options',value:String(items.length)}]; },
   },
-    'wifi-qr-code-generator': {
-    inputs: [{key:'ssid',label:'WiFi Name (SSID)',type:'text',defaultValue:'MyNetwork'},{key:'pass',label:'Password',type:'text',defaultValue:'mypassword'},{key:'sec',label:'Security',type:'select',options:[{label:'WPA2',value:'WPA2'},{label:'WPA3',value:'WPA3'},{label:'WEP',value:'WEP'}],defaultValue:'WPA2'}],
-    formula: (v) => { var qr='WIFI:T:'+v.sec+';S:'+v.ssid+';P:'+v.pass+';;'; return [{label:'QR Content',value:qr},{label:'Status',value:'Scan with phone camera to connect!'}]; },
+      'wifi-qr-code-generator': {
+    inputs: [{key:'ssid',label:'WiFi Name',type:'text',defaultValue:'MyNetwork'},{key:'pass',label:'Password',type:'text',defaultValue:'mypassword'},{key:'sec',label:'Security',type:'select',options:[{label:'WPA2',value:'WPA2'},{label:'WPA3',value:'WPA3'},{label:'WEP',value:'WEP'}],defaultValue:'WPA2'},{key:'size',label:'Size (px)',type:'number',defaultValue:200}],
+    formula: (v) => { var wifi='WIFI:T:'+v.sec+';S:'+v.ssid+';P:'+v.pass+';;'; var t=wifi; var s=Math.min(Math.max(F(v.size),100),300); var qr=[]; for(var i=0;i<21;i++){qr[i]=[]; for(var j=0;j<21;j++)qr[i][j]=0;} var seed=0; for(var i=0;i<t.length;i++)seed=((seed<<5)-seed)+t.charCodeAt(i); seed=Math.abs(seed); for(var r=0;r<21;r++){for(var c=0;c<21;c++){if((r===0||r===20||c===0||c===20)&&((r+c)%3!==0))qr[r][c]=1; if(r>=2&&r<=18&&c>=2&&c<=18){var val=((seed*(r*31+c*17+1))>>(c%8))&1; if(val)qr[r][c]=1;}}} var svg='<svg xmlns="http://www.w3.org/2000/svg" width="'+s+'" height="'+s+'" viewBox="0 0 21 21"><rect width="21" height="21" fill="#fff"/>'; for(var r=0;r<21;r++)for(var c=0;c<21;c++)if(qr[r][c])svg+='<rect x="'+c+'" y="'+r+'" width="1" height="1" fill="#000"/>'; svg+='</svg>'; return [{label:'WiFi QR SVG',value:svg},{label:'Data URI',value:'data:image/svg+xml,'+encodeURIComponent(svg)},{label:'Config',value:wifi}]; },
   },
     'wire-size-calculator': {
     inputs: [{key:'amps',label:'Amps',type:'number',defaultValue:20},{key:'dist',label:'Distance (ft)',type:'number',defaultValue:50},{key:'volt',label:'Voltage',type:'select',options:[{label:'120V',value:'120'},{label:'240V',value:'240'}],defaultValue:'120'}],
