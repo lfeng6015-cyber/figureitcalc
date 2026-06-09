@@ -47,6 +47,10 @@ const toolComponentMap: Record<string, React.ComponentType> = {
   regex: lazy(() => import("./components/tools/RegexTester").then(m => ({default: m.RegexTester}))),
   "regex-cheatsheet": lazy(() => import("./components/tools/RegexCheatsheet").then(m => ({default: m.RegexCheatsheet}))),
   calculator: lazy(() => import("./components/tools/CalculatorTool").then(m => ({default: m.CalculatorTool}))),
+  stopwatch: lazy(() => import("./components/tools/StopwatchTool").then(m => ({default: m.StopwatchTool}))),
+  camera: lazy(() => import("./components/tools/CameraTool").then(m => ({default: m.CameraTool}))),
+  emoji: lazy(() => import("./components/tools/EmojiPickerTool").then(m => ({default: m.EmojiPickerTool}))),
+  keycode: lazy(() => import("./components/tools/KeycodeTool").then(m => ({default: m.KeycodeTool}))),
 };
 
 // Map tool IDs to components

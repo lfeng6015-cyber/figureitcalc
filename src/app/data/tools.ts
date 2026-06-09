@@ -536,7 +536,7 @@ export const TOOLS: ToolMeta[] = [
     "icon": "Camera",
     "isHot": false,
     "isNew": false,
-    "component": "calculator",
+    "component": "camera",
     "seo": {
       "title": "Online Camera Recorder | Free Dev Tool — figureitcalc",
       "description": "Camera Recorder — free online tool. No signup, client-side processing.",
@@ -824,7 +824,7 @@ export const TOOLS: ToolMeta[] = [
     "icon": "Timer",
     "isHot": false,
     "isNew": false,
-    "component": "calculator",
+    "component": "stopwatch",
     "seo": {
       "title": "Online Chronometer | Free Dev Tool — figureitcalc",
       "description": "Chronometer — free online tool. No signup, client-side processing.",
@@ -1720,7 +1720,7 @@ export const TOOLS: ToolMeta[] = [
     "icon": "Zap",
     "isHot": false,
     "isNew": false,
-    "component": "calculator",
+    "component": "emoji",
     "seo": {
       "title": "Online Emoji Picker | Free Dev Tool — figureitcalc",
       "description": "Emoji Picker — free online tool. No signup, client-side processing.",
@@ -5144,7 +5144,7 @@ export const TOOLS: ToolMeta[] = [
     "icon": "Play",
     "isHot": false,
     "isNew": false,
-    "component": "calculator",
+    "component": "stopwatch",
     "seo": {
       "title": "Online Stopwatch | Free Productivity Tool — figureitcalc",
       "description": "Online stopwatch with lap timing. Perfect for workouts, presentations, and sports. Free online tool. 100% client-side — no uploads, no signup.",
