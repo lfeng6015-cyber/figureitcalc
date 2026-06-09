@@ -178,7 +178,16 @@ function buildPage(metaTitle, metaDesc, metaKeywords, canonicalPath, bodyContent
     `<div id="root">
 <section class="seo-content" style="max-width:900px;margin:40px auto;padding:20px 16px;font-family:system-ui,sans-serif;line-height:1.8;color:#333;background:#fff;border-top:1px solid #eee">
   ${bodyContent}
-</section>`);
+</section>
+<div style="max-width:900px;margin:20px auto;text-align:center">
+  <ins class="adsbygoogle"
+    style="display:block"
+    data-ad-client="ca-pub-6044600625597443"
+    data-ad-slot="auto"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>`);
 
   // Output
   const filePath = canonicalPath === '/' ? 'index.html' : canonicalPath.slice(1) + '.html';
