@@ -613,7 +613,7 @@ export const categoryContentRegistry: Record<string, CategoryContent> = {
       { title: "Have Fun", desc: "Use Love Calculator and Past Life Finder for pure entertainment. Share results with friends. Don't take any of it too seriously!" },
     ],
     tips: [
-      "All fortune tools on OmniTools are for ENTERTAINMENT purposes. They're designed to be fun, thought-provoking, and conversation-starting — not predictive or diagnostic.",
+      "All fortune tools on figureitcalc are for ENTERTAINMENT purposes. They're designed to be fun, thought-provoking, and conversation-starting — not predictive or diagnostic.",
       "Tarot and I Ching work best as mirrors for reflection, not oracles for prediction. The insight comes from how YOU interpret the imagery, not from supernatural forces.",
       "The algorithms are deterministic (same birthday = same result). This is intentional — it gives you a consistent profile to explore, not a randomly changing answer.",
       "Share your results! These tools are most fun when compared with friends. Screenshot your Love Calculator score and send it to your crush — if you're brave!",

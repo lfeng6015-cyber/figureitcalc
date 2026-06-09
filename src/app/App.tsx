@@ -178,7 +178,7 @@ export default function App() {
     <div className="min-h-screen bg-background">
       {/* SEO */}
       <Helmet>
-        <title>Free Online Tools — Developer Tools, Calculators & More | OmniTools</title>
+        <title>Free Online Tools — Developer Tools, Calculators & More | figureitcalc</title>
         <meta name="description" content="Free online tools for developers and everyone. JSON formatter, Base64 encoder, BMI calculator, mortgage calculator, and 189+ more. All client-side, no signup needed." />
         <meta name="keywords" content="online tools, free tools, developer tools, calculator, JSON formatter, Base64, BMI calculator, mortgage calculator" />
       </Helmet>
@@ -190,7 +190,7 @@ export default function App() {
             <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
               <Zap className="w-4 h-4 text-primary-foreground" />
             </div>
-            <span className="text-foreground hidden sm:inline" style={{ fontWeight: 600, fontSize: "1.1rem" }}>OmniTools</span>
+            <span className="text-foreground hidden sm:inline" style={{ fontWeight: 600, fontSize: "1.1rem" }}>figureitcalc</span>
           </button>
 
           <div className="flex-1 max-w-xl mx-auto">
@@ -493,14 +493,14 @@ export default function App() {
             <div className="w-5 h-5 rounded bg-primary flex items-center justify-center">
               <Zap className="w-3 h-3 text-primary-foreground" />
             </div>
-            <span>OmniTools · Free Online Tools</span>
+            <span>figureitcalc · Free Online Tools</span>
           </div>
           <div className="flex items-center gap-4">
             <button onClick={() => { setStaticPage("about"); setActiveToolId(null); setActiveCategory("all"); window.scrollTo({top:0,behavior:"smooth"}); }} className="hover:text-foreground transition-colors">About</button>
             <button onClick={() => { setStaticPage("privacy"); setActiveToolId(null); setActiveCategory("all"); window.scrollTo({top:0,behavior:"smooth"}); }} className="hover:text-foreground transition-colors">Privacy Policy</button>
             <button onClick={() => { setStaticPage("contact"); setActiveToolId(null); setActiveCategory("all"); window.scrollTo({top:0,behavior:"smooth"}); }} className="hover:text-foreground transition-colors">Contact</button>
           </div>
-          <span>© 2026 OmniTools. All rights reserved.</span>
+          <span>© 2026 figureitcalc. All rights reserved.</span>
         </div>
       </footer>
     </div>

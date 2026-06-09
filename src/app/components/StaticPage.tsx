@@ -8,15 +8,15 @@ interface StaticPageProps {
 const pages = {
   about: {
     icon: Info,
-    title: "About OmniTools",
+    title: "About figureitcalc",
     content: (
       <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
         <p>
-          <strong className="text-foreground">OmniTools</strong> is a free online tools platform offering <strong className="text-foreground">206+ calculators, converters, generators, and utilities</strong> — all running entirely in your browser. No signup, no downloads, no server uploads. Just open the page and use the tool.
+          <strong className="text-foreground">figureitcalc</strong> is a free online tools platform offering <strong className="text-foreground">206+ calculators, converters, generators, and utilities</strong> — all running entirely in your browser. No signup, no downloads, no server uploads. Just open the page and use the tool.
         </p>
-        <h2 className="text-foreground text-base font-semibold mt-6">Why OmniTools?</h2>
+        <h2 className="text-foreground text-base font-semibold mt-6">Why figureitcalc?</h2>
         <p>
-          We believe useful tools should be free, fast, and private. Every tool on OmniTools processes data <strong className="text-foreground">100% client-side</strong> — your information never leaves your device. Whether you're a developer formatting JSON, a homebuyer calculating mortgage payments, a fitness enthusiast tracking BMI, or just having fun with love compatibility tests — we've got you covered.
+          We believe useful tools should be free, fast, and private. Every tool on figureitcalc processes data <strong className="text-foreground">100% client-side</strong> — your information never leaves your device. Whether you're a developer formatting JSON, a homebuyer calculating mortgage payments, a fitness enthusiast tracking BMI, or just having fun with love compatibility tests — we've got you covered.
         </p>
         <h2 className="text-foreground text-base font-semibold mt-6">Our Tools</h2>
         <p>
@@ -24,7 +24,7 @@ const pages = {
         </p>
         <h2 className="text-foreground text-base font-semibold mt-6">How We Sustain</h2>
         <p>
-          OmniTools is free thanks to non-intrusive display advertising (Google AdSense). We don't sell your data, require accounts, or lock features behind paywalls. The tools will always be free.
+          figureitcalc is free thanks to non-intrusive display advertising (Google AdSense). We don't sell your data, require accounts, or lock features behind paywalls. The tools will always be free.
         </p>
         <h2 className="text-foreground text-base font-semibold mt-6">Technology</h2>
         <p>
@@ -41,7 +41,7 @@ const pages = {
         <p><strong className="text-foreground">Last updated: June 2026</strong></p>
 
         <h2 className="text-foreground text-base font-semibold mt-6">Our Privacy Promise</h2>
-        <p>OmniTools is designed with privacy as a core principle. The vast majority of our tools process data <strong className="text-foreground">entirely in your browser</strong> using client-side JavaScript. This means:</p>
+        <p>figureitcalc is designed with privacy as a core principle. The vast majority of our tools process data <strong className="text-foreground">entirely in your browser</strong> using client-side JavaScript. This means:</p>
         <ul className="list-disc pl-5 space-y-2">
           <li>Your input data (text, numbers, files) never leaves your device</li>
           <li>We cannot see, access, or store what you type into our tools</li>
@@ -53,7 +53,7 @@ const pages = {
         <p>We use <strong className="text-foreground">Google Analytics</strong> to understand aggregate site usage (which tools are popular, what countries visitors come from, browser types). This data is anonymized and does not identify individual users. We also use <strong className="text-foreground">Google AdSense</strong> to display advertisements, which may use cookies to serve relevant ads. You can opt out of personalized advertising via Google's Ad Settings.</p>
 
         <h2 className="text-foreground text-base font-semibold mt-6">Cookies</h2>
-        <p>Third-party services (Google Analytics, Google AdSense) may set cookies in your browser. These are governed by the respective privacy policies of those services. OmniTools itself does not set first-party cookies for tracking purposes. We use localStorage only to save your tool preferences (recent tools, favorites) — this data stays in your browser.</p>
+        <p>Third-party services (Google Analytics, Google AdSense) may set cookies in your browser. These are governed by the respective privacy policies of those services. figureitcalc itself does not set first-party cookies for tracking purposes. We use localStorage only to save your tool preferences (recent tools, favorites) — this data stays in your browser.</p>
 
         <h2 className="text-foreground text-base font-semibold mt-6">Third-Party Services</h2>
         <ul className="list-disc pl-5 space-y-2">
