@@ -74,9 +74,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'bakers-percentage-calculator': {
+      'bakers-percentage-calculator': {
     inputs: [{key:'flour',label:'Flour (g)',type:'number',defaultValue:500},{key:'water',label:'Water (g)',type:'number',defaultValue:350},{key:'salt',label:'Salt (g)',type:'number',defaultValue:10},{key:'yeast',label:'Yeast (g)',type:'number',defaultValue:5}],
-    formula: (v) => { const f=F(v.flour); return [{label:'Hydration',value:(F(v.water)/f*100).toFixed(0)+'%'},{label:'Salt',value:(F(v.salt)/f*100).toFixed(1)+'%'},{label:'Yeast',value:(F(v.yeast)/f*100).toFixed(1)+'%'}]; },
+    formula: (v) => { const f=F(v.flour); return [{label:'Hydration',value:(F(v.water)/f*100).toFixed(0)+'%'},{label:'Salt',value:(F(v.salt)/f*100).toFixed(1)+'%'},{label:'Yeast',value:(F(v.yeast)/f*100).toFixed(1)+'%'},{label:'Total',value:(f+F(v.water)+F(v.salt)+F(v.yeast)).toFixed(0)+'g'}]; },
   },
   'base64-file-converter': {
     inputs: [
@@ -95,22 +95,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'base64-string-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'base64-string-converter': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World!'}],
+    formula: (v) => { const e=btoa(String(v.text)); return [{label:'Encoded',value:e},{label:'Original',value:''+v.text}]; },
   },
   'basic-auth-generator': {
     inputs: [
@@ -202,9 +189,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const h=F(v.height)/100,w=F(v.weight),bmi=h>0?w/(h*h):0; const cat=bmi<18.5?'Underweight':bmi<25?'Normal':bmi<30?'Overweight':bmi<35?'Obese I':bmi<40?'Obese II':'Obese III'; const low=18.5*h*h,high=24.9*h*h; return [{label:'BMI',value:bmi.toFixed(1)+' kg/m2'},{label:'Category',value:cat},{label:'Healthy Range',value:low.toFixed(0)+'-'+high.toFixed(0)+' kg'}]; },
     presets: [{label:'Adult',values:{height:170,weight:70,gender:'male'}}],
   },
-    'body-fat-calculator': {
-    inputs: [{key:'height',label:'Height (cm)',type:'number',defaultValue:175},{key:'neck',label:'Neck (cm)',type:'number',defaultValue:38},{key:'waist',label:'Waist (cm)',type:'number',defaultValue:85},{key:'gender',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'}],
-    formula: (v) => { const h=F(v.height),n=F(v.neck),w=F(v.waist); let bf=v.gender==='male'?86.010*Math.log10(Math.max(1,w-n))-70.041*Math.log10(h)+36.76:163.205*Math.log10(Math.max(1,w+n-h))-97.684*Math.log10(h)-78.387; bf=Math.max(3,Math.abs(bf)); const cat=bf<6?'Essential':bf<14?'Athlete':bf<18?'Fitness':bf<25?'Average':bf<32?'Overfat':'Obese'; return [{label:'Body Fat',value:bf.toFixed(1)+'%'},{label:'Category',value:cat}]; },
+      'body-fat-calculator': {
+    inputs: [{key:'ht',label:'Height (cm)',type:'number',defaultValue:175},{key:'neck',label:'Neck (cm)',type:'number',defaultValue:38},{key:'waist',label:'Waist (cm)',type:'number',defaultValue:85},{key:'gen',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'}],
+    formula: (v) => { const h=F(v.ht),n=F(v.neck),w=F(v.waist); var bf=v.gen==='male'?86.01*Math.log10(Math.max(1,w-n))-70.041*Math.log10(h)+36.76:163.205*Math.log10(Math.max(1,w+n-h))-97.684*Math.log10(h)-78.387; bf=Math.max(3,Math.abs(bf)); return [{label:'Body Fat',value:bf.toFixed(1)+'%'},{label:'Category',value:bf<6?'Essential':bf<14?'Athlete':bf<18?'Fitness':bf<25?'Average':'Above Avg'}]; },
   },
   'break-even-calculator': {
     inputs: [{key:'fixedCosts',label:'Fixed Costs ($)',type:'number',defaultValue:10000},{key:'price',label:'Price per Unit ($)',type:'number',defaultValue:50},{key:'variableCost',label:'Variable Cost/Unit ($)',type:'number',defaultValue:30}],
@@ -244,37 +231,11 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'car-depreciation-calculator': {
-    inputs: [
-      {
-            "key": "price",
-            "label": "Vehicle Price ($)",
-            "type": "number",
-            "defaultValue": 35000
-      },
-      {
-            "key": "residual",
-            "label": "Residual (%)",
-            "type": "number",
-            "defaultValue": 55
-      },
-      {
-            "key": "rate",
-            "label": "Money Factor",
-            "type": "number",
-            "defaultValue": 0.0025,
-            "step": 0.0001
-      },
-      {
-            "key": "months",
-            "label": "Lease Term (months)",
-            "type": "number",
-            "defaultValue": 36
-      }
-],
-    formula: (v) => { const net = F(v.price) * (1 - F(v.residual)/100); const dep = net / F(v.months); const fee = (F(v.price) + F(v.price) * F(v.residual)/100) * F(v.rate); return [{ label: 'Monthly Payment', value: '$' + (dep + fee).toFixed(2) }]; },
+    'car-depreciation-calculator': {
+    inputs: [{key:'price',label:'Purchase ($)',type:'number',defaultValue:35000},{key:'years',label:'Years',type:'number',defaultValue:5}],
+    formula: (v) => { var val=F(v.price); var r=[0.78,0.85,0.88,0.90,0.92]; for(var i=0;i<Math.min(F(v.years),5);i++)val*=r[i]; return [{label:'Value',value:'$'+val.toFixed(0)},{label:'Lost',value:'$'+(F(v.price)-val).toFixed(0)},{label:'Lost %',value:((1-val/F(v.price))*100).toFixed(0)+'%'}]; },
   },
-    'car-loan-calculator': {
+      'car-loan-calculator': {
     inputs: [{key:'price',label:'Car Price ($)',type:'number',defaultValue:35000},{key:'down',label:'Down (%)',type:'number',defaultValue:20},{key:'rate',label:'APR (%)',type:'number',defaultValue:6},{key:'term',label:'Term (months)',type:'number',defaultValue:60}],
     formula: (v) => { const P=F(v.price)*(1-F(v.down)/100),r=F(v.rate)/100/12,n=F(v.term); const M=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n; return [{label:'Monthly',value:'$'+M.toFixed(2)},{label:'Total Interest',value:'$'+(M*n-P).toFixed(0)}]; },
   },
@@ -326,26 +287,13 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const net = F(v.price) * (1 - F(v.residual)/100); const dep = net / F(v.months); const fee = (F(v.price) + F(v.price) * F(v.residual)/100) * F(v.rate); return [{ label: 'Monthly Payment', value: '$' + (dep + fee).toFixed(2) }]; },
   },
-  'case-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'case-converter': {
+    inputs: [{key:'text',label:'Input Text',type:'text',defaultValue:'hello world example'}],
+    formula: (v) => { const t=String(v.text),w=t.split(/[\s_-]+/).filter(Boolean); const cam=w.map(function(x,i){return i===0?x.toLowerCase():x.charAt(0).toUpperCase()+x.slice(1).toLowerCase()}).join(''); const pas=w.map(function(x){return x.charAt(0).toUpperCase()+x.slice(1).toLowerCase()}).join(''); const sn=w.map(function(x){return x.toLowerCase()}).join('_'); const kb=w.map(function(x){return x.toLowerCase()}).join('-'); return [{label:'camelCase',value:cam},{label:'PascalCase',value:pas},{label:'snake_case',value:sn},{label:'kebab-case',value:kb}]; },
   },
-    'cat-age-calculator': {
-    inputs: [{key:'age',label:'Cat Age (years)',type:'number',defaultValue:3}],
-    formula: (v) => { const a=F(v.age); let h=a<=1?15:a<=2?24:24+(a-2)*4; return [{label:'Human Age',value:Math.round(h)+' yrs'},{label:'Stage',value:a<0.5?'Kitten':a<2?'Junior':a<6?'Prime':a<10?'Mature':a<14?'Senior':'Geriatric'}]; },
+      'cat-age-calculator': {
+    inputs: [{key:'age',label:'Cat Age (yrs)',type:'number',defaultValue:3}],
+    formula: (v) => { const a=F(v.age); var h=a<=1?15:a<=2?24:24+(a-2)*4; return [{label:'Human Age',value:Math.round(h)+' yrs'},{label:'Stage',value:a<0.5?'Kitten':a<2?'Junior':a<6?'Prime':a<10?'Mature':a<14?'Senior':'Geriatric'}]; },
   },
   'child-cost-calculator': {
     inputs: [
@@ -398,29 +346,16 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'coffee-ratio-calculator': {
+      'coffee-ratio-calculator': {
     inputs: [{key:'coffee',label:'Coffee (g)',type:'number',defaultValue:20},{key:'ratio',label:'Water Ratio (1:X)',type:'number',defaultValue:16}],
     formula: (v) => { const w=F(v.coffee)*F(v.ratio),cups=w/240; return [{label:'Water',value:w.toFixed(0)+' ml'},{label:'Cups',value:cups.toFixed(1)+' cups'},{label:'Strong(1:14)',value:(F(v.coffee)*14)+' ml'},{label:'Light(1:18)',value:(F(v.coffee)*18)+' ml'}]; },
     presets: [{label:'Pour-Over',values:{coffee:20,ratio:16}}],
   },
-  'color-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'color-converter': {
+    inputs: [{key:'hex',label:'HEX Color (#RRGGBB)',type:'text',defaultValue:'#FF5733'}],
+    formula: (v) => { const h=String(v.hex).replace('#',''); if(!/^[0-9A-Fa-f]{6}$/.test(h))return[{label:'Error',value:'Invalid HEX'}]; const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16); return [{label:'RGB',value:'rgb('+r+','+g+','+b+')'},{label:'HEX',value:'#'+h.toUpperCase()}]; },
   },
-    'compound-interest-calculator': {
+      'compound-interest-calculator': {
     inputs: [{key:'principal',label:'Initial Invest ($)',type:'number',defaultValue:10000},{key:'monthly',label:'Monthly Add ($)',type:'number',defaultValue:200},{key:'rate',label:'Return (%)',type:'number',defaultValue:7},{key:'years',label:'Years',type:'number',defaultValue:20}],
     formula: (v) => { const P=F(v.principal),pmt=F(v.monthly),r=F(v.rate)/100/12,n=F(v.years)*12; const fv=P*Math.pow(1+r,n)+(r>0?pmt*(Math.pow(1+r,n)-1)/r:pmt*n); const inv=P+pmt*n; return [{label:'Future Value',value:'$'+fv.toFixed(2)},{label:'Total Invested',value:'$'+inv.toFixed(0)},{label:'Interest',value:'$'+(fv-inv).toFixed(0)}]; },
     presets: [{label:'30yr Retire',values:{principal:50000,monthly:500,rate:7,years:30}}],
@@ -442,26 +377,15 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const area = F(v.length) * F(v.width); return [{ label: 'Area', value: area.toFixed(0) + ' sq ft' }]; },
   },
-  'concrete-calculator': {
-    inputs: [
-      {
-            "key": "length",
-            "label": "Length (ft)",
-            "type": "number",
-            "defaultValue": 20
-      },
-      {
-            "key": "width",
-            "label": "Width (ft)",
-            "type": "number",
-            "defaultValue": 15
-      }
-],
-    formula: (v) => { const area = F(v.length) * F(v.width); return [{ label: 'Area', value: area.toFixed(0) + ' sq ft' }]; },
+    'concrete-calculator': {
+    inputs: [{key:'length',label:'Length (ft)',type:'number',defaultValue:10},{key:'width',label:'Width (ft)',type:'number',defaultValue:10},{key:'thickness',label:'Thickness (in)',type:'number',defaultValue:4}],
+    formula: (v) => { const cf=F(v.length)*F(v.width)*F(v.thickness)/12,cy=cf/27,bags=Math.ceil(cy*45); return [{label:'Cubic Yards',value:cy.toFixed(2)+' yd3'},{label:'80lb Bags',value:bags+' bags'},{label:'Cost $140/yd3',value:'$'+(cy*140).toFixed(0)}]; },
+    presets: [{label:'10x10 Patio',values:{length:10,width:10,thickness:4}}],
   },
-    'cooking-time-calculator': {
+      'cooking-time-calculator': {
     inputs: [{key:'weight',label:'Weight (lbs)',type:'number',defaultValue:12},{key:'type',label:'Meat',type:'select',options:[{label:'Turkey',value:'turkey'},{label:'Chicken',value:'chicken'},{label:'Beef',value:'beef'},{label:'Pork',value:'pork'}],defaultValue:'turkey'}],
-    formula: (v) => { const r={turkey:15,chicken:20,beef:18,pork:25}; const m=F(v.weight)*r[String(v.type)]; return [{label:'Cook Time',value:Math.round(m)+' min ('+(m/60).toFixed(1)+' hrs)'},{label:'Rest Time',value:Math.round(m*0.15)+' min'},{label:'Internal',value:'165 F (poultry)/145 F (beef/pork)'}]; },
+    formula: (v) => { const r={turkey:15,chicken:20,beef:18,pork:25}; const m=F(v.weight)*r[String(v.type)]; return [{label:'Cook Time',value:Math.round(m)+' min ('+(m/60).toFixed(1)+' hrs)'},{label:'Rest Time',value:Math.round(m*0.15)+' min'},{label:'Internal',value:'165F poultry / 145F beef,pork'}]; },
+    presets: [{label:'12lb Turkey',values:{weight:12,type:'turkey'}}],
   },
   'countdown-timer': {
     inputs: [
@@ -518,7 +442,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const p = F(v.revenue) - F(v.cost); const m = F(v.revenue) > 0 ? p / F(v.revenue) * 100 : 0; return [{ label: 'Profit', value: '$' + p.toFixed(2) }, { label: 'Margin', value: m.toFixed(1) + '%' }]; },
   },
-    'currency-converter': {
+      'currency-converter': {
     inputs: [{key:'amount',label:'Amount',type:'number',defaultValue:100},{key:'rate',label:'Exchange Rate',type:'number',defaultValue:0.92,step:0.01}],
     formula: (v) => { const r=F(v.amount)*F(v.rate); return [{label:'Converted',value:r.toFixed(2)},{label:'Inverse',value:(1/F(v.rate)).toFixed(4)}]; },
     presets: [{label:'USD-EUR',values:{amount:100,rate:0.92}},{label:'USD-GBP',values:{amount:100,rate:0.79}}],
@@ -541,22 +465,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { return [{ label: 'Converted', value: (F(v.amount) * F(v.rate)).toFixed(2) }]; },
   },
-  'date-time-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'date-time-converter': {
+    inputs: [{key:'ts',label:'Unix Timestamp (sec)',type:'number',defaultValue:1716500000}],
+    formula: (v) => { const d=new Date(F(v.ts)*1000); return [{label:'ISO 8601',value:d.toISOString()},{label:'Local',value:d.toLocaleString()},{label:'UTC',value:d.toUTCString()}]; },
   },
   'depth-of-field-calculator': {
     inputs: [
@@ -609,7 +520,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'discount-calculator': {
+      'discount-calculator': {
     inputs: [{key:'price',label:'Original Price ($)',type:'number',defaultValue:100},{key:'discount',label:'Discount (%)',type:'number',defaultValue:20}],
     formula: (v) => { const s=F(v.price)*F(v.discount)/100; return [{label:'You Save',value:'$'+s.toFixed(2)},{label:'Final Price',value:'$'+(F(v.price)-s).toFixed(2)}]; },
     presets: [{label:'20pct off',values:{price:100,discount:20}},{label:'50pct off',values:{price:80,discount:50}}],
@@ -635,9 +546,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'dog-age-calculator': {
-    inputs: [{key:'age',label:'Dog Age (years)',type:'number',defaultValue:3},{key:'size',label:'Breed Size',type:'select',options:[{label:'Small (<9kg)',value:'small'},{label:'Medium',value:'medium'},{label:'Large (>23kg)',value:'large'}],defaultValue:'medium'}],
-    formula: (v) => { const a=F(v.age); let h=16*Math.log(a)+31; if(v.size==='large')h*=1.15; if(v.size==='small')h*=0.85; return [{label:'Human Age',value:Math.round(h)+' yrs'},{label:'Stage',value:a<1?'Puppy':a<2?'Adolescent':a<7?'Adult':a<10?'Senior':'Geriatric'}]; },
+      'dog-age-calculator': {
+    inputs: [{key:'age',label:'Dog Age (yrs)',type:'number',defaultValue:3},{key:'size',label:'Breed Size',type:'select',options:[{label:'Small (<9kg)',value:'small'},{label:'Medium',value:'medium'},{label:'Large (>23kg)',value:'large'}],defaultValue:'medium'}],
+    formula: (v) => { const a=F(v.age); var h=16*Math.log(a)+31; if(v.size==='large')h*=1.15; if(v.size==='small')h*=0.85; return [{label:'Human Age',value:Math.round(h)+' yrs'},{label:'Stage',value:a<1?'Puppy':a<2?'Adolescent':a<7?'Adult':a<10?'Senior':'Geriatric'}]; },
   },
   'down-payment-calculator': {
     inputs: [
@@ -690,22 +601,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'electricity-bill-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'electricity-bill-calculator': {
+    inputs: [{key:'kwh',label:'Monthly kWh',type:'number',defaultValue:900},{key:'rate',label:'Rate ($/kWh)',type:'number',defaultValue:0.17,step:0.01}],
+    formula: (v) => { const b=F(v.kwh)*F(v.rate); return [{label:'Monthly',value:'$'+b.toFixed(2)},{label:'Annual',value:'$'+(b*12).toFixed(0)}]; },
   },
   'elo-rating-calculator': {
     inputs: [
@@ -741,7 +639,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'emi-calculator': {
+      'emi-calculator': {
     inputs: [{key:'loan',label:'Loan ($)',type:'number',defaultValue:20000},{key:'rate',label:'Rate (%)',type:'number',defaultValue:8},{key:'months',label:'Tenure (mo)',type:'number',defaultValue:36}],
     formula: (v) => { const P=F(v.loan),r=F(v.rate)/100/12,n=F(v.months),emi=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n; return [{label:'EMI',value:'$'+emi.toFixed(2)},{label:'Total',value:'$'+(emi*n).toFixed(0)},{label:'Interest',value:'$'+(emi*n-P).toFixed(0)}]; },
   },
@@ -834,22 +732,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const yrs=F(v.retireAge)-F(v.currentAge); const r=F(v.rate)/100/12; const n=yrs*12; const fv=r>0?F(v.savings)*Math.pow(1+r,n)+F(v.monthly)*((Math.pow(1+r,n)-1)/r):F(v.savings)+F(v.monthly)*n; return [{ label: 'At Retirement', value: '$'+Math.round(fv).toLocaleString() }]; },
   },
-  'flooring-calculator': {
-    inputs: [
-      {
-            "key": "length",
-            "label": "Length (ft)",
-            "type": "number",
-            "defaultValue": 20
-      },
-      {
-            "key": "width",
-            "label": "Width (ft)",
-            "type": "number",
-            "defaultValue": 15
-      }
-],
-    formula: (v) => { const area = F(v.length) * F(v.width); return [{ label: 'Area', value: area.toFixed(0) + ' sq ft' }]; },
+    'flooring-calculator': {
+    inputs: [{key:'length',label:'Room Length (ft)',type:'number',defaultValue:15},{key:'width',label:'Room Width (ft)',type:'number',defaultValue:12},{key:'waste',label:'Waste (%)',type:'number',defaultValue:10}],
+    formula: (v) => { const a=F(v.length)*F(v.width)*(1+F(v.waste)/100); return [{label:'Area',value:a.toFixed(0)+' sqft'},{label:'Hardwood Boxes',value:Math.ceil(a/20)+' boxes'},{label:'12x12 Tiles',value:Math.ceil(a)+' tiles'}]; },
   },
   'fob-cif-converter': {
     inputs: [
@@ -932,7 +817,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'fuel-cost-calculator': {
+      'fuel-cost-calculator': {
     inputs: [{key:'distance',label:'Distance (miles)',type:'number',defaultValue:300},{key:'mpg',label:'Fuel Econ (MPG)',type:'number',defaultValue:25},{key:'fuelPrice',label:'Fuel Price ($/gal)',type:'number',defaultValue:3.50}],
     formula: (v) => { const gal=F(v.distance)/F(v.mpg),cost=gal*F(v.fuelPrice); return [{label:'Fuel Needed',value:gal.toFixed(1)+' gal'},{label:'Trip Cost',value:'$'+cost.toFixed(2)},{label:'$/Mile',value:'$'+(F(v.fuelPrice)/F(v.mpg)).toFixed(3)}]; },
     presets: [{label:'300mi Trip',values:{distance:300,mpg:25,fuelPrice:3.50}}],
@@ -995,39 +880,13 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'gpa-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'gpa-calculator': {
+    inputs: [{key:'grades',label:'Grades (A,B+,C-)',type:'text',defaultValue:'A,B+,A-,B'},{key:'credits',label:'Credits (3,4,3,3)',type:'text',defaultValue:'3,4,3,3'}],
+    formula: (v) => { const gp={A:4,'A+':4,'A-':3.7,'B+':3.3,B:3,'B-':2.7,'C+':2.3,C:2,'C-':1.7,D:1,F:0}; const g=String(v.grades).split(',').map(function(s){return gp[s.trim()]||0}); const c=String(v.credits).split(',').map(Number); const pts=g.reduce(function(s,x,i){return s+x*(c[i]||0)},0),tot=c.reduce(function(s,x){return s+x},0); return [{label:'GPA',value:tot>0?(pts/tot).toFixed(2):'N/A'},{label:'Credits',value:String(tot)}]; },
   },
-  'grade-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'grade-calculator': {
+    inputs: [{key:'cur',label:'Current Grade (%)',type:'number',defaultValue:75},{key:'target',label:'Target Grade (%)',type:'number',defaultValue:80},{key:'fw',label:'Final Weight (%)',type:'number',defaultValue:40}],
+    formula: (v) => { const n=(F(v.target)-F(v.cur)*(1-F(v.fw)/100))/(F(v.fw)/100); return [{label:'Need on Final',value:n>100?'Impossible!':n<0?'Already there!':n.toFixed(1)+'%'}]; },
   },
   'graphing-calculator': {
     inputs: [
@@ -1063,26 +922,13 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'hash-text': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'hash-text': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World'}],
+    formula: (v) => { const t=String(v.text); var h=0; for(var i=0;i<t.length;i++)h=((h<<5)-h)+t.charCodeAt(i); return [{label:'Hash(hex)',value:Math.abs(h).toString(16).padStart(8,'0')},{label:'Length',value:t.length+' chars'}]; },
   },
-    'heart-rate-zone-calculator': {
-    inputs: [{key:'age',label:'Age',type:'number',defaultValue:30},{key:'restingHR',label:'Resting HR (bpm)',type:'number',defaultValue:65}],
-    formula: (v) => { const mx=208-0.7*F(v.age),hrr=mx-F(v.restingHR); return [{label:'Max HR',value:Math.round(mx)+' bpm'},{label:'Zone 2 FatBurn',value:Math.round(F(v.restingHR)+hrr*0.5)+'-'+Math.round(F(v.restingHR)+hrr*0.6)+' bpm'},{label:'Zone 4 Threshold',value:Math.round(F(v.restingHR)+hrr*0.7)+'-'+Math.round(F(v.restingHR)+hrr*0.8)+' bpm'},{label:'Zone 5 Max',value:Math.round(F(v.restingHR)+hrr*0.8)+'-'+Math.round(mx)+' bpm'}]; },
+      'heart-rate-zone-calculator': {
+    inputs: [{key:'age',label:'Age',type:'number',defaultValue:30},{key:'rest',label:'Resting HR',type:'number',defaultValue:65}],
+    formula: (v) => { const mx=208-0.7*F(v.age),hrr=mx-F(v.rest); return [{label:'Max HR',value:Math.round(mx)+' bpm'},{label:'Zone 2 FatBurn',value:Math.round(F(v.rest)+hrr*0.5)+'-'+Math.round(F(v.rest)+hrr*0.6)+' bpm'},{label:'Zone 4 Threshold',value:Math.round(F(v.rest)+hrr*0.7)+'-'+Math.round(F(v.rest)+hrr*0.8)+' bpm'},{label:'Zone 5 Max',value:Math.round(F(v.rest)+hrr*0.8)+'-'+Math.round(mx)+' bpm'}]; },
   },
   'hmac-generator': {
     inputs: [
@@ -1101,9 +947,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'home-equity-calculator': {
-    inputs: [{key:'value',label:'Home Value ($)',type:'number',defaultValue:350000},{key:'mortgage',label:'Mortgage ($)',type:'number',defaultValue:200000}],
-    formula: (v) => { const e=F(v.value)-F(v.mortgage),p=F(v.value)>0?e/F(v.value)*100:0; return [{label:'Equity',value:'$'+e.toLocaleString()},{label:'Equity %',value:p.toFixed(1)+'%'},{label:'LTV',value:(100-p).toFixed(1)+'%'}]; },
+      'home-equity-calculator': {
+    inputs: [{key:'val',label:'Home Value ($)',type:'number',defaultValue:350000},{key:'mtg',label:'Mortgage ($)',type:'number',defaultValue:200000}],
+    formula: (v) => { const e=F(v.val)-F(v.mtg),p=F(v.val)>0?e/F(v.val)*100:0; return [{label:'Equity',value:'$'+e.toLocaleString()},{label:'Equity %',value:p.toFixed(1)+'%'},{label:'LTV',value:(100-p).toFixed(1)+'%'}]; },
   },
   'html-entities': {
     inputs: [
@@ -1190,9 +1036,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'ideal-weight-calculator': {
+      'ideal-weight-calculator': {
     inputs: [{key:'height',label:'Height (cm)',type:'number',defaultValue:170},{key:'gender',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'}],
-    formula: (v) => { const h=F(v.height); const rob=v.gender==='male'?52+1.9*(h-152.4)/2.54:49+1.7*(h-152.4)/2.54; const mill=v.gender==='male'?56.2+1.41*(h-152.4)/2.54:53.1+1.36*(h-152.4)/2.54; const low=18.5*(h/100)*(h/100),high=24.9*(h/100)*(h/100); return [{label:'BMI Range',value:low.toFixed(0)+'-'+high.toFixed(0)+' kg'},{label:'Robinson',value:rob.toFixed(1)+' kg'},{label:'Miller',value:mill.toFixed(1)+' kg'}]; },
+    formula: (v) => { const h=F(v.height); const r=v.gender==='male'?52+1.9*(h-152.4)/2.54:49+1.7*(h-152.4)/2.54; const m=v.gender==='male'?56.2+1.41*(h-152.4)/2.54:53.1+1.36*(h-152.4)/2.54; const lo=18.5*Math.pow(h/100,2),hi=24.9*Math.pow(h/100,2); return [{label:'BMI Range',value:lo.toFixed(0)+'-'+hi.toFixed(0)+' kg'},{label:'Robinson',value:r.toFixed(1)+' kg'},{label:'Miller',value:m.toFixed(1)+' kg'}]; },
   },
   'image-color-palette': {
     inputs: [
@@ -1224,7 +1070,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'inflation-calculator': {
+      'inflation-calculator': {
     inputs: [{key:'amount',label:'Amount ($)',type:'number',defaultValue:10000},{key:'rate',label:'Inflation (%)',type:'number',defaultValue:3},{key:'years',label:'Years',type:'number',defaultValue:10}],
     formula: (v) => { const f=F(v.amount)*Math.pow(1+F(v.rate)/100,F(v.years)),t=F(v.amount)/Math.pow(1+F(v.rate)/100,F(v.years)); return [{label:'Future Cost',value:'$'+f.toFixed(2)},{label:'Today Worth',value:'$'+t.toFixed(2)}]; },
   },
@@ -1436,22 +1282,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'json-viewer': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'json-viewer': {
+    inputs: [{key:'json',label:'JSON String',type:'text',defaultValue:'{"name":"John","age":30}'}],
+    formula: (v) => { try{const o=JSON.parse(String(v.json)); return [{label:'Valid',value:'Yes'},{label:'Keys',value:String(Object.keys(o).length)},{label:'Size',value:String(v.json).length+' chars'}]; }catch(e){return [{label:'Valid',value:'No'},{label:'Error',value:e.message}];} },
   },
   'jwt-parser': {
     inputs: [
@@ -1660,10 +1493,10 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'macro-calculator': {
-    inputs: [{key:'calories',label:'Daily Calories',type:'number',defaultValue:2000},{key:'protein',label:'Protein (%)',type:'number',defaultValue:30},{key:'fat',label:'Fat (%)',type:'number',defaultValue:25}],
-    formula: (v) => { const cal=F(v.calories),p=F(v.protein),f=F(v.fat),c=100-p-f; return [{label:'Protein',value:Math.round(cal*p/100/4)+'g'},{label:'Carbs',value:Math.round(cal*c/100/4)+'g'},{label:'Fat',value:Math.round(cal*f/100/9)+'g'}]; },
-    presets: [{label:'Balanced',values:{calories:2000,protein:30,fat:25}},{label:'Keto',values:{calories:2000,protein:25,fat:70}}],
+      'macro-calculator': {
+    inputs: [{key:'cal',label:'Daily Calories',type:'number',defaultValue:2000},{key:'pro',label:'Protein (%)',type:'number',defaultValue:30},{key:'fat',label:'Fat (%)',type:'number',defaultValue:25}],
+    formula: (v) => { const cal=F(v.cal),p=F(v.pro),f=F(v.fat),c=100-p-f; return [{label:'Protein',value:Math.round(cal*p/100/4)+'g'},{label:'Carbs',value:Math.round(cal*c/100/4)+'g'},{label:'Fat',value:Math.round(cal*f/100/9)+'g'}]; },
+    presets: [{label:'Balanced',values:{cal:2000,pro:30,fat:25}},{label:'Keto',values:{cal:2000,pro:25,fat:70}}],
   },
   'markdown-to-html': {
     inputs: [
@@ -1774,12 +1607,12 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'mortgage-calculator': {
+      'mortgage-calculator': {
     inputs: [{key:'price',label:'Home Price ($)',type:'number',defaultValue:350000},{key:'down',label:'Down Payment (%)',type:'number',defaultValue:20},{key:'rate',label:'Interest Rate (%)',type:'number',defaultValue:6.3},{key:'term',label:'Loan Term (years)',type:'number',defaultValue:30}],
     formula: (v) => { const P=F(v.price)*(1-F(v.down)/100),r=F(v.rate)/100/12,n=F(v.term)*12; const M=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n; return [{label:'P&I Payment',value:'$'+M.toFixed(2)},{label:'Total Cost',value:'$'+(M*n).toFixed(0)},{label:'Total Interest',value:'$'+(M*n-P).toFixed(0)},{label:'Down Payment',value:'$'+(F(v.price)*F(v.down)/100).toFixed(0)}]; },
     presets: [{label:'20%Down 30yr',values:{price:350000,down:20,rate:6.3,term:30}},{label:'FHA 3.5%',values:{price:300000,down:3.5,rate:6.5,term:30}}],
   },
-    'net-worth-calculator': {
+      'net-worth-calculator': {
     inputs: [{key:'cash',label:'Cash ($)',type:'number',defaultValue:10000},{key:'invest',label:'Investments ($)',type:'number',defaultValue:50000},{key:'property',label:'Property ($)',type:'number',defaultValue:300000},{key:'debt',label:'Debt ($)',type:'number',defaultValue:200000}],
     formula: (v) => { const a=F(v.cash)+F(v.invest)+F(v.property),d=F(v.debt); return [{label:'Assets',value:'$'+a.toLocaleString()},{label:'Debt',value:'$'+d.toLocaleString()},{label:'Net Worth',value:'$'+(a-d).toLocaleString()}]; },
   },
@@ -1851,22 +1684,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'paint-calculator': {
-    inputs: [
-      {
-            "key": "length",
-            "label": "Length (ft)",
-            "type": "number",
-            "defaultValue": 20
-      },
-      {
-            "key": "width",
-            "label": "Width (ft)",
-            "type": "number",
-            "defaultValue": 15
-      }
-],
-    formula: (v) => { const area = F(v.length) * F(v.width); return [{ label: 'Area', value: area.toFixed(0) + ' sq ft' }]; },
+    'paint-calculator': {
+    inputs: [{key:'length',label:'Room Length (ft)',type:'number',defaultValue:12},{key:'width',label:'Room Width (ft)',type:'number',defaultValue:12},{key:'height',label:'Ceiling (ft)',type:'number',defaultValue:8},{key:'coats',label:'Coats',type:'number',defaultValue:2}],
+    formula: (v) => { const walls=2*(F(v.length)+F(v.width))*F(v.height),ceil=F(v.length)*F(v.width),a=(walls+ceil)*F(v.coats),gal=Math.ceil(a/350); return [{label:'Area',value:a.toFixed(0)+' sqft'},{label:'Paint',value:gal+' gal'},{label:'Cost $35/gal',value:'$'+(gal*35).toFixed(0)}]; },
   },
   'party-drink-calculator': {
     inputs: [
@@ -1885,22 +1705,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'password-strength-analyser': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'password-strength-analyser': {
+    inputs: [{key:'pw',label:'Password',type:'text',defaultValue:'MyP@ssw0rd2026!'}],
+    formula: (v) => { const p=String(v.pw); var cs=0; if(/[a-z]/.test(p))cs+=26; if(/[A-Z]/.test(p))cs+=26; if(/[0-9]/.test(p))cs+=10; if(/[^a-zA-Z0-9]/.test(p))cs+=32; const e=p.length*Math.log2(cs||1); const s=e<40?'Weak':e<60?'Fair':e<80?'Good':e<100?'Strong':'Very Strong'; return [{label:'Strength',value:s},{label:'Entropy',value:e.toFixed(0)+' bits'},{label:'Length',value:p.length+' chars'}]; },
   },
   'pdf-signature-checker': {
     inputs: [
@@ -1919,7 +1726,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'percentage-calculator': {
+      'percentage-calculator': {
     inputs: [{key:'value',label:'Part Value',type:'number',defaultValue:42},{key:'total',label:'Total Value',type:'number',defaultValue:60}],
     formula: (v) => { const p=F(v.total)>0?F(v.value)/F(v.total)*100:0; return [{label:'Percentage',value:p.toFixed(2)+'%'},{label:'Remaining',value:(100-p).toFixed(2)+'%'}]; },
     presets: [{label:'42/60',values:{value:42,total:60}},{label:'85/100',values:{value:85,total:100}}],
@@ -2073,24 +1880,11 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'probability-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'probability-calculator': {
+    inputs: [{key:'fav',label:'Favorable',type:'number',defaultValue:1},{key:'tot',label:'Total',type:'number',defaultValue:6}],
+    formula: (v) => { const p=F(v.tot)>0?F(v.fav)/F(v.tot)*100:0; return [{label:'Probability',value:p.toFixed(2)+'%'},{label:'Odds',value:'1:'+Math.round((F(v.tot)-F(v.fav))/Math.max(1,F(v.fav)))}]; },
   },
-    'profit-margin-calculator': {
+      'profit-margin-calculator': {
     inputs: [{key:'price',label:'Selling Price ($)',type:'number',defaultValue:100},{key:'cost',label:'COGS ($)',type:'number',defaultValue:60}],
     formula: (v) => { const p=F(v.price)-F(v.cost),m=F(v.price)>0?p/F(v.price)*100:0,mu=F(v.cost)>0?p/F(v.cost)*100:0; return [{label:'Profit',value:'$'+p.toFixed(2)},{label:'Margin',value:m.toFixed(1)+'%'},{label:'Markup',value:mu.toFixed(1)+'%'}]; },
   },
@@ -2248,31 +2042,18 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'retirement-calculator': {
+      'retirement-calculator': {
     inputs: [{key:'age',label:'Current Age',type:'number',defaultValue:30},{key:'retireAge',label:'Retire Age',type:'number',defaultValue:65},{key:'savings',label:'Savings ($)',type:'number',defaultValue:50000},{key:'monthly',label:'Monthly ($)',type:'number',defaultValue:500},{key:'rate',label:'Return (%)',type:'number',defaultValue:7}],
     formula: (v) => { const P=F(v.savings),pmt=F(v.monthly),r=F(v.rate)/100/12,n=(F(v.retireAge)-F(v.age))*12; const fv=P*Math.pow(1+r,n)+(r>0?pmt*(Math.pow(1+r,n)-1)/r:pmt*n); return [{label:'Retirement Nest Egg',value:'$'+fv.toFixed(0)},{label:'Monthly (4%)',value:'$'+(fv*0.04/12).toFixed(0)},{label:'Contributed',value:'$'+(P+pmt*n).toFixed(0)}]; },
     presets: [{label:'Start at 25',values:{age:25,retireAge:65,savings:10000,monthly:500,rate:7}}],
   },
-    'roi-calculator': {
+      'roi-calculator': {
     inputs: [{key:'invested',label:'Invested ($)',type:'number',defaultValue:10000},{key:'returned',label:'Returned ($)',type:'number',defaultValue:12000}],
     formula: (v) => { const roi=F(v.invested)>0?(F(v.returned)-F(v.invested))/F(v.invested)*100:0; return [{label:'ROI',value:roi.toFixed(2)+'%'},{label:'Gain',value:'$'+(F(v.returned)-F(v.invested)).toFixed(2)}]; },
   },
-  'roman-numeral-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'roman-numeral-converter': {
+    inputs: [{key:'num',label:'Number (1-3999)',type:'number',defaultValue:2026}],
+    formula: (v) => { const n=F(v.num),vls=[1000,900,500,400,100,90,50,40,10,9,5,4,1],sym=['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I']; var r='',rem=n; for(var i=0;i<vls.length;i++)while(rem>=vls[i]){r+=sym[i];rem-=vls[i];} return [{label:'Roman',value:r}]; },
   },
   'roofing-calculator': {
     inputs: [
@@ -2347,22 +2128,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'goal',label:'Goal ($)',type:'number',defaultValue:100000},{key:'saved',label:'Current Savings ($)',type:'number',defaultValue:10000},{key:'monthly',label:'Monthly ($)',type:'number',defaultValue:500},{key:'rate',label:'Return (%)',type:'number',defaultValue:5}],
     formula: (v) => { const r=F(v.rate)/100/12; let b=F(v.saved),mo=0; while(b<F(v.goal)&&mo<1200){b=b*(1+r)+F(v.monthly);mo++;} return [{label:'Months to Goal',value:String(mo)},{label:'Years',value:(mo/12).toFixed(1)}]; },
   },
-  'scientific-calculator': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'scientific-calculator': {
+    inputs: [{key:'expr',label:'Expression',type:'text',defaultValue:'sqrt(16)+sin(PI/2)*2'}],
+    formula: (v) => { try{var x=String(v.expr).replace(/PI/gi,String(Math.PI)).replace(/sin/gi,'Math.sin').replace(/cos/gi,'Math.cos').replace(/tan/gi,'Math.tan').replace(/sqrt/gi,'Math.sqrt').replace(/abs/gi,'Math.abs'); var r=Function('"use strict";return ('+x+')')(); return[{label:'Result',value:Number(r).toFixed(6)}]; }catch(e){return[{label:'Error',value:'Invalid'}];} },
   },
   'seating-chart-calculator': {
     inputs: [
@@ -2483,8 +2251,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'stock-return-calculator': {
-    inputs: [{key:'buy',label:'Buy Price ($)',type:'number',defaultValue:100},{key:'sell',label:'Sell Price ($)',type:'number',defaultValue:130},{key:'shares',label:'Shares',type:'number',defaultValue:10}],
+      'stock-return-calculator': {
+    inputs: [{key:'buy',label:'Buy ($)',type:'number',defaultValue:100},{key:'sell',label:'Sell ($)',type:'number',defaultValue:130},{key:'shares',label:'Shares',type:'number',defaultValue:10}],
     formula: (v) => { const p=(F(v.sell)-F(v.buy))*F(v.shares),pct=F(v.buy)>0?(F(v.sell)-F(v.buy))/F(v.buy)*100:0; return [{label:'P&L',value:'$'+p.toFixed(2)},{label:'Return',value:pct.toFixed(2)+'%'}]; },
   },
   'stopwatch': {
@@ -2555,54 +2323,12 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'tdee-calculator': {
-    inputs: [
-      {
-            "key": "weight",
-            "label": "Weight (kg)",
-            "type": "number",
-            "defaultValue": 75
-      },
-      {
-            "key": "height",
-            "label": "Height (cm)",
-            "type": "number",
-            "defaultValue": 175
-      },
-      {
-            "key": "age",
-            "label": "Age",
-            "type": "number",
-            "defaultValue": 30
-      },
-      {
-            "key": "activity",
-            "label": "Activity",
-            "type": "select",
-            "options": [
-                  {
-                        "label": "Sedentary",
-                        "value": "1.2"
-                  },
-                  {
-                        "label": "Light",
-                        "value": "1.375"
-                  },
-                  {
-                        "label": "Moderate",
-                        "value": "1.55"
-                  },
-                  {
-                        "label": "Active",
-                        "value": "1.725"
-                  }
-            ],
-            "defaultValue": "1.55"
-      }
-],
-    formula: (v) => { const bmr = 10*F(v.weight) + 6.25*F(v.height) - 5*F(v.age) + 5; return [{ label: 'BMR', value: Math.round(bmr) + ' kcal' }, { label: 'TDEE', value: Math.round(bmr * F(v.activity)) + ' kcal' }]; },
+    'tdee-calculator': {
+    inputs: [{key:'wt',label:'Weight (kg)',type:'number',defaultValue:70},{key:'ht',label:'Height (cm)',type:'number',defaultValue:175},{key:'age',label:'Age',type:'number',defaultValue:30},{key:'gen',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'},{key:'act',label:'Activity',type:'select',options:[{label:'Sedentary',value:'1.2'},{label:'Light',value:'1.375'},{label:'Moderate',value:'1.55'},{label:'Active',value:'1.725'},{label:'Very Active',value:'1.9'}],defaultValue:'1.55'}],
+    formula: (v) => { const w=F(v.wt),h=F(v.ht),a=F(v.age),act=F(v.act); const bmr=v.gen==='male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161; const tdee=bmr*act; return [{label:'BMR',value:bmr.toFixed(0)+' cal'},{label:'TDEE',value:tdee.toFixed(0)+' cal'},{label:'Lose(-500)',value:(tdee-500).toFixed(0)+' cal'},{label:'Gain(+500)',value:(tdee+500).toFixed(0)+' cal'}]; },
+    presets: [{label:'Moderate Male 30',values:{wt:70,ht:175,age:30,gen:'male',act:'1.55'}}],
   },
-    'temperature-converter': {
+      'temperature-converter': {
     inputs: [{key:'celsius',label:'Celsius',type:'number',defaultValue:20},{key:'toUnit',label:'Convert To',type:'select',options:[{label:'Fahrenheit',value:'f'},{label:'Kelvin',value:'k'},{label:'Both',value:'both'}],defaultValue:'both'}],
     formula: (v) => { const c=F(v.celsius),f=c*9/5+32,k=c+273.15; const r=[]; if(v.toUnit==='f'||v.toUnit==='both')r.push({label:'Fahrenheit',value:f.toFixed(1)+' degF'}); if(v.toUnit==='k'||v.toUnit==='both')r.push({label:'Kelvin',value:k.toFixed(1)+' K'}); r.push({label:'Celsius',value:c.toFixed(1)+' degC'}); return r; },
     presets: [{label:'Freezing',values:{celsius:0,toUnit:'both'}},{label:'Body',values:{celsius:37,toUnit:'both'}},{label:'Boiling',values:{celsius:100,toUnit:'both'}}],
@@ -2624,22 +2350,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'text-statistics': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'text-statistics': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'The quick brown fox jumps over the lazy dog.'}],
+    formula: (v) => { const t=String(v.text),w=t.trim()?t.trim().split(/\s+/).length:0,c=t.length,ns=t.replace(/\s/g,'').length,s=t.split(/[.!?]+/).filter(Boolean).length; return [{label:'Words',value:String(w)},{label:'Chars',value:String(c)},{label:'Chars no space',value:String(ns)},{label:'Sentences',value:String(s)},{label:'Read Time',value:Math.ceil(w/238)+' min'}]; },
   },
   'text-to-binary': {
     inputs: [
@@ -2692,24 +2405,11 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'time-zone-converter': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'time-zone-converter': {
+    inputs: [{key:'time',label:'Time (HH:MM)',type:'text',defaultValue:'14:00'},{key:'from',label:'From UTC',type:'number',defaultValue:-5},{key:'to',label:'To UTC',type:'number',defaultValue:0}],
+    formula: (v) => { const p=String(v.time).split(':').map(Number); var h=p[0]+(F(v.to)-F(v.from)),m=p[1]||0; h=((h%24)+24)%24; return [{label:'Converted',value:String(Math.floor(h)).padStart(2,'0')+':'+String(m).padStart(2,'0')}]; },
   },
-    'tip-calculator': {
+      'tip-calculator': {
     inputs: [{key:'bill',label:'Bill Amount ($)',type:'number',defaultValue:80},{key:'tipPct',label:'Tip (%)',type:'number',defaultValue:18},{key:'people',label:'Split Among',type:'number',defaultValue:3}],
     formula: (v) => { const tip=F(v.bill)*F(v.tipPct)/100,total=F(v.bill)+tip,pp=F(v.people)>0?total/F(v.people):total; return [{label:'Tip',value:'$'+tip.toFixed(2)},{label:'Total',value:'$'+total.toFixed(2)},{label:'Per Person',value:'$'+pp.toFixed(2)}]; },
     presets: [{label:'15pct',values:{bill:50,tipPct:15,people:2}},{label:'20pct',values:{bill:80,tipPct:20,people:3}}],
@@ -2816,22 +2516,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-  'url-encoder': {
-    inputs: [
-      {
-            "key": "input1",
-            "label": "Input 1",
-            "type": "number",
-            "defaultValue": 0
-      },
-      {
-            "key": "input2",
-            "label": "Input 2",
-            "type": "number",
-            "defaultValue": 0
-      }
-],
-    formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
+    'url-encoder': {
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World & more'}],
+    formula: (v) => { const e=encodeURIComponent(String(v.text)); return [{label:'Encoded',value:e},{label:'Length',value:e.length+' chars'}]; },
   },
   'url-parser': {
     inputs: [
@@ -2897,9 +2584,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
 ],
     formula: (v) => { const a = F(v.input1) || 0; const b = F(v.input2) || 0; return [{ label: 'Sum', value: String(a + b) }, { label: 'Product', value: String(a * b) }]; },
   },
-    'water-intake-calculator': {
-    inputs: [{key:'weight',label:'Weight (lbs)',type:'number',defaultValue:150},{key:'activity',label:'Activity',type:'select',options:[{label:'Sedentary',value:'1'},{label:'Moderate',value:'1.2'},{label:'Active',value:'1.4'}],defaultValue:'1'}],
-    formula: (v) => { const b=F(v.weight)*0.67*F(v.activity); return [{label:'Daily Water',value:b.toFixed(0)+' oz'},{label:'Liters',value:(b/33.8).toFixed(1)+' L'},{label:'8oz Glasses',value:Math.round(b/8)+' glasses'}]; },
+      'water-intake-calculator': {
+    inputs: [{key:'wt',label:'Weight (lbs)',type:'number',defaultValue:150},{key:'act',label:'Activity',type:'select',options:[{label:'Sedentary',value:'1'},{label:'Moderate',value:'1.2'},{label:'Active',value:'1.4'}],defaultValue:'1'}],
+    formula: (v) => { const b=F(v.wt)*0.67*F(v.act); return [{label:'Daily',value:b.toFixed(0)+' oz'},{label:'Liters',value:(b/33.8).toFixed(1)+' L'},{label:'Glasses',value:Math.round(b/8)+' glasses'}]; },
   },
   'wedding-budget-calculator': {
     inputs: [
@@ -3075,13 +2762,13 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'s1',label:'Your Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'scorpio'},{key:'s2',label:'Partner Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'pisces'}],
     formula: (v) => { const el:Record<string,string>={aries:'Fire',leo:'Fire',sagittarius:'Fire',taurus:'Earth',virgo:'Earth',capricorn:'Earth',gemini:'Air',libra:'Air',aquarius:'Air',cancer:'Water',scorpio:'Water',pisces:'Water'}; const e1=el[String(v.s1)],e2=el[String(v.s2)]; let sc=50; if(e1===e2)sc+=25; else if((e1==='Fire'&&e2==='Air')||(e1==='Air'&&e2==='Fire')||(e1==='Earth'&&e2==='Water')||(e1==='Water'&&e2==='Earth'))sc+=15; else if((e1==='Fire'&&e2==='Water')||(e1==='Water'&&e2==='Fire')||(e1==='Air'&&e2==='Earth')||(e1==='Earth'&&e2==='Air'))sc-=10; const vd=sc>=90?'Soulmates!':sc>=75?'Great Match':sc>=60?'Good':sc>=40?'Challenging':'Difficult'; return [{label:'Compatibility',value:sc+'%'},{label:'Verdict',value:vd},{label:'Elements',value:e1+' + '+e2}]; },
   },
-    'sheng-xiao-compatibility': {
+      'sheng-xiao-compatibility': {
     inputs: [{key:'z1',label:'Your Sign',type:'select',options:[{label:'Rat',value:'rat'},{label:'Ox',value:'ox'},{label:'Tiger',value:'tiger'},{label:'Rabbit',value:'rabbit'},{label:'Dragon',value:'dragon'},{label:'Snake',value:'snake'},{label:'Horse',value:'horse'},{label:'Goat',value:'goat'},{label:'Monkey',value:'monkey'},{label:'Rooster',value:'rooster'},{label:'Dog',value:'dog'},{label:'Pig',value:'pig'}],defaultValue:'dragon'},{key:'z2',label:'Partner',type:'select',options:[{label:'Rat',value:'rat'},{label:'Ox',value:'ox'},{label:'Tiger',value:'tiger'},{label:'Rabbit',value:'rabbit'},{label:'Dragon',value:'dragon'},{label:'Snake',value:'snake'},{label:'Horse',value:'horse'},{label:'Goat',value:'goat'},{label:'Monkey',value:'monkey'},{label:'Rooster',value:'rooster'},{label:'Dog',value:'dog'},{label:'Pig',value:'pig'}],defaultValue:'monkey'}],
-    formula: (v) => { const h={rat:['dragon','monkey'],ox:['snake','rooster'],tiger:['horse','dog'],rabbit:['goat','pig'],dragon:['rat','monkey'],snake:['ox','rooster'],horse:['tiger','dog'],goat:['rabbit','pig'],monkey:['rat','dragon'],rooster:['ox','snake'],dog:['tiger','horse'],pig:['rabbit','goat']}; const c={rat:'horse',ox:'goat',tiger:'monkey',rabbit:'rooster',dragon:'dog',snake:'pig',horse:'rat',goat:'ox',monkey:'tiger',rooster:'rabbit',dog:'dragon',pig:'snake'}; let s=50; if(h[v.z1]&&h[v.z1].includes(v.z2))s+=35; if(c[v.z1]===v.z2)s-=30; if(v.z1===v.z2)s+=15; return [{label:'Match',value:s+'%'},{label:'Rating',value:s>=90?'Heaven-Matched':s>=70?'Great':s>=50?'OK':s>=30?'Challenging':'Clash'}]; },
+    formula: (v) => { const h={rat:['dragon','monkey'],ox:['snake','rooster'],tiger:['horse','dog'],rabbit:['goat','pig'],dragon:['rat','monkey'],snake:['ox','rooster'],horse:['tiger','dog'],goat:['rabbit','pig'],monkey:['rat','dragon'],rooster:['ox','snake'],dog:['tiger','horse'],pig:['rabbit','goat']}; const c={rat:'horse',ox:'goat',tiger:'monkey',rabbit:'rooster',dragon:'dog',snake:'pig',horse:'rat',goat:'ox',monkey:'tiger',rooster:'rabbit',dog:'dragon',pig:'snake'}; var s=50; if(h[v.z1]&&h[v.z1].includes(v.z2))s+=35; if(c[v.z1]===v.z2)s-=30; if(v.z1===v.z2)s+=15; return [{label:'Match',value:s+'%'},{label:'Rating',value:s>=90?'Heaven-Matched':s>=70?'Great':s>=50?'OK':s>=30?'Challenging':'Clash'}]; },
   },
-    'numerology-calculator': {
-    inputs: [{key:'birthDate',label:'Birth Date',type:'text',defaultValue:'1990-05-15'}],
-    formula: (v) => { const rd=(n)=>{while(n>9&&n!==11&&n!==22&&n!==33)n=String(n).split('').reduce((a,b)=>a+Number(b),0);return n;}; const s=String(v.birthDate).replace(/-/g,''); if(s.length<8)return[{label:'LP',value:'Enter date'}]; const lp=rd(s.split('').reduce((a,b)=>a+Number(b),0)); const names={1:'Leader',2:'Diplomat',3:'Creator',4:'Builder',5:'Adventurer',6:'Nurturer',7:'Thinker',8:'Achiever',9:'Humanitarian',11:'Master Intuitive',22:'Master Builder',33:'Master Teacher'}; return [{label:'Life Path',value:String(lp)+(lp>9?' (Master!)':'')},{label:'Archetype',value:names[lp]||'Unknown'}]; },
+      'numerology-calculator': {
+    inputs: [{key:'bday',label:'Birth Date',type:'text',defaultValue:'1990-05-15'}],
+    formula: (v) => { const rd=function(n){while(n>9&&n!==11&&n!==22&&n!==33)n=String(n).split('').reduce(function(a,b){return a+Number(b)},0);return n;}; const s=String(v.bday).replace(/-/g,''); if(s.length<8)return[{label:'LP',value:'Enter date'}]; const lp=rd(s.split('').reduce(function(a,b){return a+Number(b)},0)); const nm={1:'Leader',2:'Diplomat',3:'Creator',4:'Builder',5:'Adventurer',6:'Nurturer',7:'Thinker',8:'Achiever',9:'Humanitarian',11:'Master Intuitive',22:'Master Builder',33:'Master Teacher'}; return [{label:'Life Path',value:String(lp)+(lp>9?' (Master!)':'')},{label:'Archetype',value:nm[lp]||'Unknown'}]; },
   },
   'ba-zi-calculator': {
     inputs: [
@@ -3172,9 +2859,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'name1',label:'Your Name',type:'text',defaultValue:'Romeo'},{key:'name2',label:'Crush Name',type:'text',defaultValue:'Juliet'}],
     formula: (v) => { const h=(s:string)=>s.toLowerCase().replace(/[^a-z]/g,'').split('').reduce((a,c)=>a+c.charCodeAt(0),0); const seed=h(String(v.name1))*h(String(v.name2)); const score=((seed*7919+104729)%89)+11; return [{label:'Love',value:score+'%'},{label:'Verdict',value:score>=80?'Epic!':score>=60?'Sweet':score>=40?'Cute':'Hmm...'}]; },
   },
-    'soulmate-finder': {
-    inputs: [{key:'b1',label:'Your Birthday',type:'text',defaultValue:'1990-05-15'},{key:'b2',label:'Partner Birthday',type:'text',defaultValue:'1992-08-22'}],
-    formula: (v) => { const rd=(n)=>{while(n>9&&n!==11&&n!==22&&n!==33)n=String(n).split('').reduce((a,b)=>a+Number(b),0);return n;}; const d1=String(v.b1).replace(/-/g,''),d2=String(v.b2).replace(/-/g,''); if(d1.length<8||d2.length<8)return[{label:'Score',value:'Enter both dates'}]; const lp1=rd(d1.split('').reduce((a,b)=>a+Number(b),0)),lp2=rd(d2.split('').reduce((a,b)=>a+Number(b),0)); const grps=[[1,5,7],[2,4,8],[3,6,9]]; const sg=grps.some(g=>g.includes(lp1)&&g.includes(lp2)); const lps=lp1===lp2?95:sg?82:50; const m1=Number(d1.slice(4,6)),m2=Number(d2.slice(4,6)),sd=Math.abs(m1-m2),ss=sd<=1?90:sd<=2?78:45; const f=Math.min(99,Math.round(lps*0.5+ss*0.5)); return [{label:'Soulmate',value:f+'%'},{label:'Type',value:f>=90?'Twin Flames':f>=75?'Deep Bond':f>=55?'Karmic':f>=35?'Growth':'Passing'},{label:'Your LP',value:String(lp1)},{label:'Partner LP',value:String(lp2)}]; },
+      'soulmate-finder': {
+    inputs: [{key:'b1',label:'Your Bday',type:'text',defaultValue:'1990-05-15'},{key:'b2',label:'Partner Bday',type:'text',defaultValue:'1992-08-22'}],
+    formula: (v) => { const rd=function(n){while(n>9&&n!==11&&n!==22&&n!==33)n=String(n).split('').reduce(function(a,b){return a+Number(b)},0);return n;}; const d1=String(v.b1).replace(/-/g,''),d2=String(v.b2).replace(/-/g,''); if(d1.length<8||d2.length<8)return[{label:'Score',value:'Enter dates'}]; const lp1=rd(d1.split('').reduce(function(a,b){return a+Number(b)},0)),lp2=rd(d2.split('').reduce(function(a,b){return a+Number(b)},0)); const grps=[[1,5,7],[2,4,8],[3,6,9]]; const sg=grps.some(function(g){return g.includes(lp1)&&g.includes(lp2)}); const lps=lp1===lp2?95:sg?82:50; const m1=Number(d1.slice(4,6)),m2=Number(d2.slice(4,6)),sd=Math.abs(m1-m2),ss=sd<=1?90:sd<=2?78:45; const f=Math.min(99,Math.round(lps*0.5+ss*0.5)); return [{label:'Soulmate',value:f+'%'},{label:'Type',value:f>=90?'TwinFlames':f>=75?'DeepBond':f>=55?'Karmic':f>=35?'Growth':'Passing'},{label:'Your LP',value:String(lp1)},{label:'Partner LP',value:String(lp2)}]; },
   },
   'daily-fortune': {
     inputs: [
