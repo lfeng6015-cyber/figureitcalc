@@ -90,7 +90,8 @@ function getFormulaPreview(toolId) {
 }
 
 function getCategoryContent(catId) {
-  const keyIdx = catContentTs.indexOf(`'${catId}':`);
+  let keyIdx = catContentTs.indexOf(`'${catId}':`);
+  if (keyIdx < 0) keyIdx = catContentTs.indexOf(`${catId}:`);
   if (keyIdx < 0) return null;
   const chunk = catContentTs.slice(keyIdx, keyIdx + 8000);
   const title = (chunk.match(/title:\s*"([^"]+)"/)||[])[1]||'';
