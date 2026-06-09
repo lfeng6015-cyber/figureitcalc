@@ -97,9 +97,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'ht',label:'Height (cm)',type:'number',defaultValue:175},{key:'wt',label:'Weight (kg)',type:'number',defaultValue:70}],
     formula: (v) => { const b=Math.sqrt(F(v.ht)*F(v.wt)/3600); return [{label:'BSA',value:b.toFixed(3)+' m2'}]; },
   },
-    'camera-recorder': {
+      'camera-recorder': {
     inputs: [],
-    formula: (v) => { return [{label:'Status',value:'Ready — Grant camera permission'},{label:'Format',value:'WebM (VP8/VP9)'},{label:'Resolution',value:'Up to 1080p'}]; },
+    formula: (v) => { var has=navigator&&navigator.mediaDevices&&navigator.mediaDevices.getUserMedia; return [{label:'Camera Support',value:has?'Yes - Available':'No - Need HTTPS'},{label:'Browser',value:navigator.userAgent.split(' ').slice(-1)[0]||'Unknown'},{label:'Resolution',value:screen.width+'x'+screen.height},{label:'Platform',value:navigator.platform||'Unknown'}]; },
   },
       'car-depreciation-calculator': {
     inputs: [{key:'price',label:'Purchase ($)',type:'number',defaultValue:35000},{key:'years',label:'Years',type:'number',defaultValue:5}],
@@ -134,9 +134,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { var sym=function(n){return ['---','--x','-w-','-wx','r--','r-x','rw-','rwx'][n]}; return [{label:'chmod',value:'chmod '+v.o+v.g+v.w},{label:'Symbolic',value:sym(Number(v.o))+sym(Number(v.g))+sym(Number(v.w))}]; },
     presets: [{label:'755 Script',values:{o:'7',g:'5',w:'5'}},{label:'644 File',values:{o:'6',g:'4',w:'4'}}],
   },
-    'chronometer': {
-    inputs: [],
-    formula: (v) => { return [{label:'Status',value:'Ready — press Start'},{label:'Elapsed',value:'00:00:00.000'},{label:'Laps',value:'0'}]; },
+      'chronometer': {
+    inputs: [{key:'label',label:'Task Name',type:'text',defaultValue:'Work Session'}],
+    formula: (v) => { var now=new Date(); return [{label:'Current Time',value:now.toLocaleTimeString()},{label:'Date',value:now.toLocaleDateString()},{label:'Task',value:String(v.label)},{label:'Tip',value:'Use system clock for precise time tracking'}]; },
   },
         'coffee-ratio-calculator': {
     inputs: [{key:'coffee',label:'Coffee (g)',type:'number',defaultValue:20},{key:'ratio',label:'Water Ratio (1:X)',type:'number',defaultValue:16}],
@@ -200,9 +200,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'f',label:'Focal Length (mm)',type:'number',defaultValue:50},{key:'a',label:'Aperture (f-stop)',type:'number',defaultValue:5.6,step:0.1},{key:'d',label:'Focus Distance (ft)',type:'number',defaultValue:10}],
     formula: (v) => { var f=F(v.f),a=F(v.a),d=F(v.d)*304.8,coc=0.03,H=f*f/(a*coc); var near=(H*d)/(H+(d-f)),far=(H*d)/(H-(d-f)); return [{label:'Hyperfocal',value:(H/304.8).toFixed(1)+' ft'},{label:'Near Limit',value:(near/304.8).toFixed(1)+' ft'},{label:'Far Limit',value:far<0?'Infinity':(far/304.8).toFixed(1)+' ft'},{label:'Total DOF',value:far<0?'Infinite':((far-near)/304.8).toFixed(1)+' ft'}]; },
   },
-    'device-information': {
+      'device-information': {
     inputs: [],
-    formula: (v) => { return [{label:'Platform',value:navigator.platform||'N/A'},{label:'Language',value:navigator.language||'N/A'},{label:'Screen',value:screen.width+'x'+screen.height},{label:'Online',value:navigator.onLine?'Yes':'No'},{label:'Cookies',value:navigator.cookieEnabled?'On':'Off'}]; },
+    formula: (v) => { return [{label:'Platform',value:navigator.platform||'N/A'},{label:'Language',value:navigator.language||'N/A'},{label:'Screen',value:screen.width+'x'+screen.height},{label:'Pixel Ratio',value:window.devicePixelRatio+'x'},{label:'Online',value:navigator.onLine?'Yes':'No'},{label:'Cookies',value:navigator.cookieEnabled?'On':'Off'},{label:'CPU Cores',value:navigator.hardwareConcurrency||'Unknown'}]; },
   },
     'dice-probability-calculator': {
     inputs: [{key:'dice',label:'Dice',type:'number',defaultValue:2},{key:'sides',label:'Sides',type:'number',defaultValue:6}],
@@ -253,9 +253,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'loan',label:'Loan ($)',type:'number',defaultValue:20000},{key:'rate',label:'Rate (%)',type:'number',defaultValue:8},{key:'months',label:'Tenure (mo)',type:'number',defaultValue:36}],
     formula: (v) => { const P=F(v.loan),r=F(v.rate)/100/12,n=F(v.months),emi=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n; return [{label:'EMI',value:'$'+emi.toFixed(2)},{label:'Total',value:'$'+(emi*n).toFixed(0)},{label:'Interest',value:'$'+(emi*n-P).toFixed(0)}]; },
   },
-    'emoji-picker': {
+      'emoji-picker': {
     inputs: [{key:'q',label:'Search Emoji',type:'text',defaultValue:'smile'}],
-    formula: (v) => { var q=String(v.q).toLowerCase(); var E={smile:'Smileys: =) =D XD',love:'Hearts: <3',star:'Stars: *',fire:'Fire: ~_~',cool:'Cool: B)',cry:'Cry: T_T',angry:'Angry: >:(',clap:'Clap: ^5',food:'Food: :9',animal:'Animals: :3'}; return [{label:'Results for "'+q+'"',value:E[q]||'Results: =) =D <3 *'}]; },
+    formula: (v) => { var q=String(v.q).toLowerCase(); var E={smile:'Result: Smileys and people',love:'Result: Hearts and love',star:'Result: Stars and sparkles',fire:'Result: Fire and hot',cool:'Result: Cool and chill',cry:'Result: Sad and tears',angry:'Result: Angry and mad',clap:'Result: Hands and gestures',food:'Result: Food and drink',animal:'Result: Animals and nature',sun:'Result: Weather and sky',car:'Result: Travel and places',music:'Result: Music and sound',sport:'Result: Sports and activities',tech:'Result: Technology and tools'}; var match=Object.entries(E).find(function(e){return q.includes(e[0])}); return [{label:'Emoji Category',value:match?match[1]:'Search: '+q},{label:'Copy',value:match?'Click to browse emojis':'Try: smile, love, star, food, animal'}]; },
   },
     'encryption': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Secret message'},{key:'key',label:'Password',type:'text',defaultValue:'my-key-123'}],
@@ -314,9 +314,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'eq',label:'y = f(x)',type:'text',defaultValue:'x*x'}],
     formula: (v) => { var pts=[]; try{var eq=String(v.eq).replace(/\^/g,'**'); for(var x=-5;x<=5;x+=0.5){try{var y=Function('x','return '+eq)(x); if(!isNaN(y)&&isFinite(y))pts.push({x:x.toFixed(1),y:y.toFixed(2)});}catch(e){}} return[{label:'Points',value:pts.length+' plotted'},{label:'Range',value:'x:-5 to 5'}]; }catch(e){return[{label:'Error',value:'Invalid equation'}];} },
   },
-    'habit-tracker': {
-    inputs: [{key:'habit',label:'Habit Name',type:'text',defaultValue:'Exercise'},{key:'target',label:'Target/week',type:'number',defaultValue:5}],
-    formula: (v) => { return [{label:'Habit',value:String(v.habit)},{label:'Weekly Target',value:F(v.target)+' days'},{label:'Status',value:'Track daily to build streak!'}]; },
+      'habit-tracker': {
+    inputs: [{key:'habit',label:'Habit Name',type:'text',defaultValue:'Exercise'},{key:'target',label:'Target (days/week)',type:'number',defaultValue:5},{key:'done',label:'Done This Week',type:'number',defaultValue:3}],
+    formula: (v) => { var t=F(v.target),d=F(v.done),pct=Math.round(d/t*100); return [{label:'Progress',value:d+'/'+t+' days ('+pct+'%)'},{label:'Status',value:pct>=100?'Goal met!':pct>=80?'Almost there':pct>=50?'Halfway':'Keep going!'},{label:'Streak',value:d+' day streak'},{label:'To Go',value:Math.max(0,t-d)+' days'}]; },
   },
       'hash-text': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World'}],
@@ -439,9 +439,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'jwt',label:'JWT Token',type:'text',defaultValue:'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjMifQ.xxx'}],
     formula: (v) => { var parts=String(v.jwt).split('.'); if(parts.length!==3)return[{label:'Error',value:'Invalid JWT format'}]; try{var h=JSON.parse(atob(parts[0])),p=JSON.parse(atob(parts[1])); return[{label:'Algorithm',value:h.alg||'unknown'},{label:'Subject',value:p.sub||'N/A'},{label:'Issued',value:p.iat?new Date(p.iat*1000).toISOString():'N/A'},{label:'Expires',value:p.exp?new Date(p.exp*1000).toISOString():'N/A'}]; }catch(e){return[{label:'Error',value:'Cannot decode JWT'}];} },
   },
-    'keycode-info': {
-    inputs: [],
-    formula: (v) => { return [{label:'Press any key',value:'See event.key, event.code, event.keyCode here'},{label:'Common',value:'Enter=13, Space=32, Escape=27, Tab=9'}]; },
+      'keycode-info': {
+    inputs: [{key:'code',label:'Key Code (number)',type:'number',defaultValue:13}],
+    formula: (v) => { var k=F(v.code); var map={8:'Backspace',9:'Tab',13:'Enter',16:'Shift',17:'Ctrl',18:'Alt',27:'Escape',32:'Space',37:'Left Arrow',38:'Up Arrow',39:'Right Arrow',40:'Down Arrow',46:'Delete',48:'0',65:'A',90:'Z',112:'F1',123:'F12'}; return [{label:'Key Name',value:map[k]||'Code '+k},{label:'Char',value:k>=32&&k<=126?String.fromCharCode(k):'(non-printable)'},{label:'Hex',value:'0x'+k.toString(16).toUpperCase()}]; },
   },
     'landed-cost-calculator': {
     inputs: [{key:'fob',label:'FOB ($)',type:'number',defaultValue:10000},{key:'freight',label:'Freight ($)',type:'number',defaultValue:2000},{key:'ins',label:'Insurance ($)',type:'number',defaultValue:100},{key:'duty',label:'Duty (%)',type:'number',defaultValue:10}],
@@ -545,9 +545,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'pw',label:'Password',type:'text',defaultValue:'MyP@ssw0rd2026!'}],
     formula: (v) => { const p=String(v.pw); var cs=0; if(/[a-z]/.test(p))cs+=26; if(/[A-Z]/.test(p))cs+=26; if(/[0-9]/.test(p))cs+=10; if(/[^a-zA-Z0-9]/.test(p))cs+=32; const e=p.length*Math.log2(cs||1); const s=e<40?'Weak':e<60?'Fair':e<80?'Good':e<100?'Strong':'Very Strong'; return [{label:'Strength',value:s},{label:'Entropy',value:e.toFixed(0)+' bits'},{label:'Length',value:p.length+' chars'}]; },
   },
-    'pdf-signature-checker': {
-    inputs: [{key:'signer',label:'Signer Name',type:'text',defaultValue:'John Doe'},{key:'date',label:'Signature Date',type:'text',defaultValue:'2026-01-15'}],
-    formula: (v) => { var d=new Date(String(v.date)); var valid=!isNaN(d.getTime())&&d<=new Date(); return [{label:'Signer',value:String(v.signer)},{label:'Date',value:String(v.date)},{label:'Status',value:valid?'Date appears valid':'Date invalid or in future'}]; },
+      'pdf-signature-checker': {
+    inputs: [{key:'signer',label:'Signer Name',type:'text',defaultValue:'John Doe'},{key:'date',label:'Signature Date',type:'text',defaultValue:'2026-01-15'},{key:'hash',label:'Document Hash (optional)',type:'text',defaultValue:''}],
+    formula: (v) => { var d=new Date(String(v.date)); var valid=!isNaN(d.getTime())&&d<=new Date(); var h=String(v.hash||''); var integrity=h?'Hash present: '+h.slice(0,16)+'...':'No hash provided'; return [{label:'Signer',value:String(v.signer)},{label:'Date Valid',value:valid?'Yes':'No - future or invalid'},{label:'Integrity',value:integrity},{label:'Status',value:valid?'Signature date OK':'Cannot verify'}]; },
   },
         'percentage-calculator': {
     inputs: [{key:'value',label:'Part Value',type:'number',defaultValue:42},{key:'total',label:'Total Value',type:'number',defaultValue:60}],
@@ -574,9 +574,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'outs',label:'Outs',type:'number',defaultValue:9},{key:'street',label:'Street',type:'select',options:[{label:'Flop(2 cards)',value:'flop'},{label:'Turn(1 card)',value:'turn'}],defaultValue:'flop'}],
     formula: (v) => { const o=F(v.outs),pct=v.street==='flop'?Math.min(99,o*4-(o>8?1:0)):Math.min(99,o*2); return [{label:'Win %',value:pct.toFixed(0)+'%'},{label:'Odds',value:'1:'+Math.round((100-pct)/pct)}]; },
   },
-    'pomodoro-timer': {
-    inputs: [{key:'focus',label:'Focus (min)',type:'number',defaultValue:25},{key:'break',label:'Break (min)',type:'number',defaultValue:5}],
-    formula: (v) => { return [{label:'Status',value:'Ready to start'},{label:'Focus',value:F(v.focus)+' min'},{label:'Break',value:F(v.break)+' min'},{label:'Cycles/hr',value:Math.floor(60/(F(v.focus)+F(v.break)))+' sessions'}]; },
+      'pomodoro-timer': {
+    inputs: [{key:'focus',label:'Focus (min)',type:'number',defaultValue:25},{key:'break',label:'Break (min)',type:'number',defaultValue:5},{key:'cycles',label:'Cycles',type:'number',defaultValue:4}],
+    formula: (v) => { var f=F(v.focus),b=F(v.break),c=F(v.cycles); var total=f*c+b*(c-1)+15; return [{label:'Total Time',value:total+' min ('+(total/60).toFixed(1)+' hrs)'},{label:'Focus Time',value:f*c+' min'},{label:'Break Time',value:b*(c-1)+' min'},{label:'Long Break',value:'15 min after '+c+' cycles'}]; },
   },
     'ppi-calculator': {
     inputs: [{key:'w',label:'Width (px)',type:'number',defaultValue:1920},{key:'h',label:'Height (px)',type:'number',defaultValue:1080},{key:'diag',label:'Diagonal (in)',type:'number',defaultValue:24}],
@@ -709,9 +709,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     inputs: [{key:'buy',label:'Buy ($)',type:'number',defaultValue:100},{key:'sell',label:'Sell ($)',type:'number',defaultValue:130},{key:'shares',label:'Shares',type:'number',defaultValue:10}],
     formula: (v) => { const p=(F(v.sell)-F(v.buy))*F(v.shares),pct=F(v.buy)>0?(F(v.sell)-F(v.buy))/F(v.buy)*100:0; return [{label:'P&L',value:'$'+p.toFixed(2)},{label:'Return',value:pct.toFixed(2)+'%'}]; },
   },
-    'stopwatch': {
+      'stopwatch': {
     inputs: [],
-    formula: (v) => { return [{label:'Status',value:'Ready — press Start'},{label:'Elapsed',value:'00:00:00.000'},{label:'Laps',value:'0'}]; },
+    formula: (v) => { var now=new Date(); return [{label:'Current Time',value:now.toLocaleTimeString()},{label:'Timestamp (ms)',value:String(now.getTime())},{label:'Date',value:now.toLocaleDateString()}]; },
   },
     'string-obfuscator': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World'}],
