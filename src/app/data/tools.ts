@@ -2552,7 +2552,7 @@ export const TOOLS: ToolMeta[] = [
     "icon": "Palette",
     "isHot": false,
     "isNew": false,
-    "component": "calculator",
+    "component": "color",
     "seo": {
       "title": "Online Image Color Palette | Free Productivity Tool — figureitcalc",
       "description": "Extract dominant colors from any image. Perfect for designers finding color inspiration. Free online tool. 100% client-side — no uploads, no signup.",
