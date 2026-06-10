@@ -1003,11 +1003,12 @@ pnpm dev
 # 构建（含 sitemap 重新生成）
 pnpm build   # 执行 vite build + scripts/generate-static.js
 
-# 部署 — 推送 main 分支自动触发 Vercel 部署
+# 本地 Git 提交（仅本地，不推送）
 git add -A
 git commit -m "feat: ..."
-git push origin main
 ```
+
+> ⚠️ **禁止 `git push`**：除非用户明确要求部署上线，否则只提交到本地仓库，不推送到 GitHub。Vercel 部署由用户手动触发。
 
 ### 8.3 部署后检查清单
 
@@ -1019,6 +1020,7 @@ git push origin main
 
 ## 10. 禁止事项
 
+- ❌ **禁止**未经明确要求执行 `git push` 推送到 GitHub — 默认只提交到本地仓库
 - ❌ **禁止**在 sitemap/robots/canonical 中使用裸域（无 www）
 - ❌ **禁止**引入 Google Analytics 之外的第三方分析脚本（已使用 GA+AdSense）
 - ❌ **禁止**工具收集用户输入数据上传服务器 — 全部 client-side 处理
