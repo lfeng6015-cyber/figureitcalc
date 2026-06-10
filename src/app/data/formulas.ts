@@ -760,7 +760,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
       'time-zone-converter': {
     inputs: [{key:'time',label:'Time (HH:MM)',type:'text',defaultValue:'14:00'},{key:'from',label:'From UTC',type:'number',defaultValue:-5},{key:'to',label:'To UTC',type:'number',defaultValue:0}],
-    formula: (v) => { const p=String(v.time).split(':').map(Number); var h=p[0]+(F(v.to)-F(v.from)),m=p[1]||0; h=((h%24)+24)%24; return [{label:'Converted',value:String(Math.floor(h)).padStart(2,'0')+':'+String(m).padStart(2,'0')}]; },
+    formula: (v) => { const p=String(v.time).split(':').map(Number); var h=p[0]+(F(v.to)-F(v.from)),m=p[1]||0; h=((h%24)+24)%24; var dstNote='DST may shift offset by +1h in summer. Check local DST rules for accurate conversion.'; return [{label:'Converted Time',value:String(Math.floor(h)).padStart(2,'0')+':'+String(m).padStart(2,'0')},{label:'UTC Offset Change',value:(F(v.to)-F(v.from)>0?'+':'')+(F(v.to)-F(v.from))+' hours',insight:dstNote}]; },
+    presets: [{label:'NY to London',values:{time:'14:00',from:-5,to:0}},{label:'SF to Tokyo',values:{time:'09:00',from:-8,to:9}},{label:'Dubai to Singapore',values:{time:'12:00',from:4,to:8}}],
   },
         'tip-calculator': {
     inputs: [{key:'bill',label:'Bill Amount ($)',type:'number',defaultValue:80},{key:'tipPct',label:'Tip (%)',type:'number',defaultValue:18},{key:'people',label:'Split Among',type:'number',defaultValue:3}],
@@ -792,8 +793,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { var a='0123456789ABCDEFGHJKMNPQRSTVWXYZ'; var ul=[]; for(var i=0;i<F(v.count);i++){var s=''; for(var j=0;j<26;j++)s+=a[Math.floor(Math.random()*32)]; ul.push(s);} return [{label:'ULID',value:ul.join('\n')}]; },
   },
       'url-encoder': {
-    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World & more'}],
-    formula: (v) => { const e=encodeURIComponent(String(v.text)); return [{label:'Encoded',value:e},{label:'Length',value:e.length+' chars'}]; },
+    inputs: [{key:'text',label:'Text',type:'text',defaultValue:'Hello World & more'},{key:'mode',label:'Mode',type:'select',options:[{label:'Encode',value:'encode'},{label:'Decode',value:'decode'},{label:'Encode Each Line',value:'batch'}],defaultValue:'encode'}],
+    formula: (v) => { const t=String(v.text); if(v.mode==='decode'){try{var d=decodeURIComponent(t);return[{label:'Decoded',value:d},{label:'Length',value:d.length+' chars'}];}catch(e){return[{label:'Error',value:'Invalid URL-encoded string'}];}} if(v.mode==='batch'){var lines=t.split('\n').filter(function(l){return l.trim()}).map(function(l){return encodeURIComponent(l.trim())}); return[{label:'Encoded ('+lines.length+' lines)',value:lines.join('\n')}];} const e=encodeURIComponent(t); return [{label:'Encoded',value:e},{label:'Length',value:e.length+' chars'}]; },
   },
     'url-parser': {
     inputs: [{key:'url',label:'URL',type:'text',defaultValue:'https://example.com:8080/path?q=search#top'}],
