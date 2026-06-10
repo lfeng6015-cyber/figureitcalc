@@ -7,11 +7,35 @@ interface MatchInfo {
   groups: string[];
 }
 
+function explainRegex(pattern: string): string[] {
+  if (!pattern) return [];
+  const notes: string[] = [];
+  if (/\\d/.test(pattern)) notes.push('\\d = any digit (0-9)');
+  if (/\\w/.test(pattern)) notes.push('\\w = word char (a-z, A-Z, 0-9, _)');
+  if (/\\s/.test(pattern)) notes.push('\\s = whitespace (space, tab, newline)');
+  if (/\\b/.test(pattern)) notes.push('\\b = word boundary (start/end of word)');
+  if (/\^/.test(pattern) && !/\[\^/.test(pattern)) notes.push('^ = start of string/line');
+  if (/\$/.test(pattern)) notes.push('$ = end of string/line');
+  if (/\./.test(pattern.replace(/\\./g,''))) notes.push('. = any single character');
+  if (/\+/.test(pattern.replace(/\\\+/g,''))) notes.push('+ = one or more (greedy)');
+  if (/\*/.test(pattern.replace(/\\\*/g,''))) notes.push('* = zero or more (greedy)');
+  if (/\?/.test(pattern.replace(/\\\?/g,''))) notes.push('? = zero or one (optional)');
+  if (/\[.*\]/.test(pattern)) notes.push('[...] = character class (any char inside)');
+  if (/\(/.test(pattern.replace(/\\(/g,''))) notes.push('(...) = capturing group');
+  if (/\|/.test(pattern.replace(/\\\|/g,''))) notes.push('| = alternation (OR)');
+  if (/\{/.test(pattern.replace(/\\\{/g,''))) notes.push('{n,m} = quantifier (n to m times)');
+  if (/g/.test(pattern.split('/').pop()||'')) notes.push('g flag = global (find all matches)');
+  if (/i/.test(pattern.split('/').pop()||'')) notes.push('i flag = case-insensitive');
+  return notes;
+}
+
 export function RegexTester() {
   const [pattern, setPattern] = useState("");
   const [flags, setFlags] = useState("g");
   const [testText, setTestText] = useState("");
   const [copied, setCopied] = useState(false);
+
+  const explanation = explainRegex(pattern);
 
   const { matches, error, isValid } = useMemo(() => {
     if (!pattern) return { matches: [], error: "", isValid: false };
@@ -130,6 +154,18 @@ export function RegexTester() {
           JavaScript regex syntax. Flags: g=global, i=case insensitive, m=multiline, s=dotAll, u=unicode
         </p>
       </div>
+
+      {/* Regex Explanation */}
+      {pattern && explanation.length > 0 && (
+        <div className="p-3 rounded-lg bg-blue-50 border border-blue-200 text-sm">
+          <p className="text-blue-800 font-medium mb-1">Pattern Breakdown</p>
+          <div className="flex flex-wrap gap-1.5">
+            {explanation.map((n, i) => (
+              <span key={i} className="px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-xs font-mono">{n}</span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Error */}
       {error && (
