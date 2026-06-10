@@ -87,7 +87,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'body-fat-calculator': {
     inputs: [{key:'ht',label:'Height (cm)',type:'number',defaultValue:175},{key:'neck',label:'Neck (cm)',type:'number',defaultValue:38},{key:'waist',label:'Waist (cm)',type:'number',defaultValue:85},{key:'gen',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'}],
-    formula: (v) => { const h=F(v.ht),n=F(v.neck),w=F(v.waist); var bf=v.gen==='male'?86.01*Math.log10(Math.max(1,w-n))-70.041*Math.log10(h)+36.76:163.205*Math.log10(Math.max(1,w+n-h))-97.684*Math.log10(h)-78.387; bf=Math.max(3,Math.abs(bf)); return [{label:'Body Fat',value:bf.toFixed(1)+'%'},{label:'Category',value:bf<6?'Essential':bf<14?'Athlete':bf<18?'Fitness':bf<25?'Average':'Above Avg'}]; },
+    formula: (v) => { const h=F(v.ht),n=F(v.neck),w=F(v.waist); var bf=v.gen==='male'?86.01*Math.log10(Math.max(1,w-n))-70.041*Math.log10(h)+36.76:163.205*Math.log10(Math.max(1,w+n-h))-97.684*Math.log10(h)-78.387; bf=Math.max(3,Math.abs(bf)); return [{label:'Body Fat (US Navy)',value:bf.toFixed(1)+'%',insight:'Estimated using the US Navy circumference method. Accuracy: +/- 3% for most people. For precise measurement, use a DEXA scan.'},{label:'Category',value:bf<6?'Essential':bf<14?'Athlete':bf<18?'Fitness':bf<25?'Average':'Above Avg'}]; },
   },
     'break-even-calculator': {
     inputs: [{key:'fc',label:'Fixed Costs ($)',type:'number',defaultValue:10000},{key:'p',label:'Price/Unit ($)',type:'number',defaultValue:50},{key:'vc',label:'Variable Cost ($)',type:'number',defaultValue:30}],
@@ -180,8 +180,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     presets: [{label:'Daily 2AM',values:{min:'0',hr:'2',dom:'*',mon:'*',dow:'*'}},{label:'Every 5min',values:{min:'*/5',hr:'*',dom:'*',mon:'*',dow:'*'}}],
   },
     'crypto-profit-calculator': {
-    inputs: [{key:'buy',label:'Buy Price ($)',type:'number',defaultValue:40000},{key:'sell',label:'Sell Price ($)',type:'number',defaultValue:50000},{key:'amt',label:'Amount',type:'number',defaultValue:0.1,step:0.01}],
-    formula: (v) => { const g=(F(v.sell)-F(v.buy))*F(v.amt),r=F(v.buy)>0?g/(F(v.buy)*F(v.amt))*100:0; return [{label:'P&L',value:'$'+g.toFixed(2)},{label:'ROI',value:r.toFixed(2)+'%'}]; },
+    inputs: [{key:'buy',label:'Buy Price ($)',type:'number',defaultValue:40000},{key:'sell',label:'Sell Price ($)',type:'number',defaultValue:50000},{key:'amt',label:'Amount',type:'number',defaultValue:0.1,step:0.01},{key:'fee',label:'Exchange Fee (%)',type:'number',defaultValue:0.5,step:0.1}],
+    formula: (v) => { const buyCost=F(v.buy)*F(v.amt)*(1+F(v.fee)/100); const sellProceeds=F(v.sell)*F(v.amt)*(1-F(v.fee)/100); const g=sellProceeds-buyCost,r=buyCost>0?g/buyCost*100:0; return [{label:'Buy Cost (incl fee)',value:'$'+buyCost.toFixed(2)},{label:'Sell Proceeds (net)',value:'$'+sellProceeds.toFixed(2)},{label:'P&L',value:'$'+g.toFixed(2),insight:'After '+F(v.fee).toFixed(1)+'% exchange fees on both buy and sell sides. Actual fees vary by exchange (0.1%-1.5%).'},{label:'ROI',value:r.toFixed(2)+'%'}]; },
   },
         'currency-converter': {
     inputs: [{key:'amount',label:'Amount',type:'number',defaultValue:100},{key:'rate',label:'Exchange Rate',type:'number',defaultValue:0.92,step:0.01}],
@@ -584,7 +584,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
       'probability-calculator': {
     inputs: [{key:'fav',label:'Favorable',type:'number',defaultValue:1},{key:'tot',label:'Total',type:'number',defaultValue:6}],
-    formula: (v) => { const p=F(v.tot)>0?F(v.fav)/F(v.tot)*100:0; return [{label:'Probability',value:p.toFixed(2)+'%'},{label:'Odds',value:'1:'+Math.round((F(v.tot)-F(v.fav))/Math.max(1,F(v.fav)))}]; },
+    formula: (v) => { const p=F(v.tot)>0?F(v.fav)/F(v.tot)*100:0; return [{label:'Probability',value:p.toFixed(2)+'%',insight:'Assumes equally likely outcomes. For independent events multiply probabilities. For dependent events use conditional probability.'},{label:'Odds',value:'1:'+Math.round((F(v.tot)-F(v.fav))/Math.max(1,F(v.fav)))}]; },
   },
         'profit-margin-calculator': {
     inputs: [{key:'price',label:'Selling Price ($)',type:'number',defaultValue:100},{key:'cost',label:'COGS ($)',type:'number',defaultValue:60}],
@@ -632,8 +632,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     presets: [{label:'Start at 25',values:{age:25,retireAge:65,savings:10000,monthly:500,rate:7}}],
   },
         'roi-calculator': {
-    inputs: [{key:'invested',label:'Invested ($)',type:'number',defaultValue:10000},{key:'returned',label:'Returned ($)',type:'number',defaultValue:12000}],
-    formula: (v) => { const roi=F(v.invested)>0?(F(v.returned)-F(v.invested))/F(v.invested)*100:0; return [{label:'ROI',value:roi.toFixed(2)+'%'},{label:'Gain',value:'$'+(F(v.returned)-F(v.invested)).toFixed(2)}]; },
+    inputs: [{key:'invested',label:'Invested ($)',type:'number',defaultValue:10000},{key:'returned',label:'Returned ($)',type:'number',defaultValue:12000},{key:'years',label:'Years Held',type:'number',defaultValue:3}],
+    formula: (v) => { const gain=F(v.returned)-F(v.invested),roi=F(v.invested)>0?gain/F(v.invested)*100:0; const y=Math.max(0.1,F(v.years)); const ann=F(v.invested)>0?(Math.pow(F(v.returned)/F(v.invested),1/y)-1)*100:0; return [{label:'Total ROI',value:roi.toFixed(2)+'%'},{label:'Annualized ROI',value:ann.toFixed(2)+'%',insight:'CAGR (Compound Annual Growth Rate): '+ann.toFixed(2)+'% per year over '+y.toFixed(1)+' years. This is the true annual return accounting for compounding.'},{label:'Total Gain',value:'$'+gain.toFixed(2)}]; },
   },
       'roman-numeral-converter': {
     inputs: [{key:'num',label:'Number (1-3999)',type:'number',defaultValue:2026}],
@@ -699,7 +699,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'statistics-calculator': {
     inputs: [{key:'data',label:'Data (comma-sep)',type:'text',defaultValue:'1,2,3,4,5,6,7,8,9,10'}],
-    formula: (v) => { const n=String(v.data).split(',').map(Number).filter(function(x){return !isNaN(x)}); if(!n.length)return[{label:'Error',value:'No data'}]; const m=n.reduce(function(a,b){return a+b},0)/n.length; const s=[].concat(n).sort(function(a,b){return a-b}); const med=s.length%2?s[Math.floor(s.length/2)]:(s[s.length/2-1]+s[s.length/2])/2; const vr=n.reduce(function(a,x){return a+Math.pow(x-m,2)},0)/n.length; return [{label:'Mean',value:m.toFixed(2)},{label:'Median',value:med.toFixed(2)},{label:'Std Dev',value:Math.sqrt(vr).toFixed(2)},{label:'Min',value:String(s[0])},{label:'Max',value:String(s[s.length-1])}]; },
+    formula: (v) => { var n=String(v.data).split(',').map(Number).filter(function(x){return !isNaN(x)}); if(!n.length)return[{label:'Error',value:'No data'}]; var m=n.reduce(function(a,b){return a+b},0)/n.length; var s=[].concat(n).sort(function(a,b){return a-b}); var med=s.length%2?s[Math.floor(s.length/2)]:(s[s.length/2-1]+s[s.length/2])/2; var popVar=n.reduce(function(a,x){return a+Math.pow(x-m,2)},0)/n.length; var sampVar=n.length>1?n.reduce(function(a,x){return a+Math.pow(x-m,2)},0)/(n.length-1):0; return [{label:'Mean',value:m.toFixed(2)},{label:'Median',value:med.toFixed(2)},{label:'Std Dev (Population)',value:Math.sqrt(popVar).toFixed(2)},{label:'Std Dev (Sample)',value:Math.sqrt(sampVar).toFixed(2),insight:'Sample std dev uses n-1 denominator. Use this when your data is a sample (not the entire population).'},{label:'Min',value:String(s[0])},{label:'Max',value:String(s[s.length-1])},{label:'Count',value:String(n.length)}]; },
   },
     'steps-to-miles-calculator': {
     inputs: [{key:'steps',label:'Steps',type:'number',defaultValue:10000},{key:'stride',label:'Stride (in)',type:'number',defaultValue:30}],
