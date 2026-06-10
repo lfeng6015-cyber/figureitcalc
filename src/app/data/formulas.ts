@@ -161,7 +161,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
       'concrete-calculator': {
     inputs: [{key:'length',label:'Length (ft)',type:'number',defaultValue:10},{key:'width',label:'Width (ft)',type:'number',defaultValue:10},{key:'thickness',label:'Thickness (in)',type:'number',defaultValue:4}],
-    formula: (v) => { const cf=F(v.length)*F(v.width)*F(v.thickness)/12,cy=cf/27,bags=Math.ceil(cy*45); return [{label:'Cubic Yards',value:cy.toFixed(2)+' yd3'},{label:'80lb Bags',value:bags+' bags'},{label:'Cost $140/yd3',value:'$'+(cy*140).toFixed(0)}]; },
+    formula: (v) => { const cf=F(v.length)*F(v.width)*F(v.thickness)/12,cy=cf/27; const waste=cy*0.1,cyWithWaste=cy+waste; const bags=Math.ceil(cyWithWaste*45); const costPerYd=140; return [{label:'Concrete Needed',value:cy.toFixed(2)+' yd3'},{label:'+10% Waste Factor',value:cyWithWaste.toFixed(2)+' yd3',insight:'Always order 10% extra for spillage, over-excavation, and uneven ground. Short-load fees apply for partial trucks.'},{label:'80lb Bags',value:bags+' bags',insight:'Each 80lb bag yields ~0.6 cu ft. For slabs >2 yd3, ready-mix truck delivery is cheaper than bags.'},{label:'Est. Cost ($140/yd3)',value:'$'+(cyWithWaste*costPerYd).toFixed(0),insight:'National avg ~$140/yd3 delivered. Varies $100-$200 by region. Add rebar, gravel base, form materials, and labor if not DIY.'}]; },
     presets: [{label:'10x10 Patio',values:{length:10,width:10,thickness:4}}],
   },
         'cooking-time-calculator': {
@@ -187,9 +187,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const buyCost=F(v.buy)*F(v.amt)*(1+F(v.fee)/100); const sellProceeds=F(v.sell)*F(v.amt)*(1-F(v.fee)/100); const g=sellProceeds-buyCost,r=buyCost>0?g/buyCost*100:0; return [{label:'Buy Cost (incl fee)',value:'$'+buyCost.toFixed(2)},{label:'Sell Proceeds (net)',value:'$'+sellProceeds.toFixed(2)},{label:'P&L',value:'$'+g.toFixed(2),insight:'After '+F(v.fee).toFixed(1)+'% exchange fees on both buy and sell sides. Actual fees vary by exchange (0.1%-1.5%).'},{label:'ROI',value:r.toFixed(2)+'%'}]; },
   },
         'currency-converter': {
-    inputs: [{key:'amount',label:'Amount',type:'number',defaultValue:100},{key:'rate',label:'Exchange Rate',type:'number',defaultValue:0.92,step:0.01}],
-    formula: (v) => { const r=F(v.amount)*F(v.rate); return [{label:'Converted',value:r.toFixed(2)},{label:'Inverse',value:(1/F(v.rate)).toFixed(4)}]; },
-    presets: [{label:'USD-EUR',values:{amount:100,rate:0.92}},{label:'USD-GBP',values:{amount:100,rate:0.79}}],
+    inputs: [{key:'amount',label:'Amount',type:'number',defaultValue:100},{key:'rate',label:'Exchange Rate',type:'number',defaultValue:0.92,step:0.01},{key:'spread',label:'Bank Spread (%)',type:'number',defaultValue:1.5,step:0.1}],
+    formula: (v) => { const r=F(v.amount)*F(v.rate); const spread=F(v.spread)/100; const actual=r*(1-spread); const mid=r; return [{label:'Mid-Market Rate',value:mid.toFixed(2),insight:'Interbank rate (no spread). This is what banks pay. You never get this rate as a consumer.'},{label:'With '+F(v.spread).toFixed(1)+'% Spread',value:actual.toFixed(2),insight:'Typical bank spread: 1-3% for wire transfers, 3-7% for credit cards, 0.5-1% for Wise/Revolut. On $'+F(v.amount).toFixed(0)+', the spread costs you $'+(r-actual).toFixed(2)+'.'},{label:'Inverse Rate',value:(1/F(v.rate)).toFixed(4),insight:'1 '+Object({usd:'USD',eur:'EUR',gbp:'GBP'})[v.currency]||'USD'+' = '+F(v.rate).toFixed(4)+' units'}]; },
+    presets: [{label:'USD-EUR (Wise)',values:{amount:100,rate:0.92,spread:0.5}},{label:'USD-EUR (Bank)',values:{amount:100,rate:0.92,spread:2.5}},{label:'USD-GBP',values:{amount:100,rate:0.79,spread:1.5}}],
   },
     'currency-hedge-calculator': {
     inputs: [{key:'amt',label:'Amount',type:'number',defaultValue:100000},{key:'cur',label:'Current Rate',type:'number',defaultValue:1.10,step:0.01},{key:'fwd',label:'Forward Rate',type:'number',defaultValue:1.08,step:0.01}],
@@ -623,8 +623,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const t=F(v.kitchen)+F(v.bath)+F(v.floor)+F(v.paint); return [{label:'Total',value:'$'+t.toLocaleString()},{label:'+15%',value:'$'+(t*1.15).toFixed(0)}]; },
   },
     'rent-vs-buy-calculator': {
-    inputs: [{key:'rent',label:'Rent ($/mo)',type:'number',defaultValue:1500},{key:'price',label:'Home Price ($)',type:'number',defaultValue:350000},{key:'rate',label:'Mortgage (%)',type:'number',defaultValue:6.5},{key:'yr',label:'Years',type:'number',defaultValue:7}],
-    formula: (v) => { const rt=F(v.rent)*12*F(v.yr),P=F(v.price)*0.8,r=F(v.rate)/100/12,n=30*12,M=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n,bt=F(v.price)*0.2+M*12*F(v.yr); return [{label:'Rent',value:'$'+rt.toLocaleString()},{label:'Buy',value:'$'+bt.toLocaleString()},{label:'Better',value:rt<bt?'Rent':'Buy'}]; },
+    inputs: [{key:'rent',label:'Rent ($/mo)',type:'number',defaultValue:1500},{key:'price',label:'Home Price ($)',type:'number',defaultValue:350000},{key:'rate',label:'Mortgage (%)',type:'number',defaultValue:6.5},{key:'yr',label:'Years',type:'number',defaultValue:7},{key:'city',label:'City Cost Index',type:'select',options:[{label:'National Avg (1.0x)',value:'1'},{label:'NYC (2.1x)',value:'2.1'},{label:'SF (2.5x)',value:'2.5'},{label:'Austin (1.1x)',value:'1.1'},{label:'Chicago (1.3x)',value:'1.3'},{label:'Miami (1.4x)',value:'1.4'},{label:'Singapore (2.8x)',value:'2.8'},{label:'London (2.6x)',value:'2.6'}],defaultValue:'1'}],
+    formula: (v) => { const ci=F(v.city),rt=F(v.rent)*ci*12*F(v.yr),P=F(v.price)*ci*0.8,r=F(v.rate)/100/12,n=30*12,M=r>0?P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1):P/n,bt=F(v.price)*ci*0.2+M*12*F(v.yr); return [{label:'Rent ('+ci.toFixed(1)+'x city factor)',value:'$'+rt.toLocaleString()},{label:'Buy ('+ci.toFixed(1)+'x)',value:'$'+bt.toLocaleString()},{label:'Verdict',value:rt<bt?'Rent is cheaper':'Buy is cheaper',insight:'Based on '+F(v.yr).toFixed(0)+'yr horizon with city cost index '+ci.toFixed(1)+'x. In high-cost cities (2x+), renting often beats buying under 10yr. Source: Numbeo COL Index 2026.'}]; },
+    presets: [{label:'NYC Renter',values:{rent:3500,price:800000,rate:6.5,yr:7,city:'2.1'}},{label:'Austin Buyer',values:{rent:1800,price:400000,rate:6.5,yr:10,city:'1.1'}}],
   },
     'resistor-color-code-calculator': {
     inputs: [{key:'ohms',label:'Resistance (ohm)',type:'number',defaultValue:4700}],
@@ -632,7 +633,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'retirement-calculator': {
     inputs: [{key:'age',label:'Current Age',type:'number',defaultValue:30},{key:'retireAge',label:'Retire Age',type:'number',defaultValue:65},{key:'savings',label:'Savings ($)',type:'number',defaultValue:50000},{key:'monthly',label:'Monthly ($)',type:'number',defaultValue:500},{key:'rate',label:'Return (%)',type:'number',defaultValue:7}],
-    formula: (v) => { const P=F(v.savings),pmt=F(v.monthly),r=F(v.rate)/100/12,n=(F(v.retireAge)-F(v.age))*12; const fv=P*Math.pow(1+r,n)+(r>0?pmt*(Math.pow(1+r,n)-1)/r:pmt*n); return [{label:'Retirement Nest Egg',value:'$'+fv.toFixed(0)},{label:'Monthly (4%)',value:'$'+(fv*0.04/12).toFixed(0)},{label:'Contributed',value:'$'+(P+pmt*n).toFixed(0)}]; },
+    formula: (v) => { const P=F(v.savings),pmt=F(v.monthly),r=F(v.rate)/100/12,n=(F(v.retireAge)-F(v.age))*12; const fv=P*Math.pow(1+r,n)+(r>0?pmt*(Math.pow(1+r,n)-1)/r:pmt*n); const swr4=fv*0.04/12,swr35=fv*0.035/12; const lifeExp=85,yearsInRet=Math.max(0,lifeExp-F(v.retireAge)); const longevityRisk=yearsInRet>30?'High: 35+ year retirement - consider 3.25% SWR':yearsInRet>20?'Moderate: 25-35yr retirement - 3.5-4% SWR appropriate':'Standard: <25yr retirement - 4% SWR is safe'; return [{label:'Nest Egg at '+v.retireAge,value:'$'+fv.toFixed(0)},{label:'Safe Withdrawal (4% rule)',value:'$'+swr4.toFixed(0)+'/mo',insight:'4% rule (Bengen 1994): withdraw 4% of portfolio in year 1, adjust for inflation annually. '+longevityRisk+'. At 3.5% SWR: $'+swr35.toFixed(0)+'/mo for extra safety.'},{label:'Total Contributions',value:'$'+(P+pmt*n).toFixed(0)},{label:'Growth from Interest',value:'$'+(fv-P-pmt*n).toFixed(0)}]; },
     presets: [{label:'Start at 25',values:{age:25,retireAge:65,savings:10000,monthly:500,rate:7}}],
   },
         'roi-calculator': {
@@ -765,9 +766,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     presets: [{label:'NY to London',values:{time:'14:00',from:-5,to:0}},{label:'SF to Tokyo',values:{time:'09:00',from:-8,to:9}},{label:'Dubai to Singapore',values:{time:'12:00',from:4,to:8}}],
   },
         'tip-calculator': {
-    inputs: [{key:'bill',label:'Bill Amount ($)',type:'number',defaultValue:80},{key:'tipPct',label:'Tip (%)',type:'number',defaultValue:18},{key:'people',label:'Split Among',type:'number',defaultValue:3}],
-    formula: (v) => { const tip=F(v.bill)*F(v.tipPct)/100,total=F(v.bill)+tip,pp=F(v.people)>0?total/F(v.people):total; return [{label:'Tip',value:'$'+tip.toFixed(2)},{label:'Total',value:'$'+total.toFixed(2)},{label:'Per Person',value:'$'+pp.toFixed(2)}]; },
-    presets: [{label:'15pct',values:{bill:50,tipPct:15,people:2}},{label:'20pct',values:{bill:80,tipPct:20,people:3}}],
+    inputs: [{key:'bill',label:'Bill Amount ($)',type:'number',defaultValue:80},{key:'tipPct',label:'Tip (%)',type:'number',defaultValue:18},{key:'people',label:'Split Among',type:'number',defaultValue:3},{key:'uneven',label:'Uneven Shares (comma)',type:'text',defaultValue:''}],
+    formula: (v) => { const tip=F(v.bill)*F(v.tipPct)/100,total=F(v.bill)+tip; const uneven=String(v.uneven).trim(); if(uneven&&F(v.people)>1){const shares=uneven.split(',').map(Number).filter(function(x){return x>0}); if(shares.length>0){const sumShares=shares.reduce(function(a,b){return a+b},0); const r=[]; for(var i=0;i<shares.length;i++){r.push({label:'Person '+(i+1)+' ('+shares[i]+'/'+sumShares+')',value:'$'+(total*shares[i]/sumShares).toFixed(2)});} r.push({label:'Total (uneven)',value:'$'+total.toFixed(2)}); return r;}} const pp=F(v.people)>0?total/F(v.people):total; return [{label:'Tip ('+F(v.tipPct).toFixed(0)+'%)',value:'$'+tip.toFixed(2)},{label:'Total Bill',value:'$'+total.toFixed(2)},{label:'Each of '+F(v.people).toFixed(0),value:'$'+pp.toFixed(2)}]; },
+    presets: [{label:'15% split 2',values:{bill:50,tipPct:15,people:2,uneven:''}},{label:'20% split 3',values:{bill:80,tipPct:20,people:3,uneven:''}},{label:'Uneven: 2-1-1',values:{bill:120,tipPct:18,people:4,uneven:'2,1,1'}}],
   },
     'tire-size-calculator': {
     inputs: [{key:'width',label:'Width (mm)',type:'number',defaultValue:225},{key:'aspect',label:'Aspect',type:'number',defaultValue:65},{key:'rim',label:'Rim (in)',type:'number',defaultValue:17}],
