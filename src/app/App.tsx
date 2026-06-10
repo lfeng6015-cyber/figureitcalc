@@ -53,51 +53,25 @@ const toolComponentMap: Record<string, React.ComponentType> = {
   keycode: lazy(() => import("./components/tools/KeycodeTool").then(m => ({default: m.KeycodeTool}))),
 };
 
-// Map tool IDs to components
-function resolveComponent(tool: ToolMeta): React.ComponentType | null {
-  if (tool.component && toolComponentMap[tool.component]) {
-    // For generic calculator, wrap with formula from registry
-    if (tool.component === "calculator") {
-      const config = getFormula(tool.id);
-      const CalcComp = toolComponentMap["calculator"];
-      // Return a component that passes the right props
-      return () => <CalcComp
-        description={tool.description}
-        inputs={config?.inputs || [{ key: "input1", label: "Input 1", type: "number" as const, defaultValue: 0 }, { key: "input2", label: "Input 2", type: "number" as const, defaultValue: 0 }]}
-        formula={config?.formula || ((v: Record<string, number | string>) => [{ label: "Result", value: String(Number(v.input1||0) + Number(v.input2||0)) }])}
-        presets={config?.presets}
-      />;
-    }
-    return toolComponentMap[tool.component];
-  }
-  return null;
+// Stable named component — wraps CalculatorTool with formula from registry.
+// Defined at module scope so React preserves identity across re-renders.
+function CalculatorWrapper({ tool }: { tool: ToolMeta }) {
+  const CalcComp = toolComponentMap["calculator"];
+  if (!CalcComp) return <ComingSoon name={tool.name} />;
+  const config = getFormula(tool.id);
+  return <CalcComp
+    description={tool.description}
+    inputs={config?.inputs || [{ key: "input1", label: "Input 1", type: "number" as const, defaultValue: 0 }, { key: "input2", label: "Input 2", type: "number" as const, defaultValue: 0 }]}
+    formula={config?.formula || ((v: Record<string, number | string>) => [{ label: "Result", value: String(Number(v.input1||0) + Number(v.input2||0)) }])}
+    presets={config?.presets}
+  />;
 }
 
-// Generic calculator wrapper using formula registry
-function GenericCalcWrapper({ tool }: { tool: ToolMeta }) {
-  const CalculatorToolComp = toolComponentMap["calculator"];
-  if (!CalculatorToolComp) return <ComingSoon name={tool.name} />;
-  const config = getFormula(tool.id);
-  if (config) {
-    return <CalculatorToolComp description={tool.description} inputs={config.inputs} formula={config.formula} presets={config.presets} />;
-  }
-  // Fallback: use tool name to guess formula
-  return <CalculatorToolComp
-    description={tool.description}
-    inputs={[
-      { key: "input1", label: "Input 1", type: "number" as const, defaultValue: 0 },
-      { key: "input2", label: "Input 2", type: "number" as const, defaultValue: 0 },
-    ]}
-    formula={(v: Record<string, number | string>) => {
-      const a = Number(v.input1) || 0;
-      const b = Number(v.input2) || 0;
-      return [
-        { label: "Result (A+B)", value: String(a + b) },
-        { label: "A x B", value: String(a * b) },
-        { label: "A/B", value: b !== 0 ? (a / b).toFixed(4) : "N/A" },
-      ];
-    }}
-  />;
+// Resolve which component type to render for a given tool.
+function resolveComponentType(tool: ToolMeta): React.ComponentType<any> | null {
+  if (!tool.component) return null;
+  if (tool.component === "calculator") return CalculatorWrapper;
+  return toolComponentMap[tool.component] || null;
 }
 
 // Map string icon names to Lucide components
@@ -311,8 +285,8 @@ export default function App() {
           >
             <Suspense fallback={<div className="py-8 text-center text-muted-foreground">Loading tool...</div>}>
               {(() => {
-                const C = resolveComponent(currentTool);
-                if (C) return <C />;
+                const C = resolveComponentType(currentTool);
+                if (C) return <C key={currentTool.id} tool={currentTool} />;
                 return <ComingSoon name={currentTool.name} />;
               })()}
             </Suspense>
