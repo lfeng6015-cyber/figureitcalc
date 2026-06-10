@@ -60,6 +60,7 @@ function CalculatorWrapper({ tool }: { tool: ToolMeta }) {
   if (!CalcComp) return <ComingSoon name={tool.name} />;
   const config = getFormula(tool.id);
   return <CalcComp
+    toolId={tool.id}
     description={tool.description}
     inputs={config?.inputs || [{ key: "input1", label: "Input 1", type: "number" as const, defaultValue: 0 }, { key: "input2", label: "Input 2", type: "number" as const, defaultValue: 0 }]}
     formula={config?.formula || ((v: Record<string, number | string>) => [{ label: "Result", value: String(Number(v.input1||0) + Number(v.input2||0)) }])}

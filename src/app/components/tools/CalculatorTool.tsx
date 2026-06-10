@@ -7,6 +7,7 @@ interface CalculatorToolProps {
   formula: (values: Record<string, number | string>) => CalcResult[] | CalcSection[];
   presets?: { label: string; values: Record<string, number | string> }[];
   description?: string;
+  toolId?: string;
 }
 
 const colorMap: Record<string, string> = {
@@ -75,7 +76,7 @@ function buildResultText(output: CalcResult[] | CalcSection[]): string {
   return lines.join("\n");
 }
 
-export function CalculatorTool({ inputs, formula, presets, description }: CalculatorToolProps) {
+export function CalculatorTool({ inputs, formula, presets, description, toolId }: CalculatorToolProps) {
   const [values, setValues] = useState<Record<string, number | string>>(() =>
     readInitialValues(inputs)
   );
@@ -133,11 +134,22 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
   };
 
   const copyShareLink = async () => {
+    // Build proper URL: prefer /tools/{id}?params over ?tool=id&params
+    const params = new URLSearchParams();
+    inputs.forEach((inp) => {
+      const val = values[inp.key];
+      if (val !== undefined && val !== "" && val !== inp.defaultValue) {
+        params.set(inp.key, inp.type === "number" ? String(val) : encodeURIComponent(String(val)));
+      }
+    });
+    const qs = params.toString();
+    const basePath = toolId ? `/tools/${toolId}` : window.location.pathname;
+    const shareUrl = qs ? `${window.location.origin}${basePath}?${qs}` : `${window.location.origin}${basePath}`;
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(shareUrl);
     } catch {
       const ta = document.createElement("textarea");
-      ta.value = window.location.href;
+      ta.value = shareUrl;
       ta.style.cssText = "position:fixed;opacity:0";
       document.body.appendChild(ta);
       ta.select();
@@ -147,6 +159,17 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
     setLinkCopied(true);
     setTimeout(() => setLinkCopied(false), 2000);
   };
+
+  const ActionButtons = () => (
+    <div className="flex items-center gap-1">
+      <button onClick={copyResults} className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all" title="Copy all results">
+        {copied ? <><CheckCircle className="w-3 h-3 text-green-500" /> Copied!</> : <><Copy className="w-3 h-3" /> Copy</>}
+      </button>
+      <button onClick={copyShareLink} className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all" title="Copy shareable link">
+        {linkCopied ? <><CheckCircle className="w-3 h-3 text-green-500" /> Link Copied!</> : <><Share2 className="w-3 h-3" /> Share</>}
+      </button>
+    </div>
+  );
 
   return (
     <div className="space-y-5">
@@ -238,8 +261,9 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
           // Sectioned output (detailed)
           (rawOutput as CalcSection[]).map((section, si) => (
             <div key={si} className="bg-card rounded-xl border border-border overflow-hidden">
-              <div className="bg-accent/30 px-4 py-3 border-b border-border">
+              <div className="bg-accent/30 px-4 py-3 border-b border-border flex items-center justify-between">
                 <h3 className="text-sm font-semibold text-foreground">{section.title}</h3>
+                <ActionButtons />
               </div>
 
               {/* Results grid */}
@@ -310,32 +334,7 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
           <div className="bg-card rounded-xl border border-border overflow-hidden">
             <div className="bg-accent/30 px-4 py-3 border-b border-border flex items-center justify-between">
               <h3 className="text-sm font-semibold text-foreground">Results</h3>
-              <div className="flex items-center gap-1">
-                {/* Copy results button */}
-                <button
-                  onClick={copyResults}
-                  className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
-                  title="Copy all results"
-                >
-                  {copied ? (
-                    <><CheckCircle className="w-3 h-3 text-green-500" /> Copied!</>
-                  ) : (
-                    <><Copy className="w-3 h-3" /> Copy</>
-                  )}
-                </button>
-                {/* Copy shareable link */}
-                <button
-                  onClick={copyShareLink}
-                  className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
-                  title="Copy link with current values"
-                >
-                  {linkCopied ? (
-                    <><CheckCircle className="w-3 h-3 text-green-500" /> Link Copied!</>
-                  ) : (
-                    <><Share2 className="w-3 h-3" /> Share</>
-                  )}
-                </button>
-              </div>
+              <ActionButtons />
             </div>
             <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
               {(rawOutput as CalcResult[]).filter(r => r.label && r.value !== undefined && r.value !== "").map((r, i) => (
