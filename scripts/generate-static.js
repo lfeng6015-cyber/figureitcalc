@@ -150,7 +150,7 @@ function buildPage(metaTitle, metaDesc, metaKeywords, canonicalPath, bodyContent
   html = html.replace(/<meta property="og:description"[^>]*>/,
     `<meta property="og:description" content="${escAttr(metaDesc).substring(0,200)}">`);
   html = html.replace(/<link rel="canonical"[^>]*>/,
-    `<link rel="canonical" href="https://figureitcalc.com${canonicalPath}">`);
+    `<link rel="canonical" href="https://www.figureitcalc.com${canonicalPath}">`);
   if (!html.includes('name="keywords"')) {
     html = html.replace('</head>', `<meta name="keywords" content="${escAttr(metaKeywords)}">\n</head>`);
   } else {

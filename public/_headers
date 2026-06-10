@@ -1,0 +1,19 @@
+# Cloudflare Pages headers
+# Cache static assets aggressively (filenames are hashed)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages — short cache, allow stale while revalidating
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# XML sitemap
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml
+
+# Text files
+/robots.txt
+  Cache-Control: public, max-age=3600
+/ads.txt
+  Cache-Control: public, max-age=3600
