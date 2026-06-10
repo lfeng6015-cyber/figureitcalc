@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Copy, CheckCircle, ArrowUpDown } from "lucide-react";
+import { Copy, CheckCircle, ArrowUpDown, Trash2 } from "lucide-react";
 
 export function Base64Tool() {
   const [mode, setMode] = useState<"encode" | "decode">("encode");
-  const [input, setInput] = useState("Hello, 工具箱！这是一段中文测试文本。");
+  const [input, setInput] = useState("Hello, this is a sample text for Base64 encoding.");
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
 
@@ -25,7 +25,7 @@ export function Base64Tool() {
     try {
       if (val && mode === "decode") atob(val);
     } catch {
-      setError("无效的 Base64 字符串");
+      setError("Invalid Base64 string — check for non-Base64 characters or padding errors.");
     }
   };
 
@@ -35,11 +35,26 @@ export function Base64Tool() {
     setError("");
   };
 
-  const copy = () => {
+  const copy = async () => {
     if (!output) return;
-    navigator.clipboard.writeText(output);
+    try {
+      await navigator.clipboard.writeText(output);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = output;
+      ta.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
     setCopied(true);
-    setTimeout(() => setCopied(false), 1500);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const clear = () => {
+    setInput("");
+    setError("");
   };
 
   return (
@@ -53,17 +68,22 @@ export function Base64Tool() {
               mode === m ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground hover:text-foreground"
             }`}
           >
-            {m === "encode" ? "编码（文本 → Base64）" : "解码（Base64 → 文本）"}
+            {m === "encode" ? "Encode (Text → Base64)" : "Decode (Base64 → Text)"}
           </button>
         ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <span className="text-sm text-muted-foreground">{mode === "encode" ? "原始文本" : "Base64 字符串"}</span>
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-muted-foreground">{mode === "encode" ? "Plain Text" : "Base64 String"}</span>
+            <button onClick={clear} className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors">
+              <Trash2 className="w-3 h-3" /> Clear
+            </button>
+          </div>
           <textarea
             className="w-full h-60 p-3 rounded-lg border border-border bg-input-background text-foreground text-sm font-mono resize-none focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all"
-            placeholder={mode === "encode" ? "输入要编码的文本..." : "输入 Base64 字符串..."}
+            placeholder={mode === "encode" ? "Enter text to encode..." : "Enter Base64 string to decode..."}
             value={input}
             onChange={(e) => handleInput(e.target.value)}
             spellCheck={false}
@@ -71,10 +91,10 @@ export function Base64Tool() {
         </div>
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">{mode === "encode" ? "Base64 编码结果" : "解码文本"}</span>
+            <span className="text-sm text-muted-foreground">{mode === "encode" ? "Base64 Encoded" : "Decoded Text"}</span>
             <button onClick={copy} disabled={!output} className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1 transition-colors disabled:opacity-40">
               {copied ? <CheckCircle className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
-              {copied ? "已复制" : "复制"}
+              {copied ? "Copied!" : "Copy"}
             </button>
           </div>
           {error ? (
@@ -86,7 +106,7 @@ export function Base64Tool() {
               readOnly
               className="w-full h-60 p-3 rounded-lg border border-border bg-muted text-foreground text-sm font-mono resize-none focus:outline-none"
               value={output}
-              placeholder="结果显示在此..."
+              placeholder="Result will appear here..."
             />
           )}
         </div>
@@ -98,7 +118,7 @@ export function Base64Tool() {
         className="flex items-center gap-2 px-4 py-2 border border-border rounded-lg text-sm text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all disabled:opacity-40"
       >
         <ArrowUpDown className="w-4 h-4" />
-        将结果作为输入（反转）
+        Swap — use output as new input
       </button>
     </div>
   );
