@@ -10,22 +10,20 @@ interface MatchInfo {
 function explainRegex(pattern: string): string[] {
   if (!pattern) return [];
   const notes: string[] = [];
-  if (/\\d/.test(pattern)) notes.push('\\d = any digit (0-9)');
-  if (/\\w/.test(pattern)) notes.push('\\w = word char (a-z, A-Z, 0-9, _)');
-  if (/\\s/.test(pattern)) notes.push('\\s = whitespace (space, tab, newline)');
-  if (/\\b/.test(pattern)) notes.push('\\b = word boundary (start/end of word)');
-  if (/\^/.test(pattern) && !/\[\^/.test(pattern)) notes.push('^ = start of string/line');
-  if (/\$/.test(pattern)) notes.push('$ = end of string/line');
-  if (/\./.test(pattern.replace(/\\./g,''))) notes.push('. = any single character');
-  if (/\+/.test(pattern.replace(/\\\+/g,''))) notes.push('+ = one or more (greedy)');
-  if (/\*/.test(pattern.replace(/\\\*/g,''))) notes.push('* = zero or more (greedy)');
-  if (/\?/.test(pattern.replace(/\\\?/g,''))) notes.push('? = zero or one (optional)');
-  if (/\[.*\]/.test(pattern)) notes.push('[...] = character class (any char inside)');
-  if (/\(/.test(pattern.replace(/\\(/g,''))) notes.push('(...) = capturing group');
-  if (/\|/.test(pattern.replace(/\\\|/g,''))) notes.push('| = alternation (OR)');
-  if (/\{/.test(pattern.replace(/\\\{/g,''))) notes.push('{n,m} = quantifier (n to m times)');
-  if (/g/.test(pattern.split('/').pop()||'')) notes.push('g flag = global (find all matches)');
-  if (/i/.test(pattern.split('/').pop()||'')) notes.push('i flag = case-insensitive');
+  if (pattern.includes('\\d')) notes.push('\\d = any digit (0-9)');
+  if (pattern.includes('\\w')) notes.push('\\w = word char (a-zA-Z0-9_)');
+  if (pattern.includes('\\s')) notes.push('\\s = whitespace (space, tab)');
+  if (pattern.includes('\\b')) notes.push('\\b = word boundary');
+  if (pattern.startsWith('^')) notes.push('^ = start of string/line');
+  if (pattern.endsWith('$')) notes.push('$ = end of string/line');
+  if (pattern.includes('.') && !pattern.includes('\\.')) notes.push('. = any char (unescaped)');
+  if (pattern.includes('+')) notes.push('+ = one or more (greedy)');
+  if (pattern.includes('*')) notes.push('* = zero or more (greedy)');
+  if (pattern.includes('?')) notes.push('? = optional or lazy');
+  if (pattern.includes('[')) notes.push('[...] = character class');
+  if (pattern.includes('(')) notes.push('(...) = capturing group');
+  if (pattern.includes('|')) notes.push('| = alternation (OR)');
+  if (pattern.includes('{')) notes.push('{n,m} = quantifier');
   return notes;
 }
 
