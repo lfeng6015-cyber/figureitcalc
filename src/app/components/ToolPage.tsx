@@ -1,7 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Bookmark, Share2, LucideIcon, ExternalLink } from "lucide-react";
-import { TOOLS } from "../data/tools";
 
 interface RelatedTool {
   id: string | number;
@@ -28,17 +27,19 @@ interface ToolPageProps {
   tag: string;
   tagColor: string;
   toolId?: string;
+  categoryId?: string;
   seo?: SeoData;
   children: ReactNode;
   richContent?: ReactNode;
   related?: RelatedTool[];
   onBack: () => void;
   onNavigate?: (id: string | number) => void;
+  onNavigateToCategory?: (categoryId: string) => void;
 }
 
 export function ToolPage({
-  icon: Icon, name, description, tag, tagColor, toolId,
-  seo, children, richContent, related = [], onBack, onNavigate,
+  icon: Icon, name, description, tag, tagColor, toolId, categoryId,
+  seo, children, richContent, related = [], onBack, onNavigate, onNavigateToCategory,
 }: ToolPageProps) {
   const [showShare, setShowShare] = useState(false);
 
@@ -93,7 +94,7 @@ export function ToolPage({
               "@type": "BreadcrumbList",
               "itemListElement": [
                 { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.figureitcalc.com/" },
-                { "@type": "ListItem", "position": 2, "name": tag, "item": `https://www.figureitcalc.com/category/${toolId ? TOOLS.find(t => t.id === toolId)?.category : ""}.html` },
+                { "@type": "ListItem", "position": 2, "name": tag, "item": `https://www.figureitcalc.com/category/${categoryId || ""}.html` },
                 { "@type": "ListItem", "position": 3, "name": seo.h1 || name }
               ]
             })}
@@ -121,10 +122,19 @@ export function ToolPage({
           <button onClick={onBack} className="hover:text-foreground transition-colors flex items-center gap-1">
             <ArrowLeft className="w-3.5 h-3.5" /> Home
           </button>
-          <span>/</span>
-          <span className={`px-2 py-0.5 rounded-full text-xs ${tagColor}`}>{tag}</span>
-          <span>/</span>
-          <span className="text-foreground">{name}</span>
+          <span className="text-muted-foreground/40">/</span>
+          {categoryId && onNavigateToCategory ? (
+            <button
+              onClick={() => { onNavigateToCategory(categoryId); onBack(); }}
+              className={`px-2 py-0.5 rounded-full text-xs ${tagColor} hover:underline cursor-pointer`}
+            >
+              {tag}
+            </button>
+          ) : (
+            <span className={`px-2 py-0.5 rounded-full text-xs ${tagColor}`}>{tag}</span>
+          )}
+          <span className="text-muted-foreground/40">/</span>
+          <span className="text-foreground font-medium">{name}</span>
         </div>
       </div>
 

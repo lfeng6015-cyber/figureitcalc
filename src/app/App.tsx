@@ -262,6 +262,7 @@ export default function App() {
           {/* Tool page with SEO */}
           <ToolPage
             toolId={currentTool.id}
+            categoryId={currentTool.category}
             icon={getIcon(currentTool.icon)}
             name={currentTool.name}
             description={currentTool.seo.intro}
@@ -277,6 +278,7 @@ export default function App() {
             }))}
             onBack={closeTool}
             onNavigate={(id) => openTool(id as string)}
+            onNavigateToCategory={(catId) => { setActiveCategory(catId); }}
             richContent={(() => {
               const c = getContent(currentTool.id);
               if (!c) return null;
