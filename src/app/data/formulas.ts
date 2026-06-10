@@ -674,8 +674,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const r=F(v.rate)/100/12; let b=F(v.saved),mo=0; while(b<F(v.goal)&&mo<1200){b=b*(1+r)+F(v.monthly);mo++;} return [{label:'Months to Goal',value:String(mo)},{label:'Years',value:(mo/12).toFixed(1)}]; },
   },
       'scientific-calculator': {
-    inputs: [{key:'expr',label:'Expression',type:'text',defaultValue:'sqrt(16)+sin(PI/2)*2'}],
-    formula: (v) => { try{var x=String(v.expr).replace(/PI/gi,String(Math.PI)).replace(/sin/gi,'Math.sin').replace(/cos/gi,'Math.cos').replace(/tan/gi,'Math.tan').replace(/sqrt/gi,'Math.sqrt').replace(/abs/gi,'Math.abs'); var r=Function('"use strict";return ('+x+')')(); return[{label:'Result',value:Number(r).toFixed(6)}]; }catch(e){return[{label:'Error',value:'Invalid'}];} },
+    inputs: [{key:'expr',label:'Expression',type:'text',defaultValue:'sqrt(16)+sin(PI/2)*2'},{key:'angle',label:'Angle Unit',type:'select',options:[{label:'Radians (rad)',value:'rad'},{label:'Degrees (deg)',value:'deg'}],defaultValue:'rad'}],
+    formula: (v) => { try{var x=String(v.expr); if(v.angle==='deg'){var d2r=String(Math.PI/180);x=x.replace(/sin\(/g,'Math.sin('+d2r+'*(').replace(/cos\(/g,'Math.cos('+d2r+'*(').replace(/tan\(/g,'Math.tan('+d2r+'*(');} else{x=x.replace(/sin/gi,'Math.sin').replace(/cos/gi,'Math.cos').replace(/tan/gi,'Math.tan');} x=x.replace(/PI/gi,String(Math.PI)).replace(/sqrt/gi,'Math.sqrt').replace(/abs/gi,'Math.abs').replace(/log/gi,'Math.log').replace(/exp/gi,'Math.exp').replace(/\^/g,'**'); var r=Function('"use strict";return ('+x+')')(); return[{label:'Result ('+(v.angle==='deg'?'deg)':'rad)'),value:Number(r).toFixed(6)}]; }catch(e){return[{label:'Error',value:'Invalid expression'}];} },
   },
     'seating-chart-calculator': {
     inputs: [{key:'guests',label:'Guests',type:'number',defaultValue:80},{key:'per',label:'Per Table',type:'number',defaultValue:8}],

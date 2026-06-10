@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect } from "react";
+import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { ChevronDown, ChevronRight, Lightbulb, Calculator, Copy, CheckCircle, Share2 } from "lucide-react";
 import type { CalcInput, CalcResult, CalcStep, CalcSection } from "../../data/formulas";
 
@@ -95,6 +95,20 @@ export function CalculatorTool({ inputs, formula, presets, description, toolId }
   const [expandedSteps, setExpandedSteps] = useState<Record<string, boolean>>({});
   const [copied, setCopied] = useState(false);
   const [linkCopied, setLinkCopied] = useState(false);
+  const [calculating, setCalculating] = useState(false);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Debounced values for formula computation (150ms delay prevents jank on fast typing)
+  const [debouncedValues, setDebouncedValues] = useState(values);
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    setCalculating(true);
+    debounceRef.current = setTimeout(() => {
+      setDebouncedValues(values);
+      setCalculating(false);
+    }, 150);
+    return () => { if (debounceRef.current) clearTimeout(debounceRef.current); };
+  }, [values]);
 
   // Sync values → URL query string on every change
   useEffect(() => {
@@ -123,7 +137,7 @@ export function CalculatorTool({ inputs, formula, presets, description, toolId }
     setExpandedSteps(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const rawOutput = useMemo(() => formula(values), [values, formula]);
+  const rawOutput = useMemo(() => formula(debouncedValues), [debouncedValues, formula]);
 
   // Detect format: CalcSection[] has 'title' property, CalcResult[] doesn't
   const isSectioned = rawOutput.length > 0 && isCalcSection(rawOutput[0]);
@@ -294,7 +308,7 @@ export function CalculatorTool({ inputs, formula, presets, description, toolId }
                       String(r.value).includes('\n') ? (
                         <pre className="font-mono text-xs text-foreground whitespace-pre overflow-x-auto">{r.value}</pre>
                       ) : (
-                        <span className={`font-mono ${r.emphasis ? "text-xl font-bold text-foreground" : "text-lg font-semibold text-foreground"}`}>
+                        <span className={`font-mono break-all ${r.emphasis ? "text-xl font-bold text-foreground" : "text-lg font-semibold text-foreground"}`}>
                           {r.value}
                         </span>
                       )
@@ -363,7 +377,7 @@ export function CalculatorTool({ inputs, formula, presets, description, toolId }
                     String(r.value).includes('\n') ? (
                       <pre className="font-mono text-xs text-foreground whitespace-pre overflow-x-auto">{r.value}</pre>
                     ) : (
-                      <span className={`${isEmpty ? "text-muted-foreground/50" : "text-foreground"} text-lg font-bold font-mono`}>{displayVal}</span>
+                      <span className={`${isEmpty ? "text-muted-foreground/50" : "text-foreground"} text-lg font-bold font-mono break-all`}>{displayVal}</span>
                     )
                   )}
                   {r.insight && (
