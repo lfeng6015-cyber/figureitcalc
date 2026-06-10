@@ -25,8 +25,11 @@ export interface CalcSection {
   steps?: { label: string; formula: string; result: string }[];
 }
 
+import { parseNum } from "./calcEngine";
+
+/** @deprecated Use parseNum() from calcEngine instead. Kept for backward compatibility with existing formulas. */
 export function F(v: number | string): number {
-  return Number(v) || 0;
+  return parseNum(v, 0);
 }
 
 export interface FormulaConfig {
