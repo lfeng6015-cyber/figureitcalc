@@ -26,7 +26,7 @@ export function ToolCard({
   return (
     <div
       onClick={onClick}
-      className="bg-card border border-border rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:shadow-lg hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200 group"
+      className="bg-card border border-border rounded-xl p-5 flex flex-col gap-3 cursor-pointer hover:shadow-lg hover:border-primary/40 hover:-translate-y-0.5 hover:relative hover:z-10 transition-all duration-200 group"
     >
       {/* Top: Icon + Title + Badges */}
       <div className="flex items-start gap-3">
