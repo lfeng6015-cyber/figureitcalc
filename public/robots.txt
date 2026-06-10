@@ -3,6 +3,6 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
-Sitemap: https://figureitcalc.com/sitemap.xml
+Sitemap: https://www.figureitcalc.com/sitemap.xml
 
 # Crawl-delay: 1
