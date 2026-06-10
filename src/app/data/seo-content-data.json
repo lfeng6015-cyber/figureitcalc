@@ -1,0 +1,617 @@
+{
+  "pages": [
+    {
+      "slug": "can-i-afford-500k-house",
+      "type": "scenario",
+      "title": "Can I Afford a $500,000 House? — Complete 2026 Guide",
+      "description": "Wondering if you can afford a $500k home? Estimate monthly payments, required income, down payment options, and full costs including taxes and insurance with our free mortgage calculator.",
+      "keywords": "can i afford 500k house, home affordability 2026, mortgage calculator, how much house can i afford, 500000 house monthly payment, first time homebuyer budget, mortgage affordability, home buying guide",
+      "intro": "A $500,000 home is a major financial commitment — and with 2026 mortgage rates around 6.5%, the monthly payment varies dramatically based on your down payment, credit score, and location. Before you start house hunting, you need to know whether your income, savings, and monthly budget can support it. Below, we break down exactly what you need to afford a $500k house, including income requirements, down payment strategies, and hidden costs many buyers overlook. Then plug your numbers into our free mortgage calculator to see your personalized results — all processing is client-side and private.",
+      "icon": "Home",
+      "sections": [
+        {
+          "title": "What Monthly Payment Should You Expect on a $500k Home?",
+          "type": "text",
+          "body": "With 2026 mortgage rates averaging 6.5% for a 30-year fixed loan, here is a rough breakdown. If you put 20% down ($100,000), your loan amount is $400,000. At 6.5%, the monthly principal and interest payment is approximately $2,528. Add property taxes (varies by state, roughly 1.1% nationally = $458/month) and homeowners insurance ($150/month), and your total PITI is about $3,136 per month. If you put less than 20% down, you will also pay PMI (private mortgage insurance), typically $100 to $300 per month. With only 5% down, your monthly payment jumps to roughly $3,900 including PMI."
+        },
+        {
+          "title": "Income Needed for a $500,000 House",
+          "type": "text",
+          "body": "Lenders typically use the 28/36 rule: no more than 28% of gross monthly income on housing (PITI), and no more than 36% on total debt (housing + car loans + credit cards + student loans). For a $3,136 monthly PITI payment with 20% down, you would need a gross monthly income of roughly $11,200 — an annual household income of about $134,000. With a smaller down payment, the required income increases. If your total monthly debts (including the mortgage) push past 36% of gross income, lenders may deny your application or offer a smaller loan."
+        },
+        {
+          "title": "Key Factors That Affect Your Affordability",
+          "type": "bullet-list",
+          "items": [
+            "Down payment: 3% (conventional) = $15,000 vs 20% = $100,000. A larger down payment eliminates PMI and lowers monthly payments.",
+            "Interest rate: A 1% rate difference changes monthly payments by roughly $250-$300 on a $400k loan. Your credit score directly impacts your rate.",
+            "Property taxes: Vary from 0.3% (Hawaii) to 2.5% (New Jersey) annually. On a $500k home, that is the difference between $1,500/year and $12,500/year.",
+            "PMI: Required for down payments under 20%, typically 0.5% to 1.5% of the loan amount annually — that is $167 to $500 per month.",
+            "HOA fees: Can add $200 to $800 per month in condos and planned communities. Always check HOA costs before making an offer.",
+            "Closing costs: Budget 2% to 5% of the purchase price ($10,000 to $25,000) for lender fees, title insurance, appraisal, and prepaid items."
+          ]
+        },
+        {
+          "title": "Try It Yourself — Calculate Your Exact Numbers",
+          "type": "callout",
+          "calloutType": "tip",
+          "body": "Use our free mortgage calculator to plug in your exact numbers. Adjust the down payment, interest rate, and loan term to see real-time monthly payment changes. Try different scenarios — 15 vs 30 years, 5% vs 20% down, different property tax rates. The calculator shows full PITI breakdown including PMI. All calculations are 100% client-side — your financial data never leaves your browser."
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "mortgage-calculator", "name": "Mortgage Calculator", "description": "Estimate your full monthly payment including principal, interest, taxes, and PMI.", "cta": "Calculate Your Payment" },
+        { "toolId": "down-payment-calculator", "name": "Down Payment Calculator", "description": "See how different down payment amounts change your monthly costs and PMI requirements.", "cta": "Compare Down Payments" }
+      ],
+      "faq": [
+        { "q": "What salary do I need for a $500k home?", "a": "With 20% down and a 6.5% interest rate on a 30-year loan, your monthly PITI would be roughly $3,100 to $3,400 depending on taxes and insurance. Following the 28% rule, you would need an annual household income of approximately $133,000 to $146,000. With a lower down payment or higher rates, the required income increases significantly." },
+        { "q": "How much is a down payment on $500,000?", "a": "For a conventional loan, 20% down = $100,000. FHA loans allow as little as 3.5% down = $17,500. Some conventional programs offer 3% down = $15,000 for qualified buyers. First-time homebuyer programs may offer down payment assistance. A larger down payment reduces your monthly payment and eliminates PMI." },
+        { "q": "How do property taxes affect affordability?", "a": "Property taxes are a major variable. In a high-tax state like New Jersey (2.5% effective rate), annual taxes on a $500k home are roughly $12,500 — adding over $1,000/month to your payment. In a low-tax state like Hawaii (0.3%), taxes are only $1,500/year, or $125/month. Always research local tax rates before budgeting." }
+      ]
+    },
+    {
+      "slug": "how-much-will-i-save-in-10-years",
+      "type": "scenario",
+      "title": "How Much Will I Save in 10 Years? — Compound Interest Projection",
+      "description": "Project your savings over 10 years with compound interest. See how monthly contributions, interest rates, and starting balance affect your future wealth. Free calculator included.",
+      "keywords": "how much will i save in 10 years, compound interest calculator, savings projection, investment growth, monthly savings plan, 10 year savings goal, retirement planning, wealth building calculator",
+      "intro": "The difference between saving $200/month and $500/month over 10 years is staggering — not just because of the extra contributions, but because of compound interest. At a 7% annual return, $500/month for 10 years grows to roughly $86,000. But start with $10,000 already saved and contribute $750/month, and you are looking at over $150,000. The math is powerful, and the variables — starting amount, monthly contribution, interest rate, and time — all interact in ways that are not intuitive. Use our free compound interest calculator to model your exact scenario. 100% client-side, no data sent anywhere.",
+      "icon": "TrendingUp",
+      "sections": [
+        {
+          "title": "The Power of Monthly Contributions",
+          "type": "text",
+          "body": "Small monthly contributions add up dramatically over a decade. At 7% annual return: $200/month grows to $34,700 (you contributed $24,000 — growth of $10,700). $500/month grows to $86,700 (you contributed $60,000 — growth of $26,700). $1,000/month grows to $173,400 (you contributed $120,000 — growth of $53,400). Notice that doubling your contribution more than doubles your final balance, because larger balances earn more interest each year."
+        },
+        {
+          "title": "Starting Balance Makes a Huge Difference",
+          "type": "text",
+          "body": "Starting with money already saved amplifies compound growth. With a $10,000 starting balance and $500/month at 7% for 10 years, you reach approximately $106,000 — nearly $20,000 more than starting from zero. The initial balance compounds for the full 10 years, earning interest on interest. If you start with $50,000 and add $500/month, you reach roughly $185,000. The lesson: lump-sum investing early beats waiting."
+        },
+        {
+          "title": "Interest Rate Scenarios",
+          "type": "bullet-list",
+          "items": [
+            "3% (high-yield savings/CD): $500/month for 10 years → $69,800. Safe but low growth.",
+            "7% (stock market historical average): $500/month for 10 years → $86,700. Moderate risk, historical norm.",
+            "10% (aggressive portfolio): $500/month for 10 years → $102,400. Higher risk, higher potential return.",
+            "The 1% difference between 6% and 7% over 10 years is over $7,000 on a $500/month plan — this is why expense ratios and fees matter."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "compound-interest-calculator", "name": "Compound Interest Calculator", "description": "Model your savings growth with monthly contributions, variable rates, and different time horizons.", "cta": "Project Your Savings" },
+        { "toolId": "savings-goal-calculator", "name": "Savings Goal Calculator", "description": "Find out exactly how much you need to save each month to reach your target amount.", "cta": "Set Your Goal" }
+      ],
+      "faq": [
+        { "q": "How much should I save each month?", "a": "The standard recommendation is 20% of your income: 15% to retirement and 5% to an emergency fund. If 20% is not achievable now, start with whatever you can — even $50/month builds the habit. Increase contributions by 1% each year. The most important factor is consistency over time, not the initial amount." },
+        { "q": "What is a realistic rate of return?", "a": "The S&P 500 has historically returned about 10% per year before inflation (roughly 7% after inflation) over the long term. For conservative planning, use 6-7%. For a high-yield savings account or CD, use 3-4%. Always account for inflation — $100,000 in 10 years will buy less than $100,000 today." },
+        { "q": "Is 10 years enough time to invest?", "a": "Yes — 10 years is a meaningful investing timeframe. Historically, the S&P 500 has been positive over every rolling 10-year period since 1950. However, any specific 10-year window can be volatile. The key is staying invested through market dips and continuing regular contributions regardless of market conditions." }
+      ]
+    },
+    {
+      "slug": "should-i-pay-credit-card-or-invest",
+      "type": "scenario",
+      "title": "Should I Pay Credit Card Debt or Invest? — The Math Explained",
+      "description": "Credit card at 22% APR vs investing at 7% returns — which should you prioritize? Do the math and find out why debt payoff almost always wins. Free calculator.",
+      "keywords": "pay credit card or invest, debt vs investing, credit card payoff strategy, should i invest or pay debt, compound interest debt, personal finance decision, debt snowball vs investing",
+      "intro": "You have an extra $500 this month. Should you put it toward your credit card balance (22% APR) or invest it in the stock market (7% expected return)? At first glance, investing sounds productive — but the math tells a very different story. A 22% credit card APR is a guaranteed 22% return on every dollar you pay down — and no investment offers that risk-free. Here, we break down the exact numbers so you can make the smartest decision for your situation. Use our free calculators to run your own scenario. 100% client-side, all private.",
+      "icon": "Wallet",
+      "sections": [
+        {
+          "title": "The Math: Credit Card Debt vs Investing",
+          "type": "text",
+          "body": "Imagine you have $5,000 in credit card debt at 22% APR and $500 extra cash. Option A: Pay $500 toward the card. You save $500 × 22% = $110 in interest over the next year — a guaranteed, tax-free 22% return. Option B: Invest $500 at 7% expected return. You earn roughly $35 in a year — before taxes. The credit card payoff wins by $75+. Now scale that up: if you have $10,000 in credit card debt, every extra dollar you pay down earns a guaranteed 22% return. No stock, bond, or crypto can match that risk-free."
+        },
+        {
+          "title": "When Investing MIGHT Make Sense",
+          "type": "bullet-list",
+          "items": [
+            "401(k) employer match: If your employer matches 50% or 100% of contributions, the effective return is 50-100% — higher than credit card interest. Contribute enough to get the full match, then pay debt with the rest.",
+            "Low-interest debt (under 5% APR): If your debt carries a low rate (mortgage, some student loans), investing may outperform. A 4% mortgage vs 7% expected market returns favors investing.",
+            "0% APR promotional period: If you have a 0% intro APR for 12-18 months, invest the money during that period, but pay the debt in full before the promo ends.",
+            "Tax-advantaged accounts: Contributing to a Traditional IRA or 401(k) reduces your taxable income now, which can provide an immediate tax savings that compounds the investment return."
+          ]
+        },
+        {
+          "title": "The Psychological Factor",
+          "type": "callout",
+          "calloutType": "info",
+          "body": "Beyond the math, being debt-free reduces stress, improves credit scores, and frees up monthly cash flow for future investing. Many people find the psychological benefit of eliminating debt outweighs the small potential advantage of investing while carrying high-interest balances. Once the credit cards are at zero, you can redirect those former payments into investments — and you will have more to invest because you are not paying 22% interest."
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "compound-interest-calculator", "name": "Compound Interest Calculator", "description": "See how much your investments could grow over time with regular contributions.", "cta": "Project Returns" },
+        { "toolId": "credit-card-payoff-calculator", "name": "Debt Payoff Calculator", "description": "Calculate how fast you can eliminate debt with extra payments and see total interest saved.", "cta": "Plan Your Payoff", "toolId": "early-payoff-calculator" }
+      ],
+      "faq": [
+        { "q": "Should I empty my savings to pay off credit cards?", "a": "Keep at least a $1,000 to one-month emergency fund before aggressively paying debt. If you drain savings entirely and then face an unexpected expense, you will have to use credit cards again — undoing your progress. Once you have a small emergency cushion, direct all extra cash to high-interest debt." },
+        { "q": "What about student loans — pay or invest?", "a": "It depends on the interest rate. Federal student loans at 3-5%: investing likely wins mathematically. Private student loans at 8%+: prioritize payoff. If you qualify for income-driven repayment or Public Service Loan Forgiveness, the calculus changes — consult a financial advisor." },
+        { "q": "Is 22% credit card interest really that bad?", "a": "Yes. At 22% APR, a $5,000 balance compounds to over $6,100 in one year if you make only minimum payments. After 5 years of minimum payments, you will have paid roughly $4,300 in interest alone — nearly doubling the original debt. Paying off high-interest debt is the single best financial move most people can make." }
+      ]
+    },
+    {
+      "slug": "is-it-better-to-lease-or-buy-car",
+      "type": "scenario",
+      "title": "Is It Better to Lease or Buy a Car? — 2026 Cost Comparison",
+      "description": "Lease vs buy a car: compare total costs over 3-6 years including depreciation, interest, taxes, and residual value. Free lease vs buy calculator with 2026 rates.",
+      "keywords": "lease vs buy car, car lease calculator, auto loan vs lease, leasing pros and cons 2026, car buying guide, lease payment calculator, total cost of ownership car",
+      "intro": "Leasing often looks cheaper because monthly payments are lower — but is it actually the better deal? The answer depends on how long you keep cars, how many miles you drive, and what happens to vehicle values. A lease is essentially paying for the car's depreciation during the lease term plus interest and fees. Buying means you own the asset at the end, but you also bear the depreciation risk. We break down the total 6-year cost of leasing two cars back-to-back versus buying one and keeping it. Use our free lease vs buy calculator to run your exact scenario. All calculations are client-side and private.",
+      "icon": "Car",
+      "sections": [
+        {
+          "title": "Leasing: Lower Monthly Payments, But You Own Nothing",
+          "type": "text",
+          "body": "A lease payment covers the predicted depreciation between the car's sale price and its residual value (what it is worth at lease end), plus a money factor (interest). On a $35,000 car with a 60% residual after 3 years, you pay for $14,000 of depreciation plus interest. Monthly payments might be $399 versus $620 to finance. But at the end of 3 years, you have nothing — you must return the car or buy it at residual value. If you lease two cars over 6 years, you make 72 monthly payments and own nothing. Total outlay: roughly $28,700 in lease payments."
+        },
+        {
+          "title": "Buying: Higher Payments, But You Build Equity",
+          "type": "text",
+          "body": "Financing the same $35,000 car at 6.5% for 60 months costs about $685/month. After 5 years of payments, you own the car free and clear. Its residual value at year 6 might be $12,000 to $15,000 — equity you can use toward your next vehicle. Over 6 years, total payments are $41,100, minus the residual value of $13,500 equals a net cost of roughly $27,600 — comparable to leasing, but you had an asset the entire time. If you keep the car beyond 6 years, buying pulls far ahead."
+        },
+        {
+          "title": "Which Should You Choose?",
+          "type": "bullet-list",
+          "items": [
+            "Lease if: You want a new car every 3 years, drive under 12,000 miles/year, want lower monthly payments, and do not want to deal with selling or trading in.",
+            "Buy if: You plan to keep the car 5+ years, drive more than 15,000 miles/year, want to build equity, or customize/modify your vehicle.",
+            "Leasing is usually more expensive long-term if you would otherwise keep a purchased car for 7-10 years.",
+            "Buying a 2-3 year old used car (off-lease) combines the best of both: someone else took the biggest depreciation hit, and you get a modern car at a steep discount."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "car-loan-calculator", "name": "Auto Loan Calculator", "description": "Calculate monthly car payments with trade-in, down payment, sales tax, and current 2026 auto loan rates.", "cta": "Calculate Loan Payment" },
+        { "toolId": "lease-vs-buy-car-calculator", "name": "Lease vs Buy Calculator", "description": "Compare total 6-year costs of leasing versus buying, including depreciation, interest, and residual value.", "cta": "Compare Lease vs Buy" }
+      ],
+      "faq": [
+        { "q": "What is a money factor on a lease?", "a": "The money factor is the lease equivalent of an interest rate. To convert to APR, multiply by 2,400. For example, a money factor of 0.0025 equals a 6% APR (0.0025 × 2400 = 6.0). Always ask for the money factor when negotiating a lease — dealers often focus on the monthly payment to hide a high rate." },
+        { "q": "Can I negotiate the residual value?", "a": "No — the residual value is set by the leasing company (the bank or captive finance arm) and is not negotiable. However, you can and should negotiate the selling price of the car (capitalized cost), which is the other major factor in your lease payment. A lower selling price means lower lease payments." },
+        { "q": "What happens if I exceed the mileage limit on a lease?", "a": "Excess mileage charges are typically 15 to 25 cents per mile. Driving 5,000 miles over a 36,000-mile limit at $0.20/mile costs you $1,000 at lease-end. If you consistently drive more than 12,000-15,000 miles per year, buying is almost certainly better than leasing." }
+      ]
+    },
+    {
+      "slug": "how-much-house-can-i-afford",
+      "type": "scenario",
+      "title": "How Much House Can I Afford? — 2026 Home Affordability Guide",
+      "description": "Calculate exactly how much house you can afford based on your income, debts, and down payment. Use the 28/36 rule, DTI ratio, and 2026 mortgage rates. Free calculator.",
+      "keywords": "how much house can i afford, home affordability calculator, mortgage pre qualification, DTI ratio, how much mortgage can i get, first time home buyer budget, house hunting budget 2026",
+      "intro": "Before you fall in love with a house, you need to know what you can actually afford. Lenders look at your debt-to-income ratio (DTI), credit score, down payment, and employment history to determine your maximum loan amount — but you should set your own budget based on what feels comfortable, not just what the bank approves. We walk through the 28/36 rule, DTI calculation, and the difference between pre-qualified and truly affordable. Use our free home affordability calculator to see your personalized maximum home price. 100% client-side, all private.",
+      "icon": "Home",
+      "sections": [
+        {
+          "title": "The 28/36 Rule Explained",
+          "type": "text",
+          "body": "Lenders use the 28/36 rule as a benchmark: housing costs (PITI) should not exceed 28% of your gross monthly income, and total debt payments (housing + car loans + student loans + credit cards) should not exceed 36%. For a household earning $120,000/year ($10,000/month gross), the 28% cap allows a $2,800 monthly housing payment. The 36% cap means total debts including housing cannot exceed $3,600. If you have $800/month in other debts (car + student loans), your max housing payment drops to $2,800 to stay under 36%. At 6.5% interest with 20% down, a $2,800 monthly PITI payment translates to a home price of approximately $430,000."
+        },
+        {
+          "title": "DTI: The Number That Really Matters",
+          "type": "text",
+          "body": "Your debt-to-income ratio (DTI) is total monthly debt payments divided by gross monthly income. Most conventional loans require a DTI under 43% (some go to 50% with compensating factors). FHA loans may allow up to 50% DTI. But just because you qualify does not mean you should max out. A $3,500 mortgage on $10,000/month income leaves only $6,500 for everything else — taxes, food, transportation, savings, emergencies. Many financially conservative buyers target a 25% DTI for housing alone."
+        },
+        {
+          "title": "Quick Affordability Reference (2026)",
+          "type": "bullet-list",
+          "items": [
+            "$60,000 income with $500/month debts: Maximum home price ~$170,000 (with 20% down)",
+            "$100,000 income with $500/month debts: Maximum home price ~$330,000 (with 20% down)",
+            "$150,000 income with $800/month debts: Maximum home price ~$530,000 (with 20% down)",
+            "$200,000 income with $1,000/month debts: Maximum home price ~$730,000 (with 20% down)",
+            "Note: These are lender maximums based on 43% DTI. Your personal comfort zone may be 20-30% lower."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "mortgage-calculator", "name": "Mortgage Calculator", "description": "Get a full monthly payment breakdown including principal, interest, taxes, insurance, and PMI.", "cta": "Calculate Payment" },
+        { "toolId": "down-payment-calculator", "name": "Down Payment Calculator", "description": "See how different down payment amounts affect your monthly payment and total loan cost.", "cta": "Explore Down Payments" }
+      ],
+      "faq": [
+        { "q": "What is a good DTI ratio for a mortgage?", "a": "Lenders prefer a DTI under 36% for conventional loans (with housing at or below 28%). FHA loans may go to 50% DTI. VA loans have no hard DTI cap but typically prefer under 41%. The lower your DTI, the better your interest rate and terms. Paying down credit cards and car loans before applying for a mortgage can significantly improve your DTI and loan terms." },
+        { "q": "Should I buy at the top of my pre-approval amount?", "a": "Generally no. A pre-approval is a lender's maximum, not a recommendation. Buying at the top leaves no room for unexpected expenses, lifestyle changes, or market downturns. Many homeowners who bought at their maximum later report feeling house poor. Consider staying at 75-85% of your pre-approval amount for financial breathing room." },
+        { "q": "How accurate are online affordability calculators?", "a": "Online calculators give a solid estimate using standard lending guidelines (28/36 rule, DTI, current rates). However, they cannot account for your unique credit profile, employment situation, or local property tax nuances. Use calculators for initial budgeting, then get pre-approved by a lender for an exact number before house hunting." }
+      ]
+    },
+    {
+      "slug": "rent-vs-buy",
+      "type": "compare",
+      "title": "Rent vs Buy: Which Is Better for You? — 2026 Cost Comparison",
+      "description": "Compare renting versus buying a home over 5-30 years. Factor in mortgage, rent increases, appreciation, maintenance, tax benefits, and opportunity cost. Free calculator.",
+      "keywords": "rent vs buy calculator, should i rent or buy, renting vs buying home, mortgage vs rent comparison, home buying decision 2026, rent vs buy breakeven, housing cost comparison",
+      "intro": "The rent vs buy decision is one of the biggest financial choices you will make — and the answer depends on home prices, interest rates, rent costs, how long you plan to stay, and what you could earn investing the difference. In some markets, renting and investing the savings beats buying. In others, buying builds wealth faster through leverage and appreciation. We break down the full financial comparison, including often-overlooked costs like maintenance, property taxes, and transaction fees. Use our free rent vs buy calculator to see which path makes sense for your numbers. 100% client-side, private.",
+      "icon": "Building",
+      "sections": [
+        {
+          "title": "The 5-Year Comparison: Renting vs Buying a $400,000 Home",
+          "type": "text",
+          "body": "Renting at $2,200/month for 5 years: total rent paid = $132,000 (assuming 3% annual increases, actual total ~$140,000). You own nothing at the end. Buying the same home at $400,000 with 20% down at 6.5%: monthly PITI ~$2,650. Over 5 years, you pay roughly $159,000 in mortgage payments, of which about $97,000 is interest (tax-deductible) and $62,000 is principal (your equity). The home appreciates — at 3% annually, it is worth $464,000 after 5 years. Your $80,000 down payment plus $62,000 in principal payments equals $142,000 in equity, minus ~$25,000 in closing costs and ~$15,000 in maintenance. Net equity: roughly $102,000 from an $80,000 investment. But if you sell within 5 years, transaction costs (6% agent commission) eat about $28,000, reducing your net gain."
+        },
+        {
+          "title": "The Breakeven Timeline",
+          "type": "text",
+          "body": "The breakeven point — where buying becomes financially better than renting — depends heavily on your local market. In most U.S. markets, if you stay 5-7 years, buying wins. Under 3 years, renting almost always wins due to transaction costs. The New York Times rent vs buy calculator famously showed that in high-cost markets like San Francisco or New York, renting can beat buying even over 10+ years if rent increases are modest and investment returns are strong. The key variables: home price appreciation rate, rent increase rate, mortgage interest rate, and investment return rate on the money you would otherwise use for a down payment."
+        },
+        {
+          "title": "Hidden Costs People Forget",
+          "type": "bullet-list",
+          "items": [
+            "Maintenance: Budget 1% of home value per year. On a $400,000 house, that is $4,000/year — new roof, HVAC repair, plumbing issues, appliance replacement.",
+            "Property taxes: They go up. A home bought for $400,000 might be reassessed at $450,000 in a few years, increasing your tax bill.",
+            "Homeowners insurance: Rising nationwide, especially in disaster-prone areas. Budget $1,500-$3,500/year depending on location.",
+            "HOA fees: Can increase annually. A $300/month HOA now might be $400 in 5 years.",
+            "Opportunity cost: Your down payment ($80,000 on a $400k home) could have been invested. At 7% for 5 years, that is roughly $32,000 in foregone investment gains.",
+            "PMI: If you put less than 20% down, PMI adds $100-$300/month until you reach 20% equity — typically 5-10 years."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "rent-vs-buy-calculator", "name": "Rent vs Buy Calculator", "description": "Compare total costs of renting versus buying over any timeframe with customizable assumptions.", "cta": "Compare Now" },
+        { "toolId": "mortgage-calculator", "name": "Mortgage Calculator", "description": "Get a full PITI breakdown for any home price, down payment, and interest rate.", "cta": "Calculate Mortgage" }
+      ],
+      "faq": [
+        { "q": "Is renting throwing money away?", "a": "No — renting pays for shelter, flexibility, and freedom from maintenance costs and property tax risk. If you invest the difference between renting and buying costs, renting can be a smart financial choice, especially in expensive markets. The 'renting is throwing money away' narrative ignores that mortgage interest, property taxes, insurance, and maintenance are also non-recoverable costs." },
+        { "q": "How long should I plan to stay in a home I buy?", "a": "Aim for at least 5-7 years to overcome transaction costs. Buying and selling a home costs roughly 8-10% of the home's value in combined fees (agent commissions, closing costs, moving). On a $400,000 home, that is $32,000-$40,000. You need several years of appreciation and principal paydown to recoup those costs." },
+        { "q": "Can I afford to buy if I have student loans?", "a": "Yes, if your DTI ratio stays within lender guidelines. Federal student loans on income-driven repayment plans use the actual monthly payment (not the full amortized payment) for DTI calculation. Pay down high-interest debt and save for a down payment simultaneously — even 5-10% down can get you into a home with conventional financing." }
+      ]
+    },
+    {
+      "slug": "15-year-vs-30-year-mortgage",
+      "type": "compare",
+      "title": "15-Year vs 30-Year Mortgage: Which Saves You More?",
+      "description": "Compare 15-year and 30-year fixed mortgages. See total interest paid, monthly payments, and which option builds wealth faster. Free mortgage comparison calculator.",
+      "keywords": "15 year vs 30 year mortgage, mortgage term comparison, which mortgage is better, 15 year mortgage pros cons, 30 year mortgage total interest, mortgage comparison calculator, payoff early vs invest",
+      "intro": "A 15-year mortgage typically offers a lower interest rate (about 5.8% vs 6.5% for 30-year in 2026) and saves you a fortune in total interest — but the monthly payment is significantly higher. On a $300,000 loan, the 15-year payment is roughly $2,500/month versus $1,900/month for 30-year. Over the life of the loan, the 15-year saves about $180,000 in interest. But the 30-year frees up $600/month to invest elsewhere. Which is better? The answer depends on your discipline, goals, and cash flow. Use our mortgage calculator to compare both options side by side. 100% client-side, private.",
+      "icon": "Scale",
+      "sections": [
+        {
+          "title": "The Numbers: $300,000 Loan at 2026 Rates",
+          "type": "text",
+          "body": "15-year fixed at 5.8%: Monthly payment (P&I only) = $2,498. Total payments over 15 years = $449,640. Total interest = $149,640. After 15 years, you own the home free and clear. 30-year fixed at 6.5%: Monthly payment (P&I only) = $1,896. Total payments over 30 years = $682,560. Total interest = $382,560. After 30 years, you own the home. The 15-year saves $232,920 in interest and frees up your housing payment 15 years earlier. But the 30-year costs $602 less per month — $7,224 per year you can invest, spend, or save."
+        },
+        {
+          "title": "Investing the Difference: A Third Option",
+          "type": "text",
+          "body": "What if you take the 30-year mortgage and invest the $602/month difference? At 7% annual return over 30 years, $602/month invested grows to approximately $732,000. After paying off the $300,000 mortgage balance at year 30, you have $432,000 left — which beats the 15-year strategy (owning the home free and clear at year 15, then investing the full $2,498/month for years 16-30, which grows to roughly $616,000). The math slightly favors the 30-year + invest strategy — IF you actually invest the difference every month. Most people do not. The 15-year forces discipline."
+        },
+        {
+          "title": "Decision Framework",
+          "type": "bullet-list",
+          "items": [
+            "Choose 15-year if: You value guaranteed interest savings, want to be debt-free faster, have stable high income, and prefer forced savings through home equity.",
+            "Choose 30-year if: You want lower required payments for flexibility, will invest the difference consistently, have variable income, or might need cash flow for other goals.",
+            "Best of both: Get a 30-year mortgage but make extra payments as if it were 15-year. You get the flexibility of lower required payments with the interest savings of faster payoff. Just ensure there is no prepayment penalty.",
+            "Refinance later: Start with a 30-year, then refinance to a 15-year when rates drop or your income increases. Refinancing costs 2-5% of the loan amount."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "mortgage-calculator", "name": "Mortgage Calculator", "description": "Compare monthly payments and total interest for any loan amount, rate, and term.", "cta": "Compare Terms" },
+        { "toolId": "early-payoff-calculator", "name": "Early Payoff Calculator", "description": "See how extra payments shorten your loan term and slash total interest costs.", "cta": "Explore Payoff Options" }
+      ],
+      "faq": [
+        { "q": "Can I pay off a 30-year mortgage early?", "a": "Yes — most conventional mortgages have no prepayment penalty. Making one extra payment per year on a 30-year mortgage cuts the term to roughly 24 years and saves tens of thousands in interest. Even adding $100/month to principal can shave years off your loan." },
+        { "q": "Is a 15-year mortgage harder to qualify for?", "a": "Yes — the higher monthly payment means you need a higher income to meet the 28/36 DTI requirements. Lenders qualify you based on the monthly payment, not the loan term. If the 15-year payment pushes your DTI above 43%, you may not qualify even if the 30-year payment would be comfortable." },
+        { "q": "What if rates drop after I get a mortgage?", "a": "You can refinance to a lower rate or shorter term. The general rule: refinance if you can drop your rate by at least 1% and plan to stay in the home long enough to recoup closing costs (typically 2-5 years). Rate-and-term refinances replace your existing loan with a new one at better terms." }
+      ]
+    },
+    {
+      "slug": "lease-vs-buy-car",
+      "type": "compare",
+      "title": "Lease vs Buy Car: Total 6-Year Cost Comparison (2026)",
+      "description": "Compare leasing versus buying a car over 6 years. Factor in monthly payments, depreciation, residual value, mileage limits, and total cost of ownership. Free calculator.",
+      "keywords": "lease vs buy car, car lease calculator, auto loan comparison, leasing pros and cons, car buying vs leasing 2026, total car cost comparison, lease payment vs finance payment",
+      "intro": "The monthly lease payment on a $35,000 SUV might be $399 while the loan payment is $685 — but comparing monthly payments alone is misleading. A lease is essentially a long-term rental: you pay for the depreciation during the lease term and return the car. Buying means higher payments but you own an asset. Over 6 years (two 3-year leases vs one purchase kept 6 years), which costs less? We run the full comparison including residual value, mileage penalties, maintenance, and tax implications. Use our auto loan and lease calculators to model your exact scenario. 100% client-side, private.",
+      "icon": "Car",
+      "sections": [
+        {
+          "title": "6-Year Cost Comparison: $35,000 Car",
+          "type": "text",
+          "body": "Leasing (two 3-year leases): Monthly payment $399 × 72 months = $28,728 total payments. Acquisition fees: $1,500 × 2 = $3,000. Disposition fees: $400 × 2 = $800. Excess wear-and-tear: assume $500 per lease = $1,000. Total 6-year lease cost: $33,528. You own nothing. Buying (finance at 6.5% for 60 months): Monthly payment $685 × 60 = $41,100 total payments. Down payment: $3,500. Total cash outlay: $44,600. Car value after 6 years: approximately $12,000-$15,000. Net cost: $29,600-$32,600. Maintenance years 4-6 (out of warranty): ~$2,000. Net: $31,600-$34,600 — roughly equal to leasing. But buying wins if you keep the car beyond 6 years. Buying also wins if you finance a 2-3 year old used car instead of new."
+        },
+        {
+          "title": "Key Differences at a Glance",
+          "type": "bullet-list",
+          "items": [
+            "Monthly payment: Lease is typically 30-40% lower — great for cash flow, but you are paying for depreciation plus interest, not building equity.",
+            "Mileage: Lease limits you to 10,000-15,000 miles/year. Exceed by 5,000 miles and you owe ~$1,000 at lease-end. Buying has no mileage limits.",
+            "Customization: Leased cars must be returned stock. No modifications, no custom paint, no aftermarket parts. With a purchased car, you can modify freely.",
+            "Maintenance: Lease cars are always under factory warranty. Buying means you cover repairs after the warranty expires (typically year 3-5).",
+            "Flexibility: A lease locks you in for 2-4 years. Early termination fees are steep. With a purchased car, you can sell or trade in anytime.",
+            "Taxes: In most states, you pay sales tax only on the leased portion (depreciation), not the full car value — a small advantage for leasing."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "car-loan-calculator", "name": "Auto Loan Calculator", "description": "Calculate monthly payments with trade-in, down payment, and 2026 auto loan rates.", "cta": "Calculate Auto Loan" },
+        { "toolId": "lease-vs-buy-car-calculator", "name": "Lease vs Buy Calculator", "description": "Side-by-side 6-year cost comparison of leasing versus buying.", "cta": "Compare Options" }
+      ],
+      "faq": [
+        { "q": "Can I negotiate a lease like a purchase?", "a": "Yes — negotiate the selling price (capitalized cost) just as you would when buying. A lower selling price means lower lease payments. Also negotiate the money factor (interest rate). Dealers often focus solely on the monthly payment to hide a marked-up money factor or inflated selling price." },
+        { "q": "What is gap insurance on a lease?", "a": "Gap insurance covers the difference between what you owe on the lease and the car's actual value if it is totaled. Most leases include gap insurance automatically. If you buy, you should add gap coverage to your auto insurance policy, especially if you put less than 20% down." },
+        { "q": "Should I put money down on a lease?", "a": "Generally no. A down payment on a lease (capitalized cost reduction) lowers monthly payments but is lost if the car is totaled — gap insurance covers the leasing company, not your down payment. Keep your cash and accept the slightly higher monthly payment. The exception: multiple security deposits (MSDs) which are refundable and lower the money factor." }
+      ]
+    },
+    {
+      "slug": "traditional-vs-roth-ira",
+      "type": "compare",
+      "title": "Traditional IRA vs Roth IRA: Which Should You Choose?",
+      "description": "Compare Traditional and Roth IRA contributions, tax benefits, withdrawal rules, and which is better for your income level and retirement goals. Free retirement calculator.",
+      "keywords": "traditional ira vs roth ira, ira comparison, which ira is better, roth ira income limits 2026, traditional ira tax deduction, retirement account comparison, ira contribution limits 2026",
+      "intro": "Traditional IRA: contribute pre-tax dollars, reduce your taxable income now, pay taxes when you withdraw in retirement. Roth IRA: contribute after-tax dollars, get no tax break now, withdraw tax-free in retirement. The core question: will your tax rate be higher now or in retirement? If taxes are higher now, Traditional wins. If taxes will be higher later, Roth wins. But there are income limits, RMD rules, and estate planning considerations that complicate the decision. We break it all down with 2026 contribution limits ($7,000, plus $1,000 catch-up for 50+). Use our free retirement calculator to model both scenarios.",
+      "icon": "PiggyBank",
+      "sections": [
+        {
+          "title": "Quick Comparison Table",
+          "type": "bullet-list",
+          "items": [
+            "Tax break: Traditional = now (deduct contributions). Roth = later (tax-free withdrawals).",
+            "2026 contribution limit: $7,000 (under 50), $8,000 (50+). Combined limit across all IRAs.",
+            "Income limits for deduction (Traditional): Full deduction if MAGI under $79,000 (single) or $126,000 (married). Phased out above that if covered by a workplace plan.",
+            "Income limits for contribution (Roth): Full contribution if MAGI under $146,000 (single) or $230,000 (married). Phased out above that. Backdoor Roth available for high earners.",
+            "Required Minimum Distributions (RMDs): Traditional = yes, starting at age 73 (moves to 75 in 2033). Roth = no RMDs during owner's lifetime.",
+            "Early withdrawal: Traditional = 10% penalty + taxes before age 59.5 (with exceptions). Roth = contributions can be withdrawn anytime tax-free and penalty-free. Earnings have restrictions.",
+            "Estate planning: Roth passes to heirs tax-free. Traditional passes as taxable income to heirs."
+          ]
+        },
+        {
+          "title": "Decision Framework: Traditional or Roth?",
+          "type": "text",
+          "body": "Choose Traditional if you are in your peak earning years (high tax bracket now, expect lower bracket in retirement), want the immediate tax deduction, or need to lower your AGI for other benefits (student loan payments, child tax credit phaseouts). Choose Roth if you are early in your career (low tax bracket now, expect higher later), want tax diversification in retirement, value the flexibility of withdrawing contributions penalty-free, or want to leave tax-free assets to heirs. Many financial planners recommend having both: Traditional for the tax deduction now and Roth for tax-free flexibility later. The ideal split depends on your current and expected future tax rates."
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "retirement-calculator", "name": "Retirement Calculator", "description": "Project your retirement savings with 401(k), IRA contributions, Social Security, and withdrawal strategies.", "cta": "Plan Your Retirement" },
+        { "toolId": "compound-interest-calculator", "name": "Compound Interest Calculator", "description": "Model how IRA contributions grow over 20-40 years with compound returns.", "cta": "Project Growth" }
+      ],
+      "faq": [
+        { "q": "Can I contribute to both a Traditional and Roth IRA?", "a": "Yes, but the combined contribution cannot exceed the annual limit ($7,000 in 2026 for under 50). You could put $3,500 in each, for example. Having both gives you tax diversification in retirement — you can withdraw from Traditional up to a low tax bracket, then supplement with tax-free Roth withdrawals." },
+        { "q": "What is a Backdoor Roth IRA?", "a": "If your income exceeds the Roth IRA limits, you can contribute to a Traditional IRA (non-deductible) and then immediately convert it to a Roth IRA. This is legal and commonly used by high earners. Be aware of the pro-rata rule if you have existing Traditional IRA balances — consult a tax professional." },
+        { "q": "Should I prioritize IRA or 401(k)?", "a": "Always contribute enough to your 401(k) to get the full employer match first — that is free money. Then max out your IRA (more investment options, lower fees). Then go back to max out your 401(k). If your 401(k) has excellent low-cost index funds, the order matters less." }
+      ]
+    },
+    {
+      "slug": "salary-comparison",
+      "type": "compare",
+      "title": "Salary Comparison: Evaluate Two Job Offers Side by Side",
+      "description": "Compare two job offers including salary, benefits, 401(k) match, health insurance, bonuses, and cost of living. See which offer is truly better. Free take-home pay calculator.",
+      "keywords": "salary comparison, job offer comparison, compare two job offers, take home pay calculator, salary vs benefits, cost of living adjustment, job offer evaluation, total compensation comparison",
+      "intro": "A $95,000 salary with great benefits can be worth more than $110,000 with bare-minimum benefits. Comparing job offers requires looking past the base salary to health insurance premiums, 401(k) match, bonus potential, commute costs, and cost of living if relocation is involved. We walk through a systematic framework for comparing total compensation — and our free take-home pay calculator helps you see the after-tax difference. All calculations are client-side and private.",
+      "icon": "Briefcase",
+      "sections": [
+        {
+          "title": "Total Compensation: Beyond Base Salary",
+          "type": "text",
+          "body": "A complete comparison includes: base salary, annual bonus (and likelihood of payout), 401(k) match (a 6% match on $100k = $6,000 in free money), health insurance (premium difference of $200/month = $2,400/year), HSA contributions (some employers contribute $500-$1,000/year), stock options or RSUs (especially at tech companies), paid time off (the difference between 10 and 20 PTO days is two full weeks of your life), commute costs ($0.67/mile IRS rate), and remote work flexibility (saving $5,000-$10,000/year in commuting, wardrobe, and food). Add up all these elements before comparing base salaries."
+        },
+        {
+          "title": "Tax Impact: The Take-Home Reality",
+          "type": "text",
+          "body": "A $15,000 salary difference does not mean $15,000 more in your pocket. Federal income tax (22-24% marginal bracket for most professionals), FICA (7.65%), state income tax (0-13%), and benefit deductions all reduce the difference. $110,000 in California (9.3% state tax) versus $95,000 in Texas (0% state tax): the California job pays $15,000 more in salary but roughly $10,000 goes to state taxes, making the after-tax difference only about $5,000 — before comparing benefits. Always compare take-home pay, not gross salary."
+        },
+        {
+          "title": "Cost of Living Adjustment",
+          "type": "bullet-list",
+          "items": [
+            "Housing: A $95k salary in Dallas buys a similar lifestyle to ~$180k in San Francisco. Use a cost of living calculator.",
+            "State taxes: Eight states have no income tax (TX, FL, WA, NV, TN, WY, SD, AK). Moving from CA to TX saves 9.3% in state taxes alone.",
+            "Commute: A 60-minute commute costs roughly $8,000-$12,000/year in transportation and time versus a 15-minute commute.",
+            "Childcare: Varies wildly by city — $800/month in rural areas vs $2,500/month in major metros. Factor this in if you have kids.",
+            "General rule: A 10% salary increase that requires moving to a city with 30% higher cost of living is a pay cut in real terms."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "sales-tax-calculator", "name": "Take-Home Pay Calculator", "description": "Calculate after-tax income for any salary, accounting for federal, state, and FICA taxes.", "cta": "Calculate Take-Home Pay", "toolId": "salary-calculator" },
+        { "toolId": "compound-interest-calculator", "name": "Compound Interest Calculator", "description": "See the long-term impact of a higher 401(k) match — a 6% match vs 3% match compounds dramatically.", "cta": "Project the Difference" }
+      ],
+      "faq": [
+        { "q": "How do I calculate the value of a 401(k) match?", "a": "A 50% match up to 6% of salary on $100,000 income means: you contribute $6,000, employer adds $3,000. That $3,000 is tax-free compensation — effectively a 3% raise. A 100% match on 6% is worth $6,000/year. Over 30 years invested at 7%, a 6% match difference of $3,000/year grows to roughly $283,000." },
+        { "q": "Should I negotiate salary based on the other offer?", "a": "Yes, but frame it around market value, not the other offer. Say 'Based on my research and the total compensation packages I am evaluating, I am targeting a base salary of $X.' Giving your current employer a chance to match or beat an offer is standard practice — but be prepared to leave if they say no." },
+        { "q": "What benefits are most valuable beyond salary?", "a": "In order: 401(k) match (free money, tax-advantaged growth), health insurance (premium difference and coverage quality), HSA contributions (triple tax-advantaged), equity/RSUs (can dwarf salary at tech companies), PTO (time is money), remote work flexibility (saves thousands in commuting costs), professional development budget, and parental leave." }
+      ]
+    },
+    {
+      "slug": "how-compound-interest-works",
+      "type": "learn",
+      "title": "How Compound Interest Actually Works — The Complete Guide",
+      "description": "Learn how compound interest grows your money exponentially. Understand the formula, see real examples, and use our free calculator to project your own wealth over time.",
+      "keywords": "how compound interest works, compound interest explained, compound interest formula, investing basics, compound growth, time value of money, rule of 72, compound interest examples",
+      "intro": "Albert Einstein reportedly called compound interest the eighth wonder of the world — and the math explains why. Unlike simple interest (which earns only on your original principal), compound interest earns interest on your interest. Over time, this creates exponential growth: a $10,000 investment at 7% grows to about $76,000 over 30 years — not because you added money, but because the interest generates its own interest. We explain the formula, walk through step-by-step examples, and show why starting early matters more than starting big. Use our free compound interest calculator to project your own numbers. 100% client-side, private.",
+      "icon": "TrendingUp",
+      "sections": [
+        {
+          "title": "The Formula: A = P(1 + r/n)^(nt)",
+          "type": "text",
+          "body": "A = final amount. P = principal (starting balance). r = annual interest rate (as decimal, so 7% = 0.07). n = compounding frequency per year (12 for monthly, 365 for daily). t = time in years. If you invest $5,000 at 7% compounded monthly for 20 years: A = 5000(1 + 0.07/12)^(12×20) = 5000(1.00583)^240 = 5000 × 4.0387 = $20,194. The $5,000 grew to over $20,000 — quadrupling — without adding a single extra dollar. Now imagine adding $200/month on top: the final balance jumps to roughly $123,000. The contributions total $48,000 and the growth is $75,000."
+        },
+        {
+          "title": "The Rule of 72: Quick Mental Math",
+          "type": "text",
+          "body": "Divide 72 by your annual return rate to estimate how many years it takes to double your money. At 7%, money doubles in roughly 72/7 = 10.3 years. At 10%, it doubles in 7.2 years. At 4% (savings account), it takes 18 years. This rule works because of the logarithmic nature of compound growth. A 7% return doubles your money about twice every 21 years — so $10,000 becomes $20,000 in 10 years, $40,000 in 20 years, and $80,000 in 30 years."
+        },
+        {
+          "title": "Why Starting Early Beats Starting Big",
+          "type": "bullet-list",
+          "items": [
+            "Investor A: Starts at age 25, invests $300/month until age 35, then STOPS. Total contributed: $36,000. At 7%, grows to roughly $470,000 by age 65.",
+            "Investor B: Starts at age 35, invests $300/month until age 65. Total contributed: $108,000. At 7%, grows to roughly $367,000 by age 65.",
+            "Investor A contributed $72,000 less but ended with $103,000 more — all because of the extra 10 years of compounding.",
+            "Moral: Time in the market beats timing the market. Start investing as early as possible, even with small amounts."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "compound-interest-calculator", "name": "Compound Interest Calculator", "description": "Enter your starting amount, monthly contribution, interest rate, and timeframe to see your projected wealth.", "cta": "Calculate Your Growth" },
+        { "toolId": "retirement-calculator", "name": "Retirement Calculator", "description": "See if you are on track for retirement with your current savings rate and projected Social Security.", "cta": "Check Your Retirement" }
+      ],
+      "faq": [
+        { "q": "What is the difference between APY and APR?", "a": "APY (Annual Percentage Yield) includes compound interest — it is the actual rate you earn. APR (Annual Percentage Rate) is the simple rate without compounding. A 5% APR compounded monthly gives an APY of about 5.12%. Always compare APYs, not APRs, when evaluating savings accounts or investments." },
+        { "q": "Does compound interest work for debt too?", "a": "Yes — and it works against you. Credit card interest compounds, which is why carrying a balance is so dangerous. At 22% APR compounded daily, a $5,000 balance grows to about $6,230 in one year if you make no payments. This is why paying off high-interest debt is the best investment you can make." },
+        { "q": "How often should interest compound for best results?", "a": "More frequent compounding is better, but the difference is smaller than you might think. $10,000 at 7% for 10 years: annual compounding = $19,672; monthly = $20,097; daily = $20,137; continuous = $20,138. The difference between annual and daily compounding over 10 years is only $465 on a $10,000 investment. The interest rate matters far more than the compounding frequency." }
+      ]
+    },
+    {
+      "slug": "why-bmi-is-inaccurate",
+      "type": "learn",
+      "title": "Why BMI Is Inaccurate — And Better Ways to Measure Health",
+      "description": "Learn why BMI (Body Mass Index) has major limitations. Understand better alternatives like body fat percentage, waist-to-hip ratio, and BSA. Free health calculators included.",
+      "keywords": "why bmi is inaccurate, bmi limitations, body fat percentage, better than bmi, waist to hip ratio, health measurement, body composition, bmi problems explained",
+      "intro": "BMI (Body Mass Index) has been the standard health measurement for decades — but it has significant flaws. It cannot distinguish between muscle and fat, ignores where fat is distributed on the body, and was developed using 19th-century European male data that does not represent global populations. An NFL running back at 5'11 and 220 lbs has a BMI of 30.7 — technically obese — despite having single-digit body fat. A sedentary person at the same height and weight with 35% body fat gets the same BMI classification. We explain why BMI persists despite its problems and what measurements actually matter for your health.",
+      "icon": "Heart",
+      "sections": [
+        {
+          "title": "The Three Biggest Problems with BMI",
+          "type": "text",
+          "body": "1. BMI cannot distinguish muscle from fat. Muscle is denser than fat — a cubic inch of muscle weighs more than a cubic inch of fat. Athletes, bodybuilders, and anyone with above-average muscle mass will register as overweight or obese on the BMI scale despite being metabolically healthy. 2. BMI ignores fat distribution. Carrying fat around your abdomen (visceral fat) is far more dangerous than fat on hips and thighs. Waist-to-hip ratio and waist circumference are better predictors of cardiovascular risk, but BMI treats all fat equally. 3. BMI was developed from 19th-century European populations and does not account for differences in body composition across ethnicities. For example, at the same BMI, Asian populations tend to have higher body fat percentages and greater diabetes risk — leading some countries to adopt lower BMI thresholds."
+        },
+        {
+          "title": "Better Alternatives to BMI",
+          "type": "bullet-list",
+          "items": [
+            "Body Fat Percentage: The most direct measure. Healthy ranges: 10-20% for men, 20-30% for women. Measured via DEXA scan, calipers, or bioelectrical impedance scales.",
+            "Waist-to-Hip Ratio: Divide waist circumference by hip circumference. Above 0.90 (men) or 0.85 (women) indicates elevated cardiovascular risk — regardless of BMI.",
+            "Waist Circumference Alone: Above 40 inches (men) or 35 inches (women) is a health risk marker. Simple to measure at home with a tape measure.",
+            "Body Surface Area (BSA): Used in medical dosing and more relevant for medication calculations than BMI.",
+            "Waist-to-Height Ratio: Waist circumference should be less than half your height. A 5'10 (70 inch) person should have a waist under 35 inches."
+          ]
+        },
+        {
+          "title": "Should You Still Track BMI?",
+          "type": "callout",
+          "calloutType": "info",
+          "body": "BMI is still useful as a population-level screening tool — it is free, fast, and requires only height and weight. For individuals, use it as a starting point, not a final verdict. If your BMI is over 30, check your body fat percentage and waist circumference before concluding you are unhealthy. If your BMI is normal but you have a large waist circumference, you may still have elevated health risks. The best approach combines multiple measurements: BMI for a quick screen, waist-to-hip ratio for fat distribution, and body fat percentage for body composition."
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "bmi-calculator", "name": "BMI Calculator", "description": "Calculate your Body Mass Index with WHO weight categories (metric and imperial).", "cta": "Calculate BMI" },
+        { "toolId": "body-fat-calculator", "name": "Body Fat Calculator", "description": "Estimate your body fat percentage using the U.S. Navy method or BMI-based formula.", "cta": "Estimate Body Fat" }
+      ],
+      "faq": [
+        { "q": "Who invented BMI and why?", "a": "BMI was developed by Adolphe Quetelet, a Belgian mathematician, in the 1830s. He was not a physician — he was a statistician studying the average man. The formula was designed for population studies, not individual health assessment. It was adopted by insurers and public health agencies in the 20th century because height and weight are easy to measure at scale." },
+        { "q": "What is a healthy BMI range?", "a": "WHO guidelines classify BMI as: underweight (under 18.5), normal weight (18.5-24.9), overweight (25-29.9), obese class I (30-34.9), obese class II (35-39.9), obese class III (40+). However, these are statistical categories, not individual health verdicts. An athlete with 12% body fat and BMI 27 is metabolically healthier than a sedentary person with BMI 22 and 30% body fat." },
+        { "q": "How accurate are online body fat calculators?", "a": "Online calculators using the U.S. Navy method (neck, waist, and hip circumferences) are reasonably accurate for most people — typically within 3-4% of DEXA scan results. Bioelectrical impedance scales (like smart scales) are less accurate and vary with hydration levels. For the most accurate measurement, get a DEXA scan (available at many gyms and medical offices for $50-150)." }
+      ]
+    },
+    {
+      "slug": "how-tax-brackets-work",
+      "type": "learn",
+      "title": "How Tax Brackets Actually Work — Marginal vs Effective Rate Explained",
+      "description": "Confused about tax brackets? Learn how the progressive tax system works, why a raise never means less take-home pay, and how to calculate your effective tax rate. Free calculator.",
+      "keywords": "how tax brackets work, marginal tax rate, effective tax rate, progressive tax explained, 2026 tax brackets, tax bracket myth, income tax explained, federal income tax brackets",
+      "intro": "The single most misunderstood concept in personal finance: moving into a higher tax bracket does NOT mean all your income is taxed at that higher rate. Only the income above the bracket threshold is taxed at the higher rate. Yet surveys show a majority of Americans believe otherwise — and some even decline raises to avoid higher brackets, which is mathematically impossible to lose money on. We explain marginal tax rates, effective tax rates, and how the progressive system actually works, with 2026 IRS brackets as examples. Use our free tax calculator to see your own marginal and effective rates.",
+      "icon": "Receipt",
+      "sections": [
+        {
+          "title": "How Marginal Tax Brackets Work: A Concrete Example",
+          "type": "text",
+          "body": "Imagine 2026 tax brackets for a single filer: 10% on first $11,600, 12% on $11,601-$47,150, 22% on $47,151-$100,525, 24% on $100,526-$191,950. If you earn $60,000: First $11,600 taxed at 10% = $1,160. Next $35,550 (up to $47,150) taxed at 12% = $4,266. Remaining $12,850 (up to $60,000) taxed at 22% = $2,827. Total tax: $8,253. Your marginal rate (tax on your last dollar) is 22%. Your effective rate (total tax ÷ total income) is 13.8%. You are in the 22% bracket, but you pay 13.8% of your income in federal tax. A $1,000 raise would add $220 in federal tax — and $780 in your pocket. Never turn down money because of tax brackets."
+        },
+        {
+          "title": "The Tax Bracket Myth That Costs People Money",
+          "type": "text",
+          "body": "A widespread myth holds that getting a raise can push you into a higher bracket and leave you with less take-home pay. This is mathematically impossible for federal income tax because brackets are marginal. Moving from the 12% to 22% bracket on your last dollar does not retroactively re-tax your earlier dollars. The only scenario where more income reduces net pay is when crossing income thresholds for government benefits (Medicaid, SNAP, ACA subsidies) — these have cliffs, not phases. For federal income tax, more income always means more take-home pay."
+        },
+        {
+          "title": "Tax Brackets vs Tax Deductions vs Tax Credits",
+          "type": "bullet-list",
+          "items": [
+            "Tax brackets: Determine the rate on each dollar of taxable income. Progressive: lower rates on first dollars, higher rates on later dollars.",
+            "Tax deductions: Reduce your taxable income. A $1,000 deduction saves you $220 if you are in the 22% bracket — it is worth your marginal rate. Common deductions: 401(k) contributions, Traditional IRA contributions, mortgage interest, charitable donations.",
+            "Tax credits: Reduce your tax bill dollar-for-dollar. A $1,000 credit saves you $1,000 regardless of your bracket. Credits are more valuable than deductions. Examples: Child Tax Credit, Earned Income Tax Credit, EV tax credit.",
+            "Standard deduction (2026): $15,000 single, $30,000 married filing jointly. Most taxpayers take the standard deduction — only itemize if your deductions exceed these amounts."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "sales-tax-calculator", "name": "Tax Calculator", "description": "Estimate your federal income tax, marginal rate, and effective rate for 2026 tax brackets.", "cta": "Calculate Your Tax", "toolId": "income-tax-calculator" },
+        { "toolId": "retirement-calculator", "name": "Retirement Calculator", "description": "Model how pre-tax 401(k) contributions lower your taxable income and current tax bill.", "cta": "Plan Tax-Efficient Retirement" }
+      ],
+      "faq": [
+        { "q": "What are the 2026 federal income tax brackets?", "a": "For single filers: 10% up to $11,600, 12% $11,601-$47,150, 22% $47,151-$100,525, 24% $100,526-$191,950, 32% $191,951-$243,725, 35% $243,726-$609,350, 37% over $609,350. For married filing jointly, brackets are roughly double. These are adjusted annually for inflation." },
+        { "q": "Is my bonus taxed at a higher rate?", "a": "Bonuses may be withheld at a higher rate (22% federal withholding is common), making it look like they are taxed more. But when you file your tax return, bonuses are ordinary income taxed at your marginal rate — same as salary. If too much was withheld, you get a refund. The withholding rate is not the tax rate." },
+        { "q": "Does overtime get taxed more?", "a": "No — overtime pay is ordinary income, taxed at your marginal rate like any other income. The withholding on a larger paycheck may be higher because payroll systems annualize that single paycheck, but you get any over-withholding back when you file. Working overtime always means more take-home pay." }
+      ]
+    },
+    {
+      "slug": "apr-vs-interest-rate",
+      "type": "learn",
+      "title": "APR vs Interest Rate: What Is the Difference and Why It Matters",
+      "description": "Understand the difference between APR and interest rate on loans. Learn how fees, points, and closing costs affect the true cost of borrowing. Free loan comparison calculator.",
+      "keywords": "apr vs interest rate, what is apr, annual percentage rate explained, loan interest rate, mortgage apr, true cost of borrowing, apr calculation, interest rate explained",
+      "intro": "The interest rate is what you pay to borrow money — but the APR (Annual Percentage Rate) includes fees, points, and other charges, giving you the true cost of the loan. Two lenders may both offer 6.5% interest on a mortgage, but one has a 6.6% APR and the other has a 7.1% APR — because the second lender charges higher origination fees, discount points, or closing costs. Comparing APRs instead of interest rates can save you thousands. We explain the difference, how APR is calculated, and what to watch for. Use our free loan calculator to compare offers. 100% client-side, private.",
+      "icon": "DollarSign",
+      "sections": [
+        {
+          "title": "Interest Rate vs APR: The Simple Explanation",
+          "type": "text",
+          "body": "Interest rate = the cost of borrowing the principal, expressed as a percentage. It does not include fees. APR = the total annual cost of the loan, including interest plus certain fees (origination fees, discount points, mortgage insurance, closing costs), expressed as a percentage. By law, lenders must disclose both. On a $300,000 30-year mortgage at 6.5% with $5,000 in fees, the interest rate is 6.5% but the APR is approximately 6.7%. The $5,000 in fees effectively adds 0.2% to the true cost. When comparing loans, always compare APRs — the interest rate alone is incomplete."
+        },
+        {
+          "title": "What APR Includes (and What It Does Not)",
+          "type": "bullet-list",
+          "items": [
+            "APR includes: interest rate, origination fees, discount points, mortgage insurance premiums, some closing costs, underwriting fees, and document preparation fees.",
+            "APR does NOT include: title insurance, appraisal fees, credit report fees, recording fees, notary fees, and prepaid items (property taxes, homeowners insurance).",
+            "For credit cards: APR includes the interest rate plus annual fees and certain transaction fees. Credit card APRs are typically much higher than mortgage APRs (22%+ vs 6-7%).",
+            "For auto loans: APR includes the interest rate plus dealer fees, document fees, and certain add-ons. Always ask for the APR when comparing auto loan offers."
+          ]
+        },
+        {
+          "title": "When APR Can Be Misleading",
+          "type": "callout",
+          "calloutType": "warning",
+          "body": "APR assumes you keep the loan for the full term. If you sell or refinance in 5-7 years, a loan with high upfront fees (and a high APR) might actually be cheaper because you do not pay those fees over the full 30 years. When comparing mortgages, also look at the total lender fees and interest over your expected holding period — not just the APR. For adjustable-rate mortgages (ARMs), APR is based on the assumption that the index rate stays constant, which is rarely true."
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "mortgage-calculator", "name": "Mortgage Calculator", "description": "Compare monthly PITI payments for different interest rates and loan terms.", "cta": "Compare Mortgage Rates" },
+        { "toolId": "car-loan-calculator", "name": "Auto Loan Calculator", "description": "Calculate monthly car payments and compare APRs from different lenders.", "cta": "Compare Auto Loans" }
+      ],
+      "faq": [
+        { "q": "Is a lower APR always better?", "a": "Usually, but not always. If you plan to stay in the home or keep the loan for the full term, a lower APR saves you money. If you expect to sell or refinance within a few years, a loan with low upfront fees and a slightly higher interest rate (and APR) may be cheaper because you pay less at closing. Consider both the APR and your expected holding period." },
+        { "q": "How is credit card APR different from purchase APR?", "a": "Credit cards often have multiple APRs: purchase APR (for regular purchases), balance transfer APR (for transferred balances), cash advance APR (typically higher, with no grace period), and penalty APR (triggered by late payments, can exceed 29%). Always check which APR applies to your transaction type." },
+        { "q": "Why do payday loans have 400%+ APR?", "a": "APR annualizes costs. A payday loan charging $15 per $100 borrowed for two weeks works out to a 391% APR — because the short-term fee is annualized. This is why payday loans are so dangerous: the effective annual rate is astronomically high. Even a seemingly small fee becomes enormous when expressed as APR over a full year." }
+      ]
+    },
+    {
+      "slug": "how-inflation-eats-savings",
+      "type": "learn",
+      "title": "How Does Inflation Eat Your Savings? — Real Value Over Time",
+      "description": "Learn how inflation silently erodes your purchasing power. See real examples, understand the CPI, and use our free calculator to see what your money will be worth in 10-30 years.",
+      "keywords": "how inflation eats savings, inflation explained, purchasing power, real vs nominal returns, inflation calculator, why prices go up, protect savings from inflation, CPI explained",
+      "intro": "$100,000 today will not buy $100,000 worth of goods in 20 years. At 3% average inflation, it will buy only about $55,000 worth — nearly half the purchasing power evaporates. This is why keeping long-term savings in a low-interest bank account is a slow-motion loss. Inflation is a silent wealth destroyer — you do not see the money disappear, but its real value shrinks every year. We explain how inflation works, how it is measured (CPI), and what you can do to protect your savings. Use our free inflation calculator to see what your money will really be worth.",
+      "icon": "TrendingDown",
+      "sections": [
+        {
+          "title": "The Rule of 72 for Inflation",
+          "type": "text",
+          "body": "The same Rule of 72 that shows how investments grow also shows how inflation shrinks purchasing power. At 3% inflation, prices double every 72/3 = 24 years. That $5 latte becomes $10 in 24 years. A $50,000 salary needs to become $100,000 just to maintain the same lifestyle. At 2% inflation (the Fed's target), prices double every 36 years. At 5% inflation (closer to recent experience), prices double every 14.4 years — meaning your savings lose half their purchasing power in about 14 years. This is why investing for returns above inflation is essential — not optional — for long-term financial health."
+        },
+        {
+          "title": "Real vs Nominal Returns: Why It Matters",
+          "type": "text",
+          "body": "Nominal return is what your investment account statement shows. Real return is nominal return minus inflation — what your money can actually buy. A 4% savings account during 3% inflation has a real return of only 1%. A 7% stock market return during 3% inflation has a real return of 4%. Over 30 years, $10,000 at 7% nominal (4% real) grows to $76,123 nominally — but in today's dollars, it is worth only about $32,000. The $44,000 difference is inflation illusion. Always evaluate investments in real (inflation-adjusted) terms."
+        },
+        {
+          "title": "How to Protect Your Savings from Inflation",
+          "type": "bullet-list",
+          "items": [
+            "Invest in stocks: Historically, equities have returned 7% real (10% nominal minus 3% inflation) — the best long-term inflation hedge available to ordinary people.",
+            "TIPS (Treasury Inflation-Protected Securities): U.S. government bonds that adjust principal for inflation. Safe but lower returns than stocks.",
+            "I Bonds: Savings bonds with rates that adjust with inflation. Currently offering competitive rates. $10,000 annual purchase limit per person.",
+            "Real estate: Property values and rents tend to rise with inflation. A fixed-rate mortgage becomes cheaper in real terms as inflation erodes the debt's value.",
+            "Avoid long-term CDs and fixed annuities: Locking in 4% for 10 years when inflation averages 3%+ leaves you with minimal real gains.",
+            "Commodities and gold: Can hedge against inflation spikes but are volatile and produce no income. Use sparingly (5-10% of portfolio at most)."
+          ]
+        }
+      ],
+      "relatedTools": [
+        { "toolId": "inflation-calculator", "name": "Inflation Calculator", "description": "See what a dollar amount from any year is worth in today's money — and project future purchasing power.", "cta": "Calculate Inflation Impact" },
+        { "toolId": "compound-interest-calculator", "name": "Compound Interest Calculator", "description": "Project investment growth with and without inflation adjustment to see real returns.", "cta": "Project Real Returns" }
+      ],
+      "faq": [
+        { "q": "What is CPI and how is inflation measured?", "a": "The Consumer Price Index (CPI) tracks the price of a basket of goods and services (food, housing, transportation, healthcare, etc.). The Bureau of Labor Statistics surveys thousands of prices monthly. CPI-U (urban consumers) is the most commonly cited measure. Critics argue CPI understates real inflation because it uses substitution effects and hedonic adjustments — if steak gets expensive, CPI assumes you switch to chicken." },
+        { "q": "Is some inflation actually good?", "a": "Central banks target 2% inflation as healthy — it encourages spending and investing (cash loses value, so you put it to work), allows real wages to adjust without nominal wage cuts, and provides a buffer against deflation (which can cause economic spirals). The problem is high or unpredictable inflation, which distorts economic decisions and hurts savers and fixed-income retirees the most." },
+        { "q": "How much cash should I keep given inflation?", "a": "Keep 3-6 months of expenses in an emergency fund in a high-yield savings account or money market fund — accepting that inflation will erode it somewhat. The liquidity and security are worth the inflation cost. Beyond your emergency fund, invest excess cash. Cash held for goals more than 5 years away should generally be invested, not saved." }
+      ]
+    }
+  ]
+}

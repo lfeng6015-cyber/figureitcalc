@@ -412,5 +412,50 @@ buildPage(
   null
 );
 
-console.log(`Generated: 1 homepage + ${catIds.length} categories + ${toolCount} tools + 3 info pages`);
-console.log(`Total: ${1 + catIds.length + toolCount + 3} static pages with embedded content`);
+// Generate SEO content pages (scenarios, comparisons, explainers)
+const seoJson = JSON.parse(readFileSync('src/app/data/seo-content-data.json', 'utf-8'));
+let contentPageCount = 0;
+for (const page of seoJson.pages) {
+  const prefix = page.type === 'scenario' ? 'scenarios' : page.type === 'compare' ? 'compare' : 'learn';
+  const canonicalPath = `/${prefix}/${page.slug}`;
+
+  let body = `<h1>${esc(page.title)}</h1>\n`;
+  body += `<p class="intro">${esc(page.intro)}</p>\n`;
+
+  for (const section of page.sections) {
+    body += `<h2>${esc(section.title)}</h2>\n`;
+    if (section.body) body += `<p>${esc(section.body)}</p>\n`;
+    if (section.items && section.items.length) {
+      const tag = section.type === 'numbered-list' ? 'ol' : 'ul';
+      body += `<${tag}>\n`;
+      for (const item of section.items) body += `<li>${esc(item)}</li>\n`;
+      body += `</${tag}>\n`;
+    }
+  }
+
+  if (page.relatedTools && page.relatedTools.length) {
+    body += `<h2>Free Tools to Help You</h2>\n<ul>\n`;
+    for (const rt of page.relatedTools) {
+      body += `<li><a href="/tools/${rt.toolId}">${esc(rt.name)}</a> — ${esc(rt.description)}</li>\n`;
+    }
+    body += `</ul>\n`;
+  }
+
+  if (page.faq && page.faq.length) {
+    body += `<h2>Frequently Asked Questions</h2>\n`;
+    for (const f of page.faq) body += `<h3>${esc(f.q)}</h3>\n<p>${esc(f.a)}</p>\n`;
+  }
+
+  buildPage(
+    `${page.title} | figureitcalc`,
+    page.description.substring(0, 300),
+    page.keywords,
+    canonicalPath,
+    body,
+    page.faq
+  );
+  contentPageCount++;
+}
+
+console.log(`Generated: 1 homepage + ${catIds.length} categories + ${toolCount} tools + 3 info pages + ${contentPageCount} content pages`);
+console.log(`Total: ${1 + catIds.length + toolCount + 3 + contentPageCount} static pages with embedded content`);

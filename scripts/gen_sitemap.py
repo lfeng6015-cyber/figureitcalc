@@ -25,10 +25,18 @@ for page in static:
 for tool in tools:
     lines.append(f'  <url><loc>{base}/tools/{tool}</loc><lastmod>{today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>')
 
+# Add SEO content pages (scenarios, comparisons, explainers)
+import json
+with open("src/app/data/seo-content-data.json", "r", encoding="utf-8") as f:
+    seo_data = json.load(f)
+for p in seo_data["pages"]:
+    prefix = {"scenario": "scenarios", "compare": "compare", "learn": "learn"}[p["type"]]
+    lines.append(f'  <url><loc>{base}/{prefix}/{p["slug"]}</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>')
+
 lines.append('</urlset>')
 
 with open("public/sitemap.xml", "w", encoding="utf-8") as f:
     f.write("\n".join(lines))
 
-print(f"Generated sitemap: {len(tools)} tools, {len(cats)} categories, {len(static)} pages")
+print(f"Generated sitemap: {len(tools)} tools, {len(cats)} categories, {len(static)} pages, {len(seo_data['pages'])} content pages")
 print(f"Total URLs: {len(lines)-2}")

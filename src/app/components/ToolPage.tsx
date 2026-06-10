@@ -32,14 +32,17 @@ interface ToolPageProps {
   children: ReactNode;
   richContent?: ReactNode;
   related?: RelatedTool[];
+  relatedContent?: { type: string; slug: string; title: string }[];
   onBack: () => void;
   onNavigate?: (id: string | number) => void;
   onNavigateToCategory?: (categoryId: string) => void;
+  onNavigateToContent?: (type: string, slug: string) => void;
 }
 
 export function ToolPage({
   icon: Icon, name, description, tag, tagColor, toolId, categoryId,
-  seo, children, richContent, related = [], onBack, onNavigate, onNavigateToCategory,
+  seo, children, richContent, related = [], relatedContent = [],
+  onBack, onNavigate, onNavigateToCategory, onNavigateToContent,
 }: ToolPageProps) {
   const [showShare, setShowShare] = useState(false);
 
@@ -225,6 +228,24 @@ export function ToolPage({
                 )}
 
               </>
+            )}
+
+            {/* SEO Content Cross-links */}
+            {relatedContent.length > 0 && onNavigateToContent && (
+              <section className="bg-card rounded-xl border border-border p-5" aria-labelledby="guides-heading">
+                <h2 id="guides-heading" className="text-foreground text-lg font-semibold mb-3">Learn More</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {relatedContent.map((rc) => (
+                    <button
+                      key={rc.slug}
+                      onClick={() => onNavigateToContent(rc.type, rc.slug)}
+                      className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors text-left group border border-border hover:border-primary/30"
+                    >
+                      <span className="text-sm text-foreground font-medium group-hover:text-primary transition-colors">{rc.title}</span>
+                    </button>
+                  ))}
+                </div>
+              </section>
             )}
 
             {/* Related Tools */}

@@ -26,6 +26,8 @@ import { getContent } from "./data/content";
 import { CategoryHero } from "./components/CategoryHero";
 import { getCategoryContent } from "./data/categoryContent";
 import { StaticPage } from "./components/StaticPage";
+import { ContentPage } from "./components/ContentPage";
+import { CONTENT_PAGES, getContentPagesForTool, type ContentPageMeta } from "./data/seoContent";
 
 // Lazy-load tool components
 const toolComponentMap: Record<string, React.ComponentType> = {
@@ -137,6 +139,12 @@ export default function App() {
     const p = new URLSearchParams(window.location.search);
     return p.get("page") || null;
   });
+  const [contentPage, setContentPage] = useState<{ type: string; slug: string } | null>(() => {
+    const p = new URLSearchParams(window.location.search);
+    const ct = p.get("contentType");
+    const cs = p.get("contentSlug");
+    return ct && cs ? { type: ct, slug: cs } : null;
+  });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Sync app state → URL query string
@@ -144,12 +152,13 @@ export default function App() {
     const params = new URLSearchParams();
     if (activeToolId) params.set("tool", activeToolId);
     else if (staticPage) params.set("page", staticPage);
-    if (!activeToolId && !staticPage && activeCategory && activeCategory !== "all") params.set("category", activeCategory);
-    if (!activeToolId && !staticPage && searchQuery) params.set("search", searchQuery);
+    else if (contentPage) { params.set("contentType", contentPage.type); params.set("contentSlug", contentPage.slug); }
+    if (!activeToolId && !staticPage && !contentPage && activeCategory && activeCategory !== "all") params.set("category", activeCategory);
+    if (!activeToolId && !staticPage && !contentPage && searchQuery) params.set("search", searchQuery);
     const qs = params.toString();
     const newUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
     window.history.replaceState(null, "", newUrl);
-  }, [activeToolId, staticPage, activeCategory, searchQuery]);
+  }, [activeToolId, staticPage, contentPage, activeCategory, searchQuery]);
 
   const currentTool = activeToolId ? getToolById(activeToolId) : null;
 
@@ -171,6 +180,14 @@ export default function App() {
   };
 
   const closeTool = () => {
+    setActiveToolId(null);
+    setStaticPage(null);
+    setContentPage(null);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const openContentPage = (type: string, slug: string) => {
+    setContentPage({ type, slug });
     setActiveToolId(null);
     setStaticPage(null);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -231,12 +248,19 @@ export default function App() {
       </header>
 
       {/* Static Pages (About, Privacy, Contact) */}
-      {staticPage && !currentTool && (
+      {staticPage && !currentTool && !contentPage && (
         <StaticPage page={staticPage as "about" | "privacy" | "contact"} onBack={closeTool} />
       )}
 
+      {/* SEO Content Pages (Scenarios, Comparisons, Explainers) */}
+      {contentPage && !currentTool && !staticPage && (() => {
+        const pageData = CONTENT_PAGES.find(p => p.type === contentPage.type && p.slug === contentPage.slug);
+        if (!pageData) return <StaticPage page="404" onBack={closeTool} />;
+        return <ContentPage data={pageData} onBack={closeTool} onNavigateToTool={(toolId) => { openTool(toolId); }} />;
+      })()}
+
       {/* Tool Detail Page */}
-      {!staticPage && currentTool && (
+      {!staticPage && !contentPage && currentTool && (
         <>
           {/* Category Bar */}
           <div className="bg-card border-b border-border sticky top-14 z-40">
@@ -280,6 +304,8 @@ export default function App() {
             onBack={closeTool}
             onNavigate={(id) => openTool(id as string)}
             onNavigateToCategory={(catId) => { setActiveCategory(catId); }}
+            onNavigateToContent={(type, slug) => { openContentPage(type, slug); }}
+            relatedContent={(getContentPagesForTool(currentTool.id) || []).map(p => ({ type: p.type, slug: p.slug, title: p.title }))}
             richContent={(() => {
               const c = getContent(currentTool.id);
               if (!c) return null;
@@ -298,7 +324,7 @@ export default function App() {
       )}
 
       {/* Home Page */}
-      {!currentTool && !staticPage && (
+      {!currentTool && !staticPage && !contentPage && (
         <>
           {/* Category Tabs */}
           <div className="bg-card border-b border-border sticky top-14 z-40">
