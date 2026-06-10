@@ -329,7 +329,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'heart-rate-zone-calculator': {
     inputs: [{key:'age',label:'Age',type:'number',defaultValue:30},{key:'rest',label:'Resting HR',type:'number',defaultValue:65}],
-    formula: (v) => { const mx=208-0.7*F(v.age),hrr=mx-F(v.rest); return [{label:'Max HR',value:Math.round(mx)+' bpm'},{label:'Zone 2 FatBurn',value:Math.round(F(v.rest)+hrr*0.5)+'-'+Math.round(F(v.rest)+hrr*0.6)+' bpm'},{label:'Zone 4 Threshold',value:Math.round(F(v.rest)+hrr*0.7)+'-'+Math.round(F(v.rest)+hrr*0.8)+' bpm'},{label:'Zone 5 Max',value:Math.round(F(v.rest)+hrr*0.8)+'-'+Math.round(mx)+' bpm'}]; },
+    formula: (v) => { const mx=208-0.7*F(v.age),hrr=mx-F(v.rest); return [{label:'Max HR (Tanaka)',value:Math.round(mx)+' bpm',insight:'Tanaka formula: 208 - 0.7*age. More accurate than 220-age for adults.'},{label:'Zone 2: Fat Burn (50-60%)',value:Math.round(F(v.rest)+hrr*0.5)+'-'+Math.round(F(v.rest)+hrr*0.6)+' bpm',insight:'Karvonen method. Primary fuel: fat. Ideal for weight loss and building aerobic base. Can sustain 1-4 hours.'},{label:'Zone 4: Threshold (70-80%)',value:Math.round(F(v.rest)+hrr*0.7)+'-'+Math.round(F(v.rest)+hrr*0.8)+' bpm',insight:'Lactate threshold training. Improves speed endurance. Primary fuel: glycogen. 20-60 min sustainable.'},{label:'Zone 5: VO2 Max (80-100%)',value:Math.round(F(v.rest)+hrr*0.8)+'-'+Math.round(mx)+' bpm',insight:'Maximum effort for intervals (30s-5min). Builds explosive power. Fat burn occurs post-exercise via EPOC.'}]; },
   },
     'hmac-generator': {
     inputs: [{key:'msg',label:'Message',type:'text',defaultValue:'Hello'},{key:'key',label:'Secret Key',type:'text',defaultValue:'my-secret'}],
