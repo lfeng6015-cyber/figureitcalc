@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { Copy, CheckCircle, ArrowUpDown, Trash2 } from "lucide-react";
 
+function detectEncoding(input: string): "base64" | "hex" | "url" | "plain" {
+  if (!input.trim()) return "plain";
+  const trimmed = input.trim();
+  if (/^[A-Za-z0-9+/]+=*$/.test(trimmed) && trimmed.length > 4 && (trimmed.length % 4 === 0)) return "base64";
+  if (/^[0-9a-fA-F]+$/.test(trimmed) && trimmed.length % 2 === 0 && trimmed.length >= 4) return "hex";
+  if (/%[0-9a-fA-F]{2}/.test(trimmed)) return "url";
+  return "plain";
+}
+
 export function Base64Tool() {
   const [mode, setMode] = useState<"encode" | "decode">("encode");
   const [input, setInput] = useState("Hello, this is a sample text for Base64 encoding.");
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
+
+  const detectedType = mode === "decode" ? detectEncoding(input) : null;
 
   let output = "";
   try {
@@ -76,7 +87,12 @@ export function Base64Tool() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-sm text-muted-foreground">{mode === "encode" ? "Plain Text" : "Base64 String"}</span>
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">{mode === "encode" ? "Plain Text" : "Base64 String"}</span>
+              {detectedType && detectedType !== "base64" && (
+                <span className="text-xs px-1.5 py-0.5 rounded bg-amber-100 text-amber-700">Looks like {detectedType === "hex" ? "Hex" : "URL"} — try switching mode</span>
+              )}
+            </div>
             <button onClick={clear} className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors">
               <Trash2 className="w-3 h-3" /> Clear
             </button>
