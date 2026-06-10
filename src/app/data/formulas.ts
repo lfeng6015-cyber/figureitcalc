@@ -172,7 +172,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'countdown-timer': {
     inputs: [{key:'date',label:'Target Date',type:'text',defaultValue:'2027-01-01'}],
-    formula: (v) => { const d=new Date(String(v.date)); if(isNaN(d.getTime()))return[{label:'Error',value:'Invalid date'}]; const diff=d.getTime()-Date.now(),days=Math.floor(diff/86400000),hrs=Math.floor((diff%86400000)/3600000),min=Math.floor((diff%3600000)/60000); return [{label:'Days',value:Math.max(0,days)+' days'},{label:'Hours',value:Math.max(0,hrs)+' hrs'},{label:'Minutes',value:Math.max(0,min)+' min'}]; },
+    formula: (v) => { var d=new Date(String(v.date)).getTime(),n=Date.now(),diff=Math.max(0,d-n); var days=Math.floor(diff/86400000),hrs=Math.floor((diff%86400000)/3600000),mins=Math.floor((diff%3600000)/60000),secs=Math.floor((diff%60000)/1000); return [{label:"Countdown",value:days+"d "+hrs+"h "+mins+"m",insight:"Until "+String(v.date)+". For recurring events, use next occurrence date."},{label:"Seconds",value:secs+"s"},{label:"Weeks",value:(days/7).toFixed(1)+" weeks"}] },
   },
     'cpm-calculator': {
     inputs: [{key:'cost',label:'Ad Cost ($)',type:'number',defaultValue:500},{key:'imp',label:'Impressions',type:'number',defaultValue:100000}],
@@ -210,7 +210,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'dice-probability-calculator': {
     inputs: [{key:'dice',label:'Dice',type:'number',defaultValue:2},{key:'sides',label:'Sides',type:'number',defaultValue:6}],
-    formula: (v) => { const d=F(v.dice),s=F(v.sides),mn=d,mx=d*s,avg=d*(s+1)/2; return [{label:'Range',value:mn+'-'+mx},{label:'Average',value:avg.toFixed(1)},{label:'Outcomes',value:Math.pow(s,d).toLocaleString()}]; },
+    formula: (v) => { var n=Math.min(F(v.dice)||1,10),s=F(v.sides)||6,target=F(v.target)||7; return [{label:"Probability",value:(1/s*100).toFixed(1)+"% per face",insight:"For "+n.toFixed(0)+"d"+s.toFixed(0)+": total outcomes = "+s.toFixed(0)+"^"+n.toFixed(0)+". Exact probability requires combinatorial calculation. For large N, Monte Carlo simulation is recommended."},{label:"Expected Sum",value:((1+s)/2*n).toFixed(1),insight:"Mean of uniform distribution * number of dice."}] },
   },
         'discount-calculator': {
     inputs: [{key:'price',label:'Original Price ($)',type:'number',defaultValue:100},{key:'discount',label:'Discount (%)',type:'number',defaultValue:20}],
@@ -267,7 +267,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'eta-calculator': {
     inputs: [{key:'dist',label:'Distance (miles)',type:'number',defaultValue:300},{key:'speed',label:'Avg Speed (mph)',type:'number',defaultValue:60},{key:'stops',label:'Stops',type:'number',defaultValue:2},{key:'stopMin',label:'Minutes/Stop',type:'number',defaultValue:15}],
-    formula: (v) => { var driveH=F(v.dist)/F(v.speed),stopH=F(v.stops)*F(v.stopMin)/60,totalH=driveH+stopH; return [{label:'Drive Time',value:driveH.toFixed(1)+' hrs'},{label:'Stop Time',value:stopH.toFixed(1)+' hrs'},{label:'Total ETA',value:totalH.toFixed(1)+' hrs'}]; },
+    formula: (v) => { var d=F(v.dist),s=Math.max(1,F(v.speed)),h=d/s; var hh=Math.floor(h),mm=Math.round((h-hh)*60); return [{label:"Travel Time",value:hh+"h "+mm+"m",insight:"At "+s.toFixed(0)+" mph. Traffic: +20% city/rush = ~"+(h*1.2).toFixed(1)+"h. +50% congestion = ~"+(h*1.5).toFixed(1)+"h."},{label:"With Traffic (+20%)",value:Math.floor(h*1.2)+"h "+Math.round((h*1.2-Math.floor(h*1.2))*60)+"m"}] },
   },
     'fire-calculator': {
     inputs: [{key:'exp',label:'Annual Expenses ($)',type:'number',defaultValue:40000},{key:'saved',label:'Savings ($)',type:'number',defaultValue:100000},{key:'mo',label:'Save/Mo ($)',type:'number',defaultValue:3000},{key:'rate',label:'Return (%)',type:'number',defaultValue:7}],
@@ -283,7 +283,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'food-calorie-calculator': {
     inputs: [{key:'grams',label:'Serving (g)',type:'number',defaultValue:200},{key:'cal100',label:'Cal/100g',type:'number',defaultValue:165},{key:'servings',label:'Servings',type:'number',defaultValue:1}],
-    formula: (v) => { const cal=F(v.grams)*F(v.cal100)/100*F(v.servings); return [{label:'Calories',value:cal.toFixed(0)+' kcal'},{label:'Protein est',value:(cal*0.3/4).toFixed(0)+'g'},{label:'Carbs est',value:(cal*0.45/4).toFixed(0)+'g'},{label:'Fat est',value:(cal*0.25/9).toFixed(0)+'g'}]; },
+    formula: (v) => { const p=F(v.pro)*4,c=F(v.carbs)*4,f=F(v.fats)*9; const tot=p+c+f; const pPct=tot>0?p/tot*100:0,cPct=tot>0?c/tot*100:0,fPct=tot>0?f/tot*100:0; return [{label:"Total",value:tot.toFixed(0)+" kcal",emphasis:true,insight:"Macro: "+pPct.toFixed(0)+"%P / "+cPct.toFixed(0)+"%C / "+fPct.toFixed(0)+"%F. Balanced=30/40/30, Keto=20/5/75, Bodybuilding=40/40/20."},{label:"Protein ("+pPct.toFixed(0)+"%)",value:p.toFixed(0)+" kcal ("+F(v.pro).toFixed(0)+"g)"},{label:"Carbs ("+cPct.toFixed(0)+"%)",value:c.toFixed(0)+" kcal ("+F(v.carbs).toFixed(0)+"g)"},{label:"Fats ("+fPct.toFixed(0)+"%)",value:f.toFixed(0)+" kcal ("+F(v.fats).toFixed(0)+"g)"}] },
   },
     'fps-bottleneck-calculator': {
     inputs: [{key:'cpu',label:'CPU Score',type:'number',defaultValue:15000},{key:'gpu',label:'GPU Score',type:'number',defaultValue:18000},{key:'res',label:'Resolution',type:'select',options:[{label:'1080p',value:'1080'},{label:'1440p',value:'1440'},{label:'4K',value:'4k'}],defaultValue:'1440'}],
@@ -291,7 +291,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'fuel-cost-calculator': {
     inputs: [{key:'distance',label:'Distance (miles)',type:'number',defaultValue:300},{key:'mpg',label:'Fuel Econ (MPG)',type:'number',defaultValue:25},{key:'fuelPrice',label:'Fuel Price ($/gal)',type:'number',defaultValue:3.50}],
-    formula: (v) => { const gal=F(v.distance)/F(v.mpg),cost=gal*F(v.fuelPrice); return [{label:'Fuel Needed',value:gal.toFixed(1)+' gal'},{label:'Trip Cost',value:'$'+cost.toFixed(2)},{label:'$/Mile',value:'$'+(F(v.fuelPrice)/F(v.mpg)).toFixed(3)}]; },
+    formula: (v) => { var d=F(v.dist),mpg=Math.max(1,F(v.mpg)),price=F(v.price),gal=d/mpg,cost=gal*price; return [{label:"Fuel",value:gal.toFixed(1)+" gal",insight:"Multi-stop trips: add 5-10% for city. Highway MPG 20-30% higher than city."},{label:"Cost",value:"$"+cost.toFixed(2)},{label:"Per Mile",value:"$"+(price/mpg).toFixed(3)}] },
     presets: [{label:'300mi Trip',values:{distance:300,mpg:25,fuelPrice:3.50}}],
   },
     'fuel-economy-calculator': {
@@ -353,7 +353,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'hvac-btu-calculator': {
     inputs: [{key:'sqft',label:'Area (sqft)',type:'number',defaultValue:1500},{key:'climate',label:'Climate',type:'select',options:[{label:'Mild',value:'25'},{label:'Moderate',value:'30'},{label:'Hot',value:'35'}],defaultValue:'30'}],
-    formula: (v) => { const b=F(v.sqft)*F(v.climate),t=b/12000; return [{label:'Cooling',value:b.toFixed(0)+' BTU'},{label:'AC Tons',value:t.toFixed(1)+' tons'},{label:'Heat',value:(b*1.3).toFixed(0)+' BTU'}]; },
+    formula: (v) => { var a=F(v.sqft)||1500,btu=a*35,tons=btu/12000; return [{label:"Cooling",value:btu.toFixed(0)+" BTU/h",insight:"Est: 35 BTU/sqft moderate. +20% hot/sunny = "+(btu*1.2).toFixed(0)+" BTU. Oversized AC short-cycles and doesnt dehumidify."},{label:"Tons",value:tons.toFixed(1)+" tons (1 ton = 12,000 BTU)"}] },
   },
     'iban-validator-and-parser': {
     inputs: [{key:'iban',label:'IBAN',type:'text',defaultValue:'GB29NWBK60161331926819'}],
@@ -390,7 +390,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'integer-base-converter': {
     inputs: [{key:'num',label:'Number',type:'text',defaultValue:'255'},{key:'from',label:'From Base',type:'number',defaultValue:10},{key:'to',label:'To Base',type:'number',defaultValue:16}],
-    formula: (v) => { var n=parseInt(String(v.num),F(v.from)); return [{label:'Base '+F(v.from),value:String(v.num)},{label:'Base '+F(v.to),value:n.toString(F(v.to)).toUpperCase()},{label:'Decimal',value:String(n)}]; },
+    formula: (v) => { var n=parseInt(String(v.num)||"0"),fromBase=F(v.from)||10,toBase=F(v.to)||2; if(isNaN(n))return[{label:"Error",value:"Invalid number"}]; var dec=parseInt(String(v.num),fromBase); if(isNaN(dec))return[{label:"Error",value:"Invalid for base "+fromBase.toFixed(0)}]; return [{label:"Base "+toBase.toFixed(0),value:dec.toString(toBase).toUpperCase(),insight:"From base "+fromBase.toFixed(0)+" to base "+toBase.toFixed(0)+". Max safe integer: 2^53-1. For larger numbers, use BigInt."}] },
   },
     'invoice-hours-calculator': {
     inputs: [{key:'hrs',label:'Hours',type:'number',defaultValue:40,step:0.5},{key:'rate',label:'Rate ($/hr)',type:'number',defaultValue:75}],
@@ -458,7 +458,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'led-resistor-calculator': {
     inputs: [{key:'vs',label:'Supply V',type:'number',defaultValue:5},{key:'vf',label:'LED Vf',type:'number',defaultValue:2.0,step:0.1},{key:'i',label:'Current (mA)',type:'number',defaultValue:20}],
-    formula: (v) => { const R=Math.max(1,(F(v.vs)-F(v.vf))/(F(v.i)/1000)),P=F(v.i)/1000*F(v.i)/1000*R; return [{label:'Resistor',value:R.toFixed(0)+' ohm'},{label:'Power',value:P.toFixed(3)+' W'},{label:'Use',value:Math.ceil(P*2)+'W min'}]; },
+    formula: (v) => { var Vs=F(v.vs)||12,Vf=F(v.vf)||2,I=F(v.i)||20; var R=(Vs-Vf)/(I/1000),P=(Vs-Vf)*(I/1000); var warn=R<0?" WARNING: supply voltage ("+Vs.toFixed(0)+"V) less than LED Vf ("+Vf.toFixed(0)+"V).":""; return [{label:"Resistor",value:R.toFixed(0)+" ohm",insight:"Use next standard value up. Power rating: "+(P*2).toFixed(2)+"W min (2x safety factor)."+warn},{label:"Power",value:P.toFixed(3)+" W"}] },
   },
     'list-converter': {
     inputs: [{key:'items',label:'Items (comma-sep)',type:'text',defaultValue:'apple,banana,cherry'}],
@@ -709,7 +709,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'steps-to-miles-calculator': {
     inputs: [{key:'steps',label:'Steps',type:'number',defaultValue:10000},{key:'stride',label:'Stride (in)',type:'number',defaultValue:30}],
-    formula: (v) => { const m=F(v.steps)*F(v.stride)/63360,km=m*1.609; return [{label:'Distance',value:m.toFixed(2)+' mi'},{label:'Km',value:km.toFixed(2)+' km'},{label:'Cal(150lb)',value:Math.round(m*80)+' kcal'}]; },
+    formula: (v) => { var stride=F(v.stride)||30,m=F(v.steps)*stride/63360,km=m*1.609; var stepsPerMile=63360/stride; return [{label:"Distance",value:m.toFixed(2)+" mi ("+km.toFixed(2)+" km)",insight:"Stride ~"+stride.toFixed(0)+"in. ~"+Math.round(stepsPerMile)+" steps/mile. ~2000 steps = 1 mile avg. 10,000 steps = ~5 miles."},{label:"Calories (150lb)",value:Math.round(m*80)+" kcal",insight:"~80 kcal/mile at 150lbs."},{label:"Steps per Mile",value:Math.round(stepsPerMile)+" steps"}] },
   },
         'stock-return-calculator': {
     inputs: [{key:'buy',label:'Buy ($)',type:'number',defaultValue:100},{key:'sell',label:'Sell ($)',type:'number',defaultValue:130},{key:'shares',label:'Shares',type:'number',defaultValue:10}],
@@ -773,7 +773,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'tire-size-calculator': {
     inputs: [{key:'width',label:'Width (mm)',type:'number',defaultValue:225},{key:'aspect',label:'Aspect',type:'number',defaultValue:65},{key:'rim',label:'Rim (in)',type:'number',defaultValue:17}],
-    formula: (v) => { const sw=F(v.width)*F(v.aspect)/100,dia=(sw*2+F(v.rim)*25.4)/25.4,circ=dia*Math.PI; return [{label:'Diameter',value:dia.toFixed(1)+' in'},{label:'Sidewall',value:sw.toFixed(0)+' mm'},{label:'Rev/mi',value:Math.round(63360/circ)}]; },
+    formula: (v) => { var w=F(v.width)||225,ar=F(v.ratio)||55,d=F(v.dia)||17; var sh=(w*ar/100)/25.4,od=sh*2+d,circ=od*Math.PI,rpm=63360/circ; return [{label:"Diameter",value:od.toFixed(1)+" in",insight:"Stay within 3% of OEM diameter to avoid ABS/TC issues. Larger tires = speedometer reads low."},{label:"Sidewall",value:sh.toFixed(1)+" in"},{label:"Rev/Mile",value:Math.round(rpm)+" revs"}] },
   },
     'token-generator': {
     inputs: [{key:'len',label:'Length',type:'number',defaultValue:32}],
@@ -789,7 +789,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'travel-budget-calculator': {
     inputs: [{key:'days',label:'Days',type:'number',defaultValue:7},{key:'flight',label:'Flight ($)',type:'number',defaultValue:400},{key:'hotel',label:'Hotel/Nt ($)',type:'number',defaultValue:150},{key:'food',label:'Food/Day ($)',type:'number',defaultValue:50}],
-    formula: (v) => { const t=F(v.flight)+F(v.hotel)*F(v.days)+F(v.food)*F(v.days); return [{label:'Total',value:'$'+t.toFixed(0)},{label:'Per Day',value:'$'+(t/F(v.days)).toFixed(0)}]; },
+    formula: (v) => { var t=F(v.flight)+F(v.hotel)*F(v.days)+F(v.food)*F(v.days),daily=t/F(v.days); return [{label:"Total",value:"$"+t.toFixed(0),insight:"Add 15-20% buffer = ~$"+(t*1.15).toFixed(0)+". Flight: $"+F(v.flight).toFixed(0)+", Hotel: $"+F(v.hotel).toFixed(0)+"/night."},{label:"Per Day",value:"$"+daily.toFixed(0)},{label:"With 20% Buffer",value:"$"+(t*1.2).toFixed(0)}] },
   },
     'ulid-generator': {
     inputs: [{key:'count',label:'Count',type:'number',defaultValue:1}],
@@ -822,7 +822,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'water-footprint-calculator': {
     inputs: [{key:'shower',label:'Showers/Wk',type:'number',defaultValue:7},{key:'meat',label:'Meat meals/Wk',type:'number',defaultValue:5},{key:'laundry',label:'Laundry/Wk',type:'number',defaultValue:3}],
-    formula: (v) => { const d=F(v.shower)*17+F(v.laundry)*40,vf=F(v.meat)*660*4; return [{label:'Direct',value:d.toFixed(0)+' gal'},{label:'Virtual(food)',value:vf.toFixed(0)+' gal'},{label:'Total/Wk',value:(d+vf).toFixed(0)+' gal'}]; },
+    formula: (v) => { const d=F(v.showers)*65+F(v.laundry)*40+F(v.dishes)*15+F(v.drink)*2; const avg=3000; return [{label:"Daily",value:d.toFixed(0)+" L",insight:"Avg person: ~3000 L/day (incl virtual water in food/clothing). You use "+(d/avg*100).toFixed(0)+"% of avg. Biggest saving: eat less beef (1kg = 15,000L water)."},{label:"Monthly",value:(d*30).toFixed(0)+" L"},{label:"Yearly",value:Math.round(d*365)+" L"}] },
   },
         'water-intake-calculator': {
     inputs: [{key:'wt',label:'Weight (lbs)',type:'number',defaultValue:150},{key:'act',label:'Activity',type:'select',options:[{label:'Sedentary',value:'1'},{label:'Moderate',value:'1.2'},{label:'Active',value:'1.4'}],defaultValue:'1'}],
@@ -870,7 +870,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
   'zodiac-love-compatibility': {
     inputs: [{key:'s1',label:'Your Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'scorpio'},{key:'s2',label:'Partner Sign',type:'select',options:[{label:'Aries',value:'aries'},{label:'Taurus',value:'taurus'},{label:'Gemini',value:'gemini'},{label:'Cancer',value:'cancer'},{label:'Leo',value:'leo'},{label:'Virgo',value:'virgo'},{label:'Libra',value:'libra'},{label:'Scorpio',value:'scorpio'},{label:'Sagittarius',value:'sagittarius'},{label:'Capricorn',value:'capricorn'},{label:'Aquarius',value:'aquarius'},{label:'Pisces',value:'pisces'}],defaultValue:'pisces'}],
-    formula: (v) => { const el:Record<string,string>={aries:'Fire',leo:'Fire',sagittarius:'Fire',taurus:'Earth',virgo:'Earth',capricorn:'Earth',gemini:'Air',libra:'Air',aquarius:'Air',cancer:'Water',scorpio:'Water',pisces:'Water'}; const e1=el[String(v.s1)],e2=el[String(v.s2)]; let sc=50; if(e1===e2)sc+=25; else if((e1==='Fire'&&e2==='Air')||(e1==='Air'&&e2==='Fire')||(e1==='Earth'&&e2==='Water')||(e1==='Water'&&e2==='Earth'))sc+=15; else if((e1==='Fire'&&e2==='Water')||(e1==='Water'&&e2==='Fire')||(e1==='Air'&&e2==='Earth')||(e1==='Earth'&&e2==='Air'))sc-=10; const vd=sc>=90?'Soulmates!':sc>=75?'Great Match':sc>=60?'Good':sc>=40?'Challenging':'Difficult'; return [{label:'Compatibility',value:sc+'%'},{label:'Verdict',value:vd},{label:'Elements',value:e1+' + '+e2}]; },
+    formula: (v) => { const el:Record<string,string>={aries:'Fire',leo:'Fire',sagittarius:'Fire',taurus:'Earth',virgo:'Earth',capricorn:'Earth',gemini:'Air',libra:'Air',aquarius:'Air',cancer:'Water',scorpio:'Water',pisces:'Water'}; const e1=el[String(v.s1)],e2=el[String(v.s2)]; let sc=50; if(e1===e2)sc+=25; else if((e1==='Fire'&&e2==='Air')||(e1==='Air'&&e2==='Fire')||(e1==='Earth'&&e2==='Water')||(e1==='Water'&&e2==='Earth'))sc+=15; else if((e1==='Fire'&&e2==='Water')||(e1==='Water'&&e2==='Fire')||(e1==='Air'&&e2==='Earth')||(e1==='Earth'&&e2==='Air'))sc-=10; const vd=sc>=90?'Soulmates!':sc>=75?'Great Match':sc>=60?'Good':sc>=40?'Challenging':'Difficult'; return [{label:'Compatibility',value:sc+'%'},{label:'Verdict',value:vd},{label:'Elements',value:e1+' + '+e2,insight:'For entertainment only. Compatibility depends on personality and shared values, not birth dates.'}]; },
   },
         'sheng-xiao-compatibility': {
     inputs: [{key:'z1',label:'Your Sign',type:'select',options:[{label:'Rat',value:'rat'},{label:'Ox',value:'ox'},{label:'Tiger',value:'tiger'},{label:'Rabbit',value:'rabbit'},{label:'Dragon',value:'dragon'},{label:'Snake',value:'snake'},{label:'Horse',value:'horse'},{label:'Goat',value:'goat'},{label:'Monkey',value:'monkey'},{label:'Rooster',value:'rooster'},{label:'Dog',value:'dog'},{label:'Pig',value:'pig'}],defaultValue:'dragon'},{key:'z2',label:'Partner',type:'select',options:[{label:'Rat',value:'rat'},{label:'Ox',value:'ox'},{label:'Tiger',value:'tiger'},{label:'Rabbit',value:'rabbit'},{label:'Dragon',value:'dragon'},{label:'Snake',value:'snake'},{label:'Horse',value:'horse'},{label:'Goat',value:'goat'},{label:'Monkey',value:'monkey'},{label:'Rooster',value:'rooster'},{label:'Dog',value:'dog'},{label:'Pig',value:'pig'}],defaultValue:'monkey'}],
@@ -890,7 +890,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'tarot-reading': {
     inputs: [{key:'spread',label:'Spread',type:'select',options:[{label:'3-Card Past/Present/Future',value:'3'},{label:'Single Card',value:'1'}],defaultValue:'3'},{key:'focus',label:'Focus',type:'select',options:[{label:'Love',value:'love'},{label:'Career',value:'career'},{label:'Growth',value:'growth'}],defaultValue:'love'}],
-    formula: (v) => { var M=['The Fool New beginnings','The Magician Skill,manifestation','The High Priestess Intuition,wisdom','The Empress Abundance,nurturing','The Emperor Authority,structure','The Lovers Love,harmony','The Chariot Willpower,victory','Strength Courage,power','The Hermit Soul-searching','Wheel of Fortune Destiny,turning point','Justice Fairness,truth','The Hanged Man Surrender,perspective','Death Transformation,rebirth','Temperance Balance,harmony','The Star Hope,renewal','The Moon Subconscious,illusion','The Sun Joy,success','The World Completion,wholeness']; var m={love:['Ace of Cups New love awakens','Two of Cups Deep connection','Ten of Cups Lasting fulfillment','Knight of Cups Romance','Queen of Cups Emotional wisdom'],career:['Ace of Pentacles Opportunity','Three of Pentacles Teamwork','Eight of Pentacles Mastery','Ten of Pentacles Security','King of Pentacles Leadership'],growth:['Four of Swords Rest,recovery','Seven of Cups Possibilities','The Star Spiritual guidance','Nine of Pentacles Self-sufficiency','Judgment Higher calling']}; var p=function(a){return a[Math.floor(Math.random()*a.length)]}; var c1=Math.random()>0.4?p(M):p(m[v.focus]||m.love); var c2=Math.random()>0.4?p(M):p(m[v.focus]||m.love); var c3=Math.random()>0.4?p(M):p(m[v.focus]||m.love); if(v.spread==='1')return[{label:'Your Card',value:c1}]; return [{label:'Past',value:c1},{label:'Present',value:c2},{label:'Future',value:c3}]; },
+    formula: (v) => { var M=['The Fool New beginnings','The Magician Skill,manifestation','The High Priestess Intuition,wisdom','The Empress Abundance,nurturing','The Emperor Authority,structure','The Lovers Love,harmony','The Chariot Willpower,victory','Strength Courage,power','The Hermit Soul-searching','Wheel of Fortune Destiny,turning point','Justice Fairness,truth','The Hanged Man Surrender,perspective','Death Transformation,rebirth','Temperance Balance,harmony','The Star Hope,renewal','The Moon Subconscious,illusion','The Sun Joy,success','The World Completion,wholeness']; var m={love:['Ace of Cups New love awakens','Two of Cups Deep connection','Ten of Cups Lasting fulfillment','Knight of Cups Romance','Queen of Cups Emotional wisdom'],career:['Ace of Pentacles Opportunity','Three of Pentacles Teamwork','Eight of Pentacles Mastery','Ten of Pentacles Security','King of Pentacles Leadership'],growth:['Four of Swords Rest,recovery','Seven of Cups Possibilities','The Star Spiritual guidance','Nine of Pentacles Self-sufficiency','Judgment Higher calling']}; var p=function(a){return a[Math.floor(Math.random()*a.length)]}; var c1=Math.random()>0.4?p(M):p(m[v.focus]||m.love); var c2=Math.random()>0.4?p(M):p(m[v.focus]||m.love); var c3=Math.random()>0.4?p(M):p(m[v.focus]||m.love); if(v.spread==='1')return[{label:'Your Card',value:c1,insight:'For entertainment only. Tarot prompts self-reflection - it does not predict the future.'}]; return [{label:'Past',value:c1},{label:'Present',value:c2},{label:'Future',value:c3}]; },
   },
     'past-life-finder': {
     inputs: [{key:'bday',label:'Your Birth Date',type:'text',defaultValue:'1990-05-15'}],
