@@ -1,5 +1,5 @@
-import { useState, useCallback, useMemo } from "react";
-import { ChevronDown, ChevronRight, Lightbulb, Calculator, AlertTriangle } from "lucide-react";
+import { useState, useCallback, useMemo, useEffect } from "react";
+import { ChevronDown, ChevronRight, Lightbulb, Calculator, Copy, CheckCircle, Share2 } from "lucide-react";
 import type { CalcInput, CalcResult, CalcStep, CalcSection } from "../../data/formulas";
 
 interface CalculatorToolProps {
@@ -20,18 +20,90 @@ function isCalcSection(r: CalcResult | CalcSection): r is CalcSection {
   return "title" in r && "results" in r;
 }
 
-export function CalculatorTool({ inputs, formula, presets, description }: CalculatorToolProps) {
-  const [values, setValues] = useState<Record<string, number | string>>(() => {
-    const init: Record<string, number | string> = {};
-    inputs.forEach((inp) => {
-      init[inp.key] = inp.defaultValue ?? (inp.type === "number" ? 0 : "");
-    });
-    return init;
-  });
-  const [expandedSteps, setExpandedSteps] = useState<Record<string, boolean>>({});
+/** Sanitize a numeric input: trim, strip non-numeric chars (keep first dot), clamp */
+function sanitizeNumber(raw: string, min?: number, max?: number, fallback: number = 0): number {
+  let cleaned = raw.trim();
+  cleaned = cleaned.replace(/[^0-9.\-]/g, "");       // strip non-numeric except dot and minus
+  // Keep only first dot
+  const firstDot = cleaned.indexOf(".");
+  if (firstDot >= 0) {
+    cleaned = cleaned.slice(0, firstDot + 1) + cleaned.slice(firstDot + 1).replace(/\./g, "");
+  }
+  // Keep minus only if at start
+  if (cleaned.indexOf("-") > 0) {
+    cleaned = cleaned.replace(/-/g, "");
+  }
+  const num = parseFloat(cleaned);
+  if (isNaN(num)) return fallback;
+  let result = num;
+  if (min !== undefined) result = Math.max(min, result);
+  if (max !== undefined) result = Math.min(max, result);
+  return result;
+}
 
-  const handleChange = useCallback((key: string, value: number | string) => {
-    setValues((prev) => ({ ...prev, [key]: value }));
+/** Read initial values from URL query string, falling back to defaults */
+function readInitialValues(inputs: CalcInput[]): Record<string, number | string> {
+  const params = new URLSearchParams(window.location.search);
+  const init: Record<string, number | string> = {};
+  inputs.forEach((inp) => {
+    const fromUrl = params.get(inp.key);
+    if (fromUrl !== null) {
+      if (inp.type === "number") {
+        init[inp.key] = sanitizeNumber(fromUrl, inp.min, inp.max, Number(inp.defaultValue ?? 0));
+      } else {
+        init[inp.key] = decodeURIComponent(fromUrl);
+      }
+    } else {
+      init[inp.key] = inp.defaultValue ?? (inp.type === "number" ? 0 : "");
+    }
+  });
+  return init;
+}
+
+/** Build a shareable text summary of all results */
+function buildResultText(output: CalcResult[] | CalcSection[]): string {
+  const lines: string[] = [];
+  const first = output[0];
+  if (first && isCalcSection(first)) {
+    (output as CalcSection[]).forEach(section => {
+      lines.push(`${section.title}:`);
+      section.results.forEach(r => lines.push(`  ${r.label}: ${r.value}`));
+    });
+  } else {
+    (output as CalcResult[]).forEach(r => lines.push(`${r.label}: ${r.value}`));
+  }
+  return lines.join("\n");
+}
+
+export function CalculatorTool({ inputs, formula, presets, description }: CalculatorToolProps) {
+  const [values, setValues] = useState<Record<string, number | string>>(() =>
+    readInitialValues(inputs)
+  );
+  const [expandedSteps, setExpandedSteps] = useState<Record<string, boolean>>({});
+  const [copied, setCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
+
+  // Sync values → URL query string on every change
+  useEffect(() => {
+    const params = new URLSearchParams();
+    inputs.forEach((inp) => {
+      const val = values[inp.key];
+      if (val !== undefined && val !== "" && val !== inp.defaultValue) {
+        params.set(inp.key, inp.type === "number" ? String(val) : encodeURIComponent(String(val)));
+      }
+    });
+    const qs = params.toString();
+    const newUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(null, "", newUrl);
+  }, [values, inputs]);
+
+  const handleChange = useCallback((key: string, rawValue: string, inp: CalcInput) => {
+    if (inp.type === "number") {
+      const num = sanitizeNumber(rawValue, inp.min, inp.max, Number(inp.defaultValue ?? 0));
+      setValues((prev) => ({ ...prev, [key]: num }));
+    } else {
+      setValues((prev) => ({ ...prev, [key]: rawValue }));
+    }
   }, []);
 
   const toggleSteps = (key: string) => {
@@ -42,6 +114,39 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
 
   // Detect format: CalcSection[] has 'title' property, CalcResult[] doesn't
   const isSectioned = rawOutput.length > 0 && isCalcSection(rawOutput[0]);
+
+  const copyResults = async () => {
+    const text = buildResultText(rawOutput);
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const copyShareLink = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = window.location.href;
+      ta.style.cssText = "position:fixed;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      document.body.removeChild(ta);
+    }
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2000);
+  };
 
   return (
     <div className="space-y-5">
@@ -75,7 +180,9 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
               {inp.type === "select" && inp.options ? (
                 <select
                   value={String(values[inp.key] ?? "")}
-                  onChange={(e) => handleChange(inp.key, e.target.value)}
+                  onChange={(e) => {
+                    setValues((prev) => ({ ...prev, [inp.key]: e.target.value }));
+                  }}
                   className="w-full p-2 rounded-lg border border-border bg-background text-foreground text-sm"
                 >
                   {inp.options.map((o) => (
@@ -91,7 +198,9 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
                       const file = e.target.files?.[0];
                       if (file) {
                         const reader = new FileReader();
-                        reader.onload = () => handleChange(inp.key, String(reader.result));
+                        reader.onload = () => {
+                          setValues((prev) => ({ ...prev, [inp.key]: String(reader.result) }));
+                        };
                         reader.readAsDataURL(file);
                       }
                     }}
@@ -104,9 +213,10 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
               ) : (
                 <div className="flex items-center gap-1.5">
                   <input
-                    type={inp.type}
+                    type={inp.type === "number" ? "text" : inp.type}
+                    inputMode={inp.type === "number" ? "decimal" : undefined}
                     value={values[inp.key] ?? ""}
-                    onChange={(e) => handleChange(inp.key, inp.type === "number" ? Number(e.target.value) : e.target.value)}
+                    onChange={(e) => handleChange(inp.key, e.target.value, inp)}
                     min={inp.min}
                     max={inp.max}
                     step={inp.step}
@@ -194,11 +304,37 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
         ) : (
           // Flat output (simple)
           <div className="bg-card rounded-xl border border-border overflow-hidden">
-            <div className="bg-accent/30 px-4 py-3 border-b border-border">
+            <div className="bg-accent/30 px-4 py-3 border-b border-border flex items-center justify-between">
               <h3 className="text-sm font-semibold text-foreground">Results</h3>
+              <div className="flex items-center gap-1">
+                {/* Copy results button */}
+                <button
+                  onClick={copyResults}
+                  className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                  title="Copy all results"
+                >
+                  {copied ? (
+                    <><CheckCircle className="w-3 h-3 text-green-500" /> Copied!</>
+                  ) : (
+                    <><Copy className="w-3 h-3" /> Copy</>
+                  )}
+                </button>
+                {/* Copy shareable link */}
+                <button
+                  onClick={copyShareLink}
+                  className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                  title="Copy link with current values"
+                >
+                  {linkCopied ? (
+                    <><CheckCircle className="w-3 h-3 text-green-500" /> Link Copied!</>
+                  ) : (
+                    <><Share2 className="w-3 h-3" /> Share</>
+                  )}
+                </button>
+              </div>
             </div>
             <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {(rawOutput as CalcResult[]).filter(r => r.label && r.value).map((r, i) => (
+              {(rawOutput as CalcResult[]).filter(r => r.label && r.value !== undefined && r.value !== "").map((r, i) => (
                 <div key={i} className="flex flex-col p-3 rounded-lg bg-accent/20">
                   <span className="text-xs text-muted-foreground mb-1">{r.label}</span>
                   {String(r.value).startsWith('<svg') || String(r.value).startsWith('data:image/svg') ? (
