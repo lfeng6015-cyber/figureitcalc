@@ -49,7 +49,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'baby-growth-calculator': {
     inputs: [{key:'mo',label:'Age (months)',type:'number',defaultValue:6},{key:'wt',label:'Weight (kg)',type:'number',defaultValue:7.5},{key:'gen',label:'Gender',type:'select',options:[{label:'Boy',value:'boy'},{label:'Girl',value:'girl'}],defaultValue:'boy'}],
-    formula: (v) => { const m=F(v.mo),w=F(v.wt); const med=v.gen==='boy'?[3.3,4.5,5.6,6.4,7.0,7.5,7.9,8.3,8.6,8.9,9.2,9.4]:[3.2,4.2,5.1,5.8,6.4,6.9,7.3,7.6,7.9,8.2,8.5,8.7]; const i=Math.min(11,Math.floor(m)); const pct=med[i]>0?Math.round(w/med[i]*50):50; return [{label:'Weight',value:w+' kg'},{label:'Median',value:med[i].toFixed(1)+' kg'},{label:'~Pctl',value:pct+'th'}]; },
+    formula: (v) => { const m=F(v.mo),w=F(v.wt); const med=v.gen==='boy'?[3.3,4.5,5.6,6.4,7.0,7.5,7.9,8.3,8.6,8.9,9.2,9.4]:[3.2,4.2,5.1,5.8,6.4,6.9,7.3,7.6,7.9,8.2,8.5,8.7]; const i=Math.min(11,Math.floor(m)); const pct=med[i]>0?Math.round(w/med[i]*50):50; const p3=med[i]*0.85,p97=med[i]*1.15; return [{label:'Weight',value:w+' kg'},{label:'WHO Median (50th)',value:med[i].toFixed(1)+' kg',insight:'WHO Child Growth Standards. Normal range (3rd-97th): '+p3.toFixed(1)+' - '+p97.toFixed(1)+' kg. A single measurement is a snapshot - track growth over time for trends.'},{label:'Approx Percentile',value:pct+'th',insight:pct<5?'Below 5th percentile - consult pediatrician.':pct>95?'Above 95th percentile - consult pediatrician.':'Within normal range. Regular growth monitoring recommended.'}]; },
   },
         'bakers-percentage-calculator': {
     inputs: [{key:'flour',label:'Flour (g)',type:'number',defaultValue:500},{key:'water',label:'Water (g)',type:'number',defaultValue:350},{key:'salt',label:'Salt (g)',type:'number',defaultValue:10},{key:'yeast',label:'Yeast (g)',type:'number',defaultValue:5}],
@@ -234,7 +234,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'due-date-calculator': {
     inputs: [{key:'lmp',label:'Last Period (YYYY-MM-DD)',type:'text',defaultValue:'2026-06-01'}],
-    formula: (v) => { const l=new Date(String(v.lmp)); if(isNaN(l.getTime()))return[{label:'Error',value:'Invalid date'}]; const d=new Date(l);d.setDate(d.getDate()+280);const n=new Date();const days=Math.ceil((d.getTime()-n.getTime())/86400000);return[{label:'Due Date',value:d.toISOString().slice(0,10)},{label:'Days Left',value:Math.max(0,days)+' days'}]; },
+    formula: (v) => { const l=new Date(String(v.lmp)); if(isNaN(l.getTime()))return[{label:'Error',value:'Invalid date'}]; const d=new Date(l);d.setDate(d.getDate()+280);const n=new Date();const days=Math.ceil((d.getTime()-n.getTime())/86400000);const w=Math.floor(days/7); const t1=new Date(l);t1.setDate(t1.getDate()+91); const t2=new Date(l);t2.setDate(t2.getDate()+182); const t3=new Date(l);t3.setDate(t3.getDate()+273); return[{label:'Due Date',value:d.toISOString().slice(0,10),insight:'Naegele rule: LMP + 280 days. IVF: transfer date + 266 days (5-day blastocyst). Confirm with ultrasound.'},{label:'Weeks',value:w+' weeks'},{label:'T1 End (13w)',value:t1.toISOString().slice(0,10),insight:'Highest risk period. Screen for abnormalities.'},{label:'T2 End (26w)',value:t2.toISOString().slice(0,10),insight:'Anatomy scan + glucose screening.'},{label:'T3 Start (27w)',value:t3.toISOString().slice(0,10),insight:'Growth monitoring, birth prep.'}]; },
   },
     'early-payoff-calculator': {
     inputs: [{key:'bal',label:'Balance ($)',type:'number',defaultValue:200000},{key:'rate',label:'Rate (%)',type:'number',defaultValue:6},{key:'mo',label:'Months Left',type:'number',defaultValue:300},{key:'extra',label:'Extra ($/mo)',type:'number',defaultValue:200}],
@@ -535,7 +535,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'ovulation-calculator': {
     inputs: [{key:'lmp',label:'Last Period',type:'text',defaultValue:'2026-06-01'},{key:'cycle',label:'Cycle (days)',type:'number',defaultValue:28}],
-    formula: (v) => { const l=new Date(String(v.lmp)); if(isNaN(l.getTime()))return[{label:'Error',value:'Invalid date'}]; const o=new Date(l);o.setDate(o.getDate()+F(v.cycle)-14);const f=new Date(o);f.setDate(f.getDate()-5);return[{label:'Ovulation',value:o.toISOString().slice(0,10)},{label:'Fertile From',value:f.toISOString().slice(0,10)}]; },
+    formula: (v) => { const l=new Date(String(v.lmp)); if(isNaN(l.getTime()))return[{label:'Error',value:'Invalid date'}]; const c=F(v.cycle); const o=new Date(l);o.setDate(o.getDate()+c-14);const f=new Date(o);f.setDate(f.getDate()-5);const e=new Date(o);e.setDate(e.getDate()+2); const earlyOv=new Date(l);earlyOv.setDate(earlyOv.getDate()+21); const lateOv=new Date(l);lateOv.setDate(lateOv.getDate()+35); return[{label:'Predicted Ovulation',value:o.toISOString().slice(0,10),insight:'Based on '+c.toFixed(0)+'-day cycle. Actual ovulation varies +/-2 days. For irregular cycles (21-35 days), ovulation window may span '+earlyOv.toISOString().slice(0,10)+' to '+lateOv.toISOString().slice(0,10)+'.'},{label:'Fertile Window',value:f.toISOString().slice(0,10)+' to '+e.toISOString().slice(0,10),insight:'Sperm survive 5 days; egg survives 24h. Highest conception probability: 2 days before ovulation.'}]; },
   },
       'paint-calculator': {
     inputs: [{key:'length',label:'Room Length (ft)',type:'number',defaultValue:12},{key:'width',label:'Room Width (ft)',type:'number',defaultValue:12},{key:'height',label:'Ceiling (ft)',type:'number',defaultValue:8},{key:'coats',label:'Coats',type:'number',defaultValue:2}],
@@ -687,7 +687,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'sleep-cycle-calculator': {
     inputs: [{key:'wake',label:'Wake Hour (0-23)',type:'number',defaultValue:7}],
-    formula: (v) => { const w=F(v.wake),t=[]; for(var i=6;i>=3;i--){var h=(w-(i*1.5)-0.25+24)%24,hr=Math.floor(h),mn=Math.round((h-hr)*60);t.push(String(hr).padStart(2,'0')+':'+String(mn).padStart(2,'0')+' ('+i+' cycles)');} return [{label:'Ideal(6c)',value:t[0]},{label:'Good(5c)',value:t[1]},{label:'OK(4c)',value:t[2]}]; },
+    formula: (v) => { const w=F(v.wake),t=[]; for(var i=6;i>=3;i--){var h90=(w-(i*1.5)-0.25+24)%24,hr90=Math.floor(h90),mn90=Math.round((h90-hr90)*60);var h80=(w-(i*80/60)-0.25+24)%24,hr80=Math.floor(h80),mn80=Math.round((h80-hr80)*60);t.push(String(hr90).padStart(2,'0')+':'+String(mn90).padStart(2,'0')+' ('+i+'x 90min cycles)');} return [{label:'Standard (90min cycles)',value:t[0],insight:'90min is average sleep cycle. Most adults need 5-6 cycles (7.5-9h). If you naturally wake after 4 cycles, try 80min cycle bedtime: '+t[3]+'.'},{label:'Good(5 cycles)',value:t[1]},{label:'Minimum(4 cycles)',value:t[2]},{label:'Short Sleeper (80min)',value:t[0],insight:'About 5% of people have naturally shorter 80min sleep cycles. If you consistently wake before your alarm, try the 80min bedtimes instead.'}]; },
   },
     'slugify-string': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'How to Bake Bread: 10 Tips!'}],
@@ -731,7 +731,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
       'tdee-calculator': {
     inputs: [{key:'wt',label:'Weight (kg)',type:'number',defaultValue:70},{key:'ht',label:'Height (cm)',type:'number',defaultValue:175},{key:'age',label:'Age',type:'number',defaultValue:30},{key:'gen',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'},{key:'act',label:'Activity',type:'select',options:[{label:'Sedentary',value:'1.2'},{label:'Light',value:'1.375'},{label:'Moderate',value:'1.55'},{label:'Active',value:'1.725'},{label:'Very Active',value:'1.9'}],defaultValue:'1.55'}],
-    formula: (v) => { const w=F(v.wt),h=F(v.ht),a=F(v.age),act=F(v.act); const bmr=v.gen==='male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161; const tdee=bmr*act; return [{label:'BMR',value:bmr.toFixed(0)+' cal'},{label:'TDEE',value:tdee.toFixed(0)+' cal'},{label:'Lose(-500)',value:(tdee-500).toFixed(0)+' cal'},{label:'Gain(+500)',value:(tdee+500).toFixed(0)+' cal'}]; },
+    formula: (v) => { const w=F(v.wt),h=F(v.ht),a=F(v.age),act=F(v.act); const bmr=v.gen==='male'?10*w+6.25*h-5*a+5:10*w+6.25*h-5*a-161; const tdee=bmr*act; const cut=tdee-500,bulk=tdee+500; const pro=Math.round(w*2.2),fat=Math.round(cut*0.25/9),carb=Math.round((cut-pro*4-fat*9)/4); return [{label:'BMR',value:bmr.toFixed(0)+' cal/day',insight:'Basal Metabolic Rate - calories burned at complete rest'},{label:'TDEE',value:tdee.toFixed(0)+' cal/day',insight:'Total Daily Energy Expenditure including activity level '+F(v.act).toFixed(3)+'x'},{label:'Cut (-500 cal)',value:cut.toFixed(0)+' cal/day',insight:'Target for fat loss (~0.5kg/week). Macro split: '+pro+'g protein, '+fat+'g fat, '+carb+'g carbs'},{label:'Bulk (+500 cal)',value:bulk.toFixed(0)+' cal/day',insight:'Target for muscle gain. Increase protein to '+Math.round(w*2.5)+'g/day during bulking phase.'}]; },
     presets: [{label:'Moderate Male 30',values:{wt:70,ht:175,age:30,gen:'male',act:'1.55'}}],
   },
         'temperature-converter': {
@@ -824,7 +824,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'water-intake-calculator': {
     inputs: [{key:'wt',label:'Weight (lbs)',type:'number',defaultValue:150},{key:'act',label:'Activity',type:'select',options:[{label:'Sedentary',value:'1'},{label:'Moderate',value:'1.2'},{label:'Active',value:'1.4'}],defaultValue:'1'}],
-    formula: (v) => { const b=F(v.wt)*0.67*F(v.act); return [{label:'Daily',value:b.toFixed(0)+' oz'},{label:'Liters',value:(b/33.8).toFixed(1)+' L'},{label:'Glasses',value:Math.round(b/8)+' glasses'}]; },
+    formula: (v) => { const b=F(v.wt)*0.67*F(v.act); const hot=b*1.2,cold=b*0.9; return [{label:'Base Daily',value:b.toFixed(0)+' oz ('+(b/33.8).toFixed(1)+' L)',insight:'Based on weight. Add 12-20oz per 30min exercise. In hot/humid climates: increase by ~20% to '+hot.toFixed(0)+'oz. In cold/dry: '+cold.toFixed(0)+'oz (thirst is reduced but dehydration risk remains).'},{label:'With Exercise (+30min)',value:(b+16).toFixed(0)+' oz',insight:'Add ~16oz for 30min moderate exercise, ~24oz for intense workout.'},{label:'Glasses (8oz)',value:Math.round(b/8)+' glasses'}]; },
   },
     'wedding-budget-calculator': {
     inputs: [{key:'budget',label:'Budget ($)',type:'number',defaultValue:30000},{key:'guests',label:'Guests',type:'number',defaultValue:100}],
