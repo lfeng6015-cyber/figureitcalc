@@ -255,9 +255,13 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
                     ) : String(r.value).startsWith('data:image/') ? (
                       <img src={String(r.value)} alt={String(r.label)} style={{maxWidth:'100%',height:'auto'}} className="rounded" />
                     ) : (
-                      <span className={`font-mono ${r.emphasis ? "text-xl font-bold text-foreground" : "text-lg font-semibold text-foreground"}`}>
-                        {r.value}
-                      </span>
+                      String(r.value).includes('\n') ? (
+                        <pre className="font-mono text-xs text-foreground whitespace-pre overflow-x-auto">{r.value}</pre>
+                      ) : (
+                        <span className={`font-mono ${r.emphasis ? "text-xl font-bold text-foreground" : "text-lg font-semibold text-foreground"}`}>
+                          {r.value}
+                        </span>
+                      )
                     )}
                     {r.insight && (
                       <p className="text-xs mt-1.5 text-muted-foreground flex items-start gap-1">
@@ -342,7 +346,11 @@ export function CalculatorTool({ inputs, formula, presets, description }: Calcul
                   ) : String(r.value).startsWith('data:image/') ? (
                     <img src={String(r.value)} style={{maxWidth:'100%',height:'auto'}} className="rounded" />
                   ) : (
-                    <span className="text-lg font-bold text-foreground font-mono">{r.value}</span>
+                    String(r.value).includes('\n') ? (
+                      <pre className="font-mono text-xs text-foreground whitespace-pre overflow-x-auto">{r.value}</pre>
+                    ) : (
+                      <span className="text-lg font-bold text-foreground font-mono">{r.value}</span>
+                    )
                   )}
                   {r.insight && (
                     <p className="text-xs mt-1.5 text-muted-foreground flex items-start gap-1">

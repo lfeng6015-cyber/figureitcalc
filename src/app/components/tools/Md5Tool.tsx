@@ -79,7 +79,7 @@ function md5(str: string): string {
 }
 
 export function Md5Tool() {
-  const [input, setInput] = useState("Hello, 工具箱！");
+  const [input, setInput] = useState("Hello, this is a test string for MD5 hashing.");
   const [uppercase, setUppercase] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -95,10 +95,10 @@ export function Md5Tool() {
   return (
     <div className="space-y-5">
       <div className="space-y-2">
-        <label className="text-sm text-muted-foreground">输入文本</label>
+        <label className="text-sm text-muted-foreground">Input Text</label>
         <textarea
           className="w-full h-36 p-3 rounded-lg border border-border bg-input-background text-foreground text-sm font-mono resize-none focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all"
-          placeholder="在此输入需要加密的文本..."
+          placeholder="Enter text to hash..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
@@ -112,12 +112,12 @@ export function Md5Tool() {
           >
             <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${uppercase ? "translate-x-5" : "translate-x-0.5"}`} />
           </div>
-          大写输出
+          Uppercase Output
         </label>
       </div>
 
       <div className="space-y-3">
-        <p className="text-sm text-muted-foreground">MD5 加密结果</p>
+        <p className="text-sm text-muted-foreground">MD5 Hash Result</p>
         <div className="flex items-center gap-3 p-3 bg-muted rounded-lg border border-border">
           <span className="flex-1 font-mono text-sm text-foreground break-all">{display || "—"}</span>
           <button onClick={() => copy(display, "md5")} disabled={!display} className="flex-shrink-0 text-muted-foreground hover:text-primary transition-colors disabled:opacity-40">
@@ -127,9 +127,9 @@ export function Md5Tool() {
       </div>
 
       <div className="p-4 bg-accent rounded-lg border border-border/50 text-sm text-muted-foreground space-y-1">
-        <p className="text-foreground" style={{ fontWeight: 500 }}>说明</p>
-        <p>MD5 是一种不可逆的哈希算法，输出固定 32 位十六进制字符串。</p>
-        <p>常用于文件校验、密码存储（建议加盐），不建议用于安全敏感场景。</p>
+        <p className="text-foreground" style={{ fontWeight: 500 }}>About MD5</p>
+        <p>MD5 is a one-way cryptographic hash function that produces a fixed 32-character hexadecimal string from any input.</p>
+        <p>Commonly used for file integrity checks and checksums. For password storage, use bcrypt or Argon2 instead. Not recommended for security-sensitive applications.</p>
       </div>
     </div>
   );

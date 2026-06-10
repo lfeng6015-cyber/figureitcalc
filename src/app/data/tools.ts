@@ -540,7 +540,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Camera Recorder | Free Photography Tool — figureitcalc",
       "description": "Camera Recorder — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "camera, recoder, free camera recorder online, camera recorder no signup",
+      "keywords": "camera, recorder, webcam, video, photo, snapshot, media, capture, free camera recorder online, camera recorder no signup, record video browser, webcam capture tool",
       "h1": "Camera Recorder",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -892,7 +892,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Color Converter | Free Dev Tool — figureitcalc",
       "description": "Color Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "color, converter, free color converter online, color converter no signup, convert color online free, color conversion tool",
+      "keywords": "color converter, hex to rgb, rgb to hsl, color code converter, hex color picker, css color, free color converter online, color converter no signup, color palette tool, hex color converter",
       "h1": "Color Converter",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -1660,7 +1660,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Email normalizer | Free Dev Tool — figureitcalc",
       "description": "Normalize email addresses to a standard format for easier comparison. Useful for deduplication and data cleaning. Free online tool. 100% client-side — no uploads, no signup.",
-      "keywords": "email, normalizer, free email normalizer online, email normalizer no signup",
+      "keywords": "email normalizer, email cleaner, gmail dots, email formatting, email validation, normalize email address, free email normalizer online, email normalizer no signup, clean email address, email standardization tool",
       "h1": "Email normalizer",
       "intro": "Normalize email addresses to a standard format for easier comparison. Useful for deduplication and data cleaning. This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
       "howTo": [
@@ -1724,7 +1724,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Emoji Picker | Free Productivity Tool — figureitcalc",
       "description": "Emoji Picker — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "emoji, picker, unicode, copy, paste, free emoji picker online, emoji picker no signup",
+      "keywords": "emoji picker, emoji keyboard, emoticon, smiley, emoji copy paste, unicode emoji, free emoji picker online, emoji picker no signup, emoji search, emoji categories",
       "h1": "Emoji Picker",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -2908,7 +2908,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online JSON Minifier & Compressor | Free Dev Tool — figureitcalc",
       "description": "Json Minify — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "json, minify, format, free json minify online, json minify no signup",
+      "keywords": "json minify, json compress, json minifier, remove json whitespace, compact json, minify json online, free json minify online, json minify no signup, json size reducer, json optimizer",
       "h1": "Json Minify",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -2940,7 +2940,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Json To Csv | Free Dev Tool — figureitcalc",
       "description": "Json To Csv — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "json, to, csv, convert, free json to csv online, json to csv no signup",
+      "keywords": "json to csv, json converter, csv export, json data to csv, convert json to csv online, free json to csv converter, json to csv no signup, json to spreadsheet, json array to csv, data export tool",
       "h1": "Json To Csv",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -2972,7 +2972,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online JSON to TOML Converter | Free Dev Tool — figureitcalc",
       "description": "Json To Toml — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "json, parse, toml, convert, transform, free json to toml online, json to toml no signup",
+      "keywords": "json to toml, json converter, toml format, config file converter, json to toml online, free json to toml converter, json to toml no signup, toml generator, json transform, configuration converter",
       "h1": "Json To Toml",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -3004,7 +3004,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online JSON to XML | Free Dev Tool — figureitcalc",
       "description": "Convert JSON to XML Free online tool. 100% client-side — no uploads, no signup. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "json, xml, free json to xml online, json to xml no signup",
+      "keywords": "json to xml, json converter, xml format, api format converter, convert json to xml, free json to xml converter, json to xml no signup, data interchange, json transform tool, xml generator",
       "h1": "JSON to XML",
       "intro": "Convert JSON to XML This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
       "howTo": [
@@ -3036,7 +3036,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online JSON to YAML Converter | Free Dev Tool — figureitcalc",
       "description": "Json To Yaml Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "yaml, to, json, free json to yaml converter online, json to yaml converter no signup, convert json to yaml online free, json to yaml conversion tool",
+      "keywords": "json to yaml, yaml converter, json to yaml online, config converter, json transform, free json to yaml converter, json to yaml no signup, yaml generator, devops config, kubernetes yaml converter",
       "h1": "Json To Yaml Converter",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -3068,7 +3068,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Json Viewer | Free Dev Tool — figureitcalc",
       "description": "Json Viewer — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "json, viewer, prettify, format, free json viewer online, json viewer no signup",
+      "keywords": "json viewer, json prettifier, json tree view, json formatter online, json parser, json explorer, free json viewer online, json viewer no signup, json debugger, json inspector",
       "h1": "Json Viewer",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -3484,7 +3484,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Markdown to HTML | Free Dev Tool — figureitcalc",
       "description": "Convert Markdown to Html and allow to print (as PDF) Free online tool. 100% client-side — no uploads, no signup.",
-      "keywords": "markdown, html, converter, pdf, free markdown to html online, markdown to html no signup",
+      "keywords": "markdown to html, md to html, markdown converter, html generator, markdown renderer, free markdown to html converter, markdown to html no signup, markdown parser, readme converter, documentation tool",
       "h1": "Markdown to HTML",
       "intro": "Convert Markdown to Html and allow to print (as PDF) This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
       "howTo": [
@@ -3644,7 +3644,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online MIME Types Reference | Free Dev Tool — figureitcalc",
       "description": "Mime Types — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "mime, types, extension, content, type, free mime types online, mime types no signup",
+      "keywords": "mime types, content type, file type lookup, mime type reference, http content type, free mime types reference, mime types no signup, media type, file extension mime, web mime types",
       "h1": "Mime Types",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -4476,7 +4476,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Regex Tester | Free Dev Tool — figureitcalc",
       "description": "Test your regular expressions with sample text. Free online tool. 100% client-side — no uploads, no signup.",
-      "keywords": "regex, tester, sample, expression, free regex tester online, regex tester no signup",
+      "keywords": "regex tester, regular expression, regex debugger, regex match, regex online, regex validator, free regex tester online, regex tester no signup, regex tool, pattern matcher",
       "h1": "Regex Tester",
       "intro": "Test your regular expressions with sample text. This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
       "howTo": [
@@ -4764,7 +4764,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Outlook Safelink decoder | Free Dev Tool — figureitcalc",
       "description": "Decode Outlook SafeLink links Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
-      "keywords": "outlook, safelink, decoder, free outlook safelink decoder online, outlook safelink decoder no signup",
+      "keywords": "safelink decoder, url decoder, redirect resolver, link expander, short url decoder, free safelink decoder online, safelink decoder no signup, url unwrapper, link safety checker, redirect follower",
       "h1": "Outlook Safelink decoder",
       "intro": "Decode Outlook SafeLink links This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
       "howTo": [
@@ -5468,7 +5468,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online Text To Unicode | Free Dev Tool — figureitcalc",
       "description": "Text To Unicode — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "text, to, unicode, free text to unicode online, text to unicode no signup",
+      "keywords": "text to unicode, unicode converter, character encoding, unicode escape, text encoder, free text to unicode converter, text to unicode no signup, unicode code point, character map, encoding tool",
       "h1": "Text To Unicode",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -6108,7 +6108,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online XML Formatter & Beautifier | Free Dev Tool — figureitcalc",
       "description": "Xml Formatter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "xml, prettify, format, free xml formatter online, xml formatter no signup",
+      "keywords": "xml formatter, xml beautifier, xml prettifier, xml indentation, format xml online, free xml formatter, xml formatter no signup, xml validator, xml parser, xml tool",
       "h1": "Xml Formatter",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -6140,7 +6140,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online XML to JSON Converter | Free Dev Tool — figureitcalc",
       "description": "Convert XML to JSON Free online tool. 100% client-side — no uploads, no signup. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "xml, json, free xml to json online, xml to json no signup",
+      "keywords": "xml to json, xml converter, json format, api converter, xml parse, free xml to json converter, xml to json no signup, data transform, xml to json online, xml json tool",
       "h1": "XML to JSON",
       "intro": "Convert XML to JSON This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
       "howTo": [
@@ -6172,7 +6172,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online YAML to JSON Converter | Free Dev Tool — figureitcalc",
       "description": "Yaml To Json Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "yaml, to, json, free yaml to json converter online, yaml to json converter no signup, convert yaml to json online free, yaml to json conversion tool",
+      "keywords": "yaml to json, yaml converter, json formatter, yaml parser, convert yaml to json, free yaml to json converter, yaml to json no signup, config converter, swagger converter, openapi tool",
       "h1": "Yaml To Json Converter",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -6204,7 +6204,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online YAML to TOML Converter | Free Dev Tool — figureitcalc",
       "description": "Yaml To Toml — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "yaml, to, toml, convert, transform, free yaml to toml online, yaml to toml no signup",
+      "keywords": "yaml to toml, config converter, toml format, yaml transform, yaml to toml online, free yaml to toml converter, yaml to toml no signup, configuration tool, devops config, toml generator",
       "h1": "Yaml To Toml",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
@@ -6236,7 +6236,7 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Online YAML Viewer & Formatter | Free Dev Tool — figureitcalc",
       "description": "Yaml Viewer — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
-      "keywords": "yaml, viewer, prettify, format, free yaml viewer online, yaml viewer no signup",
+      "keywords": "yaml viewer, yaml prettifier, yaml parser, yaml tree view, yaml explorer, free yaml viewer online, yaml viewer no signup, yaml inspector, config viewer, yaml debugger",
       "h1": "Yaml Viewer",
       "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
