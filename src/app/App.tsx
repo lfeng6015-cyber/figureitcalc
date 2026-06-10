@@ -357,7 +357,7 @@ export default function App() {
                       <div className="flex items-center gap-2 mb-3">
                         <Flame className="w-4 h-4 text-red-500" />
                         <span className="text-foreground" style={{ fontWeight: 600 }}>Hot Tools</span>
-                        <span className="text-xs text-muted-foreground">路 Most popular</span>
+                        <span className="text-xs text-muted-foreground">Most popular</span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         {hotTools.map((tool) => <ToolCard key={tool.id} icon={getIcon(tool.icon)} name={tool.name} description={tool.description} tag={CATEGORIES.find(c => c.id === tool.category)?.label} isNew={tool.isNew} isHot={tool.isHot} keywords={tool.seo.keywords} onClick={() => openTool(tool.id)} />)}
@@ -370,7 +370,7 @@ export default function App() {
                       <div className="flex items-center gap-2 mb-3">
                         <Sparkles className="w-4 h-4 text-primary" />
                         <span className="text-foreground" style={{ fontWeight: 600 }}>Recently Added</span>
-                        <span className="text-xs text-muted-foreground">路 New tools</span>
+                        <span className="text-xs text-muted-foreground">New tools</span>
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                         {newTools.map((tool) => <ToolCard key={tool.id} icon={getIcon(tool.icon)} name={tool.name} description={tool.description} tag={CATEGORIES.find(c => c.id === tool.category)?.label} isNew={tool.isNew} keywords={tool.seo.keywords} onClick={() => openTool(tool.id)} />)}
@@ -381,7 +381,7 @@ export default function App() {
                   <section>
                     <div className="flex items-center gap-2 mb-3">
                       <span className="text-foreground" style={{ fontWeight: 600 }}>All Tools</span>
-                      <span className="text-xs text-muted-foreground">路 {TOOLS.length} tools</span>
+                      <span className="text-xs text-muted-foreground">{TOOLS.length} tools</span>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       {TOOLS.map((tool) => <ToolCard key={tool.id} icon={getIcon(tool.icon)} name={tool.name} description={tool.description} tag={CATEGORIES.find(c => c.id === tool.category)?.label} isNew={tool.isNew} isHot={tool.isHot} keywords={tool.seo.keywords} onClick={() => openTool(tool.id)} />)}
@@ -419,7 +419,7 @@ export default function App() {
                         <div className="flex items-center gap-2">
                           <Search className="w-4 h-4 text-muted-foreground" />
                           <span className="text-foreground" style={{ fontWeight: 600 }}>Search "{searchQuery}"</span>
-                          <span className="text-xs text-muted-foreground">路 {filteredTools.length} results</span>
+                          <span className="text-xs text-muted-foreground">{filteredTools.length} results</span>
                         </div>
                         <button onClick={() => setSearchQuery("")} className="text-xs text-primary flex items-center gap-1 hover:underline">
                           Clear search <ChevronRight className="w-3 h-3" />
@@ -472,7 +472,7 @@ export default function App() {
                     {/* Tips */}
                     {cat.tips && cat.tips.length > 0 && (
                       <section className="bg-card rounded-xl border border-border p-5">
-                        <h2 className="text-foreground text-lg font-semibold mb-3">馃挕 Expert Tips — Get the Most From These Tools</h2>
+                        <h2 className="text-foreground text-lg font-semibold mb-3">Expert Tips — Get the Most From These Tools</h2>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {cat.tips.map((tip, i) => (
                             <div key={i} className="flex gap-2.5 p-3 rounded-lg bg-accent/20">
