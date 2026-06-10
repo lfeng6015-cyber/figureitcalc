@@ -902,7 +902,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
   'love-calculator': {
     inputs: [{key:'name1',label:'Your Name',type:'text',defaultValue:'Romeo'},{key:'name2',label:'Crush Name',type:'text',defaultValue:'Juliet'}],
-    formula: (v) => { const h=(s:string)=>s.toLowerCase().replace(/[^a-z]/g,'').split('').reduce((a,c)=>a+c.charCodeAt(0),0); const seed=h(String(v.name1))*h(String(v.name2)); const score=((seed*7919+104729)%89)+11; return [{label:'Love',value:score+'%'},{label:'Verdict',value:score>=80?'Epic!':score>=60?'Sweet':score>=40?'Cute':'Hmm...'}]; },
+    formula: (v) => { const h=(s:string)=>s.toLowerCase().replace(/[^a-z]/g,'').split('').reduce((a,c)=>a+c.charCodeAt(0),0); const seed=h(String(v.name1))*h(String(v.name2)); const score=((seed*7919+104729)%89)+11; return [{label:'Love',value:score+'%'},{label:'Verdict',value:score>=80?'Epic!':score>=60?'Sweet':score>=40?'Cute':'Just Friends?',insight:'For entertainment only. Name numerology - not scientific. Real relationships depend on communication and mutual respect.'}]; },
   },
         'soulmate-finder': {
     inputs: [{key:'b1',label:'Your Bday',type:'text',defaultValue:'1990-05-15'},{key:'b2',label:'Partner Bday',type:'text',defaultValue:'1992-08-22'}],
