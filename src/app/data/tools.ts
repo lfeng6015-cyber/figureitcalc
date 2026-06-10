@@ -51,7 +51,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "annuity-calculator",
     "name": "Annuity Calculator",
-    "description": "Calculate the future value of an annuity with regular payments and fixed interest rate.",
+    "description": "Calculate the future value of an annuity with regular payments and fixed interest rate. Free online tool. No signup, client-side.",
     "category": "finance",
     "icon": "Zap",
     "isHot": false,
@@ -83,7 +83,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "ascii-text-drawer",
     "name": "ASCII Art Text Generator",
-    "description": "Create ASCII art text with many fonts and styles.",
+    "description": "Create ASCII art text with many fonts and styles. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -115,7 +115,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "baby-growth-calculator",
     "name": "Baby Growth Percentile Calculator",
-    "description": "Track Your Baby's Growth & Development",
+    "description": "Track Your Baby's Growth & Development Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pregnancy",
     "icon": "Zap",
     "isHot": false,
@@ -123,7 +123,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Baby Growth Percentile Calculator | Free Pregnancy Tool — figureitcalc",
-      "description": "Track Your Baby's Growth & Development Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Track Your Baby's Growth & Development Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
       "keywords": "baby, growth, percentile, WHO, CDC, weight, height, chart, free baby growth percentile calculator online, baby growth percentile calculator no signup, how to calculate baby growth percentile, baby growth percentile calculator with formula",
       "h1": "Baby Growth Percentile Calculator",
       "intro": "Track Your Baby's Growth & Development This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -147,7 +147,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "bakers-percentage-calculator",
     "name": "Baker",
-    "description": "Calculate Baker's Percentages & Hydration",
+    "description": "Calculate Baker's Percentages & Hydration Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "cooking",
     "icon": "Utensils",
     "isHot": false,
@@ -187,10 +187,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "base64",
     "seo": {
       "title": "Online Base64 File Converter | Free Dev Tool — figureitcalc",
-      "description": "Base64 File Converter — free online tool. No signup, client-side processing.",
+      "description": "Base64 File Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "base64, converter, upload, image, file, conversion, web, data, format, free base64 file converter online, base64 file converter no signup, convert base64 file online free, base64 file conversion tool",
       "h1": "Base64 File Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -222,7 +222,7 @@ export const TOOLS: ToolMeta[] = [
       "description": "Free Base64 encoder and decoder — convert text to Base64 and decode Base64 strings back to readable text. Supports standard and URL-safe Base64. Essential for API development, data URIs, and HTTP authentication. Client-side only.",
       "keywords": "base64, converter, conversion, web, data, format, atob, btoa, free base64 string converter online, base64 string converter no signup, convert base64 string online free, base64 string conversion tool",
       "h1": "Base64 String Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -251,10 +251,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Basic Auth Generator | Free Dev Tool — figureitcalc",
-      "description": "Basic Auth Generator — free online tool. No signup, client-side processing.",
+      "description": "Basic Auth Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "basic, auth, generator, username, password, base64, authentication, header, authorization, ",
       "h1": "Basic Auth Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -283,10 +283,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Bcrypt Password Hash Generator | Free Dev Tool — figureitcalc",
-      "description": "Bcrypt — free online tool. No signup, client-side processing.",
+      "description": "Bcrypt — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "bcrypt, hash, compare, password, salt, round, storage, crypto, free bcrypt online, bcrypt no signup",
       "h1": "Bcrypt",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -307,7 +307,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "beam-load-calculator",
     "name": "Beam Load Calculator",
-    "description": "Calculate the maximum load a beam can support based on span, material, and cross-section.",
+    "description": "Calculate the maximum load a beam can support based on span, material, and cross-section. Free online tool. No signup, client-side.",
     "category": "construction",
     "icon": "Zap",
     "isHot": false,
@@ -339,7 +339,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "benchmark-builder",
     "name": "Benchmark Builder",
-    "description": "Create custom benchmarking scripts to measure and compare code performance across implementations.",
+    "description": "Create custom benchmarking scripts to measure and compare code performance across implementations. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Gauge",
     "isHot": false,
@@ -347,10 +347,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Benchmark Builder | Free Dev Tool — figureitcalc",
-      "description": "Benchmark Builder — free online tool. No signup, client-side processing.",
+      "description": "Benchmark Builder — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "benchmark, builder, execution, duration, mean, variance, free benchmark builder online, benchmark builder no signup",
       "h1": "Benchmark Builder",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -379,10 +379,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Bip39 Generator | Free Dev Tool — figureitcalc",
-      "description": "Bip39 Generator — free online tool. No signup, client-side processing.",
+      "description": "Bip39 Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "BIP39, passphrase, generator, mnemonic, entropy, free bip39 generator online, bip39 generator no signup, create bip39 free online, bip39 maker no signup",
       "h1": "Bip39 Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -403,7 +403,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "bmi-calculator",
     "name": "BMI Calculator",
-    "description": "Calculate your Body Mass Index (BMI) to assess your weight category based on height and weight.",
+    "description": "Calculate your Body Mass Index (BMI) to assess your weight category based on height and weight. Free online tool. No signup, client-side.",
     "category": "health",
     "icon": "Scale",
     "isHot": true,
@@ -435,7 +435,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "body-fat-calculator",
     "name": "Body Fat Percentage Calculator",
-    "description": "Estimate your body fat percentage using the U.S. Navy method or BMI-based method.",
+    "description": "Estimate your body fat percentage using the U.S. Navy method or BMI-based method. Free online tool. No signup, client-side.",
     "category": "health",
     "icon": "Zap",
     "isHot": false,
@@ -467,7 +467,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "break-even-calculator",
     "name": "Break-Even Calculator",
-    "description": "Calculate your business break-even point in units and revenue.",
+    "description": "Calculate your business break-even point in units and revenue. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "business",
     "icon": "Equal",
     "isHot": false,
@@ -499,7 +499,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "bsa-calculator",
     "name": "BSA Calculator (Body Surface Area)",
-    "description": "Calculate your Body Surface Area using the Mosteller, Du Bois, or Haycock formula.",
+    "description": "Calculate your Body Surface Area using the Mosteller, Du Bois, or Haycock formula. Free online tool. No signup, client-side.",
     "category": "health",
     "icon": "Square",
     "isHot": false,
@@ -531,7 +531,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "camera-recorder",
     "name": "Camera Recorder",
-    "description": "Record video directly from your webcam in the browser. No software installation required.",
+    "description": "Record video directly from your webcam in the browser. No software installation required. Free online tool. No signup, client-side.",
     "category": "photography",
     "icon": "Camera",
     "isHot": false,
@@ -539,10 +539,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "camera",
     "seo": {
       "title": "Online Camera Recorder | Free Photography Tool — figureitcalc",
-      "description": "Camera Recorder — free online tool. No signup, client-side processing.",
+      "description": "Camera Recorder — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "camera, recoder, free camera recorder online, camera recorder no signup",
       "h1": "Camera Recorder",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -563,7 +563,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "car-depreciation-calculator",
     "name": "Car Depreciation Calculator",
-    "description": "Estimate how much your car will depreciate over time based on make, model, and age.",
+    "description": "Estimate how much your car will depreciate over time based on make, model, and age. Free online tool. No signup, client-side.",
     "category": "automotive",
     "icon": "TrendingDown",
     "isHot": false,
@@ -595,7 +595,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "car-loan-calculator",
     "name": "Car Loan Calculator",
-    "description": "Calculate your monthly auto loan payment, total interest, and total cost.",
+    "description": "Calculate your monthly auto loan payment, total interest, and total cost. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "automotive",
     "icon": "Car",
     "isHot": false,
@@ -627,7 +627,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "car-tax-calculator",
     "name": "Car Tax Calculator",
-    "description": "Estimate vehicle registration tax, sales tax, and annual road tax for your car.",
+    "description": "Estimate vehicle registration tax, sales tax, and annual road tax for your car. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "automotive",
     "icon": "Receipt",
     "isHot": false,
@@ -659,7 +659,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "carbon-footprint-calculator",
     "name": "Carbon Footprint Calculator",
-    "description": "Estimate your annual carbon footprint from transportation, home energy, diet, and consumption.",
+    "description": "Estimate your annual carbon footprint from transportation, home energy, diet, and consumption. Free online tool. No signup, client-side.",
     "category": "environment",
     "icon": "Leaf",
     "isHot": false,
@@ -699,10 +699,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Case Converter | Free Dev Tool — figureitcalc",
-      "description": "Case Converter — free online tool. No signup, client-side processing.",
+      "description": "Case Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "case, converter, camelCase, capitalCase, constantCase, dotCase, headerCase, noCase, paramCase, pascalCase, pathCase, sentenceCase, snakeCase, ",
       "h1": "Case Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -723,7 +723,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "cat-age-calculator",
     "name": "Cat Age Calculator",
-    "description": "Convert your cat",
+    "description": "Convert your cat Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pets",
     "icon": "Paw",
     "isHot": false,
@@ -731,7 +731,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Cat Age Calculator | Free Pet Tool — figureitcalc",
-      "description": "Convert your cat Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Convert your cat Free online tool. 100% client-side — no uploads, no signup. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "cat, age, human, years, kitten, senior, feline, free cat age calculator online, cat age calculator no signup, how to calculate cat age, cat age calculator with formula",
       "h1": "Cat Age Calculator",
       "intro": "Convert your cat This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -755,7 +755,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "child-cost-calculator",
     "name": "Cost of Raising a Child Calculator",
-    "description": "Estimate the total cost of raising a child from birth to age 18.",
+    "description": "Estimate the total cost of raising a child from birth to age 18. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pregnancy",
     "icon": "Wallet",
     "isHot": false,
@@ -795,10 +795,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online CHMOD File Permission Calculator | Free Dev Tool — figureitcalc",
-      "description": "Chmod Calculator — free online tool. No signup, client-side processing.",
+      "description": "Chmod Calculator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "chmod, calculator, file, permission, files, directory, folder, recursive, generator, octal, ",
       "h1": "Chmod Calculator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -819,7 +819,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "chronometer",
     "name": "Chronometer",
-    "description": "Precision online stopwatch and chronometer with lap timing, split times, and export functionality.",
+    "description": "Precision online stopwatch and chronometer with lap timing, split times, and export functionality. Free online tool. No signup, client-side.",
     "category": "productivity",
     "icon": "Timer",
     "isHot": false,
@@ -827,10 +827,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "stopwatch",
     "seo": {
       "title": "Online Chronometer | Free Productivity Tool — figureitcalc",
-      "description": "Chronometer — free online tool. No signup, client-side processing.",
+      "description": "Chronometer — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "chronometer, time, lap, duration, measure, pause, resume, stopwatch, free chronometer online, chronometer no signup",
       "h1": "Chronometer",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -851,7 +851,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "coffee-ratio-calculator",
     "name": "Coffee Ratio Calculator",
-    "description": "Calculate the perfect coffee-to-water ratio for French press, pour over, or espresso.",
+    "description": "Calculate the perfect coffee-to-water ratio for French press, pour over, or espresso. Free online tool. No signup, client-side.",
     "category": "cooking",
     "icon": "Coffee",
     "isHot": false,
@@ -891,10 +891,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "color",
     "seo": {
       "title": "Online Color Converter | Free Dev Tool — figureitcalc",
-      "description": "Color Converter — free online tool. No signup, client-side processing.",
+      "description": "Color Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "color, converter, free color converter online, color converter no signup, convert color online free, color conversion tool",
       "h1": "Color Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -947,7 +947,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "concrete-block-calculator",
     "name": "Concrete Block Calculator",
-    "description": "Calculate the number of concrete blocks or bricks needed for a wall.",
+    "description": "Calculate the number of concrete blocks or bricks needed for a wall. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "construction",
     "icon": "Zap",
     "isHot": false,
@@ -979,7 +979,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "concrete-calculator",
     "name": "Concrete Calculator",
-    "description": "Calculate how much concrete you need for slabs, footings, columns, and stairs.",
+    "description": "Calculate how much concrete you need for slabs, footings, columns, and stairs. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "construction",
     "icon": "Zap",
     "isHot": false,
@@ -1011,7 +1011,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "cooking-time-calculator",
     "name": "Cooking Time Calculator",
-    "description": "Calculate cooking times for turkey, roast, ham, and other meats based on weight.",
+    "description": "Calculate cooking times for turkey, roast, ham, and other meats based on weight. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "cooking",
     "icon": "Clock",
     "isHot": false,
@@ -1043,7 +1043,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "countdown-timer",
     "name": "Countdown Timer",
-    "description": "Set a custom countdown timer for any event. Exam countdown, cooking timer, presentation clock.",
+    "description": "Set a custom countdown timer for any event. Exam countdown, cooking timer, presentation clock. Free online tool. No signup, client-side.",
     "category": "productivity",
     "icon": "Clock",
     "isHot": false,
@@ -1075,7 +1075,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "cpm-calculator",
     "name": "CPM / CPC Calculator",
-    "description": "Calculate Cost Per Mille (CPM), Cost Per Click (CPC), and advertising ROI.",
+    "description": "Calculate Cost Per Mille (CPM), Cost Per Click (CPC), and advertising ROI. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "business",
     "icon": "Monitor",
     "isHot": false,
@@ -1115,10 +1115,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Cron Job Scheduler Generator | Free Dev Tool — figureitcalc",
-      "description": "Crontab Generator — free online tool. No signup, client-side processing.",
+      "description": "Crontab Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "crontab, generator, cronjob, cron, schedule, parse, expression, year, month, week, day, minute, second, ",
       "h1": "Crontab Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -1139,7 +1139,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "crypto-profit-calculator",
     "name": "Crypto Profit Calculator",
-    "description": "Calculate your cryptocurrency trading profits and losses including fees.",
+    "description": "Calculate your cryptocurrency trading profits and losses including fees. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "finance",
     "icon": "Bitcoin",
     "isHot": false,
@@ -1243,10 +1243,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "timestamp",
     "seo": {
       "title": "Online Date Time Converter | Free Dev Tool — figureitcalc",
-      "description": "Date Time Converter — free online tool. No signup, client-side processing.",
+      "description": "Date Time Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "date, time, converter, iso, utc, timezone, year, month, day, minute, seconde",
       "h1": "Date Time Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -1307,10 +1307,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Device Information | Free Dev Tool — figureitcalc",
-      "description": "Device Information — free online tool. No signup, client-side processing.",
+      "description": "Device Information — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "device, information, screen, pixel, ratio, status, data, computer, size, user, agent, ",
       "h1": "Device Information",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -1331,7 +1331,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "dice-probability-calculator",
     "name": "Dice Probability Calculator",
-    "description": "Calculate the probability of rolling specific outcomes with various dice combinations.",
+    "description": "Calculate the probability of rolling specific outcomes with various dice combinations. Free online tool. No signup, client-side.",
     "category": "gaming",
     "icon": "Dice5",
     "isHot": false,
@@ -1363,7 +1363,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "discount-calculator",
     "name": "Discount Calculator",
-    "description": "Calculate the final price after discount, the discount percentage, or the original price.",
+    "description": "Calculate the final price after discount, the discount percentage, or the original price. Free online tool. No signup, client-side.",
     "category": "business",
     "icon": "Percent",
     "isHot": true,
@@ -1395,7 +1395,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "dividend-yield-calculator",
     "name": "Dividend Yield Calculator",
-    "description": "Calculate the dividend yield of a stock based on annual dividend and stock price.",
+    "description": "Calculate the dividend yield of a stock based on annual dividend and stock price. Free online tool. No signup, client-side.",
     "category": "finance",
     "icon": "Wallet",
     "isHot": false,
@@ -1427,7 +1427,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "docker-run-to-docker-compose-converter",
     "name": "Docker Run To Docker Compose Converter",
-    "description": "Convert docker run commands to docker-compose.yml format. Simplify container orchestration.",
+    "description": "Convert docker run commands to docker-compose.yml format. Simplify container orchestration. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -1435,10 +1435,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Docker Run To Docker Compose Converter | Free Dev Tool — figureitcalc",
-      "description": "Docker Run To Docker Compose Converter — free online tool. No signup, client-side processing.",
+      "description": "Docker Run To Docker Compose Converter — free online tool. No signup, client-side processing. Free online tool. No signup, client-side.",
       "keywords": "docker, run, compose, yaml, yml, convert, deamon, free docker run to docker compose converter online, docker run to docker compose converter no signup, convert docker run to docker compose online free, docker run to docker compose conversion tool",
       "h1": "Docker Run To Docker Compose Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -1459,7 +1459,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "dog-age-calculator",
     "name": "Dog Age Calculator",
-    "description": "Convert your dog",
+    "description": "Convert your dog Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pets",
     "icon": "Paw",
     "isHot": false,
@@ -1467,7 +1467,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Dog Age Calculator | Free Pet Tool — figureitcalc",
-      "description": "Convert your dog Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Convert your dog Free online tool. 100% client-side — no uploads, no signup. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "dog, age, human, years, puppy, senior, breed, size, free dog age calculator online, dog age calculator no signup, how to calculate dog age, dog age calculator with formula",
       "h1": "Dog Age Calculator",
       "intro": "Convert your dog This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -1491,7 +1491,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "down-payment-calculator",
     "name": "Down Payment Calculator",
-    "description": "Calculate how much you need for a down payment and how long it will take to save.",
+    "description": "Calculate how much you need for a down payment and how long it will take to save. Free online tool. No signup, client-side.",
     "category": "real-estate",
     "icon": "Wallet",
     "isHot": false,
@@ -1523,7 +1523,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "due-date-calculator",
     "name": "Due Date Calculator",
-    "description": "Calculate your pregnancy due date from last menstrual period (LMP) or conception date.",
+    "description": "Calculate your pregnancy due date from last menstrual period (LMP) or conception date. Free online tool. No signup, client-side.",
     "category": "pregnancy",
     "icon": "Heart",
     "isHot": false,
@@ -1555,7 +1555,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "early-payoff-calculator",
     "name": "Early Payoff Calculator",
-    "description": "See how much you can save by making extra payments on your loan.",
+    "description": "See how much you can save by making extra payments on your loan. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "finance",
     "icon": "Bolt",
     "isHot": false,
@@ -1587,7 +1587,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "electricity-bill-calculator",
     "name": "Electricity Bill Calculator",
-    "description": "Estimate your monthly electricity bill based on appliance usage and local rates.",
+    "description": "Estimate your monthly electricity bill based on appliance usage and local rates. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "environment",
     "icon": "Bolt",
     "isHot": false,
@@ -1619,7 +1619,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "elo-rating-calculator",
     "name": "Elo Rating Calculator",
-    "description": "Calculate Elo rating changes after a chess or competitive game match.",
+    "description": "Calculate Elo rating changes after a chess or competitive game match. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "gaming",
     "icon": "Trophy",
     "isHot": false,
@@ -1683,7 +1683,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "emi-calculator",
     "name": "EMI / Installment Calculator",
-    "description": "Calculate your Equated Monthly Installment (EMI) for any loan with fixed interest rate.",
+    "description": "Calculate your Equated Monthly Installment (EMI) for any loan with fixed interest rate. Free online tool. No signup, client-side.",
     "category": "finance",
     "icon": "FileJson",
     "isHot": false,
@@ -1715,7 +1715,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "emoji-picker",
     "name": "Emoji Picker",
-    "description": "Browse, search, and copy emojis by category. Find the perfect emoji for any message or project.",
+    "description": "Browse, search, and copy emojis by category. Find the perfect emoji for any message or project. Free online tool. No signup, client-side.",
     "category": "productivity",
     "icon": "Zap",
     "isHot": false,
@@ -1723,10 +1723,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "emoji",
     "seo": {
       "title": "Online Emoji Picker | Free Productivity Tool — figureitcalc",
-      "description": "Emoji Picker — free online tool. No signup, client-side processing.",
+      "description": "Emoji Picker — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "emoji, picker, unicode, copy, paste, free emoji picker online, emoji picker no signup",
       "h1": "Emoji Picker",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -1755,10 +1755,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Encryption | Free Dev Tool — figureitcalc",
-      "description": "Encryption — free online tool. No signup, client-side processing.",
+      "description": "Encryption — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "cypher, encipher, text, AES, TripleDES, Rabbit, RC4, free encryption online, encryption no signup",
       "h1": "Encryption",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -1787,10 +1787,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online ETA Travel Time Calculator | Free Dev Tool — figureitcalc",
-      "description": "Eta Calculator — free online tool. No signup, client-side processing.",
+      "description": "Eta Calculator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "eta, calculator, estimated, time, arrival, average, free eta calculator online, eta calculator no signup, how to calculate eta, eta calculator with formula",
       "h1": "Eta Calculator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -1843,7 +1843,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "flooring-calculator",
     "name": "Flooring Calculator",
-    "description": "Estimate flooring material needed and cost for any room.",
+    "description": "Estimate flooring material needed and cost for any room. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "construction",
     "icon": "Square",
     "isHot": false,
@@ -1907,7 +1907,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "food-calorie-calculator",
     "name": "Food Calorie Calculator",
-    "description": "Estimate the calories in your meal by entering ingredients and portions.",
+    "description": "Estimate the calories in your meal by entering ingredients and portions. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "cooking",
     "icon": "Leaf",
     "isHot": false,
@@ -1939,7 +1939,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "fps-bottleneck-calculator",
     "name": "FPS Bottleneck Calculator",
-    "description": "Check if your CPU or GPU is bottlenecking your gaming performance.",
+    "description": "Check if your CPU or GPU is bottlenecking your gaming performance. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "gaming",
     "icon": "Gamepad2",
     "isHot": false,
@@ -2003,7 +2003,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "fuel-economy-calculator",
     "name": "Fuel Economy Calculator",
-    "description": "Calculate your vehicle",
+    "description": "Calculate your vehicle Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "travel",
     "icon": "Gauge",
     "isHot": false,
@@ -2011,7 +2011,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Fuel Economy Calculator | Free Travel Planner — figureitcalc",
-      "description": "Calculate your vehicle Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Calculate your vehicle Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
       "keywords": "MPG, fuel, economy, gas, mileage, L/100km, efficiency, free fuel economy calculator online, fuel economy calculator no signup, how to calculate fuel economy, fuel economy calculator with formula",
       "h1": "Fuel Economy Calculator",
       "intro": "Calculate your vehicle This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -2043,10 +2043,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Git Commands Cheat Sheet | Free Dev Tool — figureitcalc",
-      "description": "Git Memo — free online tool. No signup, client-side processing.",
+      "description": "Git Memo — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "git, push, force, pull, commit, amend, rebase, merge, reset, soft, hard, lease",
       "h1": "Git Memo",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2067,7 +2067,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "golden-ratio-calculator",
     "name": "Golden Ratio Calculator",
-    "description": "Calculate golden ratio proportions (1:1.618) for design, typography, and layout.",
+    "description": "Calculate golden ratio proportions (1:1.618) for design, typography, and layout. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "photography",
     "icon": "Circle",
     "isHot": false,
@@ -2099,7 +2099,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "gpa-calculator",
     "name": "GPA Calculator",
-    "description": "Calculate your Grade Point Average (GPA) on 4.0, 5.0, or percentage scales.",
+    "description": "Calculate your Grade Point Average (GPA) on 4.0, 5.0, or percentage scales. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "education",
     "icon": "GraduationCap",
     "isHot": false,
@@ -2131,7 +2131,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "grade-calculator",
     "name": "Grade Calculator",
-    "description": "Calculate your test grade percentage and determine what you need on the final exam.",
+    "description": "Calculate your test grade percentage and determine what you need on the final exam. Free online tool. No signup, client-side.",
     "category": "education",
     "icon": "Award",
     "isHot": false,
@@ -2163,7 +2163,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "graphing-calculator",
     "name": "Graphing Calculator",
-    "description": "Plot mathematical functions online. Visualize equations with an interactive graphing tool.",
+    "description": "Plot mathematical functions online. Visualize equations with an interactive graphing tool. Free online tool. No signup, client-side.",
     "category": "education",
     "icon": "BarChart2",
     "isHot": false,
@@ -2195,7 +2195,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "habit-tracker",
     "name": "Habit Tracker",
-    "description": "Track your daily habits with streaks. Data stored in your browser — private and always available.",
+    "description": "Track your daily habits with streaks. Data stored in your browser — private and always available. Free online tool. No signup, client-side.",
     "category": "productivity",
     "icon": "CircleDot",
     "isHot": false,
@@ -2238,7 +2238,7 @@ export const TOOLS: ToolMeta[] = [
       "description": "Free SHA-256, MD5, SHA-1 hash generator — create cryptographic hash digests from any text input. Verify file integrity, check checksums, and understand hash functions. All processing done in your browser — data never uploaded.",
       "keywords": "hash, digest, crypto, security, text, MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3, RIPEMD160, ",
       "h1": "Hash Text",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2259,7 +2259,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "heart-rate-zone-calculator",
     "name": "Heart Rate Zone Calculator",
-    "description": "Calculate your target heart rate zones for optimal cardio training.",
+    "description": "Calculate your target heart rate zones for optimal cardio training. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "health",
     "icon": "Heart",
     "isHot": false,
@@ -2299,10 +2299,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online HMAC Hash Generator | Free Dev Tool — figureitcalc",
-      "description": "Hmac Generator — free online tool. No signup, client-side processing.",
+      "description": "Hmac Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "hmac, generator, MD5, SHA1, SHA256, SHA224, SHA512, SHA384, SHA3, RIPEMD160",
       "h1": "Hmac Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2323,7 +2323,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "home-equity-calculator",
     "name": "Home Equity Calculator",
-    "description": "Calculate how much equity you have built in your home.",
+    "description": "Calculate how much equity you have built in your home. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "real-estate",
     "icon": "Home",
     "isHot": false,
@@ -2363,10 +2363,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Html Entities | Free Dev Tool — figureitcalc",
-      "description": "Html Entities — free online tool. No signup, client-side processing.",
+      "description": "Html Entities — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "html, entities, escape, unescape, special, characters, tags, free html entities online, html entities no signup",
       "h1": "Html Entities",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2387,7 +2387,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "html-wysiwyg-editor",
     "name": "Html Wysiwyg Editor",
-    "description": "Rich text WYSIWYG HTML editor with formatting, tables, images, and source code view.",
+    "description": "Rich text WYSIWYG HTML editor with formatting, tables, images, and source code view. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -2395,10 +2395,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Html Wysiwyg Editor | Free Dev Tool — figureitcalc",
-      "description": "Html Wysiwyg Editor — free online tool. No signup, client-side processing.",
+      "description": "Html Wysiwyg Editor — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "html, wysiwyg, editor, p, ul, ol, converter, live, free html wysiwyg editor online, html wysiwyg editor no signup",
       "h1": "Html Wysiwyg Editor",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2418,23 +2418,23 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     "id": "http-status-codes",
-    "name": "Http Status Codes",
-    "description": "Complete reference of HTTP status codes with descriptions. 1xx to 5xx responses explained.",
+    "name": "HTTP Status Codes Reference",
+    "description": "Complete reference guide to all HTTP status codes. Browse 1xx informational, 2xx success, 3xx redirect, 4xx client error, and 5xx server error responses with detailed descriptions.",
     "category": "developer",
     "icon": "Globe",
     "isHot": false,
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Http Status Codes | Free Dev Tool — figureitcalc",
-      "description": "Http Status Codes — free online tool. No signup, client-side processing.",
-      "keywords": "http, status, codes, ...codesByCategories.flatMap(({ codes }) => codes.flatMap(({ code, name }) => [String(code), name, free http status codes online, http status codes no signup",
-      "h1": "Http Status Codes",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "title": "HTTP Status Codes Reference — Complete 1xx-5xx Guide | figureitcalc",
+      "description": "Complete HTTP status codes reference: 200 OK, 301 Moved Permanently, 404 Not Found, 500 Internal Server Error, and more. Every status code with description, use case, and RFC reference. Free for developers.",
+      "keywords": "http status codes, http response codes, 200 ok, 404 not found, 500 internal server error, 301 redirect, 403 forbidden, 503 service unavailable, rest api status codes, http status code reference, free http status codes reference",
+      "h1": "HTTP Status Codes Reference",
+      "intro": "Every HTTP response includes a three-digit status code that tells the client whether the request succeeded, failed, or needs further action. This reference covers all standard HTTP status codes across five categories: 1xx Informational, 2xx Success, 3xx Redirection, 4xx Client Error, and 5xx Server Error. Each code includes its official description, typical use case, and the relevant RFC specification. Essential for API developers, backend engineers, and anyone debugging HTTP requests. All content loads instantly — no network requests needed.",
       "howTo": [
-        "Enter your input values above",
-        "Results update automatically",
-        "Copy or download the output"
+        "Browse status codes by category (1xx through 5xx)",
+        "Click any code to see its full description and RFC reference",
+        "Use Ctrl+F to search for a specific code or keyword"
       ],
       "faq": [
         {
@@ -2451,7 +2451,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "hvac-btu-calculator",
     "name": "HVAC BTU Calculator",
-    "description": "Calculate the BTUs needed to heat or cool a room based on size, insulation, and climate.",
+    "description": "Calculate the BTUs needed to heat or cool a room based on size, insulation, and climate. Free online tool. No signup, client-side.",
     "category": "construction",
     "icon": "Zap",
     "isHot": false,
@@ -2491,10 +2491,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online IBAN Validator & Parser And Parser | Free Dev Tool — figureitcalc",
-      "description": "Iban Validator And Parser — free online tool. No signup, client-side processing.",
+      "description": "Iban Validator And Parser — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "iban, validator, and, parser, bic, bank, free iban validator and parser online, iban validator and parser no signup",
       "h1": "Iban Validator And Parser",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2515,7 +2515,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "ideal-weight-calculator",
     "name": "Ideal Weight Calculator",
-    "description": "Find your ideal body weight range using multiple formulas (Robinson, Miller, Devine, Hamwi).",
+    "description": "Find your ideal body weight range using multiple formulas (Robinson, Miller, Devine, Hamwi). Free online tool. No signup, client-side.",
     "category": "health",
     "icon": "Scale",
     "isHot": false,
@@ -2547,7 +2547,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "image-color-palette",
     "name": "Image Color Palette",
-    "description": "Extract dominant colors from any image. Perfect for designers finding color inspiration.",
+    "description": "Extract dominant colors from any image. Perfect for designers finding color inspiration. Free online tool. No signup, client-side.",
     "category": "productivity",
     "icon": "Palette",
     "isHot": false,
@@ -2611,7 +2611,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "inflation-calculator",
     "name": "Inflation Calculator",
-    "description": "See how inflation affects the purchasing power of your money over time.",
+    "description": "See how inflation affects the purchasing power of your money over time. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "finance",
     "icon": "Zap",
     "isHot": false,
@@ -2643,7 +2643,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "ingredient-substitution-calculator",
     "name": "Ingredient Substitution Calculator",
-    "description": "Find the right substitution ratios for common cooking and baking ingredients.",
+    "description": "Find the right substitution ratios for common cooking and baking ingredients. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "cooking",
     "icon": "Egg",
     "isHot": false,
@@ -2675,7 +2675,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "integer-base-converter",
     "name": "Integer Base Converter",
-    "description": "Convert integers between decimal, binary, octal, hexadecimal, and custom bases (2-36).",
+    "description": "Convert integers between decimal, binary, octal, hexadecimal, and custom bases (2-36). Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -2683,10 +2683,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Integer Base Converter | Free Dev Tool — figureitcalc",
-      "description": "Integer Base Converter — free online tool. No signup, client-side processing.",
+      "description": "Integer Base Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "integer, number, base, conversion, decimal, hexadecimal, binary, octal, base64, free integer base converter online, integer base converter no signup, convert integer base online free, integer base conversion tool",
       "h1": "Integer Base Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2707,7 +2707,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "invoice-hours-calculator",
     "name": "Invoice & Hours Calculator",
-    "description": "Calculate your freelance invoice total from hourly rate, hours worked, and expenses.",
+    "description": "Calculate your freelance invoice total from hourly rate, hours worked, and expenses. Free online tool. No signup, client-side.",
     "category": "business",
     "icon": "FileJson",
     "isHot": false,
@@ -2739,7 +2739,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "ipv4-address-converter",
     "name": "Ipv4 Address Converter",
-    "description": "Convert IPv4 addresses between decimal, binary, and hexadecimal formats. Understand IP addressing.",
+    "description": "Convert IPv4 addresses between decimal, binary, and hexadecimal formats. Understand IP addressing. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -2747,10 +2747,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Ipv4 Address Converter | Free Dev Tool — figureitcalc",
-      "description": "Ipv4 Address Converter — free online tool. No signup, client-side processing.",
+      "description": "Ipv4 Address Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "ipv4, address, converter, decimal, hexadecimal, binary, ipv6, free ipv4 address converter online, ipv4 address converter no signup, convert ipv4 address online free, ipv4 address conversion tool",
       "h1": "Ipv4 Address Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2771,7 +2771,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "ipv4-range-expander",
     "name": "Ipv4 Range Expander",
-    "description": "Expand CIDR notation or IP ranges into individual IP addresses. List all addresses in a subnet.",
+    "description": "Expand CIDR notation or IP ranges into individual IP addresses. List all addresses in a subnet. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "ChevronsUpDown",
     "isHot": false,
@@ -2779,10 +2779,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Ipv4 Range Expander | Free Dev Tool — figureitcalc",
-      "description": "Ipv4 Range Expander — free online tool. No signup, client-side processing.",
+      "description": "Ipv4 Range Expander — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "ipv4, range, expander, subnet, creator, cidr, free ipv4 range expander online, ipv4 range expander no signup",
       "h1": "Ipv4 Range Expander",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2811,10 +2811,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online IPv4 Subnet Calculator | Free Dev Tool — figureitcalc",
-      "description": "Ipv4 Subnet Calculator — free online tool. No signup, client-side processing.",
+      "description": "Ipv4 Subnet Calculator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "ipv4, subnet, calculator, mask, network, cidr, netmask, bitmask, broadcast, address",
       "h1": "Ipv4 Subnet Calculator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2843,10 +2843,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Ipv6 Ula Generator | Free Dev Tool — figureitcalc",
-      "description": "Ipv6 Ula Generator — free online tool. No signup, client-side processing.",
+      "description": "Ipv6 Ula Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "ipv6, ula, generator, rfc4193, network, private, free ipv6 ula generator online, ipv6 ula generator no signup, create ipv6 ula free online, ipv6 ula maker no signup",
       "h1": "Ipv6 Ula Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2875,10 +2875,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Json Diff | Free Dev Tool — figureitcalc",
-      "description": "Json Diff — free online tool. No signup, client-side processing.",
+      "description": "Json Diff — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "json, diff, compare, difference, object, data, free json diff online, json diff no signup",
       "h1": "Json Diff",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2899,7 +2899,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "json-minify",
     "name": "Json Minify",
-    "description": "Minify JSON by removing whitespace, newlines, and comments. Reduce file size for production.",
+    "description": "Minify JSON by removing whitespace, newlines, and comments. Reduce file size for production. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -2907,10 +2907,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online JSON Minifier & Compressor | Free Dev Tool — figureitcalc",
-      "description": "Json Minify — free online tool. No signup, client-side processing.",
+      "description": "Json Minify — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "json, minify, format, free json minify online, json minify no signup",
       "h1": "Json Minify",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2931,7 +2931,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "json-to-csv",
     "name": "Json To Csv",
-    "description": "Convert JSON data to CSV format. Flatten nested objects and arrays for spreadsheet import.",
+    "description": "Convert JSON data to CSV format. Flatten nested objects and arrays for spreadsheet import. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -2939,10 +2939,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Json To Csv | Free Dev Tool — figureitcalc",
-      "description": "Json To Csv — free online tool. No signup, client-side processing.",
+      "description": "Json To Csv — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "json, to, csv, convert, free json to csv online, json to csv no signup",
       "h1": "Json To Csv",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2963,7 +2963,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "json-to-toml",
     "name": "Json To Toml",
-    "description": "Convert JSON to TOML configuration format. Useful for migrating config files between formats.",
+    "description": "Convert JSON to TOML configuration format. Useful for migrating config files between formats. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -2971,10 +2971,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online JSON to TOML Converter | Free Dev Tool — figureitcalc",
-      "description": "Json To Toml — free online tool. No signup, client-side processing.",
+      "description": "Json To Toml — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "json, parse, toml, convert, transform, free json to toml online, json to toml no signup",
       "h1": "Json To Toml",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -2995,7 +2995,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "json-to-xml",
     "name": "JSON to XML",
-    "description": "Convert JSON to XML",
+    "description": "Convert JSON to XML Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -3003,7 +3003,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online JSON to XML | Free Dev Tool — figureitcalc",
-      "description": "Convert JSON to XML Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Convert JSON to XML Free online tool. 100% client-side — no uploads, no signup. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "json, xml, free json to xml online, json to xml no signup",
       "h1": "JSON to XML",
       "intro": "Convert JSON to XML This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -3027,7 +3027,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "json-to-yaml-converter",
     "name": "Json To Yaml Converter",
-    "description": "Convert JSON to YAML. Switch between data serialization formats for configuration and APIs.",
+    "description": "Convert JSON to YAML. Switch between data serialization formats for configuration and APIs. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -3035,10 +3035,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online JSON to YAML Converter | Free Dev Tool — figureitcalc",
-      "description": "Json To Yaml Converter — free online tool. No signup, client-side processing.",
+      "description": "Json To Yaml Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "yaml, to, json, free json to yaml converter online, json to yaml converter no signup, convert json to yaml online free, json to yaml conversion tool",
       "h1": "Json To Yaml Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3059,7 +3059,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "json-viewer",
     "name": "Json Viewer",
-    "description": "Pretty-print, validate, and explore JSON data in a collapsible tree view. Find and fix JSON errors.",
+    "description": "Pretty-print, validate, and explore JSON data in a collapsible tree view. Find and fix JSON errors. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": true,
@@ -3067,10 +3067,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "json",
     "seo": {
       "title": "Online Json Viewer | Free Dev Tool — figureitcalc",
-      "description": "Json Viewer — free online tool. No signup, client-side processing.",
+      "description": "Json Viewer — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "json, viewer, prettify, format, free json viewer online, json viewer no signup",
       "h1": "Json Viewer",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3099,10 +3099,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "jwt",
     "seo": {
       "title": "Online JWT Token Decoder | Free Dev Tool — figureitcalc",
-      "description": "Jwt Parser — free online tool. No signup, client-side processing.",
+      "description": "Jwt Parser — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "jwt, parser, decode, typ, alg, iss, sub, aud, exp, nbf, iat, jti, json, web, token, ",
       "h1": "Jwt Parser",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3131,10 +3131,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Keyboard Key Code Finder | Free Dev Tool — figureitcalc",
-      "description": "Keycode Info — free online tool. No signup, client-side processing.",
+      "description": "Keycode Info — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "keycode, info, code, javascript, event, keycodes, which, keyboard, press, modifier, alt, ctrl, meta, shift, ",
       "h1": "Keycode Info",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3187,7 +3187,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "lease-vs-buy-car-calculator",
     "name": "Lease vs Buy Car Calculator",
-    "description": "Compare the total cost of leasing versus buying a car over the same period.",
+    "description": "Compare the total cost of leasing versus buying a car over the same period. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "automotive",
     "icon": "Shuffle",
     "isHot": false,
@@ -3219,7 +3219,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "led-resistor-calculator",
     "name": "LED Resistor Calculator",
-    "description": "Calculate the proper current-limiting resistor value for your LED circuit.",
+    "description": "Calculate the proper current-limiting resistor value for your LED circuit. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "electrical",
     "icon": "Lightbulb",
     "isHot": false,
@@ -3251,7 +3251,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "list-converter",
     "name": "List Converter",
-    "description": "Convert lists between formats: comma-separated, newline-separated, JSON arrays, and markdown lists.",
+    "description": "Convert lists between formats: comma-separated, newline-separated, JSON arrays, and markdown lists. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -3259,10 +3259,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online List Converter | Free Dev Tool — figureitcalc",
-      "description": "List Converter — free online tool. No signup, client-side processing.",
+      "description": "List Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "list, converter, sort, reverse, prefix, suffix, lowercase, truncate, free list converter online, list converter no signup, convert list online free, list conversion tool",
       "h1": "List Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3283,7 +3283,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "loan-comparison-calculator",
     "name": "Loan Comparison Calculator",
-    "description": "Compare two loans side by side to see which offers better terms.",
+    "description": "Compare two loans side by side to see which offers better terms. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "finance",
     "icon": "Shuffle",
     "isHot": false,
@@ -3315,7 +3315,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "lorem-ipsum-generator",
     "name": "Lorem Ipsum Generator",
-    "description": "Generate Lorem Ipsum placeholder text with configurable paragraphs, words, and formatting options.",
+    "description": "Generate Lorem Ipsum placeholder text with configurable paragraphs, words, and formatting options. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -3323,10 +3323,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Lorem Ipsum Generator | Free Dev Tool — figureitcalc",
-      "description": "Lorem Ipsum Generator — free online tool. No signup, client-side processing.",
+      "description": "Lorem Ipsum Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "lorem, ipsum, dolor, sit, amet, placeholder, text, filler, random, generator",
       "h1": "Lorem Ipsum Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3347,7 +3347,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "lumber-calculator",
     "name": "Lumber Calculator",
-    "description": "Calculate board feet and total lumber needed for your woodworking or construction project.",
+    "description": "Calculate board feet and total lumber needed for your woodworking or construction project. Free online tool. No signup, client-side.",
     "category": "construction",
     "icon": "Leaf",
     "isHot": false,
@@ -3387,10 +3387,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Mac Address Generator | Free Dev Tool — figureitcalc",
-      "description": "Mac Address Generator — free online tool. No signup, client-side processing.",
+      "description": "Mac Address Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "mac, address, generator, random, prefix, free mac address generator online, mac address generator no signup, create mac address free online, mac address maker no signup",
       "h1": "Mac Address Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3411,7 +3411,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "mac-address-lookup",
     "name": "Mac Address Lookup",
-    "description": "Look up MAC address vendor and manufacturer information from the OUI database.",
+    "description": "Look up MAC address vendor and manufacturer information from the OUI database. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -3419,10 +3419,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Mac Address Lookup | Free Dev Tool — figureitcalc",
-      "description": "Mac Address Lookup — free online tool. No signup, client-side processing.",
+      "description": "Mac Address Lookup — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "mac, address, lookup, vendor, parser, manufacturer, free mac address lookup online, mac address lookup no signup",
       "h1": "Mac Address Lookup",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3443,7 +3443,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "macro-calculator",
     "name": "Macro Calculator",
-    "description": "Calculate your optimal daily macronutrient intake (protein, carbs, fat) based on your goals.",
+    "description": "Calculate your optimal daily macronutrient intake (protein, carbs, fat) based on your goals. Free online tool. No signup, client-side.",
     "category": "health",
     "icon": "Apple",
     "isHot": false,
@@ -3475,7 +3475,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "markdown-to-html",
     "name": "Markdown to HTML",
-    "description": "Convert Markdown to Html and allow to print (as PDF)",
+    "description": "Convert Markdown to Html and allow to print (as PDF) Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -3515,10 +3515,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Math Evaluator | Free Academic Tool — figureitcalc",
-      "description": "Math Evaluator — free online tool. No signup, client-side processing.",
+      "description": "Math Evaluator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "math, evaluator, calculator, expression, abs, acos, acosh, acot, acoth, acsc, acsch, asec, asech, asin, asinh, atan, atan2, atanh, cos, cosh, cot, coth, csc, csch, sec, sech, sin, sinh, sqrt, tan, tanh, ",
       "h1": "Math Evaluator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3579,10 +3579,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Meta Tag Generator | Free Dev Tool — figureitcalc",
-      "description": "Meta Tag Generator — free online tool. No signup, client-side processing.",
+      "description": "Meta Tag Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "meta, tag, generator, social, title, description, image, share, online, website, open, graph, og, ",
       "h1": "Meta Tag Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3603,7 +3603,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "mileage-calculator",
     "name": "Mileage Calculator",
-    "description": "Calculate mileage reimbursement, cost per mile, and total trip expenses.",
+    "description": "Calculate mileage reimbursement, cost per mile, and total trip expenses. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "travel",
     "icon": "Car",
     "isHot": false,
@@ -3643,10 +3643,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online MIME Types Reference | Free Dev Tool — figureitcalc",
-      "description": "Mime Types — free online tool. No signup, client-side processing.",
+      "description": "Mime Types — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "mime, types, extension, content, type, free mime types online, mime types no signup",
       "h1": "Mime Types",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3667,7 +3667,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "mortgage-calculator",
     "name": "Mortgage Calculator",
-    "description": "Calculate your monthly mortgage payment including principal, interest, taxes, and insurance (PITI).",
+    "description": "Calculate your monthly mortgage payment including principal, interest, taxes, and insurance (PITI). Free online tool. No signup, client-side.",
     "category": "real-estate",
     "icon": "Home",
     "isHot": true,
@@ -3699,7 +3699,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "net-worth-calculator",
     "name": "Net Worth Calculator",
-    "description": "Calculate your total net worth by summing your assets and subtracting your liabilities.",
+    "description": "Calculate your total net worth by summing your assets and subtracting your liabilities. Free online tool. No signup, client-side.",
     "category": "finance",
     "icon": "Wallet",
     "isHot": false,
@@ -3739,10 +3739,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Numeronym Generator | Free Dev Tool — figureitcalc",
-      "description": "Numeronym Generator — free online tool. No signup, client-side processing.",
+      "description": "Numeronym Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "numeronym, generator, abbreviation, i18n, a11y, l10n, free numeronym generator online, numeronym generator no signup, create numeronym free online, numeronym maker no signup",
       "h1": "Numeronym Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3763,7 +3763,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "ohms-law-calculator",
     "name": "Ohm",
-    "description": "Calculate voltage, current, resistance, and power using Ohm",
+    "description": "Calculate voltage, current, resistance, and power using Ohm Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "electrical",
     "icon": "Bolt",
     "isHot": false,
@@ -3803,10 +3803,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online OTP / TOTP Code Generator Generator And Validator | Free Dev Tool — figureitcalc",
-      "description": "Otp Code Generator And Validator — free online tool. No signup, client-side processing.",
+      "description": "Otp Code Generator And Validator — free online tool. No signup, client-side processing. Free online tool. No signup, client-side.",
       "keywords": "otp, code, generator, validator, one, time, password, authentication, MFA, mobile, device, security, TOTP, Time, HMAC, ",
       "h1": "Otp Code Generator And Validator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3827,7 +3827,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "ovulation-calculator",
     "name": "Ovulation Calculator",
-    "description": "Calculate your ovulation and fertile window to help with family planning.",
+    "description": "Calculate your ovulation and fertile window to help with family planning. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pregnancy",
     "icon": "Heart",
     "isHot": false,
@@ -3859,7 +3859,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "paint-calculator",
     "name": "Paint Calculator",
-    "description": "Estimate how much paint you need for walls, ceilings, and trim.",
+    "description": "Estimate how much paint you need for walls, ceilings, and trim. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "construction",
     "icon": "Palette",
     "isHot": false,
@@ -3891,7 +3891,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "party-drink-calculator",
     "name": "Party Drink Calculator",
-    "description": "Calculate how much alcohol and non-alcoholic drinks to buy for your party.",
+    "description": "Calculate how much alcohol and non-alcoholic drinks to buy for your party. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "wedding",
     "icon": "Zap",
     "isHot": false,
@@ -3934,7 +3934,7 @@ export const TOOLS: ToolMeta[] = [
       "description": "Free password strength checker — test how strong your password is against brute-force attacks. Analyzes entropy, length, character diversity, and dictionary resistance. Checks against known breach databases. All analysis is client-side — your password never leaves your device.",
       "keywords": "password, strength, analyser, and, crack, time, estimation, brute, force, attack, entropy, cracking, hash, hashing, algorithm, algorithms, md5, sha1, sha256, sha512, bcrypt, scrypt, argon2, argon2id, argon2i, argon2d",
       "h1": "Password Strength Analyser",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3955,7 +3955,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "pdf-signature-checker",
     "name": "Pdf Signature Checker",
-    "description": "Verify digital signatures in PDF documents. Check if a PDF has been tampered with.",
+    "description": "Verify digital signatures in PDF documents. Check if a PDF has been tampered with. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -3963,10 +3963,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Pdf Signature Checker | Free Dev Tool — figureitcalc",
-      "description": "Pdf Signature Checker — free online tool. No signup, client-side processing.",
+      "description": "Pdf Signature Checker — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "pdf, signature, checker, verify, validate, sign, free pdf signature checker online, pdf signature checker no signup",
       "h1": "Pdf Signature Checker",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -3998,7 +3998,7 @@ export const TOOLS: ToolMeta[] = [
       "description": "Free online percentage calculator — find what percent one number is of another, calculate percentage increase/decrease, find the original number. The most commonly searched math tool. Instant results, no signup.",
       "keywords": "percentage, calculator, calculate, value, number, %, free percentage calculator online, percentage calculator no signup, how to calculate percentage, percentage calculator with formula",
       "h1": "Percentage Calculator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -4019,7 +4019,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "pet-breed-mix-calculator",
     "name": "Pet Breed Mix Calculator",
-    "description": "Estimate your mixed-breed dog",
+    "description": "Estimate your mixed-breed dog Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pets",
     "icon": "Paw",
     "isHot": false,
@@ -4027,7 +4027,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Pet Breed Mix Calculator | Free Pet Tool — figureitcalc",
-      "description": "Estimate your mixed-breed dog Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Estimate your mixed-breed dog Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
       "keywords": "breed, mix, mutt, hybrid, dog, size, traits, predict, free pet breed mix calculator online, pet breed mix calculator no signup, how to calculate pet breed mix, pet breed mix calculator with formula",
       "h1": "Pet Breed Mix Calculator",
       "intro": "Estimate your mixed-breed dog This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -4051,7 +4051,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "pet-calorie-calculator",
     "name": "Pet Calorie Calculator",
-    "description": "Calculate daily calorie needs for your dog or cat based on weight, activity, and life stage.",
+    "description": "Calculate daily calorie needs for your dog or cat based on weight, activity, and life stage. Free online tool. No signup, client-side.",
     "category": "pets",
     "icon": "Zap",
     "isHot": false,
@@ -4091,10 +4091,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Phone Parser And Formatter | Free Dev Tool — figureitcalc",
-      "description": "Phone Parser And Formatter — free online tool. No signup, client-side processing.",
+      "description": "Phone Parser And Formatter — free online tool. No signup, client-side processing. Free online tool. No signup, client-side.",
       "keywords": "phone, parser, formatter, validate, format, number, telephone, mobile, cell, international, national, ",
       "h1": "Phone Parser And Formatter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -4115,7 +4115,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "photo-print-size-calculator",
     "name": "Photo Print Size Calculator",
-    "description": "Calculate the maximum print size for your digital photo at various DPI settings.",
+    "description": "Calculate the maximum print size for your digital photo at various DPI settings. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "photography",
     "icon": "Image",
     "isHot": false,
@@ -4147,7 +4147,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "poker-odds-calculator",
     "name": "Poker Odds Calculator",
-    "description": "Calculate your winning odds in Texas Hold",
+    "description": "Calculate your winning odds in Texas Hold Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "gaming",
     "icon": "Dice5",
     "isHot": false,
@@ -4211,7 +4211,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "ppi-calculator",
     "name": "PPI / DPI Calculator",
-    "description": "Calculate pixels per inch (PPI) and dots per inch (DPI) for screens and prints.",
+    "description": "Calculate pixels per inch (PPI) and dots per inch (DPI) for screens and prints. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "photography",
     "icon": "Zap",
     "isHot": false,
@@ -4243,7 +4243,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "probability-calculator",
     "name": "Probability Calculator",
-    "description": "Calculate probabilities for common scenarios: dice, cards, coin flips, and combinations.",
+    "description": "Calculate probabilities for common scenarios: dice, cards, coin flips, and combinations. Free online tool. No signup, client-side.",
     "category": "education",
     "icon": "Dice5",
     "isHot": false,
@@ -4275,7 +4275,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "profit-margin-calculator",
     "name": "Profit Margin Calculator",
-    "description": "Calculate gross margin, net margin, markup percentage, and selling price.",
+    "description": "Calculate gross margin, net margin, markup percentage, and selling price. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "business",
     "icon": "BarChart2",
     "isHot": false,
@@ -4307,7 +4307,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "property-tax-calculator",
     "name": "Property Tax Calculator",
-    "description": "Estimate your annual property tax based on your home value and local tax rate.",
+    "description": "Estimate your annual property tax based on your home value and local tax rate. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "real-estate",
     "icon": "Zap",
     "isHot": false,
@@ -4350,7 +4350,7 @@ export const TOOLS: ToolMeta[] = [
       "description": "Free QR code generator — create scannable QR codes for URLs, WiFi networks, vCards, and text. Download as high-resolution PNG or scalable SVG. Perfect for restaurant menus, business cards, event tickets, and marketing. No signup.",
       "keywords": "qr, code, generator, square, color, link, low, medium, quartile, high, transparent",
       "h1": "Qr Code Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -4371,7 +4371,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "random-port-generator",
     "name": "Random Port Generator",
-    "description": "Generate random network port numbers within specified ranges. Avoid conflicts in development.",
+    "description": "Generate random network port numbers within specified ranges. Avoid conflicts in development. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -4379,10 +4379,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Random Port Generator | Free Dev Tool — figureitcalc",
-      "description": "Random Port Generator — free online tool. No signup, client-side processing.",
+      "description": "Random Port Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "system, port, lan, generator, random, development, computer, free random port generator online, random port generator no signup, create random port free online, random port maker no signup",
       "h1": "Random Port Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -4403,7 +4403,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "recipe-converter",
     "name": "Recipe Converter",
-    "description": "Scale your recipe up or down by adjusting ingredient quantities proportionally.",
+    "description": "Scale your recipe up or down by adjusting ingredient quantities proportionally. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "cooking",
     "icon": "Zap",
     "isHot": false,
@@ -4435,7 +4435,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "regex-memo",
     "name": "Regex cheatsheet",
-    "description": "Javascript Regex/Regular Expression cheatsheet",
+    "description": "Javascript Regex/Regular Expression cheatsheet Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -4467,7 +4467,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "regex-tester",
     "name": "Regex Tester",
-    "description": "Test your regular expressions with sample text.",
+    "description": "Test your regular expressions with sample text. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -4499,7 +4499,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "renovation-cost-calculator",
     "name": "Renovation Cost Calculator",
-    "description": "Estimate the cost of your home renovation project by room and material type.",
+    "description": "Estimate the cost of your home renovation project by room and material type. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "real-estate",
     "icon": "Wrench",
     "isHot": false,
@@ -4531,7 +4531,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "rent-vs-buy-calculator",
     "name": "Rent vs Buy Calculator",
-    "description": "Compare the long-term costs of renting versus buying a home.",
+    "description": "Compare the long-term costs of renting versus buying a home. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "real-estate",
     "icon": "Home",
     "isHot": false,
@@ -4563,7 +4563,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "resistor-color-code-calculator",
     "name": "Resistor Color Code Calculator",
-    "description": "Decode resistor color bands to find resistance value, tolerance, and temperature coefficient.",
+    "description": "Decode resistor color bands to find resistance value, tolerance, and temperature coefficient. Free online tool. No signup, client-side.",
     "category": "electrical",
     "icon": "Zap",
     "isHot": false,
@@ -4627,7 +4627,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "roi-calculator",
     "name": "ROI Calculator",
-    "description": "Calculate your Return on Investment (ROI) to evaluate the profitability of your investments.",
+    "description": "Calculate your Return on Investment (ROI) to evaluate the profitability of your investments. Free online tool. No signup, client-side.",
     "category": "finance",
     "icon": "BarChart2",
     "isHot": false,
@@ -4659,7 +4659,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "roman-numeral-converter",
     "name": "Roman Numeral Converter",
-    "description": "Convert between Roman numerals and decimal numbers. Supports values from 1 to 3,999,999.",
+    "description": "Convert between Roman numerals and decimal numbers. Supports values from 1 to 3,999,999. Free online tool. No signup, client-side.",
     "category": "education",
     "icon": "Zap",
     "isHot": false,
@@ -4667,10 +4667,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Roman Numeral Converter | Free Academic Tool — figureitcalc",
-      "description": "Roman Numeral Converter — free online tool. No signup, client-side processing.",
+      "description": "Roman Numeral Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "roman, arabic, converter, X, I, V, L, C, D, M",
       "h1": "Roman Numeral Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -4691,7 +4691,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "roofing-calculator",
     "name": "Roofing Calculator",
-    "description": "Estimate roofing material needed based on roof area, pitch, and waste factor.",
+    "description": "Estimate roofing material needed based on roof area, pitch, and waste factor. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "construction",
     "icon": "Home",
     "isHot": false,
@@ -4723,7 +4723,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "rsa-key-pair-generator",
     "name": "Rsa Key Pair Generator",
-    "description": "Generate RSA public/private key pairs in PEM format. Choose key sizes from 1024 to 4096 bits.",
+    "description": "Generate RSA public/private key pairs in PEM format. Choose key sizes from 1024 to 4096 bits. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Award",
     "isHot": false,
@@ -4731,10 +4731,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Rsa Key Pair Generator | Free Dev Tool — figureitcalc",
-      "description": "Rsa Key Pair Generator — free online tool. No signup, client-side processing.",
+      "description": "Rsa Key Pair Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "rsa, key, pair, generator, public, private, secret, ssh, pem, free rsa key pair generator online, rsa key pair generator no signup, create rsa key pair free online, rsa key pair maker no signup",
       "h1": "Rsa Key Pair Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -4755,7 +4755,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "safelink-decoder",
     "name": "Outlook Safelink decoder",
-    "description": "Decode Outlook SafeLink links",
+    "description": "Decode Outlook SafeLink links Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -4763,7 +4763,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Outlook Safelink decoder | Free Dev Tool — figureitcalc",
-      "description": "Decode Outlook SafeLink links Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Decode Outlook SafeLink links Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
       "keywords": "outlook, safelink, decoder, free outlook safelink decoder online, outlook safelink decoder no signup",
       "h1": "Outlook Safelink decoder",
       "intro": "Decode Outlook SafeLink links This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -4787,7 +4787,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "sales-tax-calculator",
     "name": "Sales Tax Calculator",
-    "description": "Calculate sales tax, VAT, or GST for any purchase. Add tax to price or extract tax from total.",
+    "description": "Calculate sales tax, VAT, or GST for any purchase. Add tax to price or extract tax from total. Free online tool. No signup, client-side.",
     "category": "business",
     "icon": "Receipt",
     "isHot": false,
@@ -4819,7 +4819,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "savings-goal-calculator",
     "name": "Savings Goal Calculator",
-    "description": "Calculate how long it will take to reach your savings goal with regular contributions.",
+    "description": "Calculate how long it will take to reach your savings goal with regular contributions. Free online tool. No signup, client-side.",
     "category": "finance",
     "icon": "Target",
     "isHot": false,
@@ -4851,7 +4851,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "scientific-calculator",
     "name": "Scientific Calculator",
-    "description": "Online scientific calculator with trigonometric, logarithmic, and exponential functions.",
+    "description": "Online scientific calculator with trigonometric, logarithmic, and exponential functions. Free online tool. No signup, client-side.",
     "category": "education",
     "icon": "Calculator",
     "isHot": false,
@@ -4883,7 +4883,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "seating-chart-calculator",
     "name": "Seating Chart Calculator",
-    "description": "Calculate the number of tables and optimal seating arrangement for your event.",
+    "description": "Calculate the number of tables and optimal seating arrangement for your event. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "wedding",
     "icon": "Table",
     "isHot": false,
@@ -4915,7 +4915,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "sleep-cycle-calculator",
     "name": "Sleep Cycle Calculator",
-    "description": "Find the best times to wake up or go to sleep based on 90-minute sleep cycles.",
+    "description": "Find the best times to wake up or go to sleep based on 90-minute sleep cycles. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "health",
     "icon": "Moon",
     "isHot": false,
@@ -4955,10 +4955,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online URL Slug Generator | Free Dev Tool — figureitcalc",
-      "description": "Slugify String — free online tool. No signup, client-side processing.",
+      "description": "Slugify String — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "slugify, string, escape, emoji, special, character, space, trim, free slugify string online, slugify string no signup",
       "h1": "Slugify String",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -4979,7 +4979,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "solar-roi-calculator",
     "name": "Solar Panel ROI Calculator",
-    "description": "Calculate the payback period and return on investment for installing solar panels.",
+    "description": "Calculate the payback period and return on investment for installing solar panels. Free online tool. No signup, client-side.",
     "category": "environment",
     "icon": "Sun",
     "isHot": false,
@@ -5011,7 +5011,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "sql-prettify",
     "name": "Sql Prettify",
-    "description": "Format and beautify SQL queries with customizable indentation, capitalization, and line breaks.",
+    "description": "Format and beautify SQL queries with customizable indentation, capitalization, and line breaks. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -5019,10 +5019,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Sql Prettify | Free Dev Tool — figureitcalc",
-      "description": "Sql Prettify — free online tool. No signup, client-side processing.",
+      "description": "Sql Prettify — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "sql, prettify, beautify, GCP BigQuery, IBM DB2, Apache Hive, MariaDB, MySQL, Couchbase N1QL, Oracle PL/SQL, PostgreSQL, Amazon Redshift, Spark, SQL Server Transact-SQL, ",
       "h1": "Sql Prettify",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5043,7 +5043,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "statistics-calculator",
     "name": "Statistics Calculator",
-    "description": "Calculate mean, median, mode, standard deviation, variance, and more from a dataset.",
+    "description": "Calculate mean, median, mode, standard deviation, variance, and more from a dataset. Free online tool. No signup, client-side.",
     "category": "education",
     "icon": "BarChart2",
     "isHot": false,
@@ -5075,7 +5075,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "steps-to-miles-calculator",
     "name": "Steps to Miles Calculator",
-    "description": "Convert your daily steps into miles or kilometers based on your stride length.",
+    "description": "Convert your daily steps into miles or kilometers based on your stride length. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "health",
     "icon": "TrendingUp",
     "isHot": false,
@@ -5107,7 +5107,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "stock-return-calculator",
     "name": "Stock Return Calculator",
-    "description": "Calculate your stock investment returns including capital gains and dividends.",
+    "description": "Calculate your stock investment returns including capital gains and dividends. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "finance",
     "icon": "BarChart2",
     "isHot": false,
@@ -5139,7 +5139,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "stopwatch",
     "name": "Stopwatch",
-    "description": "Online stopwatch with lap timing. Perfect for workouts, presentations, and sports.",
+    "description": "Online stopwatch with lap timing. Perfect for workouts, presentations, and sports. Free online tool. No signup, client-side.",
     "category": "productivity",
     "icon": "Play",
     "isHot": false,
@@ -5171,7 +5171,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "string-obfuscator",
     "name": "String Obfuscator",
-    "description": "Obfuscate strings for basic code protection. Multiple encoding strategies to hide sensitive text.",
+    "description": "Obfuscate strings for basic code protection. Multiple encoding strategies to hide sensitive text. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -5179,10 +5179,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online String Obfuscator | Free Dev Tool — figureitcalc",
-      "description": "String Obfuscator — free online tool. No signup, client-side processing.",
+      "description": "String Obfuscator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "string, obfuscator, secret, token, hide, obscure, mask, masking, free string obfuscator online, string obfuscator no signup",
       "h1": "String Obfuscator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5203,7 +5203,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "svg-placeholder-generator",
     "name": "Svg Placeholder Generator",
-    "description": "Generate SVG placeholder images with custom dimensions, colors, and text. No external dependencies.",
+    "description": "Generate SVG placeholder images with custom dimensions, colors, and text. No external dependencies. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Image",
     "isHot": false,
@@ -5211,10 +5211,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Svg Placeholder Generator | Free Dev Tool — figureitcalc",
-      "description": "Svg Placeholder Generator — free online tool. No signup, client-side processing.",
+      "description": "Svg Placeholder Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "svg, placeholder, generator, image, size, mockup, free svg placeholder generator online, svg placeholder generator no signup, create svg placeholder free online, svg placeholder maker no signup",
       "h1": "Svg Placeholder Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5267,7 +5267,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "tdee-calculator",
     "name": "TDEE Calculator",
-    "description": "Calculate your Total Daily Energy Expenditure to know how many calories you burn per day.",
+    "description": "Calculate your Total Daily Energy Expenditure to know how many calories you burn per day. Free online tool. No signup, client-side.",
     "category": "health",
     "icon": "Flame",
     "isHot": false,
@@ -5310,7 +5310,7 @@ export const TOOLS: ToolMeta[] = [
       "description": "Free temperature converter — convert between Celsius, Fahrenheit, and Kelvin instantly. Includes freezing point, boiling point, body temperature, and absolute zero references. Perfect for cooking, travel, science, and weather. No signup.",
       "keywords": "temperature, converter, degree, Kelvin, Celsius, Fahrenheit, Rankine, Delisle, Newton, R茅aumur, R酶mer, ",
       "h1": "Temperature Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5339,10 +5339,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "diff",
     "seo": {
       "title": "Online Text Diff | Free Dev Tool — figureitcalc",
-      "description": "Text Diff — free online tool. No signup, client-side processing.",
+      "description": "Text Diff — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "text, diff, compare, string, text diff, code, free text diff online, text diff no signup",
       "h1": "Text Diff",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5371,10 +5371,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Text Statistics | Free Dev Tool — figureitcalc",
-      "description": "Text Statistics — free online tool. No signup, client-side processing.",
+      "description": "Text Statistics — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "text, statistics, length, characters, count, size, bytes, free text statistics online, text statistics no signup",
       "h1": "Text Statistics",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5395,7 +5395,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "text-to-binary",
     "name": "Text To Binary",
-    "description": "Convert text to binary representation (0s and 1s) and decode binary back to readable text.",
+    "description": "Convert text to binary representation (0s and 1s) and decode binary back to readable text. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -5403,10 +5403,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Text To Binary | Free Dev Tool — figureitcalc",
-      "description": "Text To Binary — free online tool. No signup, client-side processing.",
+      "description": "Text To Binary — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "text, to, binary, converter, encode, decode, ascii, free text to binary online, text to binary no signup",
       "h1": "Text To Binary",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5435,10 +5435,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Text To Nato Alphabet | Free Dev Tool — figureitcalc",
-      "description": "Text To Nato Alphabet — free online tool. No signup, client-side processing.",
+      "description": "Text To Nato Alphabet — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "string, nato, alphabet, phonetic, oral, transmission, free text to nato alphabet online, text to nato alphabet no signup",
       "h1": "Text To Nato Alphabet",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5467,10 +5467,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Text To Unicode | Free Dev Tool — figureitcalc",
-      "description": "Text To Unicode — free online tool. No signup, client-side processing.",
+      "description": "Text To Unicode — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "text, to, unicode, free text to unicode online, text to unicode no signup",
       "h1": "Text To Unicode",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5491,7 +5491,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "time-zone-converter",
     "name": "Time Zone Converter",
-    "description": "Convert time across different time zones worldwide. Perfect for scheduling international meetings.",
+    "description": "Convert time across different time zones worldwide. Perfect for scheduling international meetings. Free online tool. No signup, client-side.",
     "category": "travel",
     "icon": "Globe",
     "isHot": false,
@@ -5523,7 +5523,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "tip-calculator",
     "name": "Tip Calculator",
-    "description": "Calculate the tip amount and split the bill among friends. Supports custom tip percentages.",
+    "description": "Calculate the tip amount and split the bill among friends. Supports custom tip percentages. Free online tool. No signup, client-side.",
     "category": "travel",
     "icon": "Wallet",
     "isHot": true,
@@ -5555,7 +5555,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "tire-size-calculator",
     "name": "Tire Size Calculator",
-    "description": "Decode tire size markings and compare different tire sizes for your vehicle.",
+    "description": "Decode tire size markings and compare different tire sizes for your vehicle. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "automotive",
     "icon": "Circle",
     "isHot": false,
@@ -5595,10 +5595,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Token Generator | Free Dev Tool — figureitcalc",
-      "description": "Token Generator — free online tool. No signup, client-side processing.",
+      "description": "Token Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "token, random, string, alphanumeric, symbols, number, letters, lowercase, uppercase, password",
       "h1": "Token Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5619,7 +5619,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "toml-to-json",
     "name": "Toml To Json",
-    "description": "Convert TOML configuration files to JSON format. Migrate between config file formats seamlessly.",
+    "description": "Convert TOML configuration files to JSON format. Migrate between config file formats seamlessly. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -5627,10 +5627,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online TOML to JSON Converter | Free Dev Tool — figureitcalc",
-      "description": "Toml To Json — free online tool. No signup, client-side processing.",
+      "description": "Toml To Json — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "toml, json, convert, online, transform, parser, free toml to json online, toml to json no signup",
       "h1": "Toml To Json",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5651,7 +5651,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "toml-to-yaml",
     "name": "Toml To Yaml",
-    "description": "Convert TOML to YAML configuration format. Switch between popular config file formats.",
+    "description": "Convert TOML to YAML configuration format. Switch between popular config file formats. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -5659,10 +5659,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online TOML to YAML Converter | Free Dev Tool — figureitcalc",
-      "description": "Toml To Yaml — free online tool. No signup, client-side processing.",
+      "description": "Toml To Yaml — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "toml, yaml, convert, online, transform, parse, free toml to yaml online, toml to yaml no signup",
       "h1": "Toml To Yaml",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5683,7 +5683,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "travel-budget-calculator",
     "name": "Travel Budget Calculator",
-    "description": "Plan your trip budget including flights, accommodation, food, activities, and extras.",
+    "description": "Plan your trip budget including flights, accommodation, food, activities, and extras. Free online tool. No signup, client-side.",
     "category": "travel",
     "icon": "Plane",
     "isHot": false,
@@ -5723,10 +5723,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online ULID Generator | Free Dev Tool — figureitcalc",
-      "description": "Ulid Generator — free online tool. No signup, client-side processing.",
+      "description": "Ulid Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "ulid, generator, random, id, alphanumeric, identity, token, string, identifier, unique",
       "h1": "Ulid Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5758,7 +5758,7 @@ export const TOOLS: ToolMeta[] = [
       "description": "Free URL encoder and decoder — convert text to URL-safe percent-encoding and decode percent-encoded URLs back to readable text. Essential for web development, API parameters, and SEO-friendly URL construction. Instant, client-side.",
       "keywords": "url, encode, decode, percent, %20, format, free url encoder online, url encoder no signup",
       "h1": "Url Encoder",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5779,7 +5779,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "url-parser",
     "name": "Url Parser",
-    "description": "Parse URLs into components: protocol, hostname, port, path, query parameters, and hash fragment.",
+    "description": "Parse URLs into components: protocol, hostname, port, path, query parameters, and hash fragment. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -5787,10 +5787,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Url Parser | Free Dev Tool — figureitcalc",
-      "description": "Url Parser — free online tool. No signup, client-side processing.",
+      "description": "Url Parser — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "url, parser, protocol, origin, params, port, username, password, href, free url parser online, url parser no signup",
       "h1": "Url Parser",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5811,7 +5811,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "user-agent-parser",
     "name": "User Agent Parser",
-    "description": "Parse User-Agent strings to identify browser, OS, device type, and version information.",
+    "description": "Parse User-Agent strings to identify browser, OS, device type, and version information. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -5819,10 +5819,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online User Agent Parser | Free Dev Tool — figureitcalc",
-      "description": "User Agent Parser — free online tool. No signup, client-side processing.",
+      "description": "User Agent Parser — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "user, agent, parser, browser, engine, os, cpu, device, user-agent, client",
       "h1": "User Agent Parser",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5854,7 +5854,7 @@ export const TOOLS: ToolMeta[] = [
       "description": "Free UUID generator — create UUID v4 (random) and v7 (time-sorted) identifiers. Generate up to 100 UUIDs at once. Perfect for database primary keys, distributed systems, and API development. Instant, no signup.",
       "keywords": "uuid, v4, random, id, alphanumeric, identity, token, string, identifier, unique, v1, v3, v5, nil",
       "h1": "Uuid Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -5875,7 +5875,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "water-footprint-calculator",
     "name": "Water Footprint Calculator",
-    "description": "Estimate your daily and annual water footprint from household usage.",
+    "description": "Estimate your daily and annual water footprint from household usage. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "environment",
     "icon": "Droplets",
     "isHot": false,
@@ -5907,7 +5907,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "water-intake-calculator",
     "name": "Water Intake Calculator",
-    "description": "Calculate your recommended daily water intake based on weight, activity, and climate.",
+    "description": "Calculate your recommended daily water intake based on weight, activity, and climate. Free online tool. No signup, client-side.",
     "category": "health",
     "icon": "Coffee",
     "isHot": false,
@@ -5939,7 +5939,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "wedding-budget-calculator",
     "name": "Wedding Budget Calculator",
-    "description": "Plan your wedding budget by allocating funds across all major expense categories.",
+    "description": "Plan your wedding budget by allocating funds across all major expense categories. Free online tool. No signup, client-side.",
     "category": "wedding",
     "icon": "Heart",
     "isHot": false,
@@ -5971,7 +5971,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "wedding-countdown-calculator",
     "name": "Wedding Countdown Calculator",
-    "description": "Create a beautiful countdown to your wedding day with days, hours, and minutes.",
+    "description": "Create a beautiful countdown to your wedding day with days, hours, and minutes. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "wedding",
     "icon": "PartyPopper",
     "isHot": false,
@@ -6035,7 +6035,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "wifi-qr-code-generator",
     "name": "Wifi Qr Code Generator",
-    "description": "Generate WiFi QR codes for easy network sharing. Scan to connect without typing passwords.",
+    "description": "Generate WiFi QR codes for easy network sharing. Scan to connect without typing passwords. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -6043,10 +6043,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Wifi Qr Code Generator | Free Dev Tool — figureitcalc",
-      "description": "Wifi Qr Code Generator — free online tool. No signup, client-side processing.",
+      "description": "Wifi Qr Code Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "qr, code, generator, square, color, link, low, medium, quartile, high, transparent, wifi",
       "h1": "Wifi Qr Code Generator",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -6099,7 +6099,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "xml-formatter",
     "name": "Xml Formatter",
-    "description": "Format and prettify XML with syntax highlighting. Validate XML structure and find errors.",
+    "description": "Format and prettify XML with syntax highlighting. Validate XML structure and find errors. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -6107,10 +6107,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online XML Formatter & Beautifier | Free Dev Tool — figureitcalc",
-      "description": "Xml Formatter — free online tool. No signup, client-side processing.",
+      "description": "Xml Formatter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "xml, prettify, format, free xml formatter online, xml formatter no signup",
       "h1": "Xml Formatter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -6131,7 +6131,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "xml-to-json",
     "name": "XML to JSON",
-    "description": "Convert XML to JSON",
+    "description": "Convert XML to JSON Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -6139,7 +6139,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online XML to JSON Converter | Free Dev Tool — figureitcalc",
-      "description": "Convert XML to JSON Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Convert XML to JSON Free online tool. 100% client-side — no uploads, no signup. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "xml, json, free xml to json online, xml to json no signup",
       "h1": "XML to JSON",
       "intro": "Convert XML to JSON This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -6163,7 +6163,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "yaml-to-json-converter",
     "name": "Yaml To Json Converter",
-    "description": "Convert YAML to JSON. Transform configuration files and data between these popular formats.",
+    "description": "Convert YAML to JSON. Transform configuration files and data between these popular formats. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -6171,10 +6171,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online YAML to JSON Converter | Free Dev Tool — figureitcalc",
-      "description": "Yaml To Json Converter — free online tool. No signup, client-side processing.",
+      "description": "Yaml To Json Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "yaml, to, json, free yaml to json converter online, yaml to json converter no signup, convert yaml to json online free, yaml to json conversion tool",
       "h1": "Yaml To Json Converter",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -6195,7 +6195,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "yaml-to-toml",
     "name": "Yaml To Toml",
-    "description": "Convert YAML to TOML configuration format. Switch between human-friendly config formats.",
+    "description": "Convert YAML to TOML configuration format. Switch between human-friendly config formats. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -6203,10 +6203,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online YAML to TOML Converter | Free Dev Tool — figureitcalc",
-      "description": "Yaml To Toml — free online tool. No signup, client-side processing.",
+      "description": "Yaml To Toml — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "yaml, to, toml, convert, transform, free yaml to toml online, yaml to toml no signup",
       "h1": "Yaml To Toml",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -6227,7 +6227,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "yaml-viewer",
     "name": "Yaml Viewer",
-    "description": "View and validate YAML with syntax highlighting and collapsible tree navigation.",
+    "description": "View and validate YAML with syntax highlighting and collapsible tree navigation. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -6235,10 +6235,10 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online YAML Viewer & Formatter | Free Dev Tool — figureitcalc",
-      "description": "Yaml Viewer — free online tool. No signup, client-side processing.",
+      "description": "Yaml Viewer — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "yaml, viewer, prettify, format, free yaml viewer online, yaml viewer no signup",
       "h1": "Yaml Viewer",
-      "intro": "Free online tool. All processing is client-side. No signup needed.",
+      "intro": "Unknown — a fast, free online developer tool that runs entirely in your browser. No uploads, no server processing.  Perfect for developers who need quick results without installing software. All processing is client-side — your data stays private. No signup required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -6289,14 +6289,14 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Sheng Xiao Love Match — 12 Animal Signs Compatibility | figureitcalc",
-      "description": "Free Sheng Xiao love match calculator — check compatibility using the 12 animal signs with Five Elements and Yin-Yang balance. Based on Three Harmonies (涓夊悎) and Six Clashes (鍏啿) traditions. Fun, detailed, shareable.",
-      "keywords": "sheng xiao, love match, animal signs, compatibility, zodiac, 鐢熻倴, free sheng xiao love match online, sheng xiao love match no signup",
+      "description": "Free Sheng Xiao love match calculator — check compatibility using the 12 animal signs with Five Elements and Yin-Yang balance. Based on San He (Three Harmonies) and Liu Chong (Six Clashes) traditions. Fun, detailed, shareable.",
+      "keywords": "sheng xiao, love match, animal signs, compatibility, zodiac, chinese zodiac, free sheng xiao love match online, sheng xiao love match no signup, 12 animal signs compatibility, chinese horoscope love match",
       "h1": "Sheng Xiao Love Match",
-      "intro": "Check your love compatibility using the Sheng Xiao (鐢熻倴) animal signs. Each of the 12 signs has natural harmonies and clashes — discover whether you and your partner are destined lovers or challenging opposites. Free, instant, no signup.",
+      "intro": "Check your love compatibility using the Sheng Xiao (Chinese Zodiac) animal signs. Each of the 12 signs has natural harmonies and clashes — discover whether you and your partner are destined lovers or challenging opposites. Based on traditional San He (Three Harmonies) and Liu Chong (Six Clashes) principles. Free, instant, no signup.",
       "howTo": ["Select your birth year or animal sign", "Select your partner's sign", "Get your compatibility rating and traditional interpretation"],
       "faq": [
-        { "q": "What are the Three Harmonies (涓夊悎)?", "a": "The Three Harmonies are groups of three zodiac signs that form natural alliances: Rat-Dragon-Monkey, Ox-Snake-Rooster, Tiger-Horse-Dog, Rabbit-Sheep-Pig. Partners from the same harmony group are traditionally considered well-matched." },
-        { "q": "What are the Six Clashes (鍏啿)?", "a": "The Six Clashes are pairs of zodiac signs that oppose each other: Rat-Horse, Ox-Sheep, Tiger-Monkey, Rabbit-Rooster, Dragon-Dog, Snake-Pig. These pairings are traditionally considered challenging." }
+        { "q": "What are the San He (Three Harmonies)?", "a": "The Three Harmonies (San He) are groups of three zodiac signs that form natural alliances: Rat-Dragon-Monkey, Ox-Snake-Rooster, Tiger-Horse-Dog, Rabbit-Sheep-Pig. Partners from the same harmony group are traditionally considered well-matched." },
+        { "q": "What are the Liu Chong (Six Clashes)?", "a": "The Six Clashes (Liu Chong) are pairs of zodiac signs that oppose each other: Rat-Horse, Ox-Sheep, Tiger-Monkey, Rabbit-Rooster, Dragon-Dog, Snake-Pig. These pairings are traditionally considered challenging." }
       ]
     }
   },
@@ -6334,13 +6334,13 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "Ba Zi Five Elements Fortune — Ba Zi Birth Chart | figureitcalc",
       "description": "Free Ba Zi Eight Characters birth chart calculator — generate your Four Pillars of Destiny including Heavenly Stems, Earthly Branches, and Five Elements balance. Discover your Day Master element and personality archetype.",
-      "keywords": "ba zi, 鍏瓧, five elements, chinese astrology, day master, heavenly stems, earthly branches, feng shui, free ba zi five elements fortune online, ba zi five elements fortune no signup",
+      "keywords": "ba zi, eight characters, five elements, chinese astrology, day master, heavenly stems, earthly branches, feng shui, four pillars of destiny, free ba zi five elements fortune online, ba zi five elements fortune no signup",
       "h1": "Ba Zi Five Elements Fortune Calculator",
-      "intro": "Ba Zi (Eight Characters / 鍏瓧) is a sophisticated astrological system that maps your birth time to a chart of Heavenly Stems and Earthly Branches. Your chart reveals the balance of Five Elements (Wood, Fire, Earth, Metal, Water) that influence your personality, relationships, and fortune. Free, instant — just enter your birthday.",
-      "howTo": ["Enter your birth date and time (as accurate as possible)", "Your Eight Characters (鍥涙煴) chart is calculated", "Read your Day Master, Five Elements balance, and personality analysis"],
+      "intro": "Ba Zi (Eight Characters / Four Pillars of Destiny) is a sophisticated astrological system that maps your birth time to a chart of Heavenly Stems (Tian Gan) and Earthly Branches (Di Zhi). Your chart reveals the balance of Five Elements (Wood, Fire, Earth, Metal, Water) that influence your personality, relationships, and fortune. Free, instant — just enter your birthday.",
+      "howTo": ["Enter your birth date and time (as accurate as possible)", "Your Four Pillars (Si Zhu) chart is calculated", "Read your Day Master, Five Elements balance, and personality analysis"],
       "faq": [
-        { "q": "What are the Eight Characters?", "a": "Ba Zi literally means 'Eight Characters' — four pairs of Heavenly Stems and Earthly Branches representing the Year, Month, Day, and Hour of your birth. Each pair contains one Heavenly Stem (澶╁共) and one Earthly Branch (鍦版敮), making eight characters total." },
-        { "q": "What is a Day Master?", "a": "The Day Master (鏃ュ厓) is the Heavenly Stem of your birth DAY pillar. It represents YOU — your core personality and essence. Understanding your Day Master's relationship to the Five Elements in your chart is the key to Ba Zi analysis." }
+        { "q": "What are the Eight Characters (Ba Zi)?", "a": "Ba Zi literally means Eight Characters — four pairs of Heavenly Stems (Tian Gan) and Earthly Branches (Di Zhi) representing the Year, Month, Day, and Hour of your birth. Each pair contains one Heavenly Stem and one Earthly Branch, making eight characters total that form your destiny chart." },
+        { "q": "What is a Day Master (Ri Yuan)?", "a": "The Day Master (Ri Yuan) is the Heavenly Stem of your birth DAY pillar. It represents YOU — your core personality and essence. Understanding your Day Master's relationship to the Five Elements in your chart is the key to Ba Zi analysis." }
       ]
     }
   },
@@ -6356,12 +6356,12 @@ export const TOOLS: ToolMeta[] = [
     "seo": {
       "title": "I Ching Coin Divination — Free Ancient Chinese Oracle | figureitcalc",
       "description": "Free I Ching coin divination — cast virtual coins to receive one of 64 hexagrams with detailed interpretations from the ancient Book of Changes. Use for reflection and gaining new perspectives. For entertainment purposes.",
-      "keywords": "i ching, 鏄撶粡, divination, hexagram, coins, book of changes, oracle, ancient chinese, free i ching coin divination online, i ching coin divination no signup",
+      "keywords": "i ching, yi jing, divination, hexagram, coins, book of changes, oracle, ancient chinese philosophy, free i ching coin divination online, i ching coin divination no signup, 64 hexagrams, zhou yi",
       "h1": "I Ching Coin Divination",
-      "intro": "Consult the ancient wisdom of the I Ching (鏄撶粡 / Book of Changes) — one of the oldest oracles in human history, dating back over 3,000 years. Cast three virtual coins six times to generate your hexagram, then receive a detailed interpretation of its meaning for your situation. Free, instant, and contemplative.",
+      "intro": "Consult the ancient wisdom of the I Ching (Yi Jing / Book of Changes) — one of the oldest oracles in human history, dating back over 3,000 years to the Zhou dynasty. Cast three virtual coins six times to generate your hexagram, then receive a detailed interpretation of its meaning for your situation. Free, instant, and contemplative.",
       "howTo": ["Focus your mind on a question about love, career, or life", "Click 'Cast Coins' six times to build your hexagram line by line", "Receive your hexagram number, name, and detailed interpretation"],
       "faq": [
-        { "q": "How does I Ching divination work?", "a": "You cast three coins six times. Each throw produces a line: solid (Yang / 鈿? or broken (Yin / 鈿?. Six lines form a hexagram. There are 64 possible hexagrams, each with a unique name and philosophical interpretation from the ancient text." },
+        { "q": "How does I Ching divination work?", "a": "You cast three coins six times. Each throw produces a line: solid (Yang) or broken (Yin). Six lines form a hexagram (Gua). There are 64 possible hexagrams, each with a unique name and philosophical interpretation from the ancient text. The hexagram's wisdom is meant to provoke reflection." },
         { "q": "What should I ask the I Ching?", "a": "The I Ching works best with open-ended questions about situations, not yes/no questions. Instead of 'Will I get the job?', ask 'What should I consider about this career opportunity?' The hexagram's wisdom is meant to provoke reflection, not predict outcomes." }
       ]
     }
