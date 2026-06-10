@@ -1,10 +1,11 @@
 import { useState, useRef, useCallback } from "react";
-import { Play, Pause, RotateCcw, Flag } from "lucide-react";
+import { Play, Pause, RotateCcw, Flag, Copy, CheckCircle } from "lucide-react";
 
 export function StopwatchTool() {
   const [running, setRunning] = useState(false);
   const [time, setTime] = useState(0);
   const [laps, setLaps] = useState<number[]>([]);
+  const [copied, setCopied] = useState(false);
   const intervalRef = useRef<number | null>(null);
   const startRef = useRef(0);
 
@@ -54,14 +55,29 @@ export function StopwatchTool() {
         <button onClick={reset} className="px-4 py-2 border rounded-lg flex items-center gap-2"><RotateCcw className="w-4 h-4"/> Reset</button>
       </div>
       {laps.length > 0 && (
-        <div className="space-y-1 max-h-48 overflow-auto">
-          {laps.map((t, i) => (
-            <div key={i} className="flex justify-between text-sm px-3 py-1.5 bg-accent/30 rounded">
-              <span className="text-muted-foreground">Lap {i+1}</span>
-              <span className="font-mono">{format(t)}</span>
-            </div>
-          ))}
-        </div>
+        <>
+          <div className="flex items-center justify-end">
+            <button
+              onClick={async () => {
+                const text = laps.map((t, i) => `Lap ${i+1}: ${format(t)}`).join("\n");
+                try { await navigator.clipboard.writeText(text); } catch { /* fallback not needed for modern browsers */ }
+                setCopied(true);
+                setTimeout(() => setCopied(false), 2000);
+              }}
+              className="flex items-center gap-1 px-2.5 py-1 text-xs rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+            >
+              {copied ? <><CheckCircle className="w-3 h-3 text-green-500" /> Copied!</> : <><Copy className="w-3 h-3" /> Copy Laps</>}
+            </button>
+          </div>
+          <div className="space-y-1 max-h-48 overflow-auto">
+            {laps.map((t, i) => (
+              <div key={i} className="flex justify-between text-sm px-3 py-1.5 bg-accent/30 rounded">
+                <span className="text-muted-foreground">Lap {i+1}</span>
+                <span className="font-mono">{format(t)}</span>
+              </div>
+            ))}
+          </div>
+        </>
       )}
     </div>
   );
