@@ -125,7 +125,155 @@ toolsite/
 2. 在 `App.tsx` 的 `toolComponentMap` 中注册
 3. 在 `tools.ts` 中将该工具的 `component` 字段设为映射 key
 
-## 4. 工具功能硬性约束
+### 3.4 工具开发流程模板（强制遵循）
+
+每个新工具必须按照以下 6 步流程开发，**不准跳过任何步骤**。
+
+---
+
+**Step 1: 提交架构设计（Architecture First）**
+
+在写任何代码之前，先输出以下设计摘要：
+
+```
+【工具名称】{Tool Name}
+【核心逻辑】{一句话描述计算/转换/生成的本质}
+【输入参数】{列出所有用户可修改的输入，含类型和单位}
+【输出结果】{列出所有计算结果/展示结果}
+【公式来源】{如果涉及计算，注明公式出处和标准}
+【组件选择】{通用 CalculatorTool / 新建专用组件}
+【状态设计】{哪些值需要存入 URL query string}
+```
+
+---
+
+**Step 2: 纯前端零后端**
+
+| 约束 | 要求 |
+|------|------|
+| 计算位置 | **100% 浏览器本地**，不准调用任何后端 API |
+| 网络请求 | 仅允许加载静态资源（CSS/JS/字体/图片），禁止数据上报 |
+| 隐私声明 | intro 文案中必须包含 "all processing is client-side, no data is ever sent to any server" |
+| 离线能力 | 工具的核心计算逻辑不依赖网络（加载完页面即可断网使用） |
+
+---
+
+**Step 3: 实时响应式交互（Reactive）**
+
+```
+用户修改任意输入 → 结果区域毫秒级自动更新 → 不显示 "Calculate" 按钮
+```
+
+| 约束 | 说明 |
+|------|------|
+| 触发方式 | `onChange` / `onInput` 事件直接触发重算，**不准**放 Submit 按钮 |
+| 防抖 | 复杂计算（> 10ms）加 debounce 100~200ms，简单计算即时 |
+| 反馈 | 计算中显示 spinner，计算完成消失（即使只有几毫秒） |
+| 空状态 | 所有输入为空时展示默认示例值，不展示空白/错误 |
+
+---
+
+**Step 4: URL 状态持久化（State in URL）**
+
+```
+用户修改参数 → 实时同步到 URL query string → 复制 URL 给他人 → 完美还原
+```
+
+| 规则 | 实现 |
+|------|------|
+| 写入 | 每次输入变化，用 `URLSearchParams` 更新 `window.history.replaceState` |
+| 读取 | 组件 mount 时优先从 `URLSearchParams` 读取初始值，无则用默认值 |
+| 编码 | 特殊字符用 `encodeURIComponent` |
+| 不触发重渲染 | 用 `replaceState`（不是 `pushState`），不产生历史记录堆积 |
+| 示例 | `?amount=300000&rate=6.5&years=30&type=annuity` |
+
+---
+
+**Step 5: 输入容错与防呆（Input Sanitization）**
+
+```
+用户乱输入 → 自动清洗 → 不弹窗不报错
+```
+
+| 场景 | 处理方式 |
+|------|---------|
+| 前后空格 | `trim()` |
+| 中间空格 | 数字类：自动移除；文本类：保留 |
+| 非数字字符（数字输入） | 正则 `/[^0-9.]/g` 自动过滤 |
+| 多个小数点 | 只保留第一个 `.` |
+| 负数（不允许时） | 取绝对值 `Math.abs()` 或限制 `min=0` |
+| 超出范围 | clamp 到合理范围，同时在输入框旁显示提示 |
+| 空输入 | 显示 placeholder 示例，NaN 处显示 `—` |
+| 粘贴脏数据 | 同样走清洗逻辑（onPaste + onChange 共用 sanitize 函数） |
+| 科学计数法 | 数字输入框禁止（`inputmode="decimal"`） |
+
+**sanitize 函数模板：**
+```typescript
+function sanitizeNumber(raw: string, min: number, max: number, fallback: number): number {
+  let cleaned = raw.trim();
+  cleaned = cleaned.replace(/[^0-9.]/g, "");           // 去除非数字
+  cleaned = cleaned.replace(/(\..*)\./g, "$1");        // 只保留第一个小数点
+  const num = parseFloat(cleaned);
+  if (isNaN(num)) return fallback;
+  return Math.max(min, Math.min(max, num));             // clamp
+}
+```
+
+---
+
+**Step 6: 一键操作（One-Click Actions）**
+
+每个工具必须至少提供一个一键操作按钮：
+
+| 操作 | 实现方式 | 适用工具 |
+|------|---------|---------|
+| 📋 复制结果 | `navigator.clipboard.writeText()` + toast "Copied!" | 所有工具 |
+| 📥 导出 CSV | `Blob` + `URL.createObjectURL` + `<a download>` | 表格/列表结果 |
+| 📸 导出图片 | `html2canvas` 或 `canvas.toBlob()` | 可视化结果 |
+| 🔗 复制链接 | 复制当前含参数的 URL | 有状态工具 |
+| 🗑️ 一键清空 | 重置所有输入为默认值 | 多输入工具 |
+
+**Clipboard API 模板：**
+```typescript
+async function copyResult(text: string): Promise<void> {
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast("Copied to clipboard!");
+  } catch {
+    // Fallback for older browsers
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    showToast("Copied!");
+  }
+}
+```
+
+---
+
+**交付物清单（每个新工具上线前必须全部满足）：**
+
+```
+□ Architecture 设计摘要已文档化
+□ 所有计算在本机完成，无任何 API 调用
+□ 输入变化即时更新结果（无 Submit 按钮）
+□ URL query string 完整记录状态，可分享还原
+□ 输入自动清洗（空格、非法字符、边界值）
+□ 至少一个一键操作按钮（复制/导出/分享）
+□ 空输入/异常输入不崩，展示默认示例
+□ 公式有注释出处
+□ 注册表 tools.ts 字段完整
+□ ToolContent.tsx SEO 文字已调用
+□ <h1> 唯一，h2/h3 层级正确
+□ FAQ 双格式（HTML + JSON-LD Schema）
+□ 面包屑 Schema
+□ WebApplication Schema
+```
 
 ### 4.1 必须有实际功能（No Dead Pages）
 
