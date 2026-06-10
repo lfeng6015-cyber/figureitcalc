@@ -1012,6 +1012,7 @@ git commit -m "feat: ..."
 
 ### 8.3 部署后检查清单
 
+- [ ] **URL 变更 → 必须更新 sitemap**：新增/删除/重命名任何页面后，运行 `python scripts/gen_sitemap.py && npm run build`
 - [ ] `https://www.figureitcalc.com/sitemap.xml` 可访问，URL 全为 www 域名
 - [ ] `https://www.figureitcalc.com/robots.txt` Sitemap 引用正确
 - [ ] 首页 canonical 指向 `https://www.figureitcalc.com/`
@@ -1021,6 +1022,7 @@ git commit -m "feat: ..."
 ## 10. 禁止事项
 
 - ❌ **禁止**未经明确要求执行 `git push` 推送到 GitHub — 默认只提交到本地仓库
+- ❌ **禁止**新增/删除/重命名页面后不更新 sitemap — 任何 URL 变更必须同步运行 `python scripts/gen_sitemap.py` 重新生成
 - ❌ **禁止**在 sitemap/robots/canonical 中使用裸域（无 www）
 - ❌ **禁止**引入 Google Analytics 之外的第三方分析脚本（已使用 GA+AdSense）
 - ❌ **禁止**工具收集用户输入数据上传服务器 — 全部 client-side 处理
