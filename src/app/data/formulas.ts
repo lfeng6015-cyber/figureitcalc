@@ -485,9 +485,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { var o={'00:1A:2B':'Apple','3C:5A:B4':'Google','00:15:5D':'Microsoft','08:00:27':'VirtualBox','00:50:56':'VMware','F0:DB:F8':'Apple','00:0C:29':'VMware','B8:27:EB':'Raspberry Pi'}; var k=String(v.mac).toUpperCase().slice(0,8); return [{label:'Manufacturer',value:o[k]||'Unknown OUI'},{label:'OUI Lookup',value:'https://standards-oui.ieee.org'}]; },
   },
         'macro-calculator': {
-    inputs: [{key:'cal',label:'Daily Calories',type:'number',defaultValue:2000},{key:'pro',label:'Protein (%)',type:'number',defaultValue:30},{key:'fat',label:'Fat (%)',type:'number',defaultValue:25}],
-    formula: (v) => { const cal=F(v.cal),p=F(v.pro),f=F(v.fat),c=100-p-f; return [{label:'Protein',value:Math.round(cal*p/100/4)+'g'},{label:'Carbs',value:Math.round(cal*c/100/4)+'g'},{label:'Fat',value:Math.round(cal*f/100/9)+'g'}]; },
-    presets: [{label:'Balanced',values:{cal:2000,pro:30,fat:25}},{label:'Keto',values:{cal:2000,pro:25,fat:70}}],
+    inputs: [{key:'cal',label:'Daily Calories',type:'number',defaultValue:2000},{key:'goal',label:'Goal',type:'select',options:[{label:'Maintain',value:'maint'},{label:'Cut / Fat Loss',value:'cut'},{label:'Bulk / Muscle Gain',value:'bulk'}],defaultValue:'maint'}],
+    formula: (v) => { const cal=F(v.cal); var p,f; if(v.goal==='cut'){p=35;f=20;}else if(v.goal==='bulk'){p=25;f=25;}else{p=30;f=25;} const c=100-p-f; var label=(v.goal==='cut'?'Cut (high protein)':v.goal==='bulk'?'Bulk (balanced)':'Maintenance'); return [{label:label,value:p+'% P / '+c+'% C / '+f+'% F'},{label:'Protein',value:Math.round(cal*p/100/4)+'g ('+p+'%)',insight:v.goal==='cut'?'Higher protein preserves muscle during deficit. Target 2.2-2.8g/kg bodyweight.':v.goal==='bulk'?'Moderate protein with higher carbs for training energy.':''},{label:'Carbs',value:Math.round(cal*c/100/4)+'g ('+c+'%)'},{label:'Fat',value:Math.round(cal*f/100/9)+'g ('+f+'%)'},{label:'Total',value:cal.toFixed(0)+' kcal'}]; },
+    presets: [{label:'Cut (2000)',values:{cal:2000,goal:'cut'}},{label:'Maintain (2500)',values:{cal:2500,goal:'maint'}},{label:'Bulk (3000)',values:{cal:3000,goal:'bulk'}},{label:'Keto Cut',values:{cal:2000,goal:'cut'}}],
   },
     'markdown-to-html': {
     inputs: [{key:'md',label:'Markdown',type:'text',defaultValue:'# Hello\n\n**bold** text'}],
