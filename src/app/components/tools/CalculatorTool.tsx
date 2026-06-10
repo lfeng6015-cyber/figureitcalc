@@ -24,22 +24,34 @@ function isCalcSection(r: CalcResult | CalcSection): r is CalcSection {
 /** Sanitize a numeric input: trim, strip non-numeric chars (keep first dot), clamp */
 function sanitizeNumber(raw: string, min?: number, max?: number, fallback: number = 0): number {
   let cleaned = raw.trim();
-  cleaned = cleaned.replace(/[^0-9.\-]/g, "");       // strip non-numeric except dot and minus
-  // Keep only first dot
+  cleaned = cleaned.replace(/[^0-9.\-]/g, "");
   const firstDot = cleaned.indexOf(".");
-  if (firstDot >= 0) {
-    cleaned = cleaned.slice(0, firstDot + 1) + cleaned.slice(firstDot + 1).replace(/\./g, "");
-  }
-  // Keep minus only if at start
-  if (cleaned.indexOf("-") > 0) {
-    cleaned = cleaned.replace(/-/g, "");
-  }
+  if (firstDot >= 0) cleaned = cleaned.slice(0, firstDot + 1) + cleaned.slice(firstDot + 1).replace(/\./g, "");
+  if (cleaned.indexOf("-") > 0) cleaned = cleaned.replace(/-/g, "");
   const num = parseFloat(cleaned);
   if (isNaN(num)) return fallback;
   let result = num;
   if (min !== undefined) result = Math.max(min, result);
   if (max !== undefined) result = Math.min(max, result);
   return result;
+}
+
+/** Format a numeric result value with thousands separator and reasonable precision */
+function formatResultValue(raw: unknown): string {
+  if (raw === undefined || raw === null || raw === "") return "—"; // em dash
+  const str = String(raw);
+  // If it looks like a number, format it
+  const num = parseFloat(str.replace(/[,$%\s]/g, ""));
+  if (isNaN(num)) return str; // non-numeric string, return as-is
+  if (!isFinite(num)) return "—";
+  const absVal = Math.abs(num);
+  // Keep up to 4 decimal places, strip trailing zeros
+  if (absVal >= 1e12) return num.toExponential(4);
+  if (absVal >= 1) {
+    return num.toLocaleString("en-US", { maximumFractionDigits: 4 });
+  }
+  // Small numbers: show more precision
+  return num.toLocaleString("en-US", { maximumFractionDigits: 6, minimumFractionDigits: 0 });
 }
 
 /** Read initial values from URL query string, falling back to defaults */
@@ -337,8 +349,11 @@ export function CalculatorTool({ inputs, formula, presets, description, toolId }
               <ActionButtons />
             </div>
             <div className="p-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {(rawOutput as CalcResult[]).filter(r => r.label && r.value !== undefined && r.value !== "").map((r, i) => (
-                <div key={i} className="flex flex-col p-3 rounded-lg bg-accent/20">
+              {(rawOutput as CalcResult[]).filter(r => r.label).map((r, i) => {
+                const displayVal = formatResultValue(r.value);
+                const isEmpty = displayVal === "—";
+                return (
+                <div key={i} className={`flex flex-col p-3 rounded-lg ${isEmpty ? "bg-muted/30" : "bg-accent/20"}`}>
                   <span className="text-xs text-muted-foreground mb-1">{r.label}</span>
                   {String(r.value).startsWith('<svg') || String(r.value).startsWith('data:image/svg') ? (
                     <div className="flex justify-center p-1 bg-white rounded" dangerouslySetInnerHTML={{__html: String(r.value).startsWith('data:') ? `<img src="${r.value}" style="max-width:100%;height:auto" />` : String(r.value)}} />
@@ -348,7 +363,7 @@ export function CalculatorTool({ inputs, formula, presets, description, toolId }
                     String(r.value).includes('\n') ? (
                       <pre className="font-mono text-xs text-foreground whitespace-pre overflow-x-auto">{r.value}</pre>
                     ) : (
-                      <span className="text-lg font-bold text-foreground font-mono">{r.value}</span>
+                      <span className={`${isEmpty ? "text-muted-foreground/50" : "text-foreground"} text-lg font-bold font-mono`}>{displayVal}</span>
                     )
                   )}
                   {r.insight && (
@@ -358,7 +373,8 @@ export function CalculatorTool({ inputs, formula, presets, description, toolId }
                     </p>
                   )}
                 </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         )}
