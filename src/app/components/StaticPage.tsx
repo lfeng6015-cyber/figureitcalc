@@ -74,7 +74,7 @@ const pages = {
         <p>We'd love to hear from you! Whether you have a bug report, a tool suggestion, a business inquiry, or just want to say hello — here's how to reach us.</p>
 
         <h2 className="text-foreground text-base font-semibold mt-6">Email</h2>
-        <p>📧 <strong className="text-foreground">hello@figureitcalc.com</strong></p>
+        <p>📧 <strong className="text-foreground">lfeng6015@gmail.com</strong></p>
         <p className="text-xs">We typically respond within 24-48 hours on business days.</p>
 
         <h2 className="text-foreground text-base font-semibold mt-6">Common Topics</h2>
@@ -97,9 +97,6 @@ const pages = {
           </div>
         </div>
 
-        <h2 className="text-foreground text-base font-semibold mt-6">Social</h2>
-        <p>Follow us for updates, new tool announcements, and tips:</p>
-        <p className="flex gap-3">🐦 Twitter/X · 📘 Facebook · 📌 Pinterest</p>
       </div>
     ),
   },

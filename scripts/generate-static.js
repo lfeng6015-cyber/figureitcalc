@@ -404,7 +404,7 @@ buildPage(
   '/contact',
   `
     <h1>Contact Us</h1>
-    <p>Email: <strong>hello@figureitcalc.com</strong></p>
+    <p>Email: <strong>lfeng6015@gmail.com</strong></p>
     <p>We typically respond within 24-48 hours on business days.</p>
     <h2>Common Topics</h2>
     <ul><li>Bug Report — Tell us which tool, what happened, and what you expected</li><li>Tool Suggestion — We're always adding new tools</li><li>Advertising / Partnership — Beyond AdSense</li><li>Security Concern — Please email us directly</li></ul>
