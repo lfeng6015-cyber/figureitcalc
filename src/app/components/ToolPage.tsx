@@ -1,6 +1,7 @@
 import { ReactNode, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { ArrowLeft, Bookmark, Share2, LucideIcon, ExternalLink } from "lucide-react";
+import { TOOLS } from "../data/tools";
 
 interface RelatedTool {
   id: string | number;
@@ -70,6 +71,8 @@ export function ToolPage({
           <meta property="og:title" content={seo.title} />
           <meta property="og:description" content={seo.description} />
           <meta property="og:type" content="website" />
+          <link rel="canonical" href={`https://www.figureitcalc.com/tools/${toolId}.html`} />
+          {/* FAQPage Schema */}
           {seo.faq.length > 0 && (
             <script type="application/ld+json">
               {JSON.stringify({
@@ -83,6 +86,32 @@ export function ToolPage({
               })}
             </script>
           )}
+          {/* BreadcrumbList Schema */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.figureitcalc.com/" },
+                { "@type": "ListItem", "position": 2, "name": tag, "item": `https://www.figureitcalc.com/category/${toolId ? TOOLS.find(t => t.id === toolId)?.category : ""}.html` },
+                { "@type": "ListItem", "position": 3, "name": seo.h1 || name }
+              ]
+            })}
+          </script>
+          {/* WebApplication Schema */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebApplication",
+              "name": seo.h1 || name,
+              "url": `https://www.figureitcalc.com/tools/${toolId}.html`,
+              "description": seo.description,
+              "applicationCategory": "UtilityApplication",
+              "operatingSystem": "All",
+              "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+              "browserRequirements": "Requires JavaScript"
+            })}
+          </script>
         </Helmet>
       )}
 

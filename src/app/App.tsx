@@ -1,4 +1,4 @@
-import { useState, Suspense, lazy } from "react";
+import { useState, Suspense, lazy, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import {
   Search, Zap, ChevronRight, ChevronsUpDown, Flame, Sparkles, Menu, X,
@@ -146,11 +146,35 @@ function ComingSoon({ name }: { name: string }) {
 }
 
 export default function App() {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeToolId, setActiveToolId] = useState<string | null>(null);
-  const [staticPage, setStaticPage] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState(() => {
+    const p = new URLSearchParams(window.location.search);
+    return p.get("category") || "all";
+  });
+  const [searchQuery, setSearchQuery] = useState(() => {
+    const p = new URLSearchParams(window.location.search);
+    return p.get("search") || "";
+  });
+  const [activeToolId, setActiveToolId] = useState<string | null>(() => {
+    const p = new URLSearchParams(window.location.search);
+    return p.get("tool") || null;
+  });
+  const [staticPage, setStaticPage] = useState<string | null>(() => {
+    const p = new URLSearchParams(window.location.search);
+    return p.get("page") || null;
+  });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Sync app state → URL query string
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (activeToolId) params.set("tool", activeToolId);
+    else if (staticPage) params.set("page", staticPage);
+    if (!activeToolId && !staticPage && activeCategory && activeCategory !== "all") params.set("category", activeCategory);
+    if (!activeToolId && !staticPage && searchQuery) params.set("search", searchQuery);
+    const qs = params.toString();
+    const newUrl = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(null, "", newUrl);
+  }, [activeToolId, staticPage, activeCategory, searchQuery]);
 
   const currentTool = activeToolId ? getToolById(activeToolId) : null;
 

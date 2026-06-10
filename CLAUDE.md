@@ -187,72 +187,206 @@ toolsite/
 | 不触发重渲染 | 用 `replaceState`（不是 `pushState`），不产生历史记录堆积 |
 | 示例 | `?amount=300000&rate=6.5&years=30&type=annuity` |
 
+**Step 4.5: LocalStorage 历史记录**
+
+```
+自动保存最近 5 次计算 → 历史面板一键恢复
+```
+
+| 规则 | 实现 |
+|------|------|
+| 存储键名 | `tool_{toolId}_history`，避免跨工具冲突 |
+| 存储内容 | `{ values, results, timestamp }` 数组，最多 5 条 |
+| 写入时机 | 每次计算结果变化后 debounce 500ms 写入 |
+| 展示位置 | 侧边栏或结果区下方，折叠面板，不抢占主交互区 |
+| 恢复交互 | 点击历史条目 → 回填 values → 自动重算 |
+| 清理 | 提供 "Clear History" 按钮 |
+
+```typescript
+const HISTORY_KEY = `tool_history`;
+const MAX_HISTORY = 5;
+
+function saveHistory(values: Record<string, unknown>): void {
+  const raw = localStorage.getItem(HISTORY_KEY);
+  const history = raw ? JSON.parse(raw) : [];
+  const entry = { values, timestamp: Date.now() };
+  history.unshift(entry);
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(0, MAX_HISTORY)));
+}
+```
+
 ---
 
-**Step 5: 输入容错与防呆（Input Sanitization）**
+**Step 5: 输入容错与防呆（Input Sanitization + UX）**
 
 ```
 用户乱输入 → 自动清洗 → 不弹窗不报错
 ```
 
+**5a. 数值清洗：**
+
 | 场景 | 处理方式 |
 |------|---------|
 | 前后空格 | `trim()` |
 | 中间空格 | 数字类：自动移除；文本类：保留 |
-| 非数字字符（数字输入） | 正则 `/[^0-9.]/g` 自动过滤 |
+| 非数字字符 | 正则 `/[^0-9.\-]/g` 自动过滤 |
 | 多个小数点 | 只保留第一个 `.` |
 | 负数（不允许时） | 取绝对值 `Math.abs()` 或限制 `min=0` |
-| 超出范围 | clamp 到合理范围，同时在输入框旁显示提示 |
+| 超出范围 | clamp 到合理范围 |
 | 空输入 | 显示 placeholder 示例，NaN 处显示 `—` |
-| 粘贴脏数据 | 同样走清洗逻辑（onPaste + onChange 共用 sanitize 函数） |
-| 科学计数法 | 数字输入框禁止（`inputmode="decimal"`） |
+| 粘贴脏数据 | 走同一清洗逻辑（onPaste + onChange 共用） |
+| 科学计数法 | 数字输入框设 `inputmode="decimal"` |
 
-**sanitize 函数模板：**
+**5b. 聚焦全选（Select-All on Focus）：**
+
 ```typescript
-function sanitizeNumber(raw: string, min: number, max: number, fallback: number): number {
-  let cleaned = raw.trim();
-  cleaned = cleaned.replace(/[^0-9.]/g, "");           // 去除非数字
-  cleaned = cleaned.replace(/(\..*)\./g, "$1");        // 只保留第一个小数点
-  const num = parseFloat(cleaned);
-  if (isNaN(num)) return fallback;
-  return Math.max(min, Math.min(max, num));             // clamp
+function handleFocus(e: React.FocusEvent<HTMLInputElement>) {
+  e.target.select();
+}
+```
+
+- 任意输入框获得焦点（点击/Tab 切换）时自动全选内容
+- 方便用户直接覆盖输入，无需手动删除
+
+**5c. 键盘快捷键：**
+
+| 快捷键 | 行为 |
+|--------|------|
+| `Esc` | 清空并重置所有输入为默认值 |
+| `Ctrl+Enter` / `Cmd+Enter` | 聚焦到第一个输入框 |
+
+```typescript
+useEffect(() => {
+  function onKeyDown(e: KeyboardEvent) {
+    if (e.key === "Escape") {
+      resetAllInputs();           // 恢复默认值
+    }
+  }
+  window.addEventListener("keydown", onKeyDown);
+  return () => window.removeEventListener("keydown", onKeyDown);
+}, []);
+```
+
+**5d. 结果格式化（Number Display Formatting）：**
+
+| 场景 | 处理 |
+|------|------|
+| 千分位 | `Number(num).toLocaleString("en-US", { maximumFractionDigits: 4 })` |
+| 小数位 | 非货币保留 ≤4 位，货币保留 2 位 |
+| 超长数字 | ≥ 10^12 时转为科学计数法 `1.23e12` 或千分位 `1,234,567,890,123` |
+| 货币 | `$` 前缀 + 千分位 + 2 位小数：`$1,234,567.89` |
+| null/undefined/NaN | 统一显示 `—`（em dash） |
+
+**5e. 文本溢出防御：**
+
+```css
+.result-cell {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 或者长文本自动折行 */
+.result-text {
+  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 ```
 
 ---
 
-**Step 6: 一键操作（One-Click Actions）**
+**Step 6: 一键操作 + Toast（One-Click + Toast）**
 
-每个工具必须至少提供一个一键操作按钮：
+**6a. 操作按钮：**
 
 | 操作 | 实现方式 | 适用工具 |
 |------|---------|---------|
-| 📋 复制结果 | `navigator.clipboard.writeText()` + toast "Copied!" | 所有工具 |
+| 📋 复制结果 | `navigator.clipboard.writeText()` + toast | **所有工具强制** |
 | 📥 导出 CSV | `Blob` + `URL.createObjectURL` + `<a download>` | 表格/列表结果 |
 | 📸 导出图片 | `html2canvas` 或 `canvas.toBlob()` | 可视化结果 |
 | 🔗 复制链接 | 复制当前含参数的 URL | 有状态工具 |
-| 🗑️ 一键清空 | 重置所有输入为默认值 | 多输入工具 |
+| 🗑️ 一键重置 | 恢复默认值 + 清除 URL params + 清除历史 | 多输入工具 |
 
-**Clipboard API 模板：**
+**6b. Toast 组件规范（纯 CSS/JS，不引入第三方库）：**
+
 ```typescript
-async function copyResult(text: string): Promise<void> {
-  try {
-    await navigator.clipboard.writeText(text);
-    showToast("Copied to clipboard!");
-  } catch {
-    // Fallback for older browsers
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.position = "fixed";
-    ta.style.opacity = "0";
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand("copy");
-    document.body.removeChild(ta);
-    showToast("Copied!");
-  }
+function showToast(message: string, type: "success" | "error" | "info" = "success") {
+  const toast = document.createElement("div");
+  toast.textContent = type === "success" ? `✓ ${message}` : message;
+  toast.className = `toast toast-${type}`;
+  document.body.appendChild(toast);
+  // Trigger animation
+  requestAnimationFrame(() => toast.classList.add("toast-visible"));
+  setTimeout(() => {
+    toast.classList.remove("toast-visible");
+    setTimeout(() => document.body.removeChild(toast), 300);
+  }, 3000);
 }
 ```
+
+**Toast 视觉要求：**
+- 位置：屏幕正上方或右上角，`position: fixed; top: 24px; right: 24px; z-index: 9999;`
+- 动画：从上方滑入 + 淡入（`translateY(-10px)` → `translateY(0)` + `opacity 0→1`），300ms
+- 自动消失：3 秒后滑出 + 淡出
+- 颜色：success=绿色 #10b981、error=红色 #ef4444、info=蓝色 #3b82f6
+- 风格：圆角 12px、微阴影、白色文字、现代无衬线字体
+
+---
+
+**Step 7: 广告位预留（AdSense Ready）**
+
+每个工具页面必须预留 2~3 个广告位：
+
+| 位置 | 尺寸 | 样式 |
+|------|------|------|
+| 页面顶部（Header 下方） | 728×90（桌面）/ 320×50（移动） | 浅灰背景 + `[AD]` 标签 |
+| 结果区下方 / 侧边栏 | 300×250 | 浅灰背景 + `[AD]` 标签 |
+| 页面底部 | 728×90 / 响应式 | 同上 |
+
+**广告位代码模板：**
+```tsx
+<div
+  className="ad-slot"
+  aria-label="Advertisement"
+  style={{
+    background: "#f5f5f5",
+    border: "1px dashed #d0d0d0",
+    borderRadius: "8px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: "90px",
+    color: "#aaa",
+    fontSize: "12px",
+  }}
+>
+  [AD] Advertisement — 728×90
+</div>
+```
+
+**广告位规则：**
+- 必须带 `aria-label="Advertisement"` 无障碍标注
+- 绝不能遮挡工具核心交互区（输入框/按钮/结果）
+- 移动端自动适配（`md:min-h-[90px] min-h-[50px]`）
+- 使用 `AdBanner.tsx` 统一组件
+
+---
+
+**Step 8: 视觉设计规范（Design System）**
+
+```
+参考：Vercel / Linear / Apple 风格 — 极简、精致、高级冷色调
+```
+
+| 元素 | 规范 |
+|------|------|
+| 背景色 | `#ffffff`（亮）/ `#0a0a0a`（暗），推荐支持 Dark Mode |
+| 卡片背景 | `#f8f9fa` 或 `bg-card`（Tailwind semantic） |
+| 圆角 | 按钮 8~10px，卡片 12~16px，输入框 8~10px |
+| 阴影 | 卡片 `0 1px 3px rgba(0,0,0,0.06)`，悬浮 `0 4px 12px rgba(0,0,0,0.1)` |
+| 字体 | Inter / system-ui / -apple-system，无衬线 |
+| 主色调 | 蓝色系 `#0070f3` / 靛蓝系（专业感）或青灰系（高级感） |
+| 间距 | 8px 基准网格（4/8/12/16/20/24/32/40/48） |
+| 过渡 | `transition: all 0.2s ease` 所有交互元素 |
 
 ---
 
@@ -260,19 +394,25 @@ async function copyResult(text: string): Promise<void> {
 
 ```
 □ Architecture 设计摘要已文档化
-□ 所有计算在本机完成，无任何 API 调用
+□ 所有计算在浏览器本地完成，无任何 API 调用
 □ 输入变化即时更新结果（无 Submit 按钮）
-□ URL query string 完整记录状态，可分享还原
-□ 输入自动清洗（空格、非法字符、边界值）
-□ 至少一个一键操作按钮（复制/导出/分享）
-□ 空输入/异常输入不崩，展示默认示例
+□ URL query string 完整记录状态，刷新/分享可还原
+□ LocalStorage 历史记录（最近 5 条，可一键恢复）
+□ 输入自动清洗（空格/非法字符/边界值，不弹窗不报错）
+□ 聚焦全选（onFocus → e.target.select()）
+□ Esc 键重置输入
+□ 结果数字格式化（千分位/小数位/科学计数法）
+□ 文本溢出防御（overflow:hidden / word-break）
+□ 至少一个一键操作按钮（复制/导出/分享）+ Toast 反馈
+□ Toast 组件纯 CSS/JS，3 秒自动消失，滑入动画
+□ 2~3 个广告位，[AD] 标识，不遮挡操作区
+□ Vercel/Linear 风格视觉（圆角/微阴影/高级冷色调）
 □ 公式有注释出处
 □ 注册表 tools.ts 字段完整
 □ ToolContent.tsx SEO 文字已调用
 □ <h1> 唯一，h2/h3 层级正确
 □ FAQ 双格式（HTML + JSON-LD Schema）
-□ 面包屑 Schema
-□ WebApplication Schema
+□ 面包屑 Schema + WebApplication Schema
 ```
 
 ### 4.1 必须有实际功能（No Dead Pages）
