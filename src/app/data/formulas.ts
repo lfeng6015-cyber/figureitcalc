@@ -95,7 +95,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'break-even-calculator': {
     inputs: [{key:'fc',label:'Fixed Costs ($)',type:'number',defaultValue:10000},{key:'p',label:'Price/Unit ($)',type:'number',defaultValue:50},{key:'vc',label:'Variable Cost ($)',type:'number',defaultValue:30}],
-    formula: (v) => { const cm=F(v.p)-F(v.vc),be=cm>0?Math.ceil(F(v.fc)/cm):0; return [{label:'Break-Even',value:be+' units'},{label:'Revenue',value:'$'+(be*F(v.p)).toFixed(0)},{label:'Margin/Unit',value:'$'+cm.toFixed(2)}]; },
+    formula: (v) => { const cm=F(v.p)-F(v.vc),be=cm>0?Math.ceil(F(v.fc)/cm):0; var q6=be*2,q12=be*4; var profit6=q6*cm-F(v.fc),profit12=q12*cm-F(v.fc); return [{label:'Break-Even Point',value:be+' units',insight:'At '+F(v.p).toFixed(0)+'/unit with $'+cm.toFixed(2)+' margin. You need '+be+' sales to cover $'+F(v.fc).toFixed(0)+' fixed costs.'},{label:'Revenue at B/E',value:'$'+(be*F(v.p)).toFixed(0)},{label:'Timeline: 2x B/E',value:'$'+profit6.toFixed(0)+' profit at '+q6+' units',insight:'Selling '+q6+' units (2x break-even) yields $'+profit6.toFixed(0)+' profit. Each additional unit beyond B/E contributes $'+cm.toFixed(2)+' directly to profit.'},{label:'Margin per Unit',value:'$'+cm.toFixed(2)}]; },
   },
     'bsa-calculator': {
     inputs: [{key:'ht',label:'Height (cm)',type:'number',defaultValue:175},{key:'wt',label:'Weight (kg)',type:'number',defaultValue:70}],
@@ -218,8 +218,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     presets: [{label:'20pct off',values:{price:100,discount:20}},{label:'50pct off',values:{price:80,discount:50}}],
   },
     'dividend-yield-calculator': {
-    inputs: [{key:'div',label:'Annual Div ($)',type:'number',defaultValue:2.50},{key:'price',label:'Stock Price ($)',type:'number',defaultValue:50}],
-    formula: (v) => { const y=F(v.price)>0?F(v.div)/F(v.price)*100:0; return [{label:'Yield',value:y.toFixed(2)+'%'},{label:'$/mo',value:'$'+(F(v.div)/12).toFixed(3)}]; },
+    inputs: [{key:'div',label:'Annual Div ($)',type:'number',defaultValue:2.50},{key:'price',label:'Stock Price ($)',type:'number',defaultValue:50},{key:'shares',label:'Shares Owned',type:'number',defaultValue:100},{key:'yr',label:'DRIP Years',type:'number',defaultValue:10}],
+    formula: (v) => { const y=F(v.price)>0?F(v.div)/F(v.price)*100:0; const ann=F(v.div)*F(v.shares); var drip=F(v.shares);for(var i=0;i<F(v.yr);i++){var divs=drip*F(v.div);drip+=divs/F(v.price);} return [{label:'Dividend Yield',value:y.toFixed(2)+'%'},{label:'Annual Income',value:'$'+ann.toFixed(0),insight:'Passive income from '+F(v.shares).toFixed(0)+' shares at $'+F(v.div).toFixed(2)+'/share/year.'},{label:'DRIP: '+F(v.yr).toFixed(0)+'yr Reinvested',value:drip.toFixed(0)+' shares',insight:'DRIP (Dividend Reinvestment Plan): reinvesting dividends buys additional shares. From '+F(v.shares).toFixed(0)+' to '+drip.toFixed(0)+' shares over '+F(v.yr).toFixed(0)+' years. Annual income grows from $'+ann.toFixed(0)+' to $'+(drip*F(v.div)).toFixed(0)+'.'}]; },
   },
     'docker-run-to-docker-compose-converter': {
     inputs: [{key:'img',label:'Image',type:'text',defaultValue:'nginx:latest'},{key:'ports',label:'Ports (host:container)',type:'text',defaultValue:'80:80'},{key:'name',label:'Container Name',type:'text',defaultValue:'web'}],
@@ -466,7 +466,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'loan-comparison-calculator': {
     inputs: [{key:'l1',label:'Loan 1 ($)',type:'number',defaultValue:200000},{key:'r1',label:'Rate 1 (%)',type:'number',defaultValue:6},{key:'t1',label:'Term 1 (yr)',type:'number',defaultValue:30},{key:'l2',label:'Loan 2 ($)',type:'number',defaultValue:200000},{key:'r2',label:'Rate 2 (%)',type:'number',defaultValue:5.5},{key:'t2',label:'Term 2 (yr)',type:'number',defaultValue:15}],
-    formula: (v) => { const c=function(P,rt,yr){var mr=rt/100/12,mn=yr*12,pmt=mr>0?P*mr*Math.pow(1+mr,mn)/(Math.pow(1+mr,mn)-1):P/mn;return{mo:pmt,tt:pmt*mn};};var a=c(F(v.l1),F(v.r1),F(v.t1)),b=c(F(v.l2),F(v.r2),F(v.t2));return[{label:'L1 Mo',value:'$'+a.mo.toFixed(2)},{label:'L1 Total',value:'$'+a.tt.toFixed(0)},{label:'L2 Mo',value:'$'+b.mo.toFixed(2)},{label:'L2 Total',value:'$'+b.tt.toFixed(0)}]; },
+    formula: (v) => { var c=function(P,rt,yr){var mr=rt/100/12,mn=yr*12,pmt=mr>0?P*mr*Math.pow(1+mr,mn)/(Math.pow(1+mr,mn)-1):P/mn;var ti=pmt*mn-P;return{mo:pmt,tt:pmt*mn,int:ti};};var a=c(F(v.l1),F(v.r1),F(v.t1)),b=c(F(v.l2),F(v.r2),F(v.t2));var better=a.tt<b.tt?'Loan 1 saves $'+(b.tt-a.tt).toFixed(0):b.tt<a.tt?'Loan 2 saves $'+(a.tt-b.tt).toFixed(0):'Equal cost';var lowerMo=a.mo<b.mo?'Loan 1':'Loan 2';return[{label:'Loan 1 Monthly',value:'$'+a.mo.toFixed(2)},{label:'Loan 1 Interest',value:'$'+a.int.toFixed(0)},{label:'Loan 2 Monthly',value:'$'+b.mo.toFixed(2)},{label:'Loan 2 Interest',value:'$'+b.int.toFixed(0)},{label:'Best Total Cost',value:better,insight:'Lower monthly: '+lowerMo+'. Consider: can you afford the higher payment for long-term savings? The '+F(v.t2).toFixed(0)+'yr loan saves in total interest but requires $'+Math.abs(a.mo-b.mo).toFixed(2)+'/mo more.'},{label:'Interest Saved',value:'$'+Math.abs(a.int-b.int).toFixed(0),emphasis:true}]; },
   },
     'lorem-ipsum-generator': {
     inputs: [{key:'n',label:'Paragraphs',type:'number',defaultValue:3}],
@@ -520,7 +520,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'net-worth-calculator': {
     inputs: [{key:'cash',label:'Cash ($)',type:'number',defaultValue:10000},{key:'invest',label:'Investments ($)',type:'number',defaultValue:50000},{key:'property',label:'Property ($)',type:'number',defaultValue:300000},{key:'debt',label:'Debt ($)',type:'number',defaultValue:200000}],
-    formula: (v) => { const a=F(v.cash)+F(v.invest)+F(v.property),d=F(v.debt); return [{label:'Assets',value:'$'+a.toLocaleString()},{label:'Debt',value:'$'+d.toLocaleString()},{label:'Net Worth',value:'$'+(a-d).toLocaleString()}]; },
+    formula: (v) => { const c=F(v.cash),i=F(v.invest),p=F(v.property),a=c+i+p,d=F(v.debt),nw=a-d; const cashPct=a>0?c/a*100:0,invPct=a>0?i/a*100:0,propPct=a>0?p/a*100:0; return [{label:'Net Worth',value:'$'+nw.toLocaleString(),emphasis:true,insight:nw>=1e6?'Millionaire status!':nw>=0?'Positive net worth - keep building!':'Negative - focus on debt reduction.'},{label:'Cash ('+cashPct.toFixed(0)+'%)',value:'$'+c.toLocaleString(),insight:cashPct>50?'High cash allocation - consider investing for inflation protection':'Healthy liquidity'},{label:'Investments ('+invPct.toFixed(0)+'%)',value:'$'+i.toLocaleString()},{label:'Property ('+propPct.toFixed(0)+'%)',value:'$'+p.toLocaleString()},{label:'Total Debt',value:'$'+d.toLocaleString(),insight:d>a?'Debt exceeds assets - prioritize payoff':a>0?'Debt-to-asset ratio: '+(d/a*100).toFixed(0)+'%':'No assets to compare'}]; },
   },
     'numeronym-generator': {
     inputs: [{key:'word',label:'Word',type:'text',defaultValue:'internationalization'}],
@@ -677,7 +677,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
   'savings-goal-calculator': {
     inputs: [{key:'goal',label:'Goal ($)',type:'number',defaultValue:100000},{key:'saved',label:'Current Savings ($)',type:'number',defaultValue:10000},{key:'monthly',label:'Monthly ($)',type:'number',defaultValue:500},{key:'rate',label:'Return (%)',type:'number',defaultValue:5}],
-    formula: (v) => { const r=F(v.rate)/100/12; let b=F(v.saved),mo=0; while(b<F(v.goal)&&mo<1200){b=b*(1+r)+F(v.monthly);mo++;} return [{label:'Months to Goal',value:String(mo)},{label:'Years',value:(mo/12).toFixed(1)}]; },
+    formula: (v) => { const r=F(v.rate)/100/12; let b=F(v.saved),mo=0; while(b<F(v.goal)&&mo<1200){b=b*(1+r)+F(v.monthly);mo++;} const rLow=(F(v.rate)-2)/100/12,rHigh=(F(v.rate)+2)/100/12; let bLow=F(v.saved),moLow=0; while(bLow<F(v.goal)&&moLow<2400){bLow=bLow*(1+rLow)+F(v.monthly);moLow++;} let bHigh=F(v.saved),moHigh=0; while(bHigh<F(v.goal)&&moHigh<2400){bHigh=bHigh*(1+rHigh)+F(v.monthly);moHigh++;} return [{label:'Best Estimate ('+F(v.rate).toFixed(0)+'%)',value:(mo/12).toFixed(1)+' years ('+mo+' months)',insight:'~50% probability. Range: '+(moLow/12).toFixed(1)+'yr (conservative) to '+(moHigh/12).toFixed(1)+'yr (optimistic) based on '+((F(v.rate)-2).toFixed(0))+'% to '+((F(v.rate)+2).toFixed(0))+'% returns.'},{label:'Conservative ('+(F(v.rate)-2).toFixed(0)+'%)',value:(moLow/12).toFixed(1)+' years',insight:'Higher confidence (~80%) of reaching goal within this timeframe if markets underperform.'},{label:'Final Balance (est)',value:'$'+b.toFixed(0)}]; },
   },
       'scientific-calculator': {
     inputs: [{key:'expr',label:'Expression',type:'text',defaultValue:'sqrt(16)+sin(PI/2)*2'},{key:'angle',label:'Angle Unit',type:'select',options:[{label:'Radians (rad)',value:'rad'},{label:'Degrees (deg)',value:'deg'}],defaultValue:'rad'}],
