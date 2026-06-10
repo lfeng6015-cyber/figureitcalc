@@ -148,9 +148,9 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const h=String(v.hex).replace('#',''); if(!/^[0-9A-Fa-f]{6}$/.test(h))return[{label:'Error',value:'Invalid HEX'}]; const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16); return [{label:'RGB',value:'rgb('+r+','+g+','+b+')'},{label:'HEX',value:'#'+h.toUpperCase()}]; },
   },
         'compound-interest-calculator': {
-    inputs: [{key:'principal',label:'Initial Invest ($)',type:'number',defaultValue:10000},{key:'monthly',label:'Monthly Add ($)',type:'number',defaultValue:200},{key:'rate',label:'Return (%)',type:'number',defaultValue:7},{key:'years',label:'Years',type:'number',defaultValue:20}],
-    formula: (v) => { const P=F(v.principal),pmt=F(v.monthly),r=F(v.rate)/100/12,n=F(v.years)*12; const fv=P*Math.pow(1+r,n)+(r>0?pmt*(Math.pow(1+r,n)-1)/r:pmt*n); const inv=P+pmt*n; return [{label:'Future Value',value:'$'+fv.toFixed(2)},{label:'Total Invested',value:'$'+inv.toFixed(0)},{label:'Interest',value:'$'+(fv-inv).toFixed(0)}]; },
-    presets: [{label:'30yr Retire',values:{principal:50000,monthly:500,rate:7,years:30}}],
+    inputs: [{key:'principal',label:'Initial Invest ($)',type:'number',defaultValue:10000},{key:'monthly',label:'Monthly Add ($)',type:'number',defaultValue:200},{key:'rate',label:'Return (%)',type:'number',defaultValue:7},{key:'years',label:'Years',type:'number',defaultValue:20},{key:'freq',label:'Compounding',type:'select',options:[{label:'Monthly',value:'12'},{label:'Quarterly',value:'4'},{label:'Annually',value:'1'},{label:'Daily',value:'365'}],defaultValue:'12'}],
+    formula: (v) => { const P=F(v.principal),pmt=F(v.monthly),r=F(v.rate)/100/Number(v.freq),n=F(v.years)*Number(v.freq); const fv=P*Math.pow(1+r,n)+(r>0?pmt*(Math.pow(1+r,n)-1)/r:pmt*n); const inv=P+pmt*n; return [{label:'Future Value',value:'$'+fv.toFixed(2)},{label:'Total Invested',value:'$'+inv.toFixed(0)},{label:'Interest Earned',value:'$'+(fv-inv).toFixed(0)},{label:'Effective Rate',value:(Math.pow(1+F(v.rate)/100/Number(v.freq),Number(v.freq))-1).toFixed(4),insight:'APY (Annual Percentage Yield) including compounding effect'}]; },
+    presets: [{label:'30yr Retire',values:{principal:50000,monthly:500,rate:7,years:30,freq:'12'}},{label:'High-Yield CD',values:{principal:10000,monthly:0,rate:5,years:5,freq:'365'}}],
   },
     'concrete-block-calculator': {
     inputs: [{key:'len',label:'Wall Length (ft)',type:'number',defaultValue:20},{key:'ht',label:'Wall Height (ft)',type:'number',defaultValue:8}],
@@ -377,7 +377,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'inflation-calculator': {
     inputs: [{key:'amount',label:'Amount ($)',type:'number',defaultValue:10000},{key:'rate',label:'Inflation (%)',type:'number',defaultValue:3},{key:'years',label:'Years',type:'number',defaultValue:10}],
-    formula: (v) => { const f=F(v.amount)*Math.pow(1+F(v.rate)/100,F(v.years)),t=F(v.amount)/Math.pow(1+F(v.rate)/100,F(v.years)); return [{label:'Future Cost',value:'$'+f.toFixed(2)},{label:'Today Worth',value:'$'+t.toFixed(2)}]; },
+    formula: (v) => { const f=F(v.amount)*Math.pow(1+F(v.rate)/100,F(v.years)),t=F(v.amount)/Math.pow(1+F(v.rate)/100,F(v.years)); return [{label:'Future Value Needed',value:'$'+f.toFixed(2),insight:'You would need $'+f.toFixed(2)+' in '+v.years+' years to match the purchasing power of $'+F(v.amount).toFixed(2)+' today. Based on '+F(v.rate).toFixed(1)+'% annual inflation (US CPI historical average: 3.0-3.5%).'},{label:'Today Value (in '+v.years+' years)',value:'$'+t.toFixed(2),insight:'$'+F(v.amount).toFixed(2)+' today will be worth roughly $'+t.toFixed(2)+' in '+v.years+' years in constant dollars. Source: US Bureau of Labor Statistics CPI data.'}]; },
   },
     'ingredient-substitution-calculator': {
     inputs: [{key:'ing',label:'Need to Replace',type:'text',defaultValue:'egg'},{key:'amt',label:'Amount',type:'number',defaultValue:1,step:0.25}],
@@ -732,7 +732,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'temperature-converter': {
     inputs: [{key:'celsius',label:'Celsius',type:'number',defaultValue:20},{key:'toUnit',label:'Convert To',type:'select',options:[{label:'Fahrenheit',value:'f'},{label:'Kelvin',value:'k'},{label:'Both',value:'both'}],defaultValue:'both'}],
-    formula: (v) => { const c=F(v.celsius),f=c*9/5+32,k=c+273.15; const r=[]; if(v.toUnit==='f'||v.toUnit==='both')r.push({label:'Fahrenheit',value:f.toFixed(1)+' degF'}); if(v.toUnit==='k'||v.toUnit==='both')r.push({label:'Kelvin',value:k.toFixed(1)+' K'}); r.push({label:'Celsius',value:c.toFixed(1)+' degC'}); return r; },
+    formula: (v) => { var c=F(v.celsius),f=c*9/5+32,k=c+273.15; var r=[]; if(v.toUnit==='f'||v.toUnit==='both')r.push({label:'Fahrenheit',value:f.toFixed(1)+' degF'}); if(v.toUnit==='k'||v.toUnit==='both'){var belowZero=k<0;r.push({label:'Kelvin',value:belowZero?'< 0 K (below abs zero)':k.toFixed(1)+' K',color:belowZero?'red':'green',insight:belowZero?'Below absolute zero (-273.15 C / 0 K). Not physically possible.':undefined});} r.push({label:'Celsius',value:c.toFixed(1)+' degC',insight:c<-273.15?'Below absolute zero - not physically possible':undefined}); return r; },
     presets: [{label:'Freezing',values:{celsius:0,toUnit:'both'}},{label:'Body',values:{celsius:37,toUnit:'both'}},{label:'Boiling',values:{celsius:100,toUnit:'both'}}],
   },
     'text-diff': {
