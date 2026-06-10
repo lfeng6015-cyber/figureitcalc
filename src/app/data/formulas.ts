@@ -196,8 +196,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { const h=F(v.amt)*F(v.fwd),u=F(v.amt)*F(v.cur); return [{label:'Hedged',value:'$'+h.toFixed(0)},{label:'Unhedged',value:'$'+u.toFixed(0)},{label:'Diff',value:'$'+(h-u).toFixed(0)}]; },
   },
       'date-time-converter': {
-    inputs: [{key:'ts',label:'Unix Timestamp (sec)',type:'number',defaultValue:1716500000}],
-    formula: (v) => { const d=new Date(F(v.ts)*1000); return [{label:'ISO 8601',value:d.toISOString()},{label:'Local',value:d.toLocaleString()},{label:'UTC',value:d.toUTCString()}]; },
+    inputs: [{key:'mode',label:'Mode',type:'select',options:[{label:'Timestamp to Date',value:'ts2date'},{label:'Date Difference',value:'diff'}],defaultValue:'ts2date'},{key:'ts',label:'Unix Timestamp (sec)',type:'number',defaultValue:1716500000},{key:'date1',label:'Date 1 (YYYY-MM-DD)',type:'text',defaultValue:'2026-01-01'},{key:'date2',label:'Date 2 (YYYY-MM-DD)',type:'text',defaultValue:'2026-06-10'}],
+    formula: (v) => { if(v.mode==='diff'){var d1=new Date(String(v.date1)+'T00:00:00'),d2=new Date(String(v.date2)+'T00:00:00'); if(isNaN(d1.getTime())||isNaN(d2.getTime()))return[{label:'Error',value:'Invalid date format'}]; var diffMs=Math.abs(d2.getTime()-d1.getTime()),days=Math.floor(diffMs/86400000); var workdays=0,cur=new Date(Math.min(d1.getTime(),d2.getTime())),end=new Date(Math.max(d1.getTime(),d2.getTime())); while(cur<=end){var dow=cur.getDay(); if(dow!==0&&dow!==6)workdays++; cur.setDate(cur.getDate()+1);} workdays--; return[{label:'Total Days',value:days+' days'},{label:'Workdays (Mon-Fri)',value:workdays+' business days'},{label:'Weekend Days',value:(days-workdays)+' weekend days'},{label:'Weeks',value:(days/7).toFixed(1)+' weeks'}];} var d=new Date(F(v.ts)*1000); return [{label:'ISO 8601',value:d.toISOString()},{label:'Local',value:d.toLocaleString('en-US')},{label:'UTC',value:d.toUTCString()}]; },
   },
     'depth-of-field-calculator': {
     inputs: [{key:'f',label:'Focal Length (mm)',type:'number',defaultValue:50},{key:'a',label:'Aperture (f-stop)',type:'number',defaultValue:5.6,step:0.1},{key:'d',label:'Focus Distance (ft)',type:'number',defaultValue:10}],
@@ -303,7 +303,8 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'golden-ratio-calculator': {
     inputs: [{key:'val',label:'Value',type:'number',defaultValue:100}],
-    formula: (v) => { const phi=1.6180339887,a=F(v.val); return [{label:'Longer(x phi)',value:(a*phi).toFixed(2)},{label:'Shorter(/ phi)',value:(a/phi).toFixed(2)}]; },
+    formula: (v) => { const phi=1.6180339887,a=F(v.val); return [{label:'Longer (x phi)',value:(a*phi).toFixed(2),insight:'Golden ratio (1.618) applied to '+a.toFixed(0)+'. Real-world uses: design grids, typography scaling, photography composition (rule of thirds), architecture proportions (Parthenon, Notre Dame), logo design, and UI layout.'},{label:'Shorter (/ phi)',value:(a/phi).toFixed(2),insight:'Inverse golden ratio. Use for: finding complementary dimensions, creating nested rectangles, and scaling designs proportionally.'},{label:'Fibonacci Neighbors',value:'approx '+Math.round(a*0.618).toFixed(0)+' and '+Math.round(a*1.618).toFixed(0),insight:'The golden ratio approximates ratios of consecutive Fibonacci numbers (e.g. 89/55 = 1.618). Used in agile estimation and natural proportions.'}]; },
+    presets: [{label:'Web layout (1440px)',values:{val:1440}},{label:'Photo crop (3:2)',values:{val:3000}}],
   },
       'gpa-calculator': {
     inputs: [{key:'grades',label:'Grades (A,B+,C-)',type:'text',defaultValue:'A,B+,A-,B'},{key:'credits',label:'Credits (3,4,3,3)',type:'text',defaultValue:'3,4,3,3'}],
