@@ -829,7 +829,6 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
   },
       'url-encoder': {
-    inputs: [{key:'text',label:'Text/URL',type:'text',defaultValue:'Hello World & more!=test'},{key:'mode',label:'Mode',type:'select',options:[{label:'Encode Full (encodeURIComponent)',value:'encode'},{label:'Encode URL-safe (encodeURI)',value:'urlsafe'},{label:'Decode',value:'decode'}],defaultValue:'encode'}],
     formula: (v) => { var t=String(v.text); if(v.mode==='decode'){try{var d=decodeURIComponent(t);return[{label:'Decoded',value:d},{label:'Original',value:t}];}catch(e){return[{label:'Error',value:'Invalid URL-encoded string'}];}} if(v.mode==='urlsafe'){var eu=encodeURI(t); return [{label:'URL-safe Encoded',value:eu},{label:'Note',value:'Preserves URL structure (://, /, ?, &, #). Use for full URLs. For query parameter values, use Encode Full instead.'}];} var e=encodeURIComponent(t); return [{label:'Fully Encoded',value:e},{label:'Length',value:e.length+' chars'},{label:'Usage',value:'Use for query param values: ?q='+e+'&lang=en'}]; },
   },
     'url-parser': {
