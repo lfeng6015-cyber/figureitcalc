@@ -361,7 +361,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'hvac-btu-calculator': {
     inputs: [{key:'sqft',label:'Area (sqft)',type:'number',defaultValue:1500},{key:'climate',label:'Climate',type:'select',options:[{label:'Mild',value:'25'},{label:'Moderate',value:'30'},{label:'Hot',value:'35'}],defaultValue:'30'}],
-    formula: (v) => { var a=F(v.sqft)||1500,btu=a*35,tons=btu/12000; return [{label:"Cooling",value:btu.toFixed(0)+" BTU/h",insight:"Est: 35 BTU/sqft moderate. +20% hot/sunny = "+(btu*1.2).toFixed(0)+" BTU. Oversized AC short-cycles and doesnt dehumidify."},{label:"Tons",value:tons.toFixed(1)+" tons (1 ton = 12,000 BTU)"}] },
+    formula: (v) => { var a=F(v.sqft)||1500,btu=a*35,tons=btu/12000; return [{label:"Cooling",value:btu.toFixed(0)+" BTU/h",insight:"Est: 35 BTU/sqft moderate. +20% hot/sunny = "+(btu*1.2).toFixed(0)+" BTU. Oversized AC short-cycles and doesnt dehumidify."},{label:"Tons",value:tons.toFixed(1)+" tons (1 ton = 12,000 BTU)"},{label:'Engineering Disclaimer',value:'ESTIMATE ONLY. Not a substitute for professional HVAC design. Consult a licensed HVAC contractor for accurate Manual J load calculation.'}] },
   },
     'iban-validator-and-parser': {
     inputs: [{key:'iban',label:'IBAN',type:'text',defaultValue:'GB29NWBK60161331926819'}],
