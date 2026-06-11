@@ -2386,13 +2386,13 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     "id": "html-wysiwyg-editor",
-    "name": "Html Wysiwyg Editor",
+    "name": "HTML WYSIWYG Editor",
     "description": "Rich text WYSIWYG HTML editor with formatting, tables, images, and source code view. Free online tool. No signup, client-side.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
     "isNew": false,
-    "component": "calculator",
+    "component": "wysiwyg",
     "seo": {
       "title": "Online Html Wysiwyg Editor | Free Dev Tool — figureitcalc",
       "description": "Html Wysiwyg Editor — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
@@ -3128,7 +3128,7 @@ export const TOOLS: ToolMeta[] = [
     "icon": "Zap",
     "isHot": false,
     "isNew": false,
-    "component": "calculator",
+    "component": "keycode",
     "seo": {
       "title": "Online Keyboard Key Code Finder | Free Dev Tool — figureitcalc",
       "description": "Keycode Info — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",

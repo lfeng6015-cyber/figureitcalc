@@ -53,6 +53,7 @@ const toolComponentMap: Record<string, React.ComponentType> = {
   camera: lazy(() => import("./components/tools/CameraTool").then(m => ({default: m.CameraTool}))),
   emoji: lazy(() => import("./components/tools/EmojiPickerTool").then(m => ({default: m.EmojiPickerTool}))),
   keycode: lazy(() => import("./components/tools/KeycodeTool").then(m => ({default: m.KeycodeTool}))),
+  wysiwyg: lazy(() => import("./components/tools/WysiwygEditor").then(m => ({default: m.WysiwygEditor}))),
 };
 
 // Stable named component — wraps CalculatorTool with formula from registry.
