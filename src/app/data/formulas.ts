@@ -376,6 +376,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     'hvac-btu-calculator': {
     inputs: [{key:'sqft',label:'Area (sqft)',type:'number',defaultValue:1500},{key:'climate',label:'Climate',type:'select',options:[{label:'Mild',value:'25'},{label:'Moderate',value:'30'},{label:'Hot',value:'35'}],defaultValue:'30'}],
     formula: (v) => { var a=F(v.sqft)||1500,btu=a*35,tons=btu/12000; return [{label:"Cooling",value:btu.toFixed(0)+" BTU/h",insight:"Est: 35 BTU/sqft moderate. +20% hot/sunny = "+(btu*1.2).toFixed(0)+" BTU. Oversized AC short-cycles and doesnt dehumidify."},{label:"Tons",value:tons.toFixed(1)+" tons (1 ton = 12,000 BTU)"},{label:'Engineering Disclaimer',value:'ESTIMATE ONLY. Not a substitute for professional HVAC design. Consult a licensed HVAC contractor for accurate Manual J load calculation.'}] },
+    presets: [{label:'1500sqft moderate',values:{sqft:1500,climate:'30'}},{label:'2500sqft hot',values:{sqft:2500,climate:'35'}}],
   },
     'iban-validator-and-parser': {
     inputs: [{key:'iban',label:'IBAN',type:'text',defaultValue:'GB29NWBK60161331926819'}],
@@ -609,6 +610,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     'ppi-calculator': {
     inputs: [{key:'w',label:'Width (px)',type:'number',defaultValue:1920},{key:'h',label:'Height (px)',type:'number',defaultValue:1080},{key:'diag',label:'Diagonal (in)',type:'number',defaultValue:24}],
     formula: (v) => { var ppi=F(v.diag)>0?Math.sqrt(F(v.w)*F(v.w)+F(v.h)*F(v.h))/F(v.diag):0; return [{label:'PPI',value:ppi.toFixed(1)},{label:'Quality',value:ppi>=300?'Retina':ppi>=200?'Good':'Standard'},{label:'Megapixels',value:(F(v.w)*F(v.h)/1e6).toFixed(1)+' MP'}]; },
+    presets: [{label:'24in 1080p',values:{w:1920,h:1080,diag:24}},{label:'27in 4K',values:{w:3840,h:2160,diag:27}},{label:'Phone 6.7in',values:{w:2796,h:1290,diag:6.7}}],
   },
       'probability-calculator': {
     inputs: [{key:'mode',label:'Event Type',type:'select',options:[{label:'Single Event',value:'single'},{label:'Independent (AND)',value:'ind_and'},{label:'Mutually Exclusive (OR)',value:'mutex'}],defaultValue:'single'},{key:'fav',label:'Favorable Outcomes',type:'number',defaultValue:1},{key:'tot',label:'Total Outcomes',type:'number',defaultValue:6},{key:'fav2',label:'2nd Favorable',type:'number',defaultValue:1},{key:'tot2',label:'2nd Total',type:'number',defaultValue:6}],
