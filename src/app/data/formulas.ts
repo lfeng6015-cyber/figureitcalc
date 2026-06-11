@@ -296,7 +296,6 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     formula: (v) => { var d=F(v.distance),mpg=Math.max(1,F(v.mpg)),price=F(v.fuelPrice),gal=d/mpg,cost=gal*price; var results=[{label:"Fuel Used",value:gal.toFixed(1)+" gal",insight:"At "+mpg.toFixed(0)+" MPG. City driving: add 10-15%. Highway: subtract 5-10%."},{label:"Trip Cost",value:"$"+cost.toFixed(2),emphasis:true},{label:"Cost Per Mile",value:"$"+(price/mpg).toFixed(3)}]; var mpg2=F(v.mpg2); if(mpg2>0){var gal2=d/mpg2,cost2=gal2*price; var saved=cost-cost2; results.push({label:"Vs "+mpg2.toFixed(0)+" MPG Vehicle",value:saved>0?"Save $"+saved.toFixed(2):saved<0?"Costs $"+Math.abs(saved).toFixed(2)+" more":"Same cost",insight:"You would use "+(gal-gal2).toFixed(1)+" fewer gallons with a "+mpg2.toFixed(0)+" MPG vehicle. Annual savings ("+(d*12).toFixed(0)+" mi/yr): $"+(saved*12).toFixed(0)+"."});} return results; },
     presets: [{label:'300mi Trip',values:{distance:300,mpg:25,fuelPrice:3.50,mpg2:0}},{label:'SUV vs Hybrid',values:{distance:300,mpg:20,fuelPrice:3.50,mpg2:40}}],
   },
-  },
     'fuel-economy-calculator': {
     inputs: [{key:'miles',label:'Miles',type:'number',defaultValue:300},{key:'gal',label:'Gallons',type:'number',defaultValue:12}],
     formula: (v) => { const m=F(v.gal)>0?F(v.miles)/F(v.gal):0,l=m>0?235.215/m:0; return [{label:'MPG',value:m.toFixed(1)},{label:'L/100km',value:l.toFixed(1)}]; },
