@@ -783,6 +783,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     'text-to-nato-alphabet': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'HELLO'}],
     formula: (v) => { var n={A:'Alpha (AL-fah)',B:'Bravo (BRAH-voh)',C:'Charlie (CHAR-lee)',D:'Delta (DELL-tah)',E:'Echo (ECK-oh)',F:'Foxtrot (FOKS-trot)',G:'Golf (GOLF)',H:'Hotel (hoh-TELL)',I:'India (IN-dee-ah)',J:'Juliett (JEW-lee-ETT)',K:'Kilo (KEE-loh)',L:'Lima (LEE-mah)',M:'Mike (MIKE)',N:'November (no-VEM-ber)',O:'Oscar (OSS-cah)',P:'Papa (pah-PAH)',Q:'Quebec (keh-BECK)',R:'Romeo (ROW-me-oh)',S:'Sierra (see-AIR-rah)',T:'Tango (TANG-go)',U:'Uniform (YOU-nee-form)',V:'Victor (VIK-tah)',W:'Whiskey (WISS-kee)',X:'X-ray (ECKS-ray)',Y:'Yankee (YANG-kee)',Z:'Zulu (ZOO-loo)','0':'Zero','1':'One','2':'Two','3':'Three','4':'Four','5':'Five','6':'Six','7':'Seven','8':'Eight','9':'Niner'}; var r=String(v.text).toUpperCase().split('').map(function(c){return n[c]||c}).join(' · '); return [{label:'NATO Phonetic ('+String(v.text).length+' chars)',value:r},{label:'Pronunciation Key',value:'Each word has a standard pronunciation. Emphasize the bold syllable: AL-fah, BRAH-voh, CHAR-lee.'}]; },
+    presets: [{label:'SOS',values:{text:'SOS'}},{label:'HELLO',values:{text:'HELLO'}}],
   },
     'text-to-unicode': {
     inputs: [{key:'text',label:'Text',type:'text',defaultValue:'ABC 你好 🌍'}],
