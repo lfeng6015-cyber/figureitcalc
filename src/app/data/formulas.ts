@@ -172,7 +172,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
     'countdown-timer': {
     inputs: [{key:'date',label:'Target Date',type:'text',defaultValue:'2027-01-01'}],
-    formula: (v) => { var d=new Date(String(v.date)).getTime(),n=Date.now(),diff=Math.max(0,d-n); var days=Math.floor(diff/86400000),hrs=Math.floor((diff%86400000)/3600000),mins=Math.floor((diff%3600000)/60000),secs=Math.floor((diff%60000)/1000); return [{label:"Countdown",value:days+"d "+hrs+"h "+mins+"m",insight:"Until "+String(v.date)+". For recurring events, use next occurrence date."},{label:"Seconds",value:secs+"s"},{label:"Weeks",value:(days/7).toFixed(1)+" weeks",{label:'Engineering Disclaimer',value:'ESTIMATE ONLY. Not a substitute for professional engineering. Consult a licensed engineer for actual construction. Verify all calculations before use.'}}] },
+    formula: (v) => { var d=new Date(String(v.date)).getTime(),n=Date.now(),diff=Math.max(0,d-n); var days=Math.floor(diff/86400000),hrs=Math.floor((diff%86400000)/3600000),mins=Math.floor((diff%3600000)/60000),secs=Math.floor((diff%60000)/1000); return [{label:"Countdown",value:days+"d "+hrs+"h "+mins+"m",insight:"Until "+String(v.date)+". For recurring events, use next occurrence date."},{label:"Seconds",value:secs+"s"},{label:"Weeks",value:(days/7).toFixed(1)+" weeks"}] },
   },
     'cpm-calculator': {
     inputs: [{key:'mode',label:'Calculate',type:'select',options:[{label:'CPM from Cost + Impr',value:'cpm'},{label:'Cost from CPM + Impr',value:'cost'},{label:'Revenue from CPM + Impr',value:'rev'}],defaultValue:'cpm'},{key:'cost',label:'Ad Spend ($)',type:'number',defaultValue:500},{key:'imp',label:'Impressions',type:'number',defaultValue:100000},{key:'cpm',label:'CPM Rate ($)',type:'number',defaultValue:5},{key:'ctr',label:'CTR (%)',type:'number',defaultValue:2,step:0.1}],
@@ -293,7 +293,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
   },
         'fuel-cost-calculator': {
     inputs: [{key:'distance',label:'Distance (miles)',type:'number',defaultValue:300},{key:'mpg',label:'Fuel Econ (MPG)',type:'number',defaultValue:25},{key:'fuelPrice',label:'Fuel Price ($/gal)',type:'number',defaultValue:3.50}],
-    formula: (v) => { var d=F(v.dist),mpg=Math.max(1,F(v.mpg)),price=F(v.price),gal=d/mpg,cost=gal*price; return [{label:"Fuel",value:gal.toFixed(1)+" gal",insight:"Multi-stop trips: add 5-10% for city. Highway MPG 20-30% higher than city."},{label:"Cost",value:"$"+cost.toFixed(2)},{label:"Per Mile",value:"$"+(price/mpg).toFixed(3),{label:'Medical Disclaimer',value:'For informational purposes only. NOT a substitute for professional medical advice, diagnosis, or treatment. Always consult your healthcare provider.'}}] },
+    formula: (v) => { var d=F(v.dist),mpg=Math.max(1,F(v.mpg)),price=F(v.price),gal=d/mpg,cost=gal*price; return [{label:"Fuel",value:gal.toFixed(1)+" gal",insight:"Multi-stop trips: add 5-10% for city. Highway MPG 20-30% higher than city."},{label:"Cost",value:"$"+cost.toFixed(2)},{label:"Per Mile",value:"$"+(price/mpg).toFixed(3)}] },
     presets: [{label:'300mi Trip',values:{distance:300,mpg:25,fuelPrice:3.50}}],
   },
     'fuel-economy-calculator': {
