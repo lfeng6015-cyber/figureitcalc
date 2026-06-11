@@ -474,6 +474,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
         'keycode-info': {
     inputs: [{key:'code',label:'Key Code (number)',type:'number',defaultValue:13}],
     formula: (v) => { var k=F(v.code); var map={8:'Backspace',9:'Tab',13:'Enter',16:'Shift',17:'Ctrl',18:'Alt',27:'Escape',32:'Space',37:'Left Arrow',38:'Up Arrow',39:'Right Arrow',40:'Down Arrow',46:'Delete',48:'0',65:'A',90:'Z',112:'F1',123:'F12'}; return [{label:'Key Name',value:map[k]||'Code '+k},{label:'Char',value:k>=32&&k<=126?String.fromCharCode(k):'(non-printable)'},{label:'Hex',value:'0x'+k.toString(16).toUpperCase()}]; },
+    presets: [{label:'Enter key (13)',values:{code:13}},{label:'Escape (27)',values:{code:27}},{label:'Space (32)',values:{code:32}}],
   },
     'landed-cost-calculator': {
     inputs: [{key:'fob',label:'FOB Product Cost ($)',type:'number',defaultValue:10000},{key:'qty',label:'Quantity (units)',type:'number',defaultValue:1000},{key:'freight',label:'Freight ($)',type:'number',defaultValue:2000},{key:'ins',label:'Insurance ($)',type:'number',defaultValue:100},{key:'duty',label:'Customs Duty (%)',type:'number',defaultValue:10},{key:'broker',label:'Brokerage Fee ($)',type:'number',defaultValue:150},{key:'warehouse',label:'Warehouse/Handling ($)',type:'number',defaultValue:300}],
@@ -561,6 +562,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     'numeronym-generator': {
     inputs: [{key:'word',label:'Word or Phrase',type:'text',defaultValue:'internationalization'}],
     formula: (v) => { var w=String(v.word||'').trim(); if(!w)return[{label:'Numeronym',value:'Enter a word above'}]; var words=w.split(/\s+/); var nums=words.map(function(word){if(word.length<=2)return word;return word[0]+(word.length-2)+word[word.length-1];}); var top10='i18n=internationalization, a11y=accessibility, l10n=localization, k8s=kubernetes, g11n=globalization, c14n=canonicalization, v12n=virtualization, o11y=observability, p13n=personalization, m17n=multilingualization'; return [{label:'Numeronym',value:nums.join(' '),insight:'First letter + number of middle letters + last letter. Invented at DEC in the 1980s. Pronounced: eye-eighteen-en.'},{label:'Original',value:w+' ('+w.length+' chars)'},{label:'Top 10 Tech Numeronyms',value:top10}]; },
+    presets: [{label:'internationalization',values:{word:'internationalization'}},{label:'accessibility',values:{word:'accessibility'}},{label:'kubernetes',values:{word:'kubernetes'}}],
   },
     'ohms-law-calculator': {
     inputs: [{key:'v',label:'Voltage (V)',type:'number',defaultValue:12},{key:'r',label:'Resistance (ohm)',type:'number',defaultValue:100}],
