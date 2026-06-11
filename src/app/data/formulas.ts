@@ -268,6 +268,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
     'elo-rating-calculator': {
     inputs: [{key:'ra',label:'Player A Rating',type:'number',defaultValue:1600},{key:'rb',label:'Player B Rating',type:'number',defaultValue:1400},{key:'res',label:'Result',type:'select',options:[{label:'A Wins',value:'a'},{label:'B Wins',value:'b'},{label:'Draw',value:'draw'}],defaultValue:'a'}],
     formula: (v) => { const ra=F(v.ra),rb=F(v.rb),ea=1/(1+Math.pow(10,(rb-ra)/400)),K=32,sa=v.res==='a'?1:v.res==='draw'?0.5:0; return [{label:'A Expected',value:(ea*100).toFixed(1)+'%'},{label:'A New',value:String(Math.round(ra+K*(sa-ea)))},{label:'B New',value:String(Math.round(rb+K*((1-sa)-(1-ea))))}]; },
+    presets: [{label:'A wins (1600 vs 1400)',values:{ra:1600,rb:1400,res:'a'}},{label:'Draw (equal)',values:{ra:1500,rb:1500,res:'draw'}}],
   },
     'email-normalizer': {
     inputs: [{key:'email',label:'Email (or paste multiple)',type:'text',defaultValue:'John.Doe+test@Gmail.com'}],
