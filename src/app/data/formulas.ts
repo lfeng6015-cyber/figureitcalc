@@ -367,6 +367,7 @@ export const formulaRegistry: Record<string, FormulaConfig> = {
         'ideal-weight-calculator': {
     inputs: [{key:'height',label:'Height (cm)',type:'number',defaultValue:170},{key:'gender',label:'Gender',type:'select',options:[{label:'Male',value:'male'},{label:'Female',value:'female'}],defaultValue:'male'}],
     formula: (v) => { const h=F(v.height); const r=v.gender==='male'?52+1.9*(h-152.4)/2.54:49+1.7*(h-152.4)/2.54; const m=v.gender==='male'?56.2+1.41*(h-152.4)/2.54:53.1+1.36*(h-152.4)/2.54; const lo=18.5*Math.pow(h/100,2),hi=24.9*Math.pow(h/100,2); const target=(lo+hi)/2; return [{label:'Healthy BMI Range',value:lo.toFixed(0)+' - '+hi.toFixed(0)+' kg',insight:'Based on WHO healthy BMI range (18.5-24.9). Target midpoint: '+target.toFixed(0)+' kg. This range is associated with lowest long-term mortality risk.'},{label:'Target Weight (Midpoint)',value:target.toFixed(0)+' kg',insight:'Aim for this weight as a sustainable long-term goal. Combine with balanced nutrition and regular exercise.'},{label:'Robinson Formula',value:r.toFixed(1)+' kg',insight:'Historical formula (1983). Tends to give lower targets. Use as reference, not absolute goal.'}]; },
+    presets: [{label:'Average Male (175cm)',values:{height:175,gender:'male'}},{label:'Average Female (163cm)',values:{height:163,gender:'female'}},{label:'Tall Male (190cm)',values:{height:190,gender:'male'}}],
   },
   'image-color-palette': {
     inputs: [{key:'img',label:'Upload Image',type:'file',defaultValue:''}],
