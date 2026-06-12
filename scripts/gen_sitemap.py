@@ -17,13 +17,13 @@ lines = ['<?xml version="1.0" encoding="UTF-8"?>',
 lines.append(f'  <url><loc>{base}/</loc><lastmod>{today}</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>')
 
 for cat in cats:
-    lines.append(f'  <url><loc>{base}/category/{cat}</loc><lastmod>{today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>')
+    lines.append(f'  <url><loc>{base}/category/{cat}.html</loc><lastmod>{today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>')
 
 for page in static:
-    lines.append(f'  <url><loc>{base}/{page}</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>')
+    lines.append(f'  <url><loc>{base}/{page}.html</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.5</priority></url>')
 
 for tool in tools:
-    lines.append(f'  <url><loc>{base}/tools/{tool}</loc><lastmod>{today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>')
+    lines.append(f'  <url><loc>{base}/tools/{tool}.html</loc><lastmod>{today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>')
 
 # Add SEO content pages (scenarios, comparisons, explainers)
 import json
@@ -31,7 +31,7 @@ with open("src/app/data/seo-content-data.json", "r", encoding="utf-8") as f:
     seo_data = json.load(f)
 for p in seo_data["pages"]:
     prefix = {"scenario": "scenarios", "compare": "compare", "learn": "learn"}[p["type"]]
-    lines.append(f'  <url><loc>{base}/{prefix}/{p["slug"]}</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>')
+    lines.append(f'  <url><loc>{base}/{prefix}/{p["slug"]}.html</loc><lastmod>{today}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>')
 
 lines.append('</urlset>')
 

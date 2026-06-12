@@ -90,7 +90,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online ASCII Art Text Generator | Free Dev Tool — figureitcalc",
+      "title": "ASCII Art Text Gen | Dev Tool — figureitcalc",
       "description": "Create ASCII art text with many fonts and styles. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "ascii, asciiart, text, drawer, free ascii art text generator online, ascii art text generator no signup, create ascii art text free online, ascii art text maker no signup",
       "h1": "ASCII Art Text Generator",
@@ -115,18 +115,18 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "baby-growth-calculator",
     "name": "Baby Growth Percentile Calculator",
-    "description": "Track Your Baby's Growth & Development Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Track Your Baby's Growth & Development using WHO growth charts. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pregnancy",
     "icon": "Zap",
     "isHot": false,
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Baby Growth Percentile Calculator | Free Pregnancy Tool — figureitcalc",
-      "description": "Track Your Baby's Growth & Development Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
+      "title": "Baby Growth Percentile Calc | Pregnancy Tool — figureitcalc",
+      "description": "Track your baby's growth & development using WHO growth charts. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "baby, growth, percentile, WHO, CDC, weight, height, chart, free baby growth percentile calculator online, baby growth percentile calculator no signup, how to calculate baby growth percentile, baby growth percentile calculator with formula",
       "h1": "Baby Growth Percentile Calculator",
-      "intro": "Track Your Baby's Growth & Development This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
+      "intro": "Track your baby's growth and development using WHO child growth standards. This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -146,19 +146,19 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     "id": "bakers-percentage-calculator",
-    "name": "Baker",
-    "description": "Calculate Baker's Percentages & Hydration Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "name": "Baker's Percentage Calculator",
+    "description": "Calculate baker's percentages and dough hydration for perfect bread. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "cooking",
     "icon": "Utensils",
     "isHot": false,
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Baker's Percentage Calculator | Free Kitchen Tool — figureitcalc",
-      "description": "Calculate Baker's Percentages & Hydration Free online tool. 100% client-side — no uploads, no signup.",
+      "title": "Baker's % Calc | Kitchen Tool — figureitcalc",
+      "description": "Calculate baker's percentages and dough hydration for perfect bread. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "baker, percentage, bread, flour, hydration, dough, sourdough, free baker online, baker no signup",
-      "h1": "Baker",
-      "intro": "Calculate Baker's Percentages & Hydration This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
+      "h1": "Baker's Percentage Calculator",
+      "intro": "Calculate baker's percentages and dough hydration for perfect bread. This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
       "howTo": [
         "Enter your input values above",
         "Results update automatically",
@@ -166,7 +166,7 @@ export const TOOLS: ToolMeta[] = [
       ],
       "faq": [
         {
-          "q": "Is this Baker free?",
+          "q": "Is this Baker's Percentage Calculator free?",
           "a": "Yes, 100% free. No signup, no registration."
         },
         {
@@ -218,7 +218,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "base64",
     "seo": {
-      "title": "Online Base64 String Converter | Free Dev Tool — figureitcalc",
+      "title": "Base64 String Conv | Dev Tool — figureitcalc",
       "description": "Free Base64 encoder and decoder — convert text to Base64 and decode Base64 strings back to readable text. Supports standard and URL-safe Base64. Essential for API development, data URIs, and HTTP authentication. Client-side only.",
       "keywords": "base64, converter, conversion, web, data, format, atob, btoa, free base64 string converter online, base64 string converter no signup, convert base64 string online free, base64 string conversion tool",
       "h1": "Base64 String Converter",
@@ -274,7 +274,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     "id": "bcrypt",
-    "name": "Bcrypt",
+    "name": "Bcrypt Password Hasher",
     "description": "Hash passwords and verify bcrypt hashes with configurable salt rounds. Industry-standard password hashing.",
     "category": "developer",
     "icon": "Zap",
@@ -282,7 +282,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Bcrypt Password Hash Generator | Free Dev Tool — figureitcalc",
+      "title": "Bcrypt Password Hash Gen | Dev Tool — figureitcalc",
       "description": "Bcrypt — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "bcrypt, hash, compare, password, salt, round, storage, crypto, free bcrypt online, bcrypt no signup",
       "h1": "Bcrypt",
@@ -314,7 +314,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Beam Load Calculator | Free Construction Estimator — figureitcalc",
+      "title": "Beam Load Calc | Constr Calc — figureitcalc",
       "description": "Calculate the maximum load a beam can support based on span, material, and cross-section. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "beam, load, span, structural, engineering, support, weight, free beam load calculator online, beam load calculator no signup, how to calculate beam load, beam load calculator with formula",
       "h1": "Beam Load Calculator",
@@ -410,7 +410,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "bmi",
     "seo": {
-      "title": "Online BMI Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Online BMI Calculator | Health Tool — figureitcalc",
       "description": "Calculate your Body Mass Index (BMI) instantly with WHO weight categories. Free BMI calculator with formula — check if you are underweight, normal, overweight, or obese. Used by fitness trainers, doctors, and health-conscious individuals worldwide.",
       "keywords": "BMI, body, mass, index, weight, height, health, obesity, free bmi calculator online, bmi calculator no signup, how to calculate bmi, bmi calculator with formula",
       "h1": "BMI Calculator",
@@ -442,7 +442,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Body Fat Percentage Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Body Fat Calculator | Health Tool — figureitcalc",
       "description": "Estimate your body fat percentage using the U.S. Navy method or BMI-based method. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "body, fat, percentage, Navy, fitness, health, lean, free body fat percentage calculator online, body fat percentage calculator no signup, how to calculate body fat percentage, body fat percentage calculator with formula",
       "h1": "Body Fat Percentage Calculator",
@@ -474,7 +474,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Break-Even Calculator | Free Business Calculator — figureitcalc",
+      "title": "Break-Even Calc | Business Calc — figureitcalc",
       "description": "Calculate your business break-even point in units and revenue. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "break, even, fixed, variable, cost, profit, analysis, free break-even calculator online, break-even calculator no signup, how to calculate break-even, break-even calculator with formula",
       "h1": "Break-Even Calculator",
@@ -506,7 +506,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online BSA Calculator (Body Surface Area) | Free Online Health Tool — figureitcalc",
+      "title": "BSA (Body Surface Area) Calc | Health Tool — figureitcalc",
       "description": "Calculate your Body Surface Area using the Mosteller, Du Bois, or Haycock formula. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "BSA, body, surface, area, medical, dosing, Mosteller, free bsa calculator (body surface area) online, bsa calculator (body surface area) no signup, how to calculate bsa  (body surface area), bsa  (body surface area) calculator with formula",
       "h1": "BSA Calculator (Body Surface Area)",
@@ -538,7 +538,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "camera",
     "seo": {
-      "title": "Online Camera Recorder | Free Photography Tool — figureitcalc",
+      "title": "Camera Recorder | Photo Tool — figureitcalc",
       "description": "Camera Recorder — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "camera, recorder, webcam, video, photo, snapshot, media, capture, free camera recorder online, camera recorder no signup, record video browser, webcam capture tool",
       "h1": "Camera Recorder",
@@ -570,7 +570,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Car Depreciation Calculator | Free Auto Calculator — figureitcalc",
+      "title": "Car Depreciation Calc | Auto Calc — figureitcalc",
       "description": "Estimate how much your car will depreciate over time based on make, model, and age. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "depreciation, car, value, resale, age, mileage, loss, free car depreciation calculator online, car depreciation calculator no signup, how to calculate car depreciation, car depreciation calculator with formula",
       "h1": "Car Depreciation Calculator",
@@ -602,7 +602,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Car Loan Calculator | Free Auto Calculator — figureitcalc",
+      "title": "Car Loan Calc | Auto Calc — figureitcalc",
       "description": "Free auto loan calculator with amortization schedule. Calculate monthly car payments with trade-in, down payment, and sales tax. Compare financing offers. 2026 auto loan rates — no signup required.",
       "keywords": "car, auto, loan, payment, interest, finance, vehicle, free car loan calculator online, car loan calculator no signup, how to calculate car loan, car loan calculator with formula",
       "h1": "Car Loan Calculator",
@@ -634,7 +634,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Car Tax Calculator | Free Auto Calculator — figureitcalc",
+      "title": "Car Tax Calculator | Auto Calc — figureitcalc",
       "description": "Estimate vehicle registration tax, sales tax, and annual road tax for your car. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "tax, car, vehicle, registration, sales, road, annual, free car tax calculator online, car tax calculator no signup, how to calculate car tax, car tax calculator with formula",
       "h1": "Car Tax Calculator",
@@ -666,7 +666,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Carbon Footprint Calculator | Free Eco Calculator — figureitcalc",
+      "title": "Carbon Footprint Calc | Eco Calc — figureitcalc",
       "description": "Estimate your annual carbon footprint from transportation, home energy, diet, and consumption. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "carbon, footprint, CO2, emissions, climate, environment, green, free carbon footprint calculator online, carbon footprint calculator no signup, how to calculate carbon footprint, carbon footprint calculator with formula",
       "h1": "Carbon Footprint Calculator",
@@ -723,7 +723,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "cat-age-calculator",
     "name": "Cat Age Calculator",
-    "description": "Convert your cat Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Convert your cat's age to human years with breed-adjusted formulas. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pets",
     "icon": "Paw",
     "isHot": false,
@@ -762,7 +762,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Cost of Raising a Child Calculator | Free Pregnancy Tool — figureitcalc",
+      "title": "Child Cost Calculator | Pregnancy Tool — figureitcalc",
       "description": "Estimate the total cost of raising a child from birth to age 18. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "child, cost, raising, parent, expense, education, childcare, free cost of raising a child calculator online, cost of raising a child calculator no signup, how to calculate cost of raising a child, cost of raising a child calculator with formula",
       "h1": "Cost of Raising a Child Calculator",
@@ -794,7 +794,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online CHMOD File Permission Calculator | Free Dev Tool — figureitcalc",
+      "title": "CHMOD File Permission Calc | Dev Tool — figureitcalc",
       "description": "Chmod Calculator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "chmod, calculator, file, permission, files, directory, folder, recursive, generator, octal, ",
       "h1": "Chmod Calculator",
@@ -818,7 +818,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     "id": "chronometer",
-    "name": "Chronometer",
+    "name": "Chronometer / Lap Timer",
     "description": "Precision online stopwatch and chronometer with lap timing, split times, and export functionality. Free online tool. No signup, client-side.",
     "category": "productivity",
     "icon": "Timer",
@@ -858,7 +858,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Coffee Ratio Calculator | Free Kitchen Tool — figureitcalc",
+      "title": "Coffee Ratio Calc | Kitchen Tool — figureitcalc",
       "description": "Calculate the perfect coffee-to-water ratio for French press, pour over, or espresso. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "coffee, ratio, water, brew, espresso, pour, over, French, press, free coffee ratio calculator online, coffee ratio calculator no signup, how to calculate coffee ratio, coffee ratio calculator with formula",
       "h1": "Coffee Ratio Calculator",
@@ -922,7 +922,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "compound-interest",
     "seo": {
-      "title": "Online Compound Interest Calculator | Free Calculator — figureitcalc",
+      "title": "Compound Interest Calc | Calc — figureitcalc",
       "description": "Free compound interest calculator with monthly contributions. See how your investments grow with daily, monthly, or annual compounding. Model retirement savings, college funds, or any long-term financial goal. Includes Rule of 72.",
       "keywords": "compound, interest, savings, investment, growth, compounding, APY, free compound interest calculator online, compound interest calculator no signup, how to calculate compound interest, compound interest calculator with formula",
       "h1": "Compound Interest Calculator",
@@ -954,7 +954,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Concrete Block Calculator | Free Construction Estimator — figureitcalc",
+      "title": "Concrete Block Calc | Constr Calc — figureitcalc",
       "description": "Calculate the number of concrete blocks or bricks needed for a wall. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "block, brick, wall, CMU, masonry, mortar, construction, free concrete block calculator online, concrete block calculator no signup, how to calculate concrete block, concrete block calculator with formula",
       "h1": "Concrete Block Calculator",
@@ -986,7 +986,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Concrete Calculator | Free Construction Estimator — figureitcalc",
+      "title": "Concrete Calc | Constr Calc — figureitcalc",
       "description": "Calculate how much concrete you need for slabs, footings, columns, and stairs. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "concrete, cement, slab, footing, construction, volume, yard, free concrete calculator online, concrete calculator no signup, how to calculate concrete, concrete calculator with formula",
       "h1": "Concrete Calculator",
@@ -1018,7 +1018,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Cooking Time Calculator | Free Kitchen Tool — figureitcalc",
+      "title": "Cooking Time Calc | Kitchen Tool — figureitcalc",
       "description": "Calculate cooking times for turkey, roast, ham, and other meats based on weight. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "cooking, time, turkey, roast, ham, meat, oven, temperature, free cooking time calculator online, cooking time calculator no signup, how to calculate cooking time, cooking time calculator with formula",
       "h1": "Cooking Time Calculator",
@@ -1050,7 +1050,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Countdown Timer | Free Productivity Tool — figureitcalc",
+      "title": "Count Timer | Productivity Tool — figureitcalc",
       "description": "Set a custom countdown timer for any event. Exam countdown, cooking timer, presentation clock. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "countdown, timer, clock, event, deadline, count, down, free countdown timer online, countdown timer no signup",
       "h1": "Countdown Timer",
@@ -1082,7 +1082,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online CPM / CPC Calculator | Free Business Calculator — figureitcalc",
+      "title": "CPM / CPC Calc | Business Calc — figureitcalc",
       "description": "Calculate Cost Per Mille (CPM), Cost Per Click (CPC), and advertising ROI. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "CPM, CPC, advertising, cost, impression, click, marketing, free cpm / cpc calculator online, cpm / cpc calculator no signup, how to calculate cpm / cpc, cpm / cpc calculator with formula",
       "h1": "CPM / CPC Calculator",
@@ -1114,7 +1114,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Cron Job Scheduler Generator | Free Dev Tool — figureitcalc",
+      "title": "Cron Job Scheduler Gen | Dev Tool — figureitcalc",
       "description": "Crontab Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "crontab, generator, cronjob, cron, schedule, parse, expression, year, month, week, day, minute, second, ",
       "h1": "Crontab Generator",
@@ -1146,7 +1146,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Crypto Profit Calculator | Free Calculator — figureitcalc",
+      "title": "Crypto Profit Calc | Calc — figureitcalc",
       "description": "Calculate your cryptocurrency trading profits and losses including fees. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "crypto, cryptocurrency, bitcoin, profit, loss, trading, fees, free crypto profit calculator online, crypto profit calculator no signup, how to calculate crypto profit, crypto profit calculator with formula",
       "h1": "Crypto Profit Calculator",
@@ -1210,7 +1210,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Currency Hedge Cost Calculator | Free Trade Calculator — figureitcalc",
+      "title": "Currency Hedge Cost Calc | Trade Calc — figureitcalc",
       "description": "Calculate the cost and benefit of hedging currency risk for international trade. Compare hedged vs unhedged import costs. Forward rates are user-entered. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "currency, hedge, forex, FX, forward, contract, exchange, risk, import, trade finance",
       "h1": "Currency Hedge Cost Calculator",
@@ -1274,7 +1274,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Depth of Field Calculator | Free Photography Tool — figureitcalc",
+      "title": "Depth of Field Calc | Photo Tool — figureitcalc",
       "description": "Calculate depth of field for your camera based on sensor size, focal length, aperture, and distance. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "depth, field, DOF, camera, aperture, focal, length, photography, free depth of field calculator online, depth of field calculator no signup, how to calculate depth of field, depth of field calculator with formula",
       "h1": "Depth of Field Calculator",
@@ -1338,7 +1338,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Dice Probability Calculator | Free Gaming Tool — figureitcalc",
+      "title": "Dice Probability Calc | Gaming Tool — figureitcalc",
       "description": "Calculate the probability of rolling specific outcomes with various dice combinations. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "dice, probability, roll, D20, D6, board, game, random, free dice probability calculator online, dice probability calculator no signup, how to calculate dice probability, dice probability calculator with formula",
       "h1": "Dice Probability Calculator",
@@ -1370,7 +1370,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "discount",
     "seo": {
-      "title": "Online Discount Calculator | Free Business Calculator — figureitcalc",
+      "title": "Discount Calc | Business Calc — figureitcalc",
       "description": "Free discount calculator — see exactly how much you save during sales. Calculate final price after percentage discounts, compare deals, and avoid being tricked by stacking discounts. Perfect for Black Friday, holiday sales, and everyday shopping.",
       "keywords": "discount, sale, price, percent, off, save, shopping, free discount calculator online, discount calculator no signup, how to calculate discount, discount calculator with formula",
       "h1": "Discount Calculator",
@@ -1402,7 +1402,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Dividend Yield Calculator | Free Calculator — figureitcalc",
+      "title": "Dividend Yield Calc | Calc — figureitcalc",
       "description": "Calculate the dividend yield of a stock based on annual dividend and stock price. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "dividend, yield, stock, income, investing, DRIP, free dividend yield calculator online, dividend yield calculator no signup, how to calculate dividend yield, dividend yield calculator with formula",
       "h1": "Dividend Yield Calculator",
@@ -1434,7 +1434,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Docker Run To Docker Compose Converter | Free Dev Tool — figureitcalc",
+      "title": "Docker to Compose Converter | Free Dev Tool — figureitcalc",
       "description": "Docker Run To Docker Compose Converter — free online tool. No signup, client-side processing. Free online tool. No signup, client-side.",
       "keywords": "docker, run, compose, yaml, yml, convert, deamon, free docker run to docker compose converter online, docker run to docker compose converter no signup, convert docker run to docker compose online free, docker run to docker compose conversion tool",
       "h1": "Docker Run To Docker Compose Converter",
@@ -1459,7 +1459,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "dog-age-calculator",
     "name": "Dog Age Calculator",
-    "description": "Convert your dog Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Convert your dog's age to human years using breed size-adjusted formulas. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pets",
     "icon": "Paw",
     "isHot": false,
@@ -1498,7 +1498,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Down Payment Calculator | Free Real Estate Tool — figureitcalc",
+      "title": "Down Payment Calc | Real Estate Tool — figureitcalc",
       "description": "Calculate how much you need for a down payment and how long it will take to save. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "down, payment, home, house, savings, purchase, free down payment calculator online, down payment calculator no signup, how to calculate down payment, down payment calculator with formula",
       "h1": "Down Payment Calculator",
@@ -1530,7 +1530,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Due Date Calculator | Free Pregnancy Tool — figureitcalc",
+      "title": "Online Due Date Calculator | Pregnancy Tool — figureitcalc",
       "description": "Calculate your pregnancy due date from last menstrual period (LMP) or conception date. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "due, date, pregnancy, baby, LMP, conception, trimester, free due date calculator online, due date calculator no signup, how to calculate due date, due date calculator with formula",
       "h1": "Due Date Calculator",
@@ -1562,7 +1562,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Early Payoff Calculator | Free Calculator — figureitcalc",
+      "title": "Early Loan Payoff Calc | Finance Calc — figureitcalc",
       "description": "See how much you can save by making extra payments on your loan. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "payoff, early, extra, payment, save, interest, loan, free early payoff calculator online, early payoff calculator no signup, how to calculate early payoff, early payoff calculator with formula",
       "h1": "Early Payoff Calculator",
@@ -1594,7 +1594,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Electricity Bill Calculator | Free Eco Calculator — figureitcalc",
+      "title": "Electricity Bill Calc | Eco Calc — figureitcalc",
       "description": "Estimate your monthly electricity bill based on appliance usage and local rates. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "electricity, bill, kWh, power, energy, cost, appliance, free electricity bill calculator online, electricity bill calculator no signup, how to calculate electricity bill, electricity bill calculator with formula",
       "h1": "Electricity Bill Calculator",
@@ -1626,7 +1626,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Elo Rating Chess Calculator | Free Gaming Tool — figureitcalc",
+      "title": "Elo Rating Chess Calc | Gaming Tool — figureitcalc",
       "description": "Calculate Elo rating changes after a chess or competitive game match. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "Elo, rating, chess, ranking, competitive, game, tournament, free elo rating calculator online, elo rating calculator no signup, how to calculate elo rating, elo rating calculator with formula",
       "h1": "Elo Rating Calculator",
@@ -1690,7 +1690,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online EMI / Installment Calculator | Free Calculator — figureitcalc",
+      "title": "EMI / Installment Calc | Calc — figureitcalc",
       "description": "Calculate your Equated Monthly Installment (EMI) for any loan with fixed interest rate. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "EMI, installment, loan, monthly, payment, interest, free emi / installment calculator online, emi / installment calculator no signup, how to calculate emi / installment, emi / installment calculator with formula",
       "h1": "EMI / Installment Calculator",
@@ -1746,7 +1746,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     "id": "encryption",
-    "name": "Encryption",
+    "name": "Encryption / Decryption Tool",
     "description": "Encrypt and decrypt text using AES, DES, Triple DES, and Rabbit algorithms. Secure your sensitive data in-browser.",
     "category": "developer",
     "icon": "Zap",
@@ -1786,7 +1786,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online ETA Travel Time Calculator | Free Dev Tool — figureitcalc",
+      "title": "ETA Travel Time Calc | Dev Tool — figureitcalc",
       "description": "Eta Calculator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "eta, calculator, estimated, time, arrival, average, free eta calculator online, eta calculator no signup, how to calculate eta, eta calculator with formula",
       "h1": "Eta Calculator",
@@ -1850,7 +1850,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Flooring Calculator | Free Construction Estimator — figureitcalc",
+      "title": "Flooring Calc | Constr Calc — figureitcalc",
       "description": "Estimate flooring material needed and cost for any room. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "flooring, tile, hardwood, carpet, area, room, cost, free flooring calculator online, flooring calculator no signup, how to calculate flooring, flooring calculator with formula",
       "h1": "Flooring Calculator",
@@ -1882,7 +1882,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online FOB/CIF Trade Terms Converter | Free Trade Calculator — figureitcalc",
+      "title": "FOB/CIF Converter | Free Trade Calculator — figureitcalc",
       "description": "Convert between FOB (Free On Board) and CIF (Cost, Insurance, Freight) values. Calculate freight and insurance costs for international shipping. Enter your own rates. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "FOB, CIF, trade, terms, shipping, freight, insurance, incoterms, international, free fob/cif trade terms converter online, fob/cif trade terms converter no signup, convert fob/cif trade terms online free, fob/cif trade terms conversion tool",
       "h1": "FOB/CIF Trade Terms Converter",
@@ -1914,7 +1914,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Food Calorie Calculator | Free Kitchen Tool — figureitcalc",
+      "title": "Food Calorie Calc | Kitchen Tool — figureitcalc",
       "description": "Estimate the calories in your meal by entering ingredients and portions. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "calorie, food, meal, nutrition, diet, counting, intake, free food calorie calculator online, food calorie calculator no signup, how to calculate food calorie, food calorie calculator with formula",
       "h1": "Food Calorie Calculator",
@@ -1946,7 +1946,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online FPS Bottleneck Calculator | Free Gaming Tool — figureitcalc",
+      "title": "FPS Bottleneck Calc | Gaming Tool — figureitcalc",
       "description": "Check if your CPU or GPU is bottlenecking your gaming performance. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "FPS, bottleneck, CPU, GPU, gaming, performance, PC, free fps bottleneck calculator online, fps bottleneck calculator no signup, how to calculate fps bottleneck, fps bottleneck calculator with formula",
       "h1": "FPS Bottleneck Calculator",
@@ -1978,7 +1978,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Fuel Cost Calculator | Free Travel Planner — figureitcalc",
+      "title": "Fuel Cost Calc | Travel Plan — figureitcalc",
       "description": "Free fuel cost calculator for road trips. Calculate gas expenses by distance, MPG, and fuel price. Compare vehicle fuel costs and split expenses among carpoolers. Plan your trip budget — no signup.",
       "keywords": "fuel, gas, cost, trip, mileage, MPG, distance, price, free fuel cost calculator online, fuel cost calculator no signup, how to calculate fuel cost, fuel cost calculator with formula",
       "h1": "Fuel Cost Calculator",
@@ -2003,15 +2003,15 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "fuel-economy-calculator",
     "name": "Fuel Economy Calculator",
-    "description": "Calculate your vehicle Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Calculate your vehicle's fuel economy in MPG or L/100km. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "travel",
     "icon": "Gauge",
     "isHot": false,
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Fuel Economy Calculator | Free Travel Planner — figureitcalc",
-      "description": "Calculate your vehicle Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
+      "title": "Fuel Economy Calc | Travel Plan — figureitcalc",
+      "description": "Calculate your vehicle's fuel economy in MPG or L/100km Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
       "keywords": "MPG, fuel, economy, gas, mileage, L/100km, efficiency, free fuel economy calculator online, fuel economy calculator no signup, how to calculate fuel economy, fuel economy calculator with formula",
       "h1": "Fuel Economy Calculator",
       "intro": "Calculate your vehicle This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -2042,7 +2042,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Git Commands Cheat Sheet | Free Dev Tool — figureitcalc",
+      "title": "Git Commands Cheat Sheet | Dev Tool — figureitcalc",
       "description": "Git Memo — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "git, push, force, pull, commit, amend, rebase, merge, reset, soft, hard, lease",
       "h1": "Git Memo",
@@ -2074,7 +2074,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Golden Ratio Calculator | Free Photography Tool — figureitcalc",
+      "title": "Golden Ratio Calc | Photo Tool — figureitcalc",
       "description": "Calculate golden ratio proportions (1:1.618) for design, typography, and layout. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "golden, ratio, phi, 1.618, design, typography, Fibonacci, free golden ratio calculator online, golden ratio calculator no signup, how to calculate golden ratio, golden ratio calculator with formula",
       "h1": "Golden Ratio Calculator",
@@ -2170,7 +2170,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Graphing Calculator | Free Academic Tool — figureitcalc",
+      "title": "Graphing Calc | Academic Tool — figureitcalc",
       "description": "Plot mathematical functions online. Visualize equations with an interactive graphing tool. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "graph, plot, function, equation, visualize, math, curve, free graphing calculator online, graphing calculator no signup, how to calculate graphing, graphing calculator with formula",
       "h1": "Graphing Calculator",
@@ -2266,7 +2266,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Heart Rate Zone Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Heart Rate Zone Calc | Health Tool — figureitcalc",
       "description": "Calculate your target heart rate zones for optimal cardio training. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "heart, rate, zone, cardio, training, maximum, exercise, free heart rate zone calculator online, heart rate zone calculator no signup, how to calculate heart rate zone, heart rate zone calculator with formula",
       "h1": "Heart Rate Zone Calculator",
@@ -2330,7 +2330,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Home Equity Calculator | Free Real Estate Tool — figureitcalc",
+      "title": "Home Equity Calc | Real Estate Tool — figureitcalc",
       "description": "Calculate how much equity you have built in your home. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "equity, home, house, value, mortgage, ownership, free home equity calculator online, home equity calculator no signup, how to calculate home equity, home equity calculator with formula",
       "h1": "Home Equity Calculator",
@@ -2426,7 +2426,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "HTTP Status Codes Reference — Complete 1xx-5xx Guide | figureitcalc",
+      "title": "HTTP Status Codes — Complete 1xx-5xx Guide | figureitcalc",
       "description": "Complete HTTP status codes reference: 200 OK, 301 Moved Permanently, 404 Not Found, 500 Internal Server Error, and more. Every status code with description, use case, and RFC reference. Free for developers.",
       "keywords": "http status codes, http response codes, 200 ok, 404 not found, 500 internal server error, 301 redirect, 403 forbidden, 503 service unavailable, rest api status codes, http status code reference, free http status codes reference",
       "h1": "HTTP Status Codes Reference",
@@ -2458,7 +2458,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online HVAC BTU Calculator | Free Construction Estimator — figureitcalc",
+      "title": "HVAC BTU Calc | Constr Calc — figureitcalc",
       "description": "Calculate the BTUs needed to heat or cool a room based on size, insulation, and climate. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "HVAC, BTU, heating, cooling, AC, air, conditioner, ton, free hvac btu calculator online, hvac btu calculator no signup, how to calculate hvac btu, hvac btu calculator with formula",
       "h1": "HVAC BTU Calculator",
@@ -2490,7 +2490,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online IBAN Validator & Parser And Parser | Free Dev Tool — figureitcalc",
+      "title": "IBAN Valid & Parser And Parser | Dev Tool — figureitcalc",
       "description": "Iban Validator And Parser — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "iban, validator, and, parser, bic, bank, free iban validator and parser online, iban validator and parser no signup",
       "h1": "Iban Validator And Parser",
@@ -2522,7 +2522,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Ideal Weight Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Online Ideal Weight Calculator | Health Tool — figureitcalc",
       "description": "Find your ideal body weight range using multiple formulas (Robinson, Miller, Devine, Hamwi). Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "ideal, weight, body, healthy, range, formula, free ideal weight calculator online, ideal weight calculator no signup, how to calculate ideal weight, ideal weight calculator with formula",
       "h1": "Ideal Weight Calculator",
@@ -2554,7 +2554,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "color",
     "seo": {
-      "title": "Online Image Color Palette | Free Productivity Tool — figureitcalc",
+      "title": "Image Color Palette | Productivity Tool — figureitcalc",
       "description": "Extract dominant colors from any image. Perfect for designers finding color inspiration. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "color, palette, image, extract, design, inspiration, picker, free image color palette online, image color palette no signup",
       "h1": "Image Color Palette",
@@ -2586,7 +2586,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Import Duty Calculator | Free Trade Calculator — figureitcalc",
+      "title": "Import Duty Calc | Trade Calc — figureitcalc",
       "description": "Calculate import customs duties and taxes. Includes 2026 reference tariff rates for major trading partners. All rates are adjustable — enter your actual rates. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "import, duty, customs, tariff, tax, HS code, importing, border, trade, free import duty calculator online, import duty calculator no signup, how to calculate import duty, import duty calculator with formula",
       "h1": "Import Duty Calculator",
@@ -2650,7 +2650,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Ingredient Substitution Calculator | Free Kitchen Tool — figureitcalc",
+      "title": "Ingredient Substitution Calc | Kitchen Tool — figureitcalc",
       "description": "Find the right substitution ratios for common cooking and baking ingredients. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "ingredient, substitution, replace, cooking, baking, allergy, free ingredient substitution calculator online, ingredient substitution calculator no signup, how to calculate ingredient substitution, ingredient substitution calculator with formula",
       "h1": "Ingredient Substitution Calculator",
@@ -2714,7 +2714,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Invoice & Hours Calculator | Free Business Calculator — figureitcalc",
+      "title": "Invoice & Hours Calc | Business Calc — figureitcalc",
       "description": "Calculate your freelance invoice total from hourly rate, hours worked, and expenses. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "invoice, hours, freelance, rate, billable, client, time, free invoice & hours calculator online, invoice & hours calculator no signup, how to calculate invoice & hours, invoice & hours calculator with formula",
       "h1": "Invoice & Hours Calculator",
@@ -2906,7 +2906,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online JSON Minifier & Compressor | Free Dev Tool — figureitcalc",
+      "title": "JSON Minifier & Compressor | Dev Tool — figureitcalc",
       "description": "Json Minify — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "json minify, json compress, json minifier, remove json whitespace, compact json, minify json online, free json minify online, json minify no signup, json size reducer, json optimizer",
       "h1": "Json Minify",
@@ -2995,7 +2995,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "json-to-xml",
     "name": "JSON to XML",
-    "description": "Convert JSON to XML Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Convert JSON to XML format instantly with customizable indentation. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -3130,7 +3130,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "keycode",
     "seo": {
-      "title": "Online Keyboard Key Code Finder | Free Dev Tool — figureitcalc",
+      "title": "Keyboard Key Code Finder | Dev Tool — figureitcalc",
       "description": "Keycode Info — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "keycode, info, code, javascript, event, keycodes, which, keyboard, press, modifier, alt, ctrl, meta, shift, ",
       "h1": "Keycode Info",
@@ -3162,7 +3162,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Landed Cost Calculator | Free Trade Calculator — figureitcalc",
+      "title": "Landed Cost Calc | Trade Calc — figureitcalc",
       "description": "Calculate the true landed cost of imported goods including product cost, freight, insurance, customs duty, VAT/GST, and brokerage fees. All rates are adjustable — enter your own values. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "landed, cost, import, duty, customs, tariff, freight, insurance, VAT, CIF, importing",
       "h1": "Landed Cost Calculator",
@@ -3194,7 +3194,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Lease vs Buy Car Calculator | Free Auto Calculator — figureitcalc",
+      "title": "Lease vs Buy Car Calc | Auto Calc — figureitcalc",
       "description": "Compare the total cost of leasing versus buying a car over the same period. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "lease, buy, car, compare, auto, finance, cost, free lease vs buy car calculator online, lease vs buy car calculator no signup, how to calculate lease vs buy car, lease vs buy car calculator with formula",
       "h1": "Lease vs Buy Car Calculator",
@@ -3226,7 +3226,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online LED Resistor Calculator | Free Electrical Tool — figureitcalc",
+      "title": "LED Resistor Calc | Elec Tool — figureitcalc",
       "description": "Calculate the proper current-limiting resistor value for your LED circuit. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "LED, resistor, circuit, current, voltage, forward, diode, free led resistor calculator online, led resistor calculator no signup, how to calculate led resistor, led resistor calculator with formula",
       "h1": "LED Resistor Calculator",
@@ -3290,7 +3290,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Loan Comparison Calculator | Free Calculator — figureitcalc",
+      "title": "Loan Comparison Calc | Calc — figureitcalc",
       "description": "Compare two loans side by side to see which offers better terms. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "loan, compare, interest, rate, term, mortgage, best, free loan comparison calculator online, loan comparison calculator no signup, how to calculate loan comparison, loan comparison calculator with formula",
       "h1": "Loan Comparison Calculator",
@@ -3354,7 +3354,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Lumber Calculator | Free Construction Estimator — figureitcalc",
+      "title": "Lumber Calc | Constr Calc — figureitcalc",
       "description": "Calculate board feet and total lumber needed for your woodworking or construction project. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "lumber, wood, board, feet, timber, framing, carpentry, free lumber calculator online, lumber calculator no signup, how to calculate lumber, lumber calculator with formula",
       "h1": "Lumber Calculator",
@@ -3450,7 +3450,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Macro Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Online Macro Calculator | Health Tool — figureitcalc",
       "description": "Calculate your optimal daily macronutrient intake (protein, carbs, fat) based on your goals. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "macro, protein, carbs, fat, nutrition, diet, fitness, free macro calculator online, macro calculator no signup, how to calculate macro, macro calculator with formula",
       "h1": "Macro Calculator",
@@ -3546,7 +3546,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Meme Generator | Free Productivity Tool — figureitcalc",
+      "title": "Meme Gen | Productivity Tool — figureitcalc",
       "description": "Create memes online. Add text to images, choose fonts and colors. 100% client-side — no upload needed. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "meme, generator, image, text, caption, funny, create, maker, free meme generator online, meme generator no signup, create meme free online, meme maker no signup",
       "h1": "Meme Generator",
@@ -3610,7 +3610,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Mileage Calculator | Free Travel Planner — figureitcalc",
+      "title": "Mileage Calc | Travel Plan — figureitcalc",
       "description": "Calculate mileage reimbursement, cost per mile, and total trip expenses. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "mileage, mile, km, reimbursement, IRS, business, travel, free mileage calculator online, mileage calculator no signup, how to calculate mileage, mileage calculator with formula",
       "h1": "Mileage Calculator",
@@ -3674,7 +3674,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "mortgage",
     "seo": {
-      "title": "Online Mortgage Calculator | Free Real Estate Tool — figureitcalc",
+      "title": "Mortgage Calc | Real Estate Tool — figureitcalc",
       "description": "Free mortgage calculator with PITI breakdown. Estimate monthly payments including principal, interest, property tax, and insurance. Compare 15-year vs 30-year terms. 2026 mortgage rates — no signup required.",
       "keywords": "mortgage, home, loan, payment, house, PITI, amortization, free mortgage calculator online, mortgage calculator no signup, how to calculate mortgage, mortgage calculator with formula",
       "h1": "Mortgage Calculator",
@@ -3762,8 +3762,8 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     "id": "ohms-law-calculator",
-    "name": "Ohm",
-    "description": "Calculate voltage, current, resistance, and power using Ohm Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "name": "Ohm's Law Calculator",
+    "description": "Calculate voltage, current, resistance, and power using Ohm's Law. Free online tool. 100% client-side processingssing — no uploads, no signup required.",
     "category": "electrical",
     "icon": "Bolt",
     "isHot": false,
@@ -3771,7 +3771,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "calculator",
     "seo": {
       "title": "Online Ohm | Free Electrical Tool — figureitcalc",
-      "description": "Calculate voltage, current, resistance, and power using Ohm Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Calculate voltage, current, resistance, and power using Ohm's Law Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "ohm, voltage, current, resistance, power, watt, volt, amp, free ohm online, ohm no signup",
       "h1": "Ohm",
       "intro": "Calculate voltage, current, resistance, and power using Ohm This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -3802,7 +3802,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online OTP / TOTP Code Generator Generator And Validator | Free Dev Tool — figureitcalc",
+      "title": "TOTP Code Generator | Free Dev Tool — figureitcalc",
       "description": "Otp Code Generator And Validator — free online tool. No signup, client-side processing. Free online tool. No signup, client-side.",
       "keywords": "otp, code, generator, validator, one, time, password, authentication, MFA, mobile, device, security, TOTP, Time, HMAC, ",
       "h1": "Otp Code Generator And Validator",
@@ -3834,7 +3834,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Ovulation Calculator | Free Pregnancy Tool — figureitcalc",
+      "title": "Online Ovulation Calculator | Pregnancy Tool — figureitcalc",
       "description": "Calculate your ovulation and fertile window to help with family planning. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "ovulation, fertile, window, period, cycle, conception, pregnancy, free ovulation calculator online, ovulation calculator no signup, how to calculate ovulation, ovulation calculator with formula",
       "h1": "Ovulation Calculator",
@@ -3866,7 +3866,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Paint Calculator | Free Construction Estimator — figureitcalc",
+      "title": "Paint Calculator | Constr Calc — figureitcalc",
       "description": "Estimate how much paint you need for walls, ceilings, and trim. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "paint, wall, coverage, gallon, liter, room, coat, free paint calculator online, paint calculator no signup, how to calculate paint, paint calculator with formula",
       "h1": "Paint Calculator",
@@ -3898,7 +3898,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Party Drink Calculator | Free Wedding Planner — figureitcalc",
+      "title": "Party Drink Calc | Wed Plan — figureitcalc",
       "description": "Calculate how much alcohol and non-alcoholic drinks to buy for your party. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "drink, party, alcohol, beer, wine, cocktail, event, guest, free party drink calculator online, party drink calculator no signup, how to calculate party drink, party drink calculator with formula",
       "h1": "Party Drink Calculator",
@@ -3930,7 +3930,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Password Strength Analyser | Free Dev Tool — figureitcalc",
+      "title": "Password Strength Analyser | Dev Tool — figureitcalc",
       "description": "Free password strength checker — test how strong your password is against brute-force attacks. Analyzes entropy, length, character diversity, and dictionary resistance. Checks against known breach databases. All analysis is client-side — your password never leaves your device.",
       "keywords": "password, strength, analyser, and, crack, time, estimation, brute, force, attack, entropy, cracking, hash, hashing, algorithm, algorithms, md5, sha1, sha256, sha512, bcrypt, scrypt, argon2, argon2id, argon2i, argon2d",
       "h1": "Password Strength Analyser",
@@ -3994,7 +3994,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Percentage Calculator | Free Business Calculator — figureitcalc",
+      "title": "Percentage Calc | Business Calc — figureitcalc",
       "description": "Free online percentage calculator — find what percent one number is of another, calculate percentage increase/decrease, find the original number. The most commonly searched math tool. Instant results, no signup.",
       "keywords": "percentage, calculator, calculate, value, number, %, free percentage calculator online, percentage calculator no signup, how to calculate percentage, percentage calculator with formula",
       "h1": "Percentage Calculator",
@@ -4019,15 +4019,15 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "pet-breed-mix-calculator",
     "name": "Pet Breed Mix Calculator",
-    "description": "Estimate your mixed-breed dog Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Estimate your mixed-breed dog's breed composition based on physical traits. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "pets",
     "icon": "Paw",
     "isHot": false,
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Pet Breed Mix Calculator | Free Pet Tool — figureitcalc",
-      "description": "Estimate your mixed-breed dog Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
+      "title": "Pet Breed Mix Calc | Pet Tool — figureitcalc",
+      "description": "Estimate your mixed-breed dog's breed composition Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
       "keywords": "breed, mix, mutt, hybrid, dog, size, traits, predict, free pet breed mix calculator online, pet breed mix calculator no signup, how to calculate pet breed mix, pet breed mix calculator with formula",
       "h1": "Pet Breed Mix Calculator",
       "intro": "Estimate your mixed-breed dog This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -4090,7 +4090,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Phone Parser And Formatter | Free Dev Tool — figureitcalc",
+      "title": "Phone Parser And Format | Dev Tool — figureitcalc",
       "description": "Phone Parser And Formatter — free online tool. No signup, client-side processing. Free online tool. No signup, client-side.",
       "keywords": "phone, parser, formatter, validate, format, number, telephone, mobile, cell, international, national, ",
       "h1": "Phone Parser And Formatter",
@@ -4122,7 +4122,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Photo Print Size Calculator | Free Photography Tool — figureitcalc",
+      "title": "Photo Print Size Calc | Free Photography Tool — figureitcalc",
       "description": "Calculate the maximum print size for your digital photo at various DPI settings. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "photo, print, size, DPI, resolution, megapixel, aspect, free photo print size calculator online, photo print size calculator no signup, how to calculate photo print size, photo print size calculator with formula",
       "h1": "Photo Print Size Calculator",
@@ -4147,15 +4147,15 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "poker-odds-calculator",
     "name": "Poker Odds Calculator",
-    "description": "Calculate your winning odds in Texas Hold Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Calculate your winning odds in Texas Hold'em with hand vs. hand analysis. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "gaming",
     "icon": "Dice5",
     "isHot": false,
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Poker Odds Calculator | Free Gaming Tool — figureitcalc",
-      "description": "Calculate your winning odds in Texas Hold Free online tool. 100% client-side — no uploads, no signup.",
+      "title": "Poker Odds Calc | Gaming Tool — figureitcalc",
+      "description": "Calculate your winning odds in Texas Hold'em with hand vs. hand analysis Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "poker, odds, Texas, Holdem, hand, cards, winning, free poker odds calculator online, poker odds calculator no signup, how to calculate poker odds, poker odds calculator with formula",
       "h1": "Poker Odds Calculator",
       "intro": "Calculate your winning odds in Texas Hold This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -4186,7 +4186,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Pomodoro Timer | Free Productivity Tool — figureitcalc",
+      "title": "Pomodoro Timer | Productivity Tool — figureitcalc",
       "description": "Boost productivity with the Pomodoro Technique. 25-minute focus sessions with 5-minute breaks. Fully client-side. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "pomodoro, timer, focus, productivity, work, break, technique, free pomodoro timer online, pomodoro timer no signup",
       "h1": "Pomodoro Timer",
@@ -4218,7 +4218,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online PPI / DPI Calculator | Free Photography Tool — figureitcalc",
+      "title": "PPI / DPI Calc | Photo Tool — figureitcalc",
       "description": "Calculate pixels per inch (PPI) and dots per inch (DPI) for screens and prints. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "PPI, DPI, pixel, density, screen, print, resolution, free ppi / dpi calculator online, ppi / dpi calculator no signup, how to calculate ppi / dpi, ppi / dpi calculator with formula",
       "h1": "PPI / DPI Calculator",
@@ -4250,7 +4250,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Probability Calculator | Free Academic Tool — figureitcalc",
+      "title": "Probability Calc | Academic Tool — figureitcalc",
       "description": "Calculate probabilities for common scenarios: dice, cards, coin flips, and combinations. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "probability, odds, dice, cards, coin, chance, statistics, free probability calculator online, probability calculator no signup, how to calculate probability, probability calculator with formula",
       "h1": "Probability Calculator",
@@ -4282,7 +4282,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Profit Margin Calculator | Free Business Calculator — figureitcalc",
+      "title": "Profit Margin Calc | Free Business Calculator — figureitcalc",
       "description": "Free profit margin calculator for businesses. Calculate gross margin, net margin, and markup percentages. Set optimal pricing, evaluate supplier costs, and understand discount impacts on your bottom line. No signup.",
       "keywords": "profit, margin, markup, revenue, cost, business, pricing, free profit margin calculator online, profit margin calculator no signup, how to calculate profit margin, profit margin calculator with formula",
       "h1": "Profit Margin Calculator",
@@ -4314,7 +4314,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Property Tax Calculator | Free Real Estate Tool — figureitcalc",
+      "title": "Property Tax Calc | Real Estate Tool — figureitcalc",
       "description": "Estimate your annual property tax based on your home value and local tax rate. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "property, tax, home, real, estate, annual, assessment, free property tax calculator online, property tax calculator no signup, how to calculate property tax, property tax calculator with formula",
       "h1": "Property Tax Calculator",
@@ -4435,7 +4435,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "regex-memo",
     "name": "Regex cheatsheet",
-    "description": "Javascript Regex/Regular Expression cheatsheet Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "JavaScript regex cheatsheet with common patterns, flags, and quantifiers. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -4443,7 +4443,7 @@ export const TOOLS: ToolMeta[] = [
     "component": "regex",
     "seo": {
       "title": "Online Regex cheatsheet | Free Dev Tool — figureitcalc",
-      "description": "Javascript Regex/Regular Expression cheatsheet Free online tool. 100% client-side — no uploads, no signup.",
+      "description": "Javascript Regex/Regular Expression reference with common patterns Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "regex, regular, expression, javascript, memo, cheatsheet, free regex cheatsheet online, regex cheatsheet no signup",
       "h1": "Regex cheatsheet",
       "intro": "Javascript Regex/Regular Expression cheatsheet This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -4506,7 +4506,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Renovation Cost Calculator | Free Real Estate Tool — figureitcalc",
+      "title": "Renovation Cost Calc | Real Estate Tool — figureitcalc",
       "description": "Estimate the cost of your home renovation project by room and material type. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "renovation, remodel, cost, home, improvement, budget, free renovation cost calculator online, renovation cost calculator no signup, how to calculate renovation cost, renovation cost calculator with formula",
       "h1": "Renovation Cost Calculator",
@@ -4538,7 +4538,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Rent vs Buy Calculator | Free Real Estate Tool — figureitcalc",
+      "title": "Rent vs Buy Calc | Real Estate Tool — figureitcalc",
       "description": "Compare the long-term costs of renting versus buying a home. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "rent, buy, home, mortgage, compare, housing, cost, free rent vs buy calculator online, rent vs buy calculator no signup, how to calculate rent vs buy, rent vs buy calculator with formula",
       "h1": "Rent vs Buy Calculator",
@@ -4570,7 +4570,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Resistor Color Code Calculator | Free Electrical Tool — figureitcalc",
+      "title": "Resistor Color Code Calc | Elec Tool — figureitcalc",
       "description": "Decode resistor color bands to find resistance value, tolerance, and temperature coefficient. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "resistor, color, code, band, ohm, resistance, tolerance, free resistor color code calculator online, resistor color code calculator no signup, how to calculate resistor color code, resistor color code calculator with formula",
       "h1": "Resistor Color Code Calculator",
@@ -4602,7 +4602,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Retirement Savings Calculator | Free Calculator — figureitcalc",
+      "title": "Retirement Savings Calc | Calc — figureitcalc",
       "description": "Free retirement calculator — find out if you are on track to retire comfortably. Project 401(k) and IRA growth with 2026 contribution limits. Estimate Social Security benefits and sustainable withdrawal rates. No signup.",
       "keywords": "retirement, savings, 401k, IRA, pension, planning, future, free retirement savings calculator online, retirement savings calculator no signup, how to calculate retirement savings, retirement savings calculator with formula",
       "h1": "Retirement Savings Calculator",
@@ -4666,7 +4666,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Roman Numeral Converter | Free Academic Tool — figureitcalc",
+      "title": "Roman Numeral Conv | Academic Tool — figureitcalc",
       "description": "Roman Numeral Converter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "roman, arabic, converter, X, I, V, L, C, D, M",
       "h1": "Roman Numeral Converter",
@@ -4698,7 +4698,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Roofing Calculator | Free Construction Estimator — figureitcalc",
+      "title": "Roofing Calc | Constr Calc — figureitcalc",
       "description": "Estimate roofing material needed based on roof area, pitch, and waste factor. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "roof, shingles, material, pitch, area, square, foot, free roofing calculator online, roofing calculator no signup, how to calculate roofing, roofing calculator with formula",
       "h1": "Roofing Calculator",
@@ -4755,15 +4755,15 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "safelink-decoder",
     "name": "Outlook Safelink decoder",
-    "description": "Decode Outlook SafeLink links Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Decode Outlook SafeLink protected URLs to reveal the original destination. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Outlook Safelink decoder | Free Dev Tool — figureitcalc",
-      "description": "Decode Outlook SafeLink links Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
+      "title": "Outlook Safelink decoder | Dev Tool — figureitcalc",
+      "description": "Decode Outlook SafeLink URLs to reveal the original destination Free online tool. 100% client-side — no uploads, no signup. Free online tool. No signup, client-side.",
       "keywords": "safelink decoder, url decoder, redirect resolver, link expander, short url decoder, free safelink decoder online, safelink decoder no signup, url unwrapper, link safety checker, redirect follower",
       "h1": "Outlook Safelink decoder",
       "intro": "Decode Outlook SafeLink links This tool processes all data locally in your browser. No information is ever sent to any server. Completely free, no registration required.",
@@ -4794,7 +4794,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Sales Tax Calculator | Free Business Calculator — figureitcalc",
+      "title": "Sales Tax Calc | Business Calc — figureitcalc",
       "description": "Free sales tax calculator by state. Calculate total price including state and local sales tax. Reverse-calculate pre-tax price from total. 2026 US tax rates for all states. Instant — no signup.",
       "keywords": "tax, sales, VAT, GST, price, purchase, rate, free sales tax calculator online, sales tax calculator no signup, how to calculate sales tax, sales tax calculator with formula",
       "h1": "Sales Tax Calculator",
@@ -4826,7 +4826,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Savings Goal Calculator | Free Calculator — figureitcalc",
+      "title": "Savings Goal Calc | Finance Calc — figureitcalc",
       "description": "Calculate how long it will take to reach your savings goal with regular contributions. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "savings, goal, target, monthly, contribution, plan, free savings goal calculator online, savings goal calculator no signup, how to calculate savings goal, savings goal calculator with formula",
       "h1": "Savings Goal Calculator",
@@ -4858,7 +4858,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Scientific Calculator | Free Academic Tool — figureitcalc",
+      "title": "Scientific Calc | Academic Tool — figureitcalc",
       "description": "Online scientific calculator with trigonometric, logarithmic, and exponential functions. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "scientific, math, trigonometry, log, sin, cos, tan, pi, free scientific calculator online, scientific calculator no signup, how to calculate scientific, scientific calculator with formula",
       "h1": "Scientific Calculator",
@@ -4890,7 +4890,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Seating Chart Calculator | Free Wedding Planner — figureitcalc",
+      "title": "Seating Chart Calc | Wed Plan — figureitcalc",
       "description": "Calculate the number of tables and optimal seating arrangement for your event. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "seating, chart, table, guest, wedding, event, arrangement, free seating chart calculator online, seating chart calculator no signup, how to calculate seating chart, seating chart calculator with formula",
       "h1": "Seating Chart Calculator",
@@ -4922,7 +4922,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Sleep Cycle Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Online Sleep Cycle Calculator | Health Tool — figureitcalc",
       "description": "Find the best times to wake up or go to sleep based on 90-minute sleep cycles. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "sleep, cycle, REM, wake, bedtime, circadian, alarm, free sleep cycle calculator online, sleep cycle calculator no signup, how to calculate sleep cycle, sleep cycle calculator with formula",
       "h1": "Sleep Cycle Calculator",
@@ -4986,7 +4986,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Solar Panel ROI Calculator | Free Eco Calculator — figureitcalc",
+      "title": "Solar Panel ROI Calc | Eco Calc — figureitcalc",
       "description": "Calculate the payback period and return on investment for installing solar panels. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "solar, panel, ROI, payback, energy, renewable, electricity, free solar panel roi calculator online, solar panel roi calculator no signup, how to calculate solar panel roi, solar panel roi calculator with formula",
       "h1": "Solar Panel ROI Calculator",
@@ -5050,7 +5050,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Statistics Calculator | Free Academic Tool — figureitcalc",
+      "title": "Statistics Calc | Academic Tool — figureitcalc",
       "description": "Calculate mean, median, mode, standard deviation, variance, and more from a dataset. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "statistics, mean, median, mode, standard, deviation, variance, free statistics calculator online, statistics calculator no signup, how to calculate statistics, statistics calculator with formula",
       "h1": "Statistics Calculator",
@@ -5082,7 +5082,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Steps to Miles Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Steps to Miles Calculator | Health Tool — figureitcalc",
       "description": "Convert your daily steps into miles or kilometers based on your stride length. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "steps, miles, km, walking, distance, stride, pedometer, free steps to miles calculator online, steps to miles calculator no signup, how to calculate steps to miles, steps to miles calculator with formula",
       "h1": "Steps to Miles Calculator",
@@ -5114,7 +5114,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Stock Return Calculator | Free Calculator — figureitcalc",
+      "title": "Stock Return Calc | Finance Calc — figureitcalc",
       "description": "Calculate your stock investment returns including capital gains and dividends. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "stock, return, dividend, capital, gain, investment, shares, free stock return calculator online, stock return calculator no signup, how to calculate stock return, stock return calculator with formula",
       "h1": "Stock Return Calculator",
@@ -5138,7 +5138,7 @@ export const TOOLS: ToolMeta[] = [
   },
   {
     "id": "stopwatch",
-    "name": "Stopwatch",
+    "name": "Stopwatch / Countdown Timer",
     "description": "Online stopwatch with lap timing. Perfect for workouts, presentations, and sports. Free online tool. No signup, client-side.",
     "category": "productivity",
     "icon": "Play",
@@ -5210,7 +5210,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Svg Placeholder Generator | Free Dev Tool — figureitcalc",
+      "title": "Svg Placeholder Gen | Dev Tool — figureitcalc",
       "description": "Svg Placeholder Generator — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "svg, placeholder, generator, image, size, mockup, free svg placeholder generator online, svg placeholder generator no signup, create svg placeholder free online, svg placeholder maker no signup",
       "h1": "Svg Placeholder Generator",
@@ -5242,7 +5242,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Tariff Impact Calculator | Free Trade Calculator — figureitcalc",
+      "title": "Tariff Impact Calc | Trade Calc — figureitcalc",
       "description": "Calculate how tariffs affect your final product price. See the impact on profit margins, retail pricing, and consumer cost. All rates user-adjustable. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "tariff, impact, price, trade war, consumer, cost, margin, import, free tariff impact calculator online, tariff impact calculator no signup, how to calculate tariff impact, tariff impact calculator with formula",
       "h1": "Tariff Impact Calculator",
@@ -5274,7 +5274,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online TDEE Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Online TDEE Calculator | Health Tool — figureitcalc",
       "description": "Calculate your Total Daily Energy Expenditure to know how many calories you burn per day. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "TDEE, calories, energy, expenditure, daily, BMR, metabolism, free tdee calculator online, tdee calculator no signup, how to calculate tdee, tdee calculator with formula",
       "h1": "TDEE Calculator",
@@ -5498,7 +5498,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Time Zone Converter | Free Travel Planner — figureitcalc",
+      "title": "Time Zone Conv | Travel Plan — figureitcalc",
       "description": "Convert time across different time zones worldwide. Perfect for scheduling international meetings. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "timezone, time, zone, UTC, GMT, international, meeting, schedule, free time zone converter online, time zone converter no signup, convert time zone online free, time zone conversion tool",
       "h1": "Time Zone Converter",
@@ -5562,7 +5562,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Tire Size Calculator | Free Auto Calculator — figureitcalc",
+      "title": "Tire Size Calc | Auto Calc — figureitcalc",
       "description": "Decode tire size markings and compare different tire sizes for your vehicle. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "tire, tyre, size, diameter, width, aspect, ratio, wheel, free tire size calculator online, tire size calculator no signup, how to calculate tire size, tire size calculator with formula",
       "h1": "Tire Size Calculator",
@@ -5690,7 +5690,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Travel Budget Calculator | Free Travel Planner — figureitcalc",
+      "title": "Travel Budget Calc | Travel Plan — figureitcalc",
       "description": "Plan your trip budget including flights, accommodation, food, activities, and extras. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "travel, budget, trip, vacation, cost, planning, expenses, free travel budget calculator online, travel budget calculator no signup, how to calculate travel budget, travel budget calculator with formula",
       "h1": "Travel Budget Calculator",
@@ -5882,7 +5882,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Water Footprint Calculator | Free Eco Calculator — figureitcalc",
+      "title": "Water Footprint Calc | Eco Calc — figureitcalc",
       "description": "Estimate your daily and annual water footprint from household usage. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "water, footprint, usage, conservation, gallons, liters, daily, free water footprint calculator online, water footprint calculator no signup, how to calculate water footprint, water footprint calculator with formula",
       "h1": "Water Footprint Calculator",
@@ -5914,7 +5914,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Water Intake Calculator | Free Online Health Tool — figureitcalc",
+      "title": "Online Water Intake Calculator | Health Tool — figureitcalc",
       "description": "Calculate your recommended daily water intake based on weight, activity, and climate. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "water, hydration, intake, daily, drink, health, fluid, free water intake calculator online, water intake calculator no signup, how to calculate water intake, water intake calculator with formula",
       "h1": "Water Intake Calculator",
@@ -5946,7 +5946,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Wedding Budget Calculator | Free Wedding Planner — figureitcalc",
+      "title": "Wed Budget Calc | Wed Plan — figureitcalc",
       "description": "Plan your wedding budget by allocating funds across all major expense categories. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "wedding, budget, planning, cost, venue, catering, dress, free wedding budget calculator online, wedding budget calculator no signup, how to calculate wedding budget, wedding budget calculator with formula",
       "h1": "Wedding Budget Calculator",
@@ -5978,7 +5978,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Wedding Countdown Calculator | Free Wedding Planner — figureitcalc",
+      "title": "Wed Count Calc | Wed Plan — figureitcalc",
       "description": "Create a beautiful countdown to your wedding day with days, hours, and minutes. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "wedding, countdown, timer, days, date, event, special, free wedding countdown calculator online, wedding countdown calculator no signup, how to calculate wedding countdown, wedding countdown calculator with formula",
       "h1": "Wedding Countdown Calculator",
@@ -6074,7 +6074,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online Wire Size Calculator (AWG) | Free Electrical Tool — figureitcalc",
+      "title": "Wire Size Calc (AWG) | Elec Tool — figureitcalc",
       "description": "Calculate the proper wire gauge (AWG) for your electrical installation based on current and distance. Free online tool. 100% client-side — no uploads, no signup.",
       "keywords": "wire, gauge, AWG, size, ampacity, voltage, drop, cable, free wire size calculator (awg) online, wire size calculator (awg) no signup, how to calculate wire size  (awg), wire size  (awg) calculator with formula",
       "h1": "Wire Size Calculator (AWG)",
@@ -6106,7 +6106,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online XML Formatter & Beautifier | Free Dev Tool — figureitcalc",
+      "title": "XML Format & Beautifier | Dev Tool — figureitcalc",
       "description": "Xml Formatter — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "xml formatter, xml beautifier, xml prettifier, xml indentation, format xml online, free xml formatter, xml formatter no signup, xml validator, xml parser, xml tool",
       "h1": "Xml Formatter",
@@ -6131,7 +6131,7 @@ export const TOOLS: ToolMeta[] = [
   {
     "id": "xml-to-json",
     "name": "XML to JSON",
-    "description": "Convert XML to JSON Free online tool. 100% client-side processing — no uploads, no signup required.",
+    "description": "Convert XML documents to JSON format with structure preservation. Free online tool. 100% client-side processing — no uploads, no signup required.",
     "category": "developer",
     "icon": "Zap",
     "isHot": false,
@@ -6234,7 +6234,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": false,
     "component": "calculator",
     "seo": {
-      "title": "Online YAML Viewer & Formatter | Free Dev Tool — figureitcalc",
+      "title": "YAML Viewer & Format | Dev Tool — figureitcalc",
       "description": "Yaml Viewer — free online tool. No signup, client-side processing. Free online tool. 100% client-side processing — no uploads, no signup required.",
       "keywords": "yaml viewer, yaml prettifier, yaml parser, yaml tree view, yaml explorer, free yaml viewer online, yaml viewer no signup, yaml inspector, config viewer, yaml debugger",
       "h1": "Yaml Viewer",
@@ -6266,7 +6266,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Zodiac Love Compatibility — Free Love Match Calculator | figureitcalc",
+      "title": "Zodiac Love Compatibility Calc | figureitcalc",
       "description": "Free zodiac love compatibility calculator — 5-dimensional analysis using elemental affinity, romantic chemistry, modality harmony, communication style, and moon signs. Fun, detailed compatibility reports. For entertainment purposes.",
       "keywords": "zodiac, compatibility, love, match, astrology, horoscope, romance, star sign, free zodiac love compatibility online, zodiac love compatibility no signup",
       "h1": "Zodiac Love Compatibility Calculator",
@@ -6288,7 +6288,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Sheng Xiao Love Match — 12 Animal Signs Compatibility | figureitcalc",
+      "title": "Sheng Xiao Love Match — Chinese Zodiac | figureitcalc",
       "description": "Free Sheng Xiao love match calculator — check compatibility using the 12 animal signs with Five Elements and Yin-Yang balance. Based on San He (Three Harmonies) and Liu Chong (Six Clashes) traditions. Fun, detailed, shareable.",
       "keywords": "sheng xiao, love match, animal signs, compatibility, zodiac, chinese zodiac, free sheng xiao love match online, sheng xiao love match no signup, 12 animal signs compatibility, chinese horoscope love match",
       "h1": "Sheng Xiao Love Match",
@@ -6310,7 +6310,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Numerology Life Path Calculator — Free Destiny Number Reading | figureitcalc",
+      "title": "Numerology Life Path Calc | figureitcalc | figureitcalc",
       "description": "Free numerology Life Path calculator — discover your Life Path, Destiny, and Soul Urge numbers based on Pythagorean numerology. Includes Master Numbers 11, 22, 33. Learn what your birth date reveals about you.",
       "keywords": "numerology, life path number, destiny number, soul urge, pythagorean, birth date meaning, free numerology life path calculator online, numerology life path calculator no signup, how to calculate numerology life path, numerology life path calculator with formula",
       "h1": "Numerology Life Path Calculator",
@@ -6332,7 +6332,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Ba Zi Five Elements Fortune — Ba Zi Birth Chart | figureitcalc",
+      "title": "Ba Zi Five Elements Fortune — Birth Chart | figureitcalc",
       "description": "Free Ba Zi Eight Characters birth chart calculator — generate your Four Pillars of Destiny including Heavenly Stems, Earthly Branches, and Five Elements balance. Discover your Day Master element and personality archetype.",
       "keywords": "ba zi, eight characters, five elements, chinese astrology, day master, heavenly stems, earthly branches, feng shui, four pillars of destiny, free ba zi five elements fortune online, ba zi five elements fortune no signup",
       "h1": "Ba Zi Five Elements Fortune Calculator",
@@ -6354,7 +6354,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "I Ching Coin Divination — Free Ancient Chinese Oracle | figureitcalc",
+      "title": "I Ching Coin Divination — Free Oracle | figureitcalc",
       "description": "Free I Ching coin divination — cast virtual coins to receive one of 64 hexagrams with detailed interpretations from the ancient Book of Changes. Use for reflection and gaining new perspectives. For entertainment purposes.",
       "keywords": "i ching, yi jing, divination, hexagram, coins, book of changes, oracle, ancient chinese philosophy, free i ching coin divination online, i ching coin divination no signup, 64 hexagrams, zhou yi",
       "h1": "I Ching Coin Divination",
@@ -6398,7 +6398,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Past Life Discovery — Fun Past Life Quiz & Generator | figureitcalc",
+      "title": "Past Life Discovery — Fun Past Life Quiz | figureitcalc",
       "description": "Discover your past life identity! Enter your birthday to reveal who you might have been — your past era, profession, location, and life lesson. Fun and free!",
       "keywords": "past life, reincarnation, past life quiz, who was I, karma, past identity, fun quiz, free past life discovery online, past life discovery no signup",
       "h1": "Past Life Discovery",
@@ -6420,7 +6420,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Name Love Compatibility — FLAMES + Numerology Name Match | figureitcalc",
+      "title": "Name Love Compatibility — FLAMES & Numerology | figureitcalc",
       "description": "Test love compatibility between two names. Uses FLAMES game, vowel harmony, and name numerology. Fun, free, and instant results!",
       "keywords": "name compatibility, love calculator, flames, name match, love test, crush test, name numerology, free name love compatibility online, name love compatibility no signup",
       "h1": "Name Love Compatibility Calculator",
@@ -6442,7 +6442,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Love Calculator — Fun Love Percentage Match for Two Names | figureitcalc",
+      "title": "Love Calc — Fun Love % Match for Two Names | figureitcalc",
       "description": "Free love calculator — enter two names and get your love percentage! Uses 5 fun algorithms: classic hash, vowel harmony, consonant resonance, length match, and alphabet numerology. Nostalgic fun — share with your crush!",
       "keywords": "love calculator, love percentage, love test, crush calculator, love match, name love, romance calculator, free love calculator online, love calculator no signup, how to calculate love, love calculator with formula",
       "h1": "Love Calculator",
@@ -6464,7 +6464,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Soulmate Birthday Match — Multi-Algorithm Love Compatibility | figureitcalc",
+      "title": "Soulmate Birthday Match — Love Test | figureitcalc",
       "description": "Free soulmate birthday match calculator — 5-dimension compatibility analysis: Life Path harmony, birth season affinity, day number matching, year path crossing, and karmic numbers. For entertainment purposes.",
       "keywords": "soulmate, birthday match, love compatibility, life path, biorhythm, zodiac love, twin flame, free soulmate birthday match online, soulmate birthday match no signup",
       "h1": "Soulmate Birthday Match",
@@ -6486,7 +6486,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Daily Fortune Cookie — Free Daily Horoscope & Lucky Prediction | figureitcalc",
+      "title": "Daily Fortune Cookie — Fortune | figureitcalc | figureitcalc",
       "description": "Crack open a virtual fortune cookie every day! Get a fun daily prediction with your zodiac energy, lucky color, lucky numbers, and a fortune message.",
       "keywords": "daily fortune, fortune cookie, daily horoscope, lucky numbers, prediction, fun oracle, daily prediction, free daily fortune cookie online, daily fortune cookie no signup",
       "h1": "Daily Fortune Cookie",
@@ -6508,7 +6508,7 @@ export const TOOLS: ToolMeta[] = [
     "isNew": true,
     "component": "calculator",
     "seo": {
-      "title": "Lucky Number Generator — Personalized Lucky Numbers by Birthday | figureitcalc",
+      "title": "Lucky Number Gen by Birthday | figureitcalc | figureitcalc",
       "description": "Generate your personal lucky numbers based on birth date, zodiac, and numerology. Perfect for lottery numbers, game picks, or just for fun!",
       "keywords": "lucky numbers, lottery numbers, numerology, fortune numbers, lucky pick, random numbers, zodiac numbers, free lucky number generator online, lucky number generator no signup, create lucky number free online, lucky number maker no signup",
       "h1": "Lucky Number Generator",

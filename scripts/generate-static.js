@@ -17,6 +17,12 @@ const formulasTs = readFileSync('src/app/data/formulas.ts', 'utf-8');
 // Helpers
 function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 function escAttr(s) { return String(s).replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function truncateAtWord(text, maxLen) {
+  if (!text || text.length <= maxLen) return text;
+  const truncated = text.substring(0, maxLen);
+  const lastSpace = truncated.lastIndexOf(' ');
+  return lastSpace > 10 ? truncated.substring(0, lastSpace) + '...' : truncated.substring(0, maxLen - 3) + '...';
+}
 
 // Extract all tool IDs
 const idRegex = /"id":\s*"([a-z0-9-]+)"/g;
@@ -140,37 +146,100 @@ function getCategoryContent(catId) {
 }
 
 // Build page
-function buildPage(metaTitle, metaDesc, metaKeywords, canonicalPath, bodyContent, faqData) {
+function buildPage(metaTitle, metaDesc, metaKeywords, canonicalPath, bodyContent, faqData, opts = {}) {
   let html = template;
+  const canonicalUrl = `https://www.figureitcalc.com${canonicalPath}${canonicalPath === '/' ? '' : '.html'}`;
+  const safeTitle = escAttr(metaTitle);
+  const safeDesc = escAttr(metaDesc).substring(0, 300);
+  const safeDescShort = truncateAtWord(escAttr(metaDesc), 200);
+
+  // Standard meta tag replacements
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(metaTitle)}</title>`);
-  html = html.replace(/<meta name="description"[^>]*>/,
-    `<meta name="description" content="${escAttr(metaDesc).substring(0,300)}">`);
-  html = html.replace(/<meta property="og:title"[^>]*>/,
-    `<meta property="og:title" content="${escAttr(metaTitle)}">`);
-  html = html.replace(/<meta property="og:description"[^>]*>/,
-    `<meta property="og:description" content="${escAttr(metaDesc).substring(0,200)}">`);
-  html = html.replace(/<link rel="canonical"[^>]*>/,
-    `<link rel="canonical" href="https://www.figureitcalc.com${canonicalPath}">`);
+  html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${safeDesc}">`);
+  html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${safeTitle}">`);
+  html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${safeDescShort}">`);
+  html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${safeTitle}">`);
+  html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${safeDescShort}">`);
+  html = html.replace(/<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${canonicalUrl}">`);
   if (!html.includes('name="keywords"')) {
     html = html.replace('</head>', `<meta name="keywords" content="${escAttr(metaKeywords)}">\n</head>`);
   } else {
-    html = html.replace(/<meta name="keywords"[^>]*>/,
-      `<meta name="keywords" content="${escAttr(metaKeywords)}">`);
+    html = html.replace(/<meta name="keywords"[^>]*>/, `<meta name="keywords" content="${escAttr(metaKeywords)}">`);
+  }
+
+  // Collect all head insertions (og:image + JSON-LD schemas)
+  const headInsertions = [];
+
+  // Add og:image (only if not present in original template)
+  if (!template.includes('og:image')) {
+    headInsertions.push(
+      '  <meta property="og:image" content="https://www.figureitcalc.com/og-image.png">',
+      '  <meta property="og:image:width" content="1200">',
+      '  <meta property="og:image:height" content="630">'
+    );
   }
 
   // Add JSON-LD FAQ schema if present
   if (faqData && faqData.length > 0) {
-    const faqSchema = {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": faqData.map(f => ({
-        "@type": "Question",
-        "name": f.q,
-        "acceptedAnswer": { "@type": "Answer", "text": f.a }
-      }))
-    };
-    html = html.replace('</head>',
-      `<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>\n</head>`);
+    headInsertions.push(
+      `<script type="application/ld+json">${JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqData.map(f => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a }
+        }))
+      })}</script>`
+    );
+  }
+
+  // Add BreadcrumbList schema for tool pages and category pages
+  if (opts.toolName || opts.catName) {
+    const breadcrumbItems = [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.figureitcalc.com/" }
+    ];
+    if (opts.catName && opts.catId) {
+      breadcrumbItems.push({
+        "@type": "ListItem", "position": 2, "name": opts.catName,
+        "item": `https://www.figureitcalc.com/category/${opts.catId}.html`
+      });
+    }
+    if (opts.toolName) {
+      const catCount = opts.catName ? 3 : 2;
+      breadcrumbItems.push({
+        "@type": "ListItem", "position": catCount, "name": opts.toolName
+      });
+    }
+    headInsertions.push(
+      `<script type="application/ld+json">${JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": breadcrumbItems
+      })}</script>`
+    );
+  }
+
+  // Add WebApplication schema for tool pages
+  if (opts.toolName) {
+    headInsertions.push(
+      `<script type="application/ld+json">${JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": opts.toolName,
+        "url": canonicalUrl,
+        "description": truncateAtWord(metaDesc, 300),
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "All",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "browserRequirements": "Requires JavaScript"
+      })}</script>`
+    );
+  }
+
+  // Inject all head insertions before </head> in a single pass
+  if (headInsertions.length > 0) {
+    html = html.replace('</head>', headInsertions.join('\n') + '\n</head>');
   }
 
   // Inject visible SEO content directly on the page — fully crawlable
@@ -289,7 +358,8 @@ for (const catId of catIds) {
     `${catId}, free ${catId} tools, online ${catId} calculator, ${catId} converter`,
     `/category/${catId}`,
     body,
-    faqData
+    faqData,
+    { catId, catName: label }
   );
 }
 
@@ -355,7 +425,8 @@ for (const toolId of uniqueIds) {
     meta.seoKw,
     `/tools/${toolId}`,
     body,
-    content?.faq?.length ? content.faq : null
+    content?.faq?.length ? content.faq : null,
+    { toolName: meta.name, catId: meta.cat, catName: catLabels[meta.cat] || meta.cat }
   );
 
   toolCount++;
